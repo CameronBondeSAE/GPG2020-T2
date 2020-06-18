@@ -9,24 +9,21 @@ namespace AnthonyY
 {
     public class AStarTest : MonoBehaviour
     {
+        
         public LayerMask unTouchableSurface; //mask for obstacles
-    
-        //lists of nodes to follow to get to the objective
-        public Node[] nodeArray; 
-        public float nodeDiameter;
-        public float nodeRadius;
-    
         //the grid itself
         //things that it may we need to take into the account
-        public Vector2 gridSize;
-        public Vector2 gridSizex;
-        public Vector2 gridSizeY;
+        public Vector2Int gridSize;
+        //lists of nodes to follow to get to the objective
+        public Node[,] nodeArray;
+        public float nodeDiameter;
+
+        
     
         //I'm not 100% sure of these lists but can be used to see what nodes have already been checked
         public List<Node> closedNodes;
         public List<Node> openNodes; //nodes that have been visited but not been expanded
-        public List<Edge> neighbourNodes; //adjacency 
-    
+
         //need a goal variable
         //start position
         public Node currentNode;
@@ -36,8 +33,8 @@ namespace AnthonyY
         public float f;
         public float g = 0;
 
-        public float normalCost = 10;
-        public double diagonalCost = 1.414;
+        public float normalCost = 1;
+        public double diagonalCost = 1.4;
 
 
         //TODO
@@ -49,8 +46,8 @@ namespace AnthonyY
 
         void Start()
         {
-           
-           
+
+            
 
         }
 
@@ -68,9 +65,12 @@ namespace AnthonyY
         {
             openNodes.Add(nodeStart);
             openNodes.Add(nodeGoal);
-           
+            nodeArray = new Node[gridSize.x, gridSize.y];
+
+
             
-            while (openNodes.Count > 0)
+            
+            while (openNodes.Count <=0)
             {
                 //currentNode equals lowest f cost
                 //remove currentNode from open List
@@ -111,12 +111,18 @@ namespace AnthonyY
 
         public void neighbourSearch(Node node)
         {
-            foreach ( Edge edge in neighbourNodes)
+            //check for borders you cant check for in an array
+            //2d array grid
+            for (int x = 0; x < gridSize.x; x++)
             {
-                // g cost + normal cost
-                //g cost + diagonal cost
-                
+                for (int y= 0; y < gridSize.y; y++)
+                {
+                    Vector2Int gridPos = new Vector2Int(gridSize.x,gridSize.y);
+                    
+                }
             }
+            
+            
         }
 
         public void constructPath()
