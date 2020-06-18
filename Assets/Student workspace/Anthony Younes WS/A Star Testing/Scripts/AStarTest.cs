@@ -27,10 +27,10 @@ public class AStarTest : MonoBehaviour
    
    //TODO
    //A GIZMOS to see the line update ingame
-   public void OnDrawGizmos(Node targetNode)
+   /*public void OnDrawGizmos(Node targetNode)
    {
        Gizmos.color = Color.yellow;
-   }
+   }*/
 
    void Start()
     {
