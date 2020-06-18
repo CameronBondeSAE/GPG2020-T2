@@ -60,5 +60,5 @@ public class Patrol : MonoBehaviour
 
 //Tasks to do:
 /*
-Make options for the patrols, like patrol in list order, or loop patrol between A and B
+    Make options for the patrols, like patrol in list order, or loop patrol between A and B
 */
