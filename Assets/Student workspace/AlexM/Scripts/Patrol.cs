@@ -14,6 +14,7 @@ public class Patrol : MonoBehaviour
     public List<PatrolPoint> points;
     public Rigidbody rB;
     public Transform target;
+    public int currTarget;
     public float speedMulti;
     [HideInInspector]
     public float dist;
@@ -35,7 +36,10 @@ public class Patrol : MonoBehaviour
 
         if (random)
         {
-            target = points[Random.Range(0,points.Count)].transform;
+            //target = points[Random.Range(0,points.Count)].transform;
+        }else if (order)
+        {
+            target = points[currTarget].transform;
         }
         
         _dir = (target.position - transform.position).normalized;
@@ -46,17 +50,28 @@ public class Patrol : MonoBehaviour
         
         dist = Vector3.Distance(target.position, transform.position);
         
-        if (dist <= 1.0f)
+        if (dist <= 1.0f && !reached)
         {
             if (random)
             {
                 targetInt = Random.Range(0, points.Count); 
             }else if (order)
             {
-                for (int i = 0; i < points.Count; i++)
+                // for (int i = 0; i < points.Count; i++)
+                // {
+                //     targetInt = i;
+                //     reached = true;
+                //     Debug.Log("Target: " + i.ToString());
+                // } 
+
+                reached = true;
+                if (currTarget > (points.Count - 1))//Kind of works, still gives the index out of range. sleep first fix later!
                 {
-                    targetInt = i;
-                } 
+                    currTarget = 0;
+                }
+                currTarget += 1;
+                targetInt = currTarget;
+
             }
             
             target = points[targetInt].transform;
