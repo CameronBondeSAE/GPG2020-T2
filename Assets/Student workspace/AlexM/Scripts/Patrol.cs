@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -21,7 +22,13 @@ public class Patrol : MonoBehaviour
     public bool reached = false;
 
     private int targetInt;
-    //public float speed;
+    // public enum SortBy
+    // {
+    //     Random,
+    //     Ordered,
+    //     Loop
+    // }
+    
     private void Awake()
     {
         rB = this.gameObject.GetComponent<Rigidbody>();
@@ -44,6 +51,12 @@ public class Patrol : MonoBehaviour
             if (random)
             {
                 targetInt = Random.Range(0, points.Count); 
+            }else if (order)
+            {
+                for (int i = 0; i < points.Count; i++)
+                {
+                    targetInt = i;
+                } 
             }
             
             target = points[targetInt].transform;
