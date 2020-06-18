@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Jobs;
@@ -25,14 +26,13 @@ namespace Student_workspace.Blaide.scripts
         // Start is called before the first frame update
         void Start()
         {
-            testTransformJob.time = Time.time;
-
             
+
+            testTransformJob.time = Time.time;
             transforms = new Transform[objCount];
             for (int i = 0; i < transforms.Length; i++)
             {
-                GameObject g = Instantiate(ObjPrefab, transform.position + new Vector3(transforms.Length/2 + i, 1, 1), transform.rotation,
-                    transform);
+                GameObject g = Instantiate(ObjPrefab, transform.position + new Vector3(i, 1, 1), transform.rotation);
                 
                 transforms[i] = g.transform;
             }
@@ -49,9 +49,15 @@ namespace Student_workspace.Blaide.scripts
             {
                 _jobHandle1.Complete();
                  t.Dispose();
+                 testTransformJob.time = Time.time;
                 t = new TransformAccessArray(transforms);
                 _jobHandle1 = testTransformJob.Schedule(t);
             }
+        }
+
+        private void OnDisable()
+        {
+            t.Dispose();
         }
     }
 
@@ -73,7 +79,7 @@ namespace Student_workspace.Blaide.scripts
         public float time;
         public void Execute(int index, TransformAccess transform)
         {
-            transform.position = new Vector3(transform.position.x,noise.cnoise(new float2(time,1)),transform.position.z);
+            transform.position = new Vector3(transform.position.x, 5* noise.cnoise(new float2(time + (index * 0.1f),1)),transform.position.z);
         }
     }
 }
