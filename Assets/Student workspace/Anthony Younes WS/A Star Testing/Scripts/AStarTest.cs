@@ -19,8 +19,8 @@ namespace AnthonyY
         //the grid itself
         //things that it may we need to take into the account
         public Vector2 gridSize;
-        public int gridSizex;
-        public int gridSizeY;
+        public Vector2 gridSizex;
+        public Vector2 gridSizeY;
     
         //I'm not 100% sure of these lists but can be used to see what nodes have already been checked
         public List<Node> closedNodes;
@@ -43,22 +43,25 @@ namespace AnthonyY
         //A GIZMOS to see the line update ingame
         public void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            //Gizmos.color = Color.yellow;
         }
 
         void Start()
         {
             openNodes.Add(nodeStart);
             openNodes.Add(nodeGoal);
-            openNodes.Add();
-           
+
         }
 
-        public void calculateFCost()
+        //create f,g,h values
+        public void calculateHeuristics(Node node)
         {
-            h_cost = Math.Sqrt(nodeStart - gridSizex.x) + 
+            //g_cost = (node.parent - nodeGoal.x);
+           // g_cost = Math.Abs(node.y - nodeGoal.y);
+
+            
         }
-    
+        
 
         public void nodeSearch()
         {
@@ -76,10 +79,10 @@ namespace AnthonyY
                     {
                         continue;
                     }
-                    else
-                    {
-                        
-                    }
+                   
+                    
+                  
+                    
                 }
                 
                 
@@ -89,22 +92,17 @@ namespace AnthonyY
                     //yay we made it
                 
                 }
-                else(!currentNode.Equals(nodeGoal))
+                /*else(!currentNode.Equals(nodeGoal))
                 {
                     Debug.Log("Cannot find path");
-                }
-                
-                
+                }*/
             }
-            
-            
+        }
 
-           
-           
-          
+        public void neighbourSearch()
+        {
             
         }
-        
 
     }
 
