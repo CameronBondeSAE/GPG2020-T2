@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class Patrol : MonoBehaviour
 {
+    public bool random, order, loop;
     public List<PatrolPoint> points;
     public Rigidbody rB;
     public Transform target;
@@ -18,11 +19,18 @@ public class Patrol : MonoBehaviour
     private Vector3 _dir;
     [HideInInspector]
     public bool reached = false;
+
+    private int targetInt;
     //public float speed;
     private void Awake()
     {
         rB = this.gameObject.GetComponent<Rigidbody>();
-        target = points[Random.Range(0,points.Count)].transform;
+
+        if (random)
+        {
+            target = points[Random.Range(0,points.Count)].transform;
+        }
+        
         _dir = (target.position - transform.position).normalized;
     }
 
@@ -33,7 +41,11 @@ public class Patrol : MonoBehaviour
         
         if (dist <= 1.0f)
         {
-            int targetInt = Random.Range(0, points.Count);
+            if (random)
+            {
+                targetInt = Random.Range(0, points.Count); 
+            }
+            
             target = points[targetInt].transform;
             _dir = (target.position - transform.position).normalized;
             reached = true;
