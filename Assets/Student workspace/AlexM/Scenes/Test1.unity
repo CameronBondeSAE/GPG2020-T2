@@ -2488,6 +2488,11 @@ PrefabInstance:
       propertyPath: points.Array.data[19]
       value: 
       objectReference: {fileID: 1351107734}
+    - target: {fileID: 1120624713987756582, guid: 6570f5484ec1e8d43b0e7b1ae9b01d9a,
+        type: 3}
+      propertyPath: speedMulti
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1120624713987756584, guid: 6570f5484ec1e8d43b0e7b1ae9b01d9a,
         type: 3}
       propertyPath: m_Name

@@ -23,7 +23,7 @@ public class Patrol : MonoBehaviour
     {
         rB = this.gameObject.GetComponent<Rigidbody>();
         target = points[Random.Range(0,points.Count)].transform;
-        _dir = (target.position - transform.position);
+        _dir = (target.position - transform.position).normalized;
     }
 
     public void TargetCheck()
@@ -35,7 +35,7 @@ public class Patrol : MonoBehaviour
         {
             int targetInt = Random.Range(0, points.Count);
             target = points[targetInt].transform;
-            _dir = (target.position - transform.position);
+            _dir = (target.position - transform.position).normalized;
             reached = true;
         }
         reached = false;
