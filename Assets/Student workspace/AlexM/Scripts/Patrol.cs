@@ -56,3 +56,9 @@ public class Patrol : MonoBehaviour
         DoPatrol();
     }
 }
+
+
+//Tasks to do:
+/*
+Make options for the patrols, like patrol in list order, or loop patrol between A and B
+*/
