@@ -65,7 +65,7 @@ public class Patrol : MonoBehaviour
                 // } 
 
                 reached = true;
-                if (currTarget > (points.Count - 1))//Kind of works, still gives the index out of range. sleep first fix later!
+                if (currTarget > (points.Count - 1))//Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
                 {
                     currTarget = 0;
                 }
@@ -100,5 +100,6 @@ public class Patrol : MonoBehaviour
 
 //Tasks to do:
 /*
-    Make options for the patrols, like patrol in list order, or loop patrol between A and B
+    Make options for the patrols, like patrol in list order(done), or loop patrol between A and B
+    Destroy objects on contact (only certain objects)
 */
