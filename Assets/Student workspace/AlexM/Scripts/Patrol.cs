@@ -23,6 +23,10 @@ public class Patrol : MonoBehaviour
     public bool reached = false;
 
     private int targetInt;
+
+    public Transform head;
+    
+    
     // public enum SortBy
     // {
     //     Random,
@@ -32,14 +36,21 @@ public class Patrol : MonoBehaviour
     
     private void Awake()
     {
+        head = transform.Find("Head");
         rB = this.gameObject.GetComponent<Rigidbody>();
 
         if (random)
         {
-            //target = points[Random.Range(0,points.Count)].transform;
+            target = points[Random.Range(0,points.Count)].transform;
         }else if (order)
         {
             target = points[currTarget].transform;
+        }
+        else
+        {
+
+            target = GameObject.FindObjectOfType<PatrolPoint>().transform;
+
         }
         
         _dir = (target.position - transform.position).normalized;
@@ -47,8 +58,11 @@ public class Patrol : MonoBehaviour
 
     public void TargetCheck()
     {//check distance to target, change target
-        
-        dist = Vector3.Distance(target.position, transform.position);
+
+        if (target)
+        {
+            dist = Vector3.Distance(target.position, transform.position);
+        }
         
         if (dist <= 1.0f && !reached)
         {
@@ -57,13 +71,6 @@ public class Patrol : MonoBehaviour
                 targetInt = Random.Range(0, points.Count); 
             }else if (order)
             {
-                // for (int i = 0; i < points.Count; i++)
-                // {
-                //     targetInt = i;
-                //     reached = true;
-                //     Debug.Log("Target: " + i.ToString());
-                // } 
-
                 reached = true;
                 if (currTarget > (points.Count - 1))//Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
                 {
@@ -72,6 +79,9 @@ public class Patrol : MonoBehaviour
                 currTarget += 1;
                 targetInt = currTarget;
 
+            }else if (loop)
+            {
+                
             }
             
             target = points[targetInt].transform;
@@ -88,6 +98,8 @@ public class Patrol : MonoBehaviour
         if (!reached)
         {
             rB.velocity = _dir * (speedMulti * Time.deltaTime);
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+            head.transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
         }
     }
 
