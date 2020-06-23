@@ -10,14 +10,16 @@ namespace AnthonyY
 {
     public class AStarTest : MonoBehaviour
     {
-        public class NodeInfo //cost variables
+        public class Node //cost variables
         {
             public int h;
             public int f;
             public int g = 0;
             public int normalCost = 1;
             public float diagonalCost = 1.4f;
-
+            public int gridX;
+            public int gridY;
+            
             public Node parent;
 
             //calculating the heureustic cost
