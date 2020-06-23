@@ -34,7 +34,7 @@ namespace Student_workspace.Dylan.Scripts.JobTests
                 listOfCubes.Add(cube);
             }
             
-            rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.TempJob);
+            rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.Persistent);
             transformAccessArray = new TransformAccessArray(listOfCubes.Count);
             
             for (int i = 0; i < listOfCubes.Count; i++)
@@ -45,7 +45,7 @@ namespace Student_workspace.Dylan.Scripts.JobTests
 
         void Update()
         {
-            startTime = Time.realtimeSinceStartup;
+            // startTime = Time.realtimeSinceStartup;
             
             // if (useJobs)
             // {
@@ -56,7 +56,7 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             //     ExpensiveFunction();
             // }
 
-            if (useJobs)
+            if (useJobs && transformJobHandle.IsCompleted)
             {
                 DoTransformJob();
             }
@@ -94,12 +94,19 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             transformjob.rotationOfTransform = rotationArray;
             
             transformJobHandle = transformjob.Schedule(transformAccessArray);
-            // JobHandle.ScheduleBatchedJobs();
+            //JobHandle.ScheduleBatchedJobs();
             transformJobHandle.Complete();
-
+            
             rotationArray.Dispose();
             transformAccessArray.Dispose();
-            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
+            
+            // Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
+        }
+
+        private void OnDisable()
+        {
+            rotationArray.Dispose();
+            transformAccessArray.Dispose();
         }
 
         private struct TransformJob : IJobParallelForTransform
