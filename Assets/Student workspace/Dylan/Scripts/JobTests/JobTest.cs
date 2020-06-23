@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -17,10 +18,10 @@ namespace Student_workspace.Dylan.Scripts.JobTests
         public int TimesToExecute;
 
         public int speed = 100;
-        private NativeArray<float> ArrayOfTransforms;
         private JobHandle transformJobHandle;
         private TransformAccessArray transformAccessArray;
-
+        private NativeArray<float> rotationArray;
+        
         public int amountToSpawn;
         public GameObject prefab;
         public List<GameObject> listOfCubes;
@@ -32,28 +33,37 @@ namespace Student_workspace.Dylan.Scripts.JobTests
                 GameObject cube = Instantiate(prefab, new Vector3(0 + i, 0, 0), Quaternion.identity);
                 listOfCubes.Add(cube);
             }
+            
+            rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.TempJob);
+            transformAccessArray = new TransformAccessArray(listOfCubes.Count);
+            
+            for (int i = 0; i < listOfCubes.Count; i++)
+            {
+                transformAccessArray.Add(listOfCubes[i].transform);
+            }
         }
 
         void Update()
         {
             startTime = Time.realtimeSinceStartup;
-            if (useJobs)
-            {
-                DoExampleJob();
-            }
-            else
-            {
-                ExpensiveFunction();
-            }
-
+            
             // if (useJobs)
             // {
-            //     DoTransformJob();
+            //     DoExampleJob();
             // }
             // else
             // {
-            //     ExpensiveTransformFunction();
+            //     ExpensiveFunction();
             // }
+
+            if (useJobs)
+            {
+                DoTransformJob();
+            }
+            else
+            {
+                ExpensiveTransformFunction();
+            }
         }
 
         private void ExpensiveFunction()
@@ -70,49 +80,39 @@ namespace Student_workspace.Dylan.Scripts.JobTests
 
         private void ExpensiveTransformFunction()
         {
-            foreach (var cube in listOfCubes)
+            for (int i = 0; i < listOfCubes.Count; i++)
             {
-                cube.transform.eulerAngles += new Vector3(0, speed * Time.deltaTime, speed * Time.deltaTime);
+                listOfCubes[i].transform.position += new Vector3(0, speed * Time.deltaTime, 0);
             }
         }
 
         private void DoTransformJob()
         {
-            Transform[] myTransforms = {transform};
-            transformAccessArray = new TransformAccessArray(myTransforms);
-            ArrayOfTransforms = new NativeArray<float>(1,Allocator.Persistent);
-            
-            for (int i = 0; i < ArrayOfTransforms.Length; i++)
-            {
-                ArrayOfTransforms[i] = i;
-            }
-            
             TransformJob transformjob = new TransformJob();
-            transformjob.transforms = ArrayOfTransforms;
             transformjob.speed = speed;
             transformjob.deltaTime = Time.deltaTime;
-
-            transformJobHandle = transformjob.Schedule(transformAccessArray);
-            JobHandle.ScheduleBatchedJobs();
-            if (transformJobHandle.IsCompleted)
-            {
-                transformJobHandle.Complete();
-                
-            }
+            transformjob.rotationOfTransform = rotationArray;
             
+            transformJobHandle = transformjob.Schedule(transformAccessArray);
+            // JobHandle.ScheduleBatchedJobs();
+            transformJobHandle.Complete();
+
+            rotationArray.Dispose();
+            transformAccessArray.Dispose();
+            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
 
         private struct TransformJob : IJobParallelForTransform
         {
             public float speed;
             public float deltaTime;
+            public NativeArray<float> rotationOfTransform;
 
-            public NativeArray<float> transforms;
 
             public void Execute(int index, TransformAccess transform)
             {
-                var transformLocalRotation = transform.localRotation;
-                transformLocalRotation.eulerAngles = new Vector3(0, (transforms[index] + speed) * deltaTime, 0);
+                transform.position += new Vector3(0, rotationOfTransform[index] + speed * deltaTime,0);
+                // rotationOfTransform[index] += speed * deltaTime;
             }
         }
 

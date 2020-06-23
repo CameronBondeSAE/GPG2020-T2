@@ -342,7 +342,17 @@ PrefabInstance:
     - target: {fileID: 3017020977125388928, guid: f5572525ac1765b44942313471d08755,
         type: 3}
       propertyPath: amountToSpawn
-      value: 1000
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017020977125388928, guid: f5572525ac1765b44942313471d08755,
+        type: 3}
+      propertyPath: useJobs
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017020977125388928, guid: f5572525ac1765b44942313471d08755,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3836367076443512581, guid: f5572525ac1765b44942313471d08755,
         type: 3}
