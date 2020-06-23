@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst;
@@ -34,7 +34,7 @@ namespace Student_workspace.Dylan.Scripts.JobTests
                 listOfCubes.Add(cube);
             }
             
-            rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.Persistent);
+            rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.TempJob);
             transformAccessArray = new TransformAccessArray(listOfCubes.Count);
             
             for (int i = 0; i < listOfCubes.Count; i++)
@@ -97,8 +97,8 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             //JobHandle.ScheduleBatchedJobs();
             transformJobHandle.Complete();
             
-            rotationArray.Dispose();
-            transformAccessArray.Dispose();
+            // rotationArray.Dispose();
+            // transformAccessArray.Dispose();
             
             // Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
