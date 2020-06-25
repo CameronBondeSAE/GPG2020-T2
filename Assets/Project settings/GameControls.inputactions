@@ -1,0 +1,71 @@
+{
+    "name": "GameControls",
+    "maps": [
+        {
+            "name": "In Game",
+            "id": "d74fd78b-596c-43c1-99a0-158dab2bc2ed",
+            "actions": [
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "cb0c1dc9-8b15-4ef4-92de-1fb9ea5c6aea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "df65d254-0cd0-4803-b340-6d023d4bdfcc",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "149ec3dd-b4b2-415a-a17c-ac16dd84bcbf",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "In Menu",
+            "id": "4ad8d090-5bcb-4df7-a52e-746202cf8fbc",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "79d18eaf-3dce-4cee-88c5-f7d29294089e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0f666520-b422-4304-ba6f-de5bbee5546e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
