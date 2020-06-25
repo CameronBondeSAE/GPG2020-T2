@@ -5,6 +5,7 @@ using System.Xml;
 using Boo.Lang;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using AnthonyY;
 
 namespace AnthonyY
 {
@@ -28,13 +29,7 @@ namespace AnthonyY
                 get { return g + h; }
             }
         }
-        //TODO
-        //A GIZMOS to see the line update ingame
-        public void OnDrawGizmos()
-        {
-            //Gizmos.color = Color.yellow;
-        }
-
+        
 
         public LayerMask unTouchableSurface; //mask for obstacles
             private Vector2Int gridSize;
@@ -54,7 +49,14 @@ namespace AnthonyY
 
             private Node nodeStart;
             private Node nodeGoal;
-
+        
+//TODO
+            //A GIZMOS to see the line update ingame
+            public void OnDrawGizmos()
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireCube(transform.position,new Vector3(gridSize.x,1,gridSize.y));
+            }
 
             void Awake()
             {
@@ -71,12 +73,30 @@ namespace AnthonyY
                 {
                     openNodes.Add(nodeStart);
                     openNodes.Add(nodeGoal);
+                    //goal is found
+                    if (currentNode.Equals(nodeGoal))
+                    {
+                        Debug.Log("We have reached the goal");
+                        break;
+                    }
+
+                    else if(!currentNode.Equals(nodeGoal))
+                    {
+                        Debug.Log("Haven't reached goal");
+                    }
                 }
                 for (int x = 0; x < gridSize.x; x++)
                 {
                     for (int y = 0; y < gridSize.y; y++)
                     {
+                        nodeArray[x,y] = new Node();
                         Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
+                       
+                        //if (Physics.BoxCast(gridSize, nodeRadius,Quaternion.identity, unTouchableSurface))
+                        //{
+                           
+                      //  }
+                        #region Possible code to use I dont know where to put it
                         //currentNode equals lowest f cost
                         //remove currentNode from open List
                         //add it to closed List
@@ -92,20 +112,17 @@ namespace AnthonyY
                             }
                         }
 
-                        //goal is found
-                        if (currentNode.Equals(nodeGoal))
-                        {
-                            Debug.Log("We have reached the goal");
-                            break;
-                        }
+                        
+                
 
-                        /*else(!currentNode.Equals(nodeGoal))
-                        {
-                            Debug.Log("Cannot find path");
-                        }*/
+                        #endregion
                     }
                 }
+
+               
+               
             }
+            
             
 /// <summary>
 /// This part of the code checks to see neighbour nodes and add them to a list when they get checked
