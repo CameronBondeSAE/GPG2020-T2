@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.UI;
-
+/*
 public class UIButton : MonoBehaviour
 {
     public GameObject Enable_Disable;
@@ -19,3 +19,4 @@ public class UIButton : MonoBehaviour
 
     }
 }
+*/
