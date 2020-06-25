@@ -1,7 +1,7 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental;
 
 public class Player : MonoBehaviour
 {
@@ -12,10 +12,7 @@ public class Player : MonoBehaviour
         controls.Player.Shoot.performed += _ => Shoot();
     }
 
-    void Shoot ()
-    {
-        Debug.Log("I shot the sheriff!");
-    }
+    void Shoot() => Debug.Log("I shot the sheriff!");
 
     void OnEnable()
     {
@@ -28,4 +25,3 @@ public class Player : MonoBehaviour
     }
 
 }
-*/
