@@ -44,7 +44,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 10
-  m_Range: 5
+  m_Range: 10
   m_SpotAngle: 10.625998
   m_InnerSpotAngle: 7.0194387
   m_CookieSize: 10
@@ -504,6 +504,8 @@ MonoBehaviour:
   random: 1
   order: 0
   loop: 0
+  loopTargetA: {fileID: 0}
+  loopTargetB: {fileID: 0}
   points:
   - {fileID: 0}
   - {fileID: 0}
@@ -528,7 +530,7 @@ MonoBehaviour:
   rB: {fileID: 0}
   target: {fileID: 0}
   currTarget: 0
-  speedMulti: 100
+  speedMulti: 150
   dist: 0
   reached: 0
   head: {fileID: 0}

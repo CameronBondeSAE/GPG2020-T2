@@ -11,10 +11,12 @@ using Random = UnityEngine.Random;
 public class Patrol : MonoBehaviour
 {
     public bool random, order, loop;
+    public Transform loopTargetA;
+    public Transform loopTargetB;
     public List<PatrolPoint> points;
     public Rigidbody rB;
     public Transform target;
-    public int currTarget;
+    public int currTarget = 0;
     public float speedMulti;
     [HideInInspector]
     public float dist;
@@ -69,22 +71,29 @@ public class Patrol : MonoBehaviour
             if (random)
             {
                 targetInt = Random.Range(0, points.Count); 
-            }else if (order)
+                target = points[targetInt].transform;
+            }
+            else if (order)
             {
-                reached = true;
-                if (currTarget > (points.Count - 1))//Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
+                //reached = true;
+                if (currTarget >= (points.Count))//Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
                 {
                     currTarget = 0;
                 }
-                currTarget += 1;
+                else
+                {
+                    currTarget += 1;
+                }
+                
                 targetInt = currTarget;
-
-            }else if (loop)
+                target = points[targetInt].transform;
+            }
+            else if (loop)
             {
                 
             }
             
-            target = points[targetInt].transform;
+            //target = points[targetInt].transform;
             _dir = (target.position - transform.position).normalized;
             reached = true;
         }
