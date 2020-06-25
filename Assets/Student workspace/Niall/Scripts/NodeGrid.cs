@@ -51,9 +51,10 @@ namespace Niall
             percentX = Mathf.Clamp01(percentX);
             percentY = Mathf.Clamp01(percentY);
 
-         //   int x = Mathf.RoundToInt(gridSizeX - 1) * percentX;
-         //   int y = Mathf.RoundToInt(gridSizeY - 1) * percentY;
-         //   return grid[x, y];
+            int x = (int) (Mathf.RoundToInt(gridSizeX - 1) * percentX);
+            int y = (int) (Mathf.RoundToInt(gridSizeY - 1) * percentY);
+            return grid[x, y];
+         
         }
 
         public void OnDrawGizmos()
