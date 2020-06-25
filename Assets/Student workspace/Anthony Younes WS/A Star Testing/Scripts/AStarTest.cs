@@ -28,13 +28,7 @@ namespace AnthonyY
                 get { return g + h; }
             }
         }
-        //TODO
-        //A GIZMOS to see the line update ingame
-        public void OnDrawGizmos()
-        {
-            //Gizmos.color = Color.yellow;
-        }
-
+        
 
         public LayerMask unTouchableSurface; //mask for obstacles
             private Vector2Int gridSize;
@@ -55,6 +49,12 @@ namespace AnthonyY
             private Node nodeStart;
             private Node nodeGoal;
 
+//TODO
+            //A GIZMOS to see the line update ingame
+            public void OnDrawGizmos()
+            {
+                Gizmos.DrawWireCube(transform.position,new Vector3(gridSize.x,1,gridSize.y));
+            }
 
             void Awake()
             {
@@ -76,7 +76,16 @@ namespace AnthonyY
                 {
                     for (int y = 0; y < gridSize.y; y++)
                     {
+                        nodeArray[x,y] = new Node();
                         Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
+                        /*if (Physics.OverlapBox(, nodeRadius, unTouchableSurface))
+                        {
+                            
+                        }*/
+                        
+                        
+                        
+                       
                         //currentNode equals lowest f cost
                         //remove currentNode from open List
                         //add it to closed List
