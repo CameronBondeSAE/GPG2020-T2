@@ -1,0 +1,71 @@
+{
+    "name": "InventoryTestControls",
+    "maps": [
+        {
+            "name": "Inventory",
+            "id": "20272cc9-9b5b-41c0-a381-1b7d135c0803",
+            "actions": [
+                {
+                    "name": "Weapon",
+                    "type": "Button",
+                    "id": "c2fdb32f-4d16-44aa-8162-6360e4d5b3fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PowerUp",
+                    "type": "Button",
+                    "id": "2732a2a5-acaa-4159-bc64-3ba8d60e9fc0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ability",
+                    "type": "Button",
+                    "id": "351718c0-e6d3-462a-a520-fafcc8941879",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "645bc009-8c1e-4465-864f-9f1dc5494aeb",
+                    "path": "<Keyboard>/#(1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7cef4003-08c6-4905-94ad-2b12feccc398",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13c1ffd6-3008-419c-8956-e61795260311",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

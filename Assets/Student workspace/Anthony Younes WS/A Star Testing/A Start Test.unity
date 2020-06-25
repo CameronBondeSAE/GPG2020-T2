@@ -150,16 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffef7abb85b87164b9576110479ed3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  h: 0
-  f: 0
-  g: 0
   unTouchableSurface:
     serializedVersion: 2
-    m_Bits: 0
-  gridSize: {x: 0, y: 0}
-  nodeDiameter: 0
-  normalCost: 1
-  diagonalCost: 1.4
+    m_Bits: 512
+  gridSizeX: 0
+  gridSizeY: 0
+  nodeRadius: 0
 --- !u!4 &66658673
 Transform:
   m_ObjectHideFlags: 0

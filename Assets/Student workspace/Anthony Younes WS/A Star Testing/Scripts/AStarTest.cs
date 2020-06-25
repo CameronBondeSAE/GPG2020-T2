@@ -56,6 +56,11 @@ namespace AnthonyY
             {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawWireCube(transform.position,new Vector3(gridSize.x,1,gridSize.y));
+
+                if (nodeArray != null)
+                {
+                    
+                }
             }
 
             void Awake()
@@ -100,17 +105,7 @@ namespace AnthonyY
                         //currentNode equals lowest f cost
                         //remove currentNode from open List
                         //add it to closed List
-                        foreach (Node n in nodeArray)
-                        {
-
-                            //goal isnt found
-                            if (n.Equals(currentNode))
-                            {
-                                openNodes.Remove(currentNode);
-                                closedNodes.Add(currentNode);
-                                continue;
-                            }
-                        }
+                        
 
                         
                 
