@@ -30,7 +30,7 @@ namespace Niall
         {
             grid = new Node[gridSizeX,gridSizeY];
             Vector3 worldBottomLeft = transform.position =
-                Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
+                Vector3.left * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
             for (int x = 0; x < gridSizeX; x++)
             {
@@ -47,7 +47,7 @@ namespace Niall
         public Node NodeFromWorldPoint(Vector3 worldposition)
         {
             float percentX = (worldposition.x * gridWorldSize.x / 2) / gridWorldSize.x;
-            float percentY = (worldposition.y * gridWorldSize.y / 2) / gridWorldSize.y;
+            float percentY = (worldposition.z * gridWorldSize.y / 2) / gridWorldSize.y;
             percentX = Mathf.Clamp01(percentX);
             percentY = Mathf.Clamp01(percentY);
 
