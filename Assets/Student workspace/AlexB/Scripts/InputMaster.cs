@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/AlexB/InputMaster.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/AlexB/Scripts/InputMaster.inputactions'
 
 using System;
 using System.Collections;
@@ -24,7 +24,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""id"": ""cad3965c-6915-44b6-a0aa-8fc046ec9b33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Shoot"",

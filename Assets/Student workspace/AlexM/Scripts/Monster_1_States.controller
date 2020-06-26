@@ -60,7 +60,7 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: DistanceToTarget
     m_Type: 1
-    m_DefaultFloat: 10
+    m_DefaultFloat: 6
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
