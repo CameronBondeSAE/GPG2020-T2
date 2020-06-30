@@ -1,0 +1,33 @@
+{
+    "name": "YesInputActionMap",
+    "maps": [
+        {
+            "name": "AnActionMap",
+            "id": "7c754890-85aa-483c-ab96-24a3990c0657",
+            "actions": [
+                {
+                    "name": "DoAction",
+                    "type": "Button",
+                    "id": "9959bb9e-40d5-4651-b92c-057d80316efd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1b35e3bc-aa4a-486e-982c-be41b4ff54eb",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DoAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
