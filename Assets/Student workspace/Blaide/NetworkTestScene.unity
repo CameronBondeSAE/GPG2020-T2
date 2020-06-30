@@ -287,7 +287,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1578751648}
-        m_MethodName: OnStartServer
+        m_MethodName: StartHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   startOnHeadless: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: Assets/Student workspace/Blaide/NetworkTestScene.unity
+  offlineScene: 
   onlineScene: Assets/Student workspace/Blaide/NetworkTestScene.unity
   transport: {fileID: 1578751647}
   networkAddress: localhost

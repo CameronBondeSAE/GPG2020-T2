@@ -24,6 +24,15 @@ namespace Student_workspace.Blaide
             Debug.Log(" Connected to server at :" + networkAddress);
             base.OnClientConnect(conn);
         }
-        
+        public override void OnServerConnect(NetworkConnection conn)
+        {
+            base.OnServerConnect(conn);
+            if (numPlayers >= maxConnections)
+            {
+                conn.Disconnect();
+                return;
+            }
+
+        }
     }
 }
