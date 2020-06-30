@@ -10,7 +10,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     /// </summary>
     public class JoinLobbyMenu : MonoBehaviour
     {
-        [SerializeField] private NetworkManagerLobby networkManager = null;
+        [SerializeField] private GameNetworkManager gameNetworkManager = null;
 
         [Header("UI")] 
         [SerializeField] private GameObject landingPagePanel = null;
@@ -19,22 +19,22 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         private void OnEnable()
         {
-            NetworkManagerLobby.OnClientConnected += HandleClientConnected;
-            NetworkManagerLobby.OnClientDisconnected += HandleClientDisconnected;
+            GameNetworkManager.OnClientConnected += HandleClientConnected;
+            GameNetworkManager.OnClientDisconnected += HandleClientDisconnected;
         }
 
         private void OnDisable()
         {
-            NetworkManagerLobby.OnClientConnected -= HandleClientConnected;
-            NetworkManagerLobby.OnClientDisconnected -= HandleClientDisconnected;
+            GameNetworkManager.OnClientConnected -= HandleClientConnected;
+            GameNetworkManager.OnClientDisconnected -= HandleClientDisconnected;
         }
 
         public void JoinLobby()
         {
             string ipAddress = ipAddressInputField.text;
 
-            networkManager.networkAddress = ipAddress;
-            networkManager.StartClient();
+            gameNetworkManager.networkAddress = ipAddress;
+            gameNetworkManager.StartClient();
 
             joinButton.interactable = false;
         }

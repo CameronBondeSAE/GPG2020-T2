@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Student_workspace.Dylan.Scripts.NetworkLobby
 {
-    public class NetworkManagerLobby : NetworkManager
+    public class GameNetworkManager : NetworkManager
     {
         [Scene] [SerializeField] private string menuScene = string.Empty;
 

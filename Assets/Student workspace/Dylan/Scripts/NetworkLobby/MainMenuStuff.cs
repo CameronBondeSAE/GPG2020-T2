@@ -4,13 +4,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 {
     public class MainMenuStuff : MonoBehaviour
     {
-        [SerializeField] private NetworkManagerLobby networkManager = null;
+        [SerializeField] private GameNetworkManager gameNetworkManager = null;
 
         [Header("UI")] [SerializeField] private GameObject landingPagePanel = null;
 
         public void HostLobby()
         {
-            networkManager.StartHost();
+            gameNetworkManager.StartHost();
 
             landingPagePanel.SetActive(false);
         }
