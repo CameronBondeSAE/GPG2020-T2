@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using AnthonyY;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public class InventoryControl : InventoryBase,IInventoryItems
+public class InventoryControl : MonoBehaviour
 {
     public InventoryTestControls inventoryControls;
-    private InputAction inventory;
+    public Inventory items;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,8 +20,6 @@ public class InventoryControl : InventoryBase,IInventoryItems
         inventoryControls.Inventory.Weapon.performed += WeaponSelect;
         inventoryControls.Inventory.PowerUp.performed += PowerUpUsed;
         inventoryControls.Inventory.Ability.performed += UseAbility;
-
-
     }
     
 
@@ -30,22 +29,22 @@ public class InventoryControl : InventoryBase,IInventoryItems
         inventoryControls.Inventory.PowerUp.performed -= PowerUpUsed;
         inventoryControls.Inventory.Ability.performed -= UseAbility;
     }
-    private void UseAbility(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Ability Used\n");
-    }
-    
+
     private void WeaponSelect(InputAction.CallbackContext obj)
     {
-        Debug.Log("Weapon Selected\n");
+        Debug.Log("Weapon Selected");
     }
     private void PowerUpUsed(InputAction.CallbackContext obj)
     {
-        Debug.Log("PowerUp Used\n"); 
+        Debug.Log("PowerUp Used"); 
+        items.inventoryItems[0].OnPickUp();
+        items.inventoryItems[0].OnActivate();
     }
-
-    public override void AddItem(IInventoryItems item)
+    private void UseAbility(InputAction.CallbackContext obj)
     {
-        base.AddItem(item);
+        Debug.Log("Ability Used");
+      
     }
+   
+    
 }
