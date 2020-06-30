@@ -3,18 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GManager : MonoBehaviour
+namespace alexM
 {
-    public event Action GM;
-    // Start is called before the first frame update
-    void Start()
+    public class GManager : MonoBehaviour
     {
-        GM?.Invoke();
+        public event Action GM;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            GM?.Invoke();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
