@@ -27,7 +27,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public override void OnStartClient()
         {
             var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
-
+        
             foreach (var prefab in spawnablePrefabs)
             {
                 ClientScene.RegisterPrefab(prefab);
