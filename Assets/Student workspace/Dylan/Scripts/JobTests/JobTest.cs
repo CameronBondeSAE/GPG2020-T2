@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mirror;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
@@ -13,7 +14,6 @@ namespace Student_workspace.Dylan.Scripts.JobTests
     public class JobTest : MonoBehaviour
     {
         public float valueToTest;
-        private float startTime;
         [SerializeField] private bool useJobs;
         public int TimesToExecute;
 
@@ -21,22 +21,24 @@ namespace Student_workspace.Dylan.Scripts.JobTests
         private JobHandle transformJobHandle;
         private TransformAccessArray transformAccessArray;
         private NativeArray<float> rotationArray;
-        
+
         public int amountToSpawn;
         public GameObject prefab;
         public List<GameObject> listOfCubes;
 
         private void Start()
         {
+            useJobs = false;
+
             for (int i = 0; i < amountToSpawn; i++)
             {
                 GameObject cube = Instantiate(prefab, new Vector3(0 + i, 0, 0), Quaternion.identity);
                 listOfCubes.Add(cube);
             }
-            
+
             rotationArray = new NativeArray<float>(listOfCubes.Count, Allocator.TempJob);
             transformAccessArray = new TransformAccessArray(listOfCubes.Count);
-            
+
             for (int i = 0; i < listOfCubes.Count; i++)
             {
                 transformAccessArray.Add(listOfCubes[i].transform);
@@ -45,8 +47,6 @@ namespace Student_workspace.Dylan.Scripts.JobTests
 
         void Update()
         {
-            // startTime = Time.realtimeSinceStartup;
-            
             // if (useJobs)
             // {
             //     DoExampleJob();
@@ -74,8 +74,6 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             {
                 valueA = math.exp10(math.sqrt(valueA));
             }
-
-            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
 
         private void ExpensiveTransformFunction()
@@ -92,15 +90,13 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             transformjob.speed = speed;
             transformjob.deltaTime = Time.deltaTime;
             transformjob.rotationOfTransform = rotationArray;
-            
+
             transformJobHandle = transformjob.Schedule(transformAccessArray);
             //JobHandle.ScheduleBatchedJobs();
             transformJobHandle.Complete();
-            
+
             // rotationArray.Dispose();
             // transformAccessArray.Dispose();
-            
-            // Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
 
         private void OnDisable()
@@ -118,7 +114,7 @@ namespace Student_workspace.Dylan.Scripts.JobTests
 
             public void Execute(int index, TransformAccess transform)
             {
-                transform.position += new Vector3(0, rotationOfTransform[index] + speed * deltaTime,0);
+                transform.position += new Vector3(0, rotationOfTransform[index] + speed * deltaTime, 0);
                 // rotationOfTransform[index] += speed * deltaTime;
             }
         }
@@ -151,8 +147,6 @@ namespace Student_workspace.Dylan.Scripts.JobTests
             char[] resultWork = resultLetter.ToArray();
             // Debug.Log("Result A = " + resultValueA);
             Debug.Log("My name is " + resultWork);
-
-            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
 
             //dont forget to dispose of the memory after your done
             resultArray.Dispose();
