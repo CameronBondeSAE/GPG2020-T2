@@ -10,18 +10,36 @@ namespace AnthonyY
         //creating a list of inventory Items and getting its info
         public List<IInventoryItems> inventoryItems;
         [TextArea]
-        public string inventoryName;
+        public string itemName;
+
+        [TextArea]
+        public string itemDescription;
+        
         public Sprite objectImage { get; }
 
         public bool pickedUp;
 
         public Event itemAddedEvent;
 
+        //How many items
+        public int maxStack;
+        public int currentStack;
+        
+
         public string objectName
         {
-            get { return inventoryName;}
+            get { return itemName;}
         }
 
+        public string objectDescription
+        {
+            get { return itemDescription; }
+        }
+
+        /// <summary>
+/// Logic for what happens when picking up an item
+/// </summary>
+/// <exception cref="NotImplementedException"></exception>
         public virtual void OnPickUp()
         {
             throw new System.NotImplementedException();

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class InventoryControl : MonoBehaviour
+public class InventoryControl : InventoryBase,IInventoryItems
 {
     public InventoryTestControls inventoryControls;
     private InputAction inventory;
@@ -42,5 +42,10 @@ public class InventoryControl : MonoBehaviour
     private void PowerUpUsed(InputAction.CallbackContext obj)
     {
         Debug.Log("PowerUp Used\n"); 
+    }
+
+    public override void AddItem(IInventoryItems item)
+    {
+        base.AddItem(item);
     }
 }
