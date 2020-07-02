@@ -19,7 +19,7 @@ public class InventoryTesting : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Collider>().)
+        //if(other.GetComponent<Collider>().)
     }
     //A QUICK HACK FOR TESTING
     private void Tests()
