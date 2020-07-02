@@ -5,18 +5,15 @@ using UnityEngine.Events;
 
 public class TriggerEvent : MonoBehaviour
 {
-    public UnityEvent pressed;
+    public UnityEvent pressedEvent;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        pressed.Invoke();
-    }
-
+   
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Object"))
+        //if (other.CompareTag("Object"))
         {
+            pressedEvent.Invoke();
             Debug.Log("Object has collided");
         }
     }   
