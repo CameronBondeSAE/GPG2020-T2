@@ -25,6 +25,14 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""5afdcd25-d92a-4d43-a029-fcfa8904ff0c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -49,6 +57,72 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bdb1c70-f9cd-4917-9562-4d4cfeb80c08"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e428e7dc-3233-43ec-918a-b24653de1922"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2c399529-1084-4182-b9a3-d9b184614bc1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2e0dc459-87d7-4c77-9df1-4575a389b80f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""61de80f8-3ee8-4ba4-a2fe-48dbc4bdf8af"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fc8c9de8-b2bb-42e9-b2ba-c5c2932fee55"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -85,6 +159,7 @@ public class @GameControls : IInputActionCollection, IDisposable
         // In Game
         m_InGame = asset.FindActionMap("In Game", throwIfNotFound: true);
         m_InGame_Fire = m_InGame.FindAction("Fire", throwIfNotFound: true);
+        m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         // In Menu
         m_InMenu = asset.FindActionMap("In Menu", throwIfNotFound: true);
         m_InMenu_Newaction = m_InMenu.FindAction("New action", throwIfNotFound: true);
@@ -138,11 +213,13 @@ public class @GameControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_InGame;
     private IInGameActions m_InGameActionsCallbackInterface;
     private readonly InputAction m_InGame_Fire;
+    private readonly InputAction m_InGame_Move;
     public struct InGameActions
     {
         private @GameControls m_Wrapper;
         public InGameActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Fire => m_Wrapper.m_InGame_Fire;
+        public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -155,6 +232,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFire;
+                @Move.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnMove;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -162,6 +242,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
         }
     }
@@ -202,6 +285,7 @@ public class @GameControls : IInputActionCollection, IDisposable
     public interface IInGameActions
     {
         void OnFire(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
     public interface IInMenuActions
     {
