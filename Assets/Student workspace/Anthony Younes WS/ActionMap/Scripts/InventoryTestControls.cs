@@ -1,4 +1,4 @@
-
+// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/Anthony Younes WS/ActionMap/InventoryTestControls.inputactions'
 
 using System;
 using System.Collections;
