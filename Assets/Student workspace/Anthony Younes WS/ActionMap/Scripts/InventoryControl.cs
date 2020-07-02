@@ -44,6 +44,7 @@ namespace AnthonY
         private void PowerUpUsed(InputAction.CallbackContext obj)
         {
             Debug.Log("PowerUp Used");
+            Destroy(gameObject);
         }
         private void UseAbility(InputAction.CallbackContext obj)
         {

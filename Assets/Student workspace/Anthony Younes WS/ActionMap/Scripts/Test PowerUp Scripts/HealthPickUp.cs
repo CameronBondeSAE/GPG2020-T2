@@ -20,7 +20,7 @@ public class HealthPickUp : MonoBehaviour,IInventoryItem
     public void OnActivate()
     {
         Debug.Log("Health Activated");
-        //Destroy(gameObject);
 
     }
 }
+    
