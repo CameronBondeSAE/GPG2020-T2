@@ -9,7 +9,7 @@ namespace alexM
     public class Door : MonoBehaviour
     {
         public UnityEvent openedEvent;
-        [HideInInspector] public GameObject target;
+        public GameObject target;
         [HideInInspector] public Vector3 startPos, targetPos, doorPos;
 
          public bool isOpening;
@@ -24,7 +24,7 @@ namespace alexM
             startPos = door.transform.position;
             if (target != null)
             {
-                targetPos = target.transform.position;
+                targetPos =  target.transform.position;
             }
         }
 
@@ -75,7 +75,8 @@ namespace alexM
             if (isOpening)
             {
                 //lerp to targetPos
-                door.transform.position = Vector3.Lerp(targetPos, door.transform.position, 0.1f).normalized;
+                door.transform.position = targetPos; //Vector3.Lerp(door.transform.position, targetPos, 0.1f * Time.deltaTime);
+               // door.transform.position
             }
         }
     }
