@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.InputSystem;
@@ -10,40 +12,39 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     private float posX;
     private float posZ;
-    private int enemyCount;
-    public int enemies;
+    private int enemyCount = 0;
+    public int enemies = 2;
     public bool spawn;
+    public float spawnInterval = 0.1f;
+
     public InputMaster controls;
 
-    private void Start()
-    {
-        
-    }
+
 
     public void Update()
     {
-        if (enemyCount >= enemies)
-        {
-            spawn = false;
-        }
-
-        if (enemyCount <= 0 && spawn == false)
-        {
-            spawn = true;
-        }
-        
-        EnemySpawn();
-    }
+      //  if (enemyCount >= 5)
+      //  {
+      //      enemies = 5;
+      //  }
+    }  
+    
+    public void SpawnAll()
+         {
+             StartCoroutine(EnemySpawn());
+         }
 
 
-    public void EnemySpawn()
+    public IEnumerator EnemySpawn()
     {
-        if (spawn)
+        for (int counter = 0; counter < enemies; counter++)
         {
             posX = Random.Range(-5f, 5f);
             posZ = Random.Range(-5f, 5f);
             Instantiate(enemy, new Vector3(posX, 1, posZ), Quaternion.identity);
             enemyCount += 1;
+            Debug.Log(counter + "Spawned");
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 }
