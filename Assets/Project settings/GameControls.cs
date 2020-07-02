@@ -32,7 +32,7 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""id"": ""5afdcd25-d92a-4d43-a029-fcfa8904ff0c"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
