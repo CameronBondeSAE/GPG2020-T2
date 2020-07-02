@@ -8,24 +8,35 @@ namespace alexM
 {
     public class Door : MonoBehaviour
     {
-        public UnityEvent openedEvent;
         public GameObject target;
-        [HideInInspector] public Vector3 startPos, targetPos, doorPos;
-
-         public bool isOpening;
+        [HideInInspector] public GameObject originalTarget;
+        public Vector3 startPos, targetPos, doorPos;
+        public float speed;
+        public bool isOpening, isClosing;
 
         public GameObject door;
-        //[HideInInspector] public bool targetReached;
+        
+        public enum State
+        {
+            Opened,
+            Closed
+        }
+        public State state = State.Closed;
+
+        public UnityEvent openedEvent,openingEvent;
+        public UnityEvent closedEvent, closingEvent;
 
         
         // Start is called before the first frame update
         void Awake()
         {
+            originalTarget = target;
             startPos = door.transform.position;
-            if (target != null)
-            {
-                targetPos =  target.transform.position;
-            }
+            doorPos = startPos;
+            // if (target != null)
+            // {
+            //     targetPos =  target.transform.position;
+            // }
         }
 
         void SetTarget(GameObject tgt)
@@ -39,31 +50,42 @@ namespace alexM
 
         public void Open()
         {
-            if (!isOpening)
+            if (!isOpening && !isClosing)
             {
+                targetPos = target.transform.position;
                 isOpening = true;
-                Debug.Log("Opening...");
             }
             else
             {
                 isOpening = false;
-                Debug.Log("Closing...");
             }
-            
-            //Debug.Log("Im Opened");
         }
 
-        public bool TargetReached()
+        public void Close()
         {
-            float dist = Vector3.Distance(door.transform.position, target.transform.position);
+            if (!isClosing && !isOpening)
+            {
+                targetPos = startPos;
+                isClosing = true;
+            }
+            else
+            {
+                isClosing = false;
+            }
+        }
 
-            if (dist <= 0.25)
+        public bool TargetReached(Vector3 tgt)
+        {
+            var dist = Vector3.Distance(door.transform.position, tgt);
+            doorPos = door.transform.position;
+            if (dist <= 0.01f)
             {
                 openedEvent?.Invoke();
                 return true;
             }
             else
             {
+                closedEvent?.Invoke();
                 return false;    
             }
         }
@@ -74,9 +96,29 @@ namespace alexM
             //Do move stuff here
             if (isOpening)
             {
+                openingEvent?.Invoke();
                 //lerp to targetPos
-                door.transform.position = targetPos; //Vector3.Lerp(door.transform.position, targetPos, 0.1f * Time.deltaTime);
+                door.transform.position = Vector3.MoveTowards(doorPos, targetPos, 1f * Time.deltaTime * speed);
                // door.transform.position
+               
+               if (TargetReached(target.transform.position))
+               {
+                   state = State.Opened;
+                   isOpening = false;
+               }
+               
+            }
+            else if (isClosing)
+            {
+                closingEvent?.Invoke();
+                //door.transform.position = Vector3.Lerp(door.transform.position, startPos, 1f * Time.deltaTime);
+                door.transform.position = Vector3.MoveTowards(door.transform.position, startPos, 1f * Time.deltaTime * speed);
+                
+                if (TargetReached(startPos))
+                {
+                    state = State.Closed;
+                    isClosing = false;
+                }
             }
         }
     }
