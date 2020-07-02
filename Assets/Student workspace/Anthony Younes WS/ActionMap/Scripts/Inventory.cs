@@ -9,6 +9,9 @@ namespace AnthonyY
     public class Inventory: MonoBehaviour
     {
         //creating a list of inventory Items and getting its info
-        public List<IInventoryItem> inventoryItems = new List<IInventoryItem>();
+        public List<IInventoryItem> items = new List<IInventoryItem>();
+
+        //seperate from colliders
+        
     }
 }
