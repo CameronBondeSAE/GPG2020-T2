@@ -14,8 +14,7 @@ namespace AnthonY
     {
         public InventoryTestControls inventoryControls;
         public Inventory inventory;
-
-        public HealthPickUp healthPickUpTest;
+        
 
         // Start is called before the first frame update
         void Awake()
@@ -28,10 +27,7 @@ namespace AnthonY
             
         }
 
-        void Start()
-        {
-            //Tests();
-        }
+      
 
 
         private void OnDestroy()
@@ -41,14 +37,6 @@ namespace AnthonY
             inventoryControls.Inventory.Ability.performed -= UseAbility;
         }
         
-        //A QUICK HACK FOR TESTING
-        /*private void Tests()
-        {
-            inventory.items.Add(healthPickUpTest);
-            inventory.items[0].OnPickUp();
-            inventory.items[0].OnActivate();
-        }*/
-
         private void WeaponSelect(InputAction.CallbackContext obj)
         {
             Debug.Log("Weapon Selected");

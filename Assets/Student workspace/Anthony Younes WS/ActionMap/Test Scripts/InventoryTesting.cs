@@ -17,16 +17,19 @@ public class InventoryTesting : MonoBehaviour
         Tests(); 
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        //if(other.GetComponent<Collider>().)
+        if (other.gameObject.GetComponent<Collider>())
+        {
+            inventory.items[0].OnPickUp();
+        }
     }
     //A QUICK HACK FOR TESTING
     private void Tests()
     {
         inventory.items.Add(healthPickUpTest);
-        inventory.items[0].OnPickUp();
         inventory.items[0].OnActivate();
+
     }
 
 }

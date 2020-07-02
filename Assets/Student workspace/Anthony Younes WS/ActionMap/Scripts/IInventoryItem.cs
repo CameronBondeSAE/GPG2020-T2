@@ -9,3 +9,7 @@ public interface IInventoryItem
     void OnPickUp();
     void OnActivate();
 }
+
+//testing
+//toggle, increase integers
+//seperate tests to another script
