@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 277094245}
   - component: {fileID: 277094250}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c718f9c3e8f5a40bba8f791bbfc3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: {fileID: 175524335}
+  inventory: {fileID: 0}
+  healthPickUpTest: {fileID: 277094245}
 --- !u!65 &1752118330
 BoxCollider:
   m_ObjectHideFlags: 0
