@@ -80,12 +80,12 @@ namespace alexM
             doorPos = door.transform.position;
             if (dist <= 0.01f)
             {
-                openedEvent?.Invoke();
+                //openedEvent?.Invoke();
                 return true;
             }
             else
             {
-                closedEvent?.Invoke();
+                //closedEvent?.Invoke();
                 return false;    
             }
         }
@@ -103,6 +103,7 @@ namespace alexM
                
                if (TargetReached(target.transform.position))
                {
+                   openedEvent?.Invoke();
                    state = State.Opened;
                    isOpening = false;
                }
@@ -116,6 +117,7 @@ namespace alexM
                 
                 if (TargetReached(startPos))
                 {
+                    closedEvent?.Invoke();
                     state = State.Closed;
                     isClosing = false;
                 }

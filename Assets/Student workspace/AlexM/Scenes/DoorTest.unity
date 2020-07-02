@@ -446,7 +446,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-62394
+  m_Name: pb_Mesh75076
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2558,7 +2558,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-62262
+  m_Name: pb_Mesh-113466
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2743,16 +2743,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 851793359}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1181243794400126850, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: m_LocalPosition.x
