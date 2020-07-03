@@ -346,7 +346,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &234545304
 GameObject:
@@ -2743,6 +2743,76 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 851793359}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: alexM.Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: alexM.Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
+        type: 3}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1181243794400126850, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2781,7 +2851,7 @@ PrefabInstance:
     - target: {fileID: 1181243794400126850, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1181243794400126850, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
