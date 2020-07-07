@@ -9,7 +9,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     /// <summary>
     /// this has no relation to the in-game player this is merely for the lobbies use
     /// </summary>
-    public class NetworkRoomPlayerLobby : NetworkBehaviour
+    public class NetworkLobbyPlayer : NetworkBehaviour
     {
         
         //if you wish to change the max amount of players change the array number in the two text fields below

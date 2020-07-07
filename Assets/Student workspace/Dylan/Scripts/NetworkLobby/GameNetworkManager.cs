@@ -16,7 +16,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [Scene] [SerializeField] private string gameScene = string.Empty;
 
         
-        [Header("Room")] [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
+        [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
 
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
 
@@ -24,7 +24,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
 
-        public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new  List<NetworkRoomPlayerLobby>();
+        public List<NetworkLobbyPlayer> RoomPlayers { get; } = new  List<NetworkLobbyPlayer>();
         
         public List<NetworkGamePlayer> GamePlayers { get; } = new  List<NetworkGamePlayer>();
 
@@ -89,11 +89,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                 bool isLeader = RoomPlayers.Count == 0;
                 
-                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
+                NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(lobbyPlayerPrefab);
 
-                roomPlayerInstance.IsLeader = isLeader;
+                lobbyPlayerInstance.IsLeader = isLeader;
                 
-                NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
+                NetworkServer.AddPlayerForConnection(conn, lobbyPlayerInstance.gameObject);
             }
         }
         
@@ -102,7 +102,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             if (conn.identity != null)
             {
-                var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
+                var player = conn.identity.GetComponent<NetworkLobbyPlayer>();
 
                 RoomPlayers.Remove(player);
 
@@ -146,21 +146,23 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             return true;
         }
 
+        
         public void StartGame()
         {
-            if (SceneManager.GetActiveScene().name == menuScene)
+            if (SceneManager.GetActiveScene().path == menuScene)
             {
                 if (!IsReadyToStart())
                 {
                     return;
                 }
-                ServerChangeScene("GameSceneTst");
+                ServerChangeScene(gameScene);
             }
         }
 
+        
         public override void ServerChangeScene(string newSceneName)
         {
-            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("GameSceneTst"))
+            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith(gameScene))
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -170,7 +172,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);
+                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
             

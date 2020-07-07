@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 namespace Student_workspace.Dylan.Scripts.NetworkLobby
 {
+    /// <summary>
+    /// used for in game player stuff
+    /// </summary>
     public class NetworkGamePlayer : NetworkBehaviour
     {
-        //if you wish to change the max amount of players change the array number in the two text fields below
-
         [SyncVar] private string displayName = "Loading...";
 
         private GameNetworkManager room;
