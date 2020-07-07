@@ -154,13 +154,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     return;
                 }
-                ServerChangeScene(gameScene);
+                ServerChangeScene("GameSceneTst");
             }
         }
 
         public override void ServerChangeScene(string newSceneName)
         {
-            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith(gameScene))
+            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("GameSceneTst"))
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
