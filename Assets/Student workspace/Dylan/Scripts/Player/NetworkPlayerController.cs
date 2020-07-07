@@ -1,13 +1,17 @@
 ﻿using System;
 using Mirror;
+using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEngine;
 
 namespace Student_workspace.Dylan.Scripts.Player
 {
+    /// <summary>
+    /// everything to do with the player should got here depending on what it is
+    /// this has nothing to do with the lobby player this is for in-game movement
+    /// </summary>
+    
     public class NetworkPlayerController : NetworkBehaviour
     {
-        [SyncVar] public string playerName;
-        
         public float moveSpeed = 5f;
         public CharacterController controller = null;
 
@@ -27,6 +31,8 @@ namespace Student_workspace.Dylan.Scripts.Player
                 return controls = new PlayerControl();
             }
         }
+
+        
 
         public override void OnStartAuthority()
         {

@@ -206,14 +206,15 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 3415395917665456677, guid: 9acf352ee1940214abad38205201b318,
+  playerPrefab: {fileID: 449850144686953301, guid: 490a71eaf5fef634a97ec079f8f4b4c2,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 3415395917665456677, guid: 9acf352ee1940214abad38205201b318, type: 3}
+  - {fileID: 8284762099497019277, guid: 0af046d068606a041accfa88ba019577, type: 3}
+  minPlayer: 2
   menuScene: Assets/Student workspace/Dylan/Scenes/LobbyScene.unity
-  roomPlayerPrefab: {fileID: -5358461506326573273, guid: 9acf352ee1940214abad38205201b318,
+  roomPlayerPrefab: {fileID: 5213677448624319912, guid: 0af046d068606a041accfa88ba019577,
     type: 3}
 --- !u!4 &173376380
 Transform:
@@ -595,6 +596,11 @@ PrefabInstance:
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 173376379}
+    - target: {fileID: 1723946480595183371, guid: 2bbbceb5fab06e5419af16b86e544ce1,
+        type: 3}
+      propertyPath: gameNetworkManager
+      value: 
+      objectReference: {fileID: 173376379}
     - target: {fileID: 3901157127691588976, guid: 2bbbceb5fab06e5419af16b86e544ce1,
         type: 3}
       propertyPath: m_IsActive
@@ -689,6 +695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232857209967366311, guid: 2bbbceb5fab06e5419af16b86e544ce1,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bbbceb5fab06e5419af16b86e544ce1, type: 3}

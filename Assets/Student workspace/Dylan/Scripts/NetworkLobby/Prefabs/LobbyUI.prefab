@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440f240282ebb304f90cd7656af86d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
+  gameNetworkManager: {fileID: 0}
   landingPagePanel: {fileID: 3901157128205660092}
   ipAddressInputField: {fileID: 5680000347557550449}
   joinButton: {fileID: 7606513381536707540}
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6701aaf47761f4a9fccbc395784307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
+  gameNetworkManager: {fileID: 0}
   landingPagePanel: {fileID: 3901157128205660092}
 --- !u!1 &3901157128002759711
 GameObject:
@@ -2364,7 +2364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: localhost
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
