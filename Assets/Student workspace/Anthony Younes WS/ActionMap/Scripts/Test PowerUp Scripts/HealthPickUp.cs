@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AnthonyY;
 using UnityEngine;
 
-public class HealthPickUp : MonoBehaviour,IInventoryItem
+public class HealthPickUp : IInventoryItem
 {
     public string name
     {
@@ -11,16 +11,18 @@ public class HealthPickUp : MonoBehaviour,IInventoryItem
     }
     public string description { get{return "Gives you health";} }
 
-    public void OnPickUp()
+    public override void OnPickUp()
     {
         Debug.Log("I picked up a health item");
         gameObject.SetActive(false);
     }
 
-    public void OnActivate()
+    public override void OnActivate()
     {
         Debug.Log("Health Activated");
+        //Destroy(gameObject);
 
     }
+
 }
     

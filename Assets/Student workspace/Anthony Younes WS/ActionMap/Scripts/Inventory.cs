@@ -9,7 +9,6 @@ namespace AnthonyY
     public class Inventory: MonoBehaviour
     {
         //creating a list of inventory Items and getting its info
-        [SerializeField]
         public List<IInventoryItem> items = new List<IInventoryItem>();
         //seperate from colliders
         

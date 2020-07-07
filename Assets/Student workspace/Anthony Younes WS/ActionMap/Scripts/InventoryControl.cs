@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AnthonyY;
 using Mirror.Examples;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -40,16 +41,17 @@ namespace AnthonY
         private void WeaponSelect(InputAction.CallbackContext obj)
         {
             Debug.Log("Weapon Selected");
+           
+            
         }
         private void PowerUpUsed(InputAction.CallbackContext obj)
         {
             Debug.Log("PowerUp Used");
-            Destroy(gameObject);
         }
         private void UseAbility(InputAction.CallbackContext obj)
         {
             Debug.Log("Ability Used");
-      
+
         }
    
     

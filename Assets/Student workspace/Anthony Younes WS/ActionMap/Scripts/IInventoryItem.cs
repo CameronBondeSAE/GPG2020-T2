@@ -1,13 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInventoryItem
+[Serializable]
+public class IInventoryItem: MonoBehaviour
 {
     string name { get; }
     string description { get; }
-    void OnPickUp();
-    void OnActivate();
+
+    public virtual void OnPickUp()
+    {
+        
+    }
+
+    public virtual void OnActivate()
+    {
+        
+    }
 }
 
 //testing

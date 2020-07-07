@@ -22,6 +22,7 @@ public class InventoryTesting : MonoBehaviour
         if (other.gameObject.GetComponent<Collider>())
         {
             inventory.items[0].OnPickUp();
+           
         }
     }
     //A QUICK HACK FOR TESTING
@@ -32,4 +33,14 @@ public class InventoryTesting : MonoBehaviour
 
     }
 
+     void OnGUI()
+    {
+        foreach (IInventoryItem item in inventory.items)
+        {
+            if (GUILayout.Button(item.name))
+            {
+                item.OnActivate();
+            }
+        }
+    }
 }
