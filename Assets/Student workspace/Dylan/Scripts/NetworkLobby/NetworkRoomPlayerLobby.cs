@@ -145,7 +145,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 return;
             }
             
-            
+            Room.StartGame();
         }
     }
 }

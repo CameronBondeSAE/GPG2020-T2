@@ -214,7 +214,10 @@ MonoBehaviour:
   - {fileID: 8284762099497019277, guid: 0af046d068606a041accfa88ba019577, type: 3}
   minPlayer: 2
   menuScene: Assets/Student workspace/Dylan/Scenes/LobbyScene.unity
+  gameScene: Assets/Student workspace/Dylan/Scenes/ActionMapTest.unity
   roomPlayerPrefab: {fileID: 5213677448624319912, guid: 0af046d068606a041accfa88ba019577,
+    type: 3}
+  gamePlayerPrefab: {fileID: 2696317799798203801, guid: 8c31ce50d8a2c174a89804b59345b6f7,
     type: 3}
 --- !u!4 &173376380
 Transform:
