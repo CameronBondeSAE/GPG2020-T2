@@ -2,14 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LightController : MonoBehaviour
 {
      public bool toggleState;
     [HideInInspector] public float intensity;
-
+    
     [HideInInspector] public Light light;
 
+    public UnityEvent turnedOnEvent, turnedOffEvent;
     void Awake()
     {
         light = gameObject.GetComponent<Light>();
@@ -21,25 +23,26 @@ public class LightController : MonoBehaviour
     {
         if (toggleState)
         {
-           //Toggle Off
-           light.intensity = intensity;
-
+           TurnOn();
         }
         else
         {
-            //light.gameObject.SetActive(true);
-            light.intensity = 0;
+            TurnOff();
         }
     }
 
     public void TurnOn()
     {
+        light.intensity = intensity;
         toggleState = true;
+        turnedOnEvent.Invoke();
     }
 
     public void TurnOff()
     {
+        light.intensity = 0;
         toggleState = false;
+        turnedOffEvent.Invoke();
     }
 
 
@@ -47,9 +50,12 @@ public class LightController : MonoBehaviour
     {
         if (toggleState)
         {
+            TurnOff();
             toggleState = false;
-        }else if (!toggleState)
+        }
+        else if (!toggleState)
         {
+            TurnOn();
             toggleState = true;
         }
     }
