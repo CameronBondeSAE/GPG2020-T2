@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 366631937131053708, guid: 2141030dd5db9f040b1bc98824893398, type: 3}
+  spawnAreaMin: -3
+  spawnAreaMax: 3
   enemies: 10
-  spawn: 0
+  spawn: 1

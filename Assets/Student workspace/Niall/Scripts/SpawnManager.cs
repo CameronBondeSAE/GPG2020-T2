@@ -12,7 +12,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     private float posX;
     private float posZ;
-    private int enemyCount = 0;
+    public float spawnAreaMin;
+    public float spawnAreaMax;
     public int enemies = 2;
     public bool spawn;
     private float spawnInterval = 0.1f;
@@ -38,10 +39,9 @@ public class SpawnManager : MonoBehaviour
         for (int counter = 0; counter < enemies; counter++)
         {
             monNum++;
-            posX = Random.Range(-5f, 5f);
-            posZ = Random.Range(-5f, 5f);
+            posX = Random.Range(spawnAreaMin, spawnAreaMax);
+            posZ = Random.Range(spawnAreaMin, spawnAreaMax);
             Instantiate(enemy, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
-            enemyCount += 1;
             Debug.Log(monNum + "Spawned");
             yield return new WaitForSeconds(spawnInterval);
         }
