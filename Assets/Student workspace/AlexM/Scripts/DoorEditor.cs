@@ -15,6 +15,11 @@ namespace alexM
             {
                 ((Door)target).Open();
             }
+            
+            if (GUILayout.Button("Close"))
+            {
+                ((Door)target).Close();
+            }
         }
     }
 
