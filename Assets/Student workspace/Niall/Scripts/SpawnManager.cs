@@ -15,19 +15,17 @@ public class SpawnManager : MonoBehaviour
     private int enemyCount = 0;
     public int enemies = 2;
     public bool spawn;
-    public float spawnInterval = 0.1f;
+    private float spawnInterval = 0.1f;
+    private int monNum;
 
     public InputMaster controls;
 
 
-
-    public void Update()
+    public void Start()
     {
-      //  if (enemyCount >= 5)
-      //  {
-      //      enemies = 5;
-      //  }
-    }  
+       if (spawn)
+       {StartCoroutine(EnemySpawn());}
+    }
     
     public void SpawnAll()
          {
@@ -39,11 +37,12 @@ public class SpawnManager : MonoBehaviour
     {
         for (int counter = 0; counter < enemies; counter++)
         {
+            monNum++;
             posX = Random.Range(-5f, 5f);
             posZ = Random.Range(-5f, 5f);
-            Instantiate(enemy, new Vector3(posX, 1, posZ), Quaternion.identity);
+            Instantiate(enemy, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
             enemyCount += 1;
-            Debug.Log(counter + "Spawned");
+            Debug.Log(monNum + "Spawned");
             yield return new WaitForSeconds(spawnInterval);
         }
     }
