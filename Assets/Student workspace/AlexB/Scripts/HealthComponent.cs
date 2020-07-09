@@ -8,13 +8,13 @@ public class HealthComponent : MonoBehaviour
     public float currMinHealth;
     public float currHealth;
 
-    private void Start()
+    public void AddHp()
     {
-        
+        currHealth++;
     }
 
-    private void Update()
+    public void TakeHp()
     {
-        
+        currHealth--;
     }
 }
