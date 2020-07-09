@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49213308}
   m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0.088, y: 1.075, z: 0}
+  m_LocalPosition: {x: 0.006, y: 1.075, z: 0.035}
   m_LocalScale: {x: 0.07239715, y: 0.21529363, z: 0.10559241}
   m_Children: []
   m_Father: {fileID: 719188897}
@@ -247,8 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f240795ea3387f4693279cdeca95675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2.25
+  cursorLocked: 1
+  sensitivity: 1.15
   neckJoint: {fileID: 2027616018}
+  body: {fileID: 719188897}
+  maxAngle: 50
 --- !u!4 &87261650
 Transform:
   m_ObjectHideFlags: 0
@@ -257,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87261648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.078739, y: 1.0684313, z: 6.984234}
+  m_LocalPosition: {x: 10.071, y: 1.0684313, z: 7.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 719188897}
@@ -803,7 +806,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2042
+  m_Name: pb_Mesh-11798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1046,8 +1049,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066524204}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.45095208, y: -0.54858243, z: 0.51145357, w: -0.48385414}
+  m_LocalPosition: {x: 10.429051, y: 11.752193, z: 7.693239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1077,7 +1080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027616017}
   m_LocalRotation: {x: -0, y: 0.0000000745058, z: -0, w: 1}
-  m_LocalPosition: {x: 0.065999985, y: 1.159, z: 0}
+  m_LocalPosition: {x: -0.016000748, y: 1.159, z: 0.064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 165439317}
