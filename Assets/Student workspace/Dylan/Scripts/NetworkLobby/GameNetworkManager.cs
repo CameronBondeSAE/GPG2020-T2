@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mirror;
+using Student_workspace.Blaide.scripts;
 using Student_workspace.Dylan.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
 
+        
+        [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
@@ -56,12 +59,20 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public override void OnClientConnect(NetworkConnection conn)
         {
+            /*
+            bChat = Instantiate(bChatPrefab);
+            bChat.netIdentity.AssignClientAuthority(conn);
+            bChat.SetPlayerColor(PlayerInfoInput.PlayerColor);
+            bChat.SetPlayerName(PlayerInfoInput.DisplayName);
+            */
+
             base.OnClientConnect(conn);
             OnClientConnected?.Invoke();
         }
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
+            /*Destroy(bChat);*/
             base.OnClientDisconnect(conn);
             OnClientDisconnected?.Invoke();
         }
@@ -94,6 +105,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 lobbyPlayerInstance.IsLeader = isLeader;
                 
                 NetworkServer.AddPlayerForConnection(conn, lobbyPlayerInstance.gameObject);
+                lobbyPlayerInstance.GetComponent<BChatNetworkHandler>().enabled = true;
+                bChatUI.gameObject.SetActive(true);
             }
         }
         
@@ -168,7 +181,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     var conn = RoomPlayers[i].connectionToClient;
                     var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                    gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+                    gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName,RoomPlayers[i].PlayerColor);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 

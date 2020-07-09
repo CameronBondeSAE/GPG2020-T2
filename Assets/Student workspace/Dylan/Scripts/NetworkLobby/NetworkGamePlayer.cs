@@ -12,7 +12,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     /// </summary>
     public class NetworkGamePlayer : NetworkBehaviour
     {
-        [SyncVar] private string displayName = "Loading...";
+        [SyncVar] public string displayName = "Loading...";
+        [SyncVar] public Color playerColor;
+                
 
         private GameNetworkManager room;
 
@@ -43,9 +45,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         }
 
         [Server]
-        public void SetDisplayName(string displayName)
+        public void SetPlayerInfo(string displayName,Color playerColor)
         {
             this.displayName = displayName;
+            this.playerColor = playerColor;
         }
 
     }

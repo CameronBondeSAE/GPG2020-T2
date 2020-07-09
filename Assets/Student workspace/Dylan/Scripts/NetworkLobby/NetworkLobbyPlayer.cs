@@ -20,6 +20,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string DisplayName = "Loading...";
+        [SyncVar(hook = nameof(HandlePlayerColorChanged))]
+        public Color PlayerColor;
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
         public bool IsReady = false;
 
@@ -51,7 +53,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public override void OnStartAuthority()
         {
-            CmdSetDisplayName(PlayerNameInput.DisplayName);
+            CmdSetDisplayName(PlayerInfoInput.DisplayName);
+            CmdSetPlayerColor(PlayerInfoInput.PlayerColor);
 
             lobbyUI.SetActive(true);
         }
@@ -80,6 +83,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             UpdateDisplay();
         }
+        
+        public void HandlePlayerColorChanged(Color oldValue, Color newValue)
+        {
+            UpdateDisplay();
+        }
+        
 
         private void UpdateDisplay()
         {
@@ -128,6 +137,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             DisplayName = displayName;
         }
+
+        [Command]
+        private void CmdSetPlayerColor(Color playerColor)
+        {
+            PlayerColor = playerColor;
+        }
+
+        
 
         [Command]
         public void CmdReadyUp()
