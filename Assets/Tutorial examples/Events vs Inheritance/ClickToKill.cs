@@ -18,6 +18,7 @@ public class ClickToKill : MonoBehaviour
 			// Also once you pick a strategy, you'd only have one line interacting with a health component
 			hitInfo.collider.gameObject.GetComponent<HealthUsingEvents>()?.Die();
 			hitInfo.collider.gameObject.GetComponent<HealthUsingInheritance>()?.Die();
+			hitInfo.collider.gameObject.GetComponent<HealthUsingCSharpEvents>()?.Die();
 		}
 	}
 }
