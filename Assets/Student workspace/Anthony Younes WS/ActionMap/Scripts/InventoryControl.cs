@@ -15,7 +15,9 @@ namespace AnthonY
     {
         public InventoryTestControls inventoryControls;
         public Inventory inventory;
-        
+
+        public int inventorySlots = 3;
+
 
         // Start is called before the first frame update
         void Awake()
@@ -25,10 +27,7 @@ namespace AnthonY
             inventoryControls.Inventory.Weapon.performed += WeaponSelect;
             inventoryControls.Inventory.PowerUp.performed += PowerUpUsed;
             inventoryControls.Inventory.Ability.performed += UseAbility;
-            
         }
-
-      
 
 
         private void OnDestroy()
@@ -37,24 +36,22 @@ namespace AnthonY
             inventoryControls.Inventory.PowerUp.performed -= PowerUpUsed;
             inventoryControls.Inventory.Ability.performed -= UseAbility;
         }
-        
+
         private void WeaponSelect(InputAction.CallbackContext obj)
         {
             Debug.Log("Weapon Selected");
-           
-            
         }
+
         private void PowerUpUsed(InputAction.CallbackContext obj)
         {
-            Debug.Log("PowerUp Used");
+            Debug.Log("Powerup Used");
+            inventory.items[0].OnDeActivate();
+           
         }
+
         private void UseAbility(InputAction.CallbackContext obj)
         {
             Debug.Log("Ability Used");
-
         }
-   
-    
     }
 }
-

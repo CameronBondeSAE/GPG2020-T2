@@ -18,6 +18,13 @@ public class IInventoryItem: MonoBehaviour
     {
         
     }
+
+    public virtual void OnDeActivate()
+    {
+        
+    }
+
+    public GameObject go;
 }
 
 //testing
