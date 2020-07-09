@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    public float currMaxHealth;
-    public float currMinHealth;
-    public float currHealth;
+    public int currentMaxHealth;
+    public int currentMinHealth;
+    public int currentHealth;
 
     public void AddHp()
     {
-        currHealth++;
+        currentHealth++;
     }
 
     public void TakeHp()
     {
-        currHealth--;
+        currentHealth--;
     }
+
+    /*public void Death()
+    {
+        //deathEvent.Invoke();
+    }*/
 }
