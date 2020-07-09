@@ -214,12 +214,12 @@ MonoBehaviour:
   - {fileID: 449850144686953301, guid: 490a71eaf5fef634a97ec079f8f4b4c2, type: 3}
   - {fileID: 160307577924929259, guid: 8c31ce50d8a2c174a89804b59345b6f7, type: 3}
   - {fileID: 8284762099497019277, guid: 0af046d068606a041accfa88ba019577, type: 3}
-  minPlayer: 2
+  minPlayer: 1
   menuScene: Assets/Student workspace/Dylan/Scenes/LobbyScene.unity
   gameScene: Assets/Student workspace/Dylan/Scenes/GameSceneTst.unity
   lobbyPlayerPrefab: {fileID: 5213677448624319912, guid: 0af046d068606a041accfa88ba019577,
     type: 3}
-  gamePlayerPrefab: {fileID: 2696317799798203801, guid: 8c31ce50d8a2c174a89804b59345b6f7,
+  gamePlayerPrefab: {fileID: 6765770191274908906, guid: 9acf352ee1940214abad38205201b318,
     type: 3}
 --- !u!4 &173376380
 Transform:
