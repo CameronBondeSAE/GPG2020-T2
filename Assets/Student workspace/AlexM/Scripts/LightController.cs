@@ -4,60 +4,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LightController : MonoBehaviour
+namespace alexM
 {
-     public bool toggleState;
-    [HideInInspector] public float intensity;
-    
-    [HideInInspector] public Light light;
-
-    public UnityEvent turnedOnEvent, turnedOffEvent;
-    void Awake()
+    public class LightController : MonoBehaviour
     {
-        light = gameObject.GetComponent<Light>();
-        //toggleState = gameObject.activeSelf;
-        intensity = light.intensity;
-    }
+        public bool toggleState;
+        [HideInInspector] public float intensity;
 
-    private void Update()
-    {
-        if (toggleState)
+        [HideInInspector] public Light light;
+
+        public UnityEvent turnedOnEvent, turnedOffEvent;
+
+        void Awake()
         {
-           TurnOn();
+            light = gameObject.GetComponent<Light>();
+            //toggleState = gameObject.activeSelf;
+            intensity = light.intensity;
         }
-        else
+
+        private void Update()
         {
-            TurnOff();
+            if (toggleState)
+            {
+                TurnOn();
+            }
+            else
+            {
+                TurnOff();
+            }
         }
-    }
 
-    public void TurnOn()
-    {
-        light.intensity = intensity;
-        toggleState = true;
-        turnedOnEvent.Invoke();
-    }
-
-    public void TurnOff()
-    {
-        light.intensity = 0;
-        toggleState = false;
-        turnedOffEvent.Invoke();
-    }
-
-
-    public void Toggle()
-    {
-        if (toggleState)
+        public void TurnOn()
         {
-            TurnOff();
-            toggleState = false;
-        }
-        else if (!toggleState)
-        {
-            TurnOn();
+            light.intensity = intensity;
             toggleState = true;
+            turnedOnEvent.Invoke();
         }
+
+        public void TurnOff()
+        {
+            light.intensity = 0;
+            toggleState = false;
+            turnedOffEvent.Invoke();
+        }
+
+
+        public void Toggle()
+        {
+            if (toggleState)
+            {
+                TurnOff();
+                toggleState = false;
+            }
+            else if (!toggleState)
+            {
+                TurnOn();
+                toggleState = true;
+            }
+        }
+
     }
-   
 }

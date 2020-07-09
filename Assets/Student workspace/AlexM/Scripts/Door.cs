@@ -92,7 +92,6 @@ namespace alexM
 
         private void Update()
         {
-            
             //Do move stuff here
             if (isOpening)
             {
