@@ -14,9 +14,11 @@ public class SpawnManager : MonoBehaviour
     private float posZ;
     public float spawnAreaMin;
     public float spawnAreaMax;
-    public int enemies = 2;
+    public int enemies;
+    public int waveCount = 3;
     public bool spawn;
-    private float spawnInterval = 0.1f;
+    public float spawnInterval = 0f;
+    public float waveInterval = 5f;
     private int monNum;
 
     public InputMaster controls;
@@ -24,26 +26,34 @@ public class SpawnManager : MonoBehaviour
 
     public void Start()
     {
-       if (spawn)
-       {StartCoroutine(EnemySpawn());}
+        if (spawn)
+        {
+            StartCoroutine(EnemySpawn());
+        }
     }
-    
+
     public void SpawnAll()
-         {
-             StartCoroutine(EnemySpawn());
-         }
+    {
+        StartCoroutine(EnemySpawn());
+    }
 
 
     public IEnumerator EnemySpawn()
     {
-        for (int counter = 0; counter < enemies; counter++)
+
+        for (int wcounter = 0; wcounter < waveCount; wcounter++)
         {
-            monNum++;
-            posX = Random.Range(spawnAreaMin, spawnAreaMax);
-            posZ = Random.Range(spawnAreaMin, spawnAreaMax);
-            Instantiate(enemy, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
-            Debug.Log(monNum + "Spawned");
-            yield return new WaitForSeconds(spawnInterval);
+            for (int counter = 0; counter < enemies; counter++)
+            {
+                monNum++;
+                posX = Random.Range(spawnAreaMin, spawnAreaMax);
+                posZ = Random.Range(spawnAreaMin, spawnAreaMax);
+                Instantiate(enemy, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
+                Debug.Log(monNum + "Spawned");
+                yield return new WaitForSeconds(spawnInterval);
+            }
+            
+            yield return new WaitForSeconds(waveInterval);
         }
     }
 }
