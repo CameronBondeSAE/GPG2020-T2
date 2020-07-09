@@ -21,7 +21,7 @@ public class AJPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputSystem.GetDevice<Space>();
+        if (!InputSystem.GetDevice<Space>();
         {
             TakeDamage(20);
         }
