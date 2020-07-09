@@ -4,36 +4,42 @@ using System.Collections.Generic;
 using AnthonY;
 using AnthonyY;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class InventoryTesting : MonoBehaviour
 {
     public Inventory inventory;
-    
     public HealthPickUp healthPickUpTest;
     public InventoryControl InventoryControl;
-    
-    void Awake()
+
+    void Start()
     {
-        Tests(); 
+        Activation();
     }
-    
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.GetComponent<Collider>())
         {
-            inventory.items[0].OnPickUp();
-           
+            foreach (IInventoryItem item in inventory.items)
+            {
+                item.OnPickUp();
+            }
         }
     }
-    //A QUICK HACK FOR TESTING
-    private void Tests()
-    {
-        inventory.items.Add(healthPickUpTest);
-        inventory.items[0].OnActivate();
 
+    //A QUICK HACK FOR TESTING
+    private void Activation()
+    {
+        if (inventory != null)
+        {
+            inventory.items.Add(healthPickUpTest);
+            inventory.items[0].OnActivate();
+        }
     }
 
-     void OnGUI()
+
+    void OnGUI()
     {
         foreach (IInventoryItem item in inventory.items)
         {
@@ -44,3 +50,5 @@ public class InventoryTesting : MonoBehaviour
         }
     }
 }
+
+

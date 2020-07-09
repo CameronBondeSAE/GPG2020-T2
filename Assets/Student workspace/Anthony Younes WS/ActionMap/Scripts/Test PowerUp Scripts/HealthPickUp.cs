@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using AnthonyY;
 using UnityEngine;
 
 public class HealthPickUp : IInventoryItem
 {
+    public Inventory inventory;
     public string name
     {
         get { return "Health"; }
@@ -21,8 +23,12 @@ public class HealthPickUp : IInventoryItem
     {
         Debug.Log("Health Activated");
         //Destroy(gameObject);
-
     }
 
+    public override void OnDeActivate()
+    {
+        Destroy(gameObject);
+        base.OnDeActivate();
+    }
 }
     
