@@ -9,7 +9,6 @@ namespace Student_workspace.Dylan.Scripts.Player
     /// everything to do with the player should got here depending on what it is
     /// this has nothing to do with the lobby player this is for in-game movement
     /// </summary>
-    
     public class NetworkPlayerController : NetworkBehaviour
     {
         public float moveSpeed = 5f;
@@ -32,7 +31,6 @@ namespace Student_workspace.Dylan.Scripts.Player
             }
         }
 
-        
 
         public override void OnStartAuthority()
         {
@@ -72,7 +70,7 @@ namespace Student_workspace.Dylan.Scripts.Player
 
             controller.Move(movement * (moveSpeed * Time.deltaTime));
         }
-        
+
         [Client]
         private void SetMovement(Vector2 movement)
         {

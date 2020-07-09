@@ -241,7 +241,7 @@ MonoBehaviour:
   gameScene: Assets/Student workspace/Dylan/Scenes/GameSceneTst.unity
   lobbyPlayerPrefab: {fileID: 5213677448624319912, guid: 0af046d068606a041accfa88ba019577,
     type: 3}
-  gamePlayerPrefab: {fileID: 2696317799798203801, guid: 8c31ce50d8a2c174a89804b59345b6f7,
+  gamePlayerPrefab: {fileID: 6765770191274908906, guid: 9acf352ee1940214abad38205201b318,
     type: 3}
   bChatUI: {fileID: 16778943}
 --- !u!4 &173376380

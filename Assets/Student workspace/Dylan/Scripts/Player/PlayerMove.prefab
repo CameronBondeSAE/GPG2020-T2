@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1025211002430078366}
   - component: {fileID: 3415395917665456667}
   - component: {fileID: 3415395917665456676}
-  - component: {fileID: -5358461506326573273}
+  - component: {fileID: 6765770191274908906}
   m_Layer: 0
   m_Name: PlayerMove
   m_TagString: Untagged
@@ -164,10 +164,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerName: 
   moveSpeed: 5
   controller: {fileID: -1025211002430078366}
---- !u!114 &-5358461506326573273
+--- !u!114 &6765770191274908906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,12 +175,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3415395917665456677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b162678d620c824d9dd3191bfe82253, type: 3}
+  m_Script: {fileID: 11500000, guid: b52a8885f85f36143913641737c72240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerName: 
 --- !u!1 &4851960861458155537
 GameObject:
   m_ObjectHideFlags: 0

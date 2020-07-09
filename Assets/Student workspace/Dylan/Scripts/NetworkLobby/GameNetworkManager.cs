@@ -15,12 +15,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         [Scene] [SerializeField] private string menuScene = string.Empty;
         [Scene] [SerializeField] private string gameScene = string.Empty;
-
         
         [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
-
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
-
         
         [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
         
