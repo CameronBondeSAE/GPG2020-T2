@@ -18,6 +18,7 @@ namespace alexM
 
 		private void Awake()
 		{
+			mouseLock();
 			gc = new GameControls();
 			gc.InGame.Enable();
 		}
@@ -26,12 +27,8 @@ namespace alexM
 		{
 			mousePosition.x = (InputSystem.GetDevice<Mouse>().delta.x.ReadValue() * sensitivity) * Time.deltaTime;
 			mousePosition.y = (InputSystem.GetDevice<Mouse>().delta.y.ReadValue() * sensitivity) * Time.deltaTime;
-
-			//_xRot = -mousePosition.y;
-			//_xRot =  Mathf.Clamp(_xRot, -50, 50);
-
+			
 			_yRot = mousePosition.x;
-			//_yRot =  Mathf.Clamp(_yRot, -50, 50);
 
 			Quaternion yQuat = Quaternion.AngleAxis(mousePosition.y, -Vector3.right).normalized;
 			Quaternion temp  = neckJoint.rotation * yQuat;
@@ -40,20 +37,9 @@ namespace alexM
 			{
 				neckJoint.rotation = temp;
 			}
-			//neckJoint.Rotate(-_xRot,0,0);
-
-
+			
 			body.Rotate(0, _yRot, 0);
-			// _mouseX += (InputSystem.GetDevice<Mouse>().delta.x.ReadValue() * sensitivity) * Time.deltaTime;
-			// _mouseY += (InputSystem.GetDevice<Mouse>().delta.y.ReadValue() * sensitivity) * Time.deltaTime;
-			// _xRot = _mouseY;
-			// _xRot = Mathf.Clamp(_xRot, -50, 50);
-			//
-			// _yRot = _mouseX;
-			// _yRot = Mathf.Clamp(_yRot, -50, 50);
 
-
-			//Debug.Log("x: " + _mouseX + " y: " + _mouseY);
 		}
 
 		void mouseLock()
@@ -71,7 +57,6 @@ namespace alexM
 		private void FixedUpdate()
 		{
 			MouseLook();
-			mouseLock();
 		}
 	}
 }
