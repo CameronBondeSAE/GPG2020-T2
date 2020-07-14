@@ -65,6 +65,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             base.OnClientConnect(conn);
             OnClientConnected?.Invoke();
+            bChatUI.gameObject.SetActive(true);
         }
 
         public override void OnClientDisconnect(NetworkConnection conn)
@@ -103,7 +104,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
                 NetworkServer.AddPlayerForConnection(conn, lobbyPlayerInstance.gameObject);
                 lobbyPlayerInstance.GetComponent<BChatNetworkHandler>().enabled = true;
-                bChatUI.gameObject.SetActive(true);
+               // bChatUI.gameObject.SetActive(true);
             }
         }
 
