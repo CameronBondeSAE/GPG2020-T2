@@ -34,6 +34,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
+        public void Start()
+        {
+            if (gameScene == null)
+            {
+                gameScene = SceneManager.GetActiveScene().path;
+            }
+        }
+        
 
         /// <summary>
         ///when using prefabs to spawn objects you need to load them in when you start or connect to the server
