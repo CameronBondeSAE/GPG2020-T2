@@ -34,14 +34,15 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
-        public void Start()
+        public override void Start()
         {
-            if (gameScene == null)
+            if (string.IsNullOrEmpty(gameScene))
             {
                 gameScene = SceneManager.GetActiveScene().path;
             }
+            base.Start();
         }
-        
+
 
         /// <summary>
         ///when using prefabs to spawn objects you need to load them in when you start or connect to the server
