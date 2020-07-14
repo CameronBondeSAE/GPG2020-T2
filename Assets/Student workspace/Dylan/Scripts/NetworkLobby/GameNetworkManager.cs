@@ -22,7 +22,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public bool allowHotJoining;
         [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
-        
+
 
         [SerializeField] private GameObject playerSpawnSystem;
 
@@ -36,12 +36,34 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
+        public GameObject lobbyUI;
+        public bool useSameScene;
+
         public override void Start()
         {
-            if (string.IsNullOrEmpty(gameScene))
+            if (useSameScene)
             {
-                gameScene = SceneManager.GetActiveScene().path;
+                if (string.IsNullOrEmpty(gameScene))
+                {
+                    gameScene = SceneManager.GetActiveScene().path;
+                }
+
+                if (string.IsNullOrEmpty(menuScene))
+                {
+                    menuScene = SceneManager.GetActiveScene().path;
+                    onlineScene = menuScene;
+                }
             }
+
+            if (SceneManager.GetActiveScene().path == menuScene)
+            {
+                lobbyUI.SetActive(true);
+            }
+            else
+            {
+                lobbyUI.SetActive(false);
+            }
+
             base.Start();
         }
 
@@ -188,13 +210,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     var conn = RoomPlayers[i].connectionToClient;
                     var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                    gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName,RoomPlayers[i].PlayerColor);
+                    gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName, RoomPlayers[i].PlayerColor);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
+
             base.ServerChangeScene(newSceneName);
         }
 
