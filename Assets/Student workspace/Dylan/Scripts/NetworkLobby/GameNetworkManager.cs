@@ -4,6 +4,7 @@ using System.Linq;
 using Mirror;
 using Student_workspace.Blaide.scripts;
 using Student_workspace.Dylan.Scripts.Player;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,27 +13,26 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     public class GameNetworkManager : NetworkManager
     {
         [SerializeField] private int minPlayer = 2;
-        
+
         [Scene] [SerializeField] private string menuScene = string.Empty;
         [Scene] [SerializeField] private string gameScene = string.Empty;
-        
+
         [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
         
         [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
         
+
+        [SerializeField] private GameObject playerSpawnSystem;
+
+
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        public static event Action<NetworkConnection> OnServerReadied;
 
-        public List<NetworkLobbyPlayer> RoomPlayers { get; } = new  List<NetworkLobbyPlayer>();
-        
-        public List<NetworkGamePlayer> GamePlayers { get; } = new  List<NetworkGamePlayer>();
+        public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
 
-        public override void Awake()
-        {
-            
-            base.Awake();
-        }
+        public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public override void OnStartClient()
         {
             var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
-        
+
             foreach (var prefab in spawnablePrefabs)
             {
                 ClientScene.RegisterPrefab(prefab);
@@ -96,18 +96,18 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
-                
+
                 NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(lobbyPlayerPrefab);
 
                 lobbyPlayerInstance.IsLeader = isLeader;
-                
+
                 NetworkServer.AddPlayerForConnection(conn, lobbyPlayerInstance.gameObject);
                 lobbyPlayerInstance.GetComponent<BChatNetworkHandler>().enabled = true;
                 bChatUI.gameObject.SetActive(true);
             }
         }
-        
-        
+
+
         public override void OnServerDisconnect(NetworkConnection conn)
         {
             if (conn.identity != null)
@@ -118,7 +118,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
                 NotifyPlayersOfReadyState();
             }
-            
+
             base.OnServerDisconnect(conn);
         }
 
@@ -151,12 +151,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                     return false;
                 }
             }
-            
-            
+
+
             return true;
         }
 
-        
+
         public void StartGame()
         {
             if (SceneManager.GetActiveScene().path == menuScene)
@@ -165,11 +165,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     return;
                 }
+
                 ServerChangeScene(gameScene);
             }
         }
 
-        
+
         public override void ServerChangeScene(string newSceneName)
         {
             if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith(gameScene))
@@ -185,8 +186,24 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
-            
             base.ServerChangeScene(newSceneName);
+        }
+
+        public override void OnServerChangeScene(string sceneName)
+        {
+            if (sceneName.StartsWith(gameScene))
+            {
+                GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+                NetworkServer.Spawn(playerSpawnSystemInstance);
+            }
+            // base.OnServerChangeScene(sceneName);
+        }
+
+        public override void OnServerReady(NetworkConnection conn)
+        {
+            base.OnServerReady(conn);
+
+            OnServerReadied?.Invoke(conn);
         }
     }
 }
