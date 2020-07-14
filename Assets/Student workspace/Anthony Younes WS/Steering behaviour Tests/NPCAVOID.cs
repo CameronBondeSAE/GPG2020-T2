@@ -9,7 +9,7 @@ namespace AnthonyY
         // Start is called before the first frame update
         private Rigidbody rb;
         public float speed;
-    
+
         void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -18,7 +18,7 @@ namespace AnthonyY
         // Update is called once per frame
         void Update()
         {
-            rb.AddRelativeForce(0,0,speed);
+           rb.AddRelativeForce(0,0,speed);
         }
     }
 }
