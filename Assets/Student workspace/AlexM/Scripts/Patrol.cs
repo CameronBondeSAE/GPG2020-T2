@@ -8,115 +8,120 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
-public class Patrol : MonoBehaviour
+namespace alexM
 {
-    public bool random, order, loop;
-    public Transform loopTargetA;
-    public Transform loopTargetB;
-    public List<PatrolPoint> points;
-    public Rigidbody rB;
-    public Transform target;
-    public int currTarget = 0;
-    public float speedMulti;
-    [HideInInspector]
-    public float dist;
-    private Vector3 _dir;
-    [HideInInspector]
-    public bool reached = false;
-
-    private int targetInt;
-
-    public Transform head;
-    
-    
-    // public enum SortBy
-    // {
-    //     Random,
-    //     Ordered,
-    //     Loop
-    // }
-    
-    private void Awake()
+    public class Patrol : MonoBehaviour
     {
-        head = transform.Find("Head");
-        rB = this.gameObject.GetComponent<Rigidbody>();
+        public bool random, order, loop;
+        public Transform loopTargetA;
+        public Transform loopTargetB;
+        public List<PatrolPoint> points;
+        public Rigidbody rB;
+        public Transform target;
+        public int currTarget = 0;
+        public float speedMulti;
+        [HideInInspector] public float dist;
+        private Vector3 _dir;
+        [HideInInspector] public bool reached = false;
 
-        if (random)
-        {
-            target = points[Random.Range(0,points.Count)].transform;
-        }else if (order)
-        {
-            target = points[currTarget].transform;
-        }
-        else
-        {
+        private int targetInt;
 
-            target = GameObject.FindObjectOfType<PatrolPoint>().transform;
+        public Transform head;
 
-        }
-        
-        _dir = (target.position - transform.position).normalized;
-    }
 
-    public void TargetCheck()
-    {//check distance to target, change target
+        // public enum SortBy
+        // {
+        //     Random,
+        //     Ordered,
+        //     Loop
+        // }
 
-        if (target)
+        private void Awake()
         {
-            dist = Vector3.Distance(target.position, transform.position);
-        }
-        
-        if (dist <= 1.0f && !reached)
-        {
+            head = transform.Find("Head");
+            rB = this.gameObject.GetComponent<Rigidbody>();
+
             if (random)
             {
-                targetInt = Random.Range(0, points.Count); 
-                target = points[targetInt].transform;
+                target = points[Random.Range(0, points.Count)].transform;
             }
             else if (order)
             {
-                //reached = true;
-                if (currTarget >= (points.Count))//Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
-                {
-                    currTarget = 0;
-                }
-                else
-                {
-                    currTarget += 1;
-                }
-                
-                targetInt = currTarget;
-                target = points[targetInt].transform;
+                target = points[currTarget].transform;
             }
-            else if (loop)
+            else
             {
-                
-            }
-            
-            //target = points[targetInt].transform;
-            _dir = (target.position - transform.position).normalized;
-            reached = true;
-        }
-        reached = false;
-    }
-    
-    private void DoPatrol()
-    {//Movement for patrolling
-        TargetCheck();
-        //speed = rB.velocity.magnitude;
-        if (!reached)
-        {
-            rB.velocity = _dir * (speedMulti * Time.deltaTime);
-            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-            head.transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-        }
-    }
 
-    private void Update()
-    {
-        DoPatrol();
+                target = FindObjectOfType<PatrolPoint>().transform;
+
+            }
+
+            _dir = (target.position - transform.position).normalized;
+        }
+
+        public void TargetCheck()
+        {
+            //check distance to target, change target
+
+            if (target)
+            {
+                dist = Vector3.Distance(target.position, transform.position);
+            }
+
+            if (dist <= 1.0f && !reached)
+            {
+                if (random)
+                {
+                    targetInt = Random.Range(0, points.Count);
+                    target = points[targetInt].transform;
+                }
+                else if (order)
+                {
+                    //reached = true;
+                    if (currTarget >= (points.Count)
+                    ) //Kind of works, still gives the index out of range when resetting at the end. sleep first fix later!
+                    {
+                        currTarget = 0;
+                    }
+                    else
+                    {
+                        currTarget += 1;
+                    }
+
+                    targetInt = currTarget;
+                    target = points[targetInt].transform;
+                }
+                else if (loop)
+                {
+
+                }
+
+                //target = points[targetInt].transform;
+                _dir = (target.position - transform.position).normalized;
+                reached = true;
+            }
+
+            reached = false;
+        }
+
+        private void DoPatrol()
+        {
+            //Movement for patrolling
+            TargetCheck();
+            //speed = rB.velocity.magnitude;
+            if (!reached)
+            {
+                rB.velocity = _dir * (speedMulti * Time.deltaTime);
+                transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+                head.transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+            }
+        }
+
+        private void Update()
+        {
+            DoPatrol();
+        }
     }
-}
 
 
 //Tasks to do:
@@ -124,3 +129,4 @@ public class Patrol : MonoBehaviour
     Make options for the patrols, like patrol in list order(done), or loop patrol between A and B
     Destroy objects on contact (only certain objects)
 */
+}

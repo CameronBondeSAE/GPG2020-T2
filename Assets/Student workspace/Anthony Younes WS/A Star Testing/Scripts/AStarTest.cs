@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using AnthonyY;
 
 namespace AnthonyY
@@ -9,31 +10,33 @@ namespace AnthonyY
     {
         public class Node //cost variables
         {
-            public int gridX;
-            public int gridY;
-
-            public Node parent;
             public bool walkable;
             public Vector3 worldPosition;
-            public int g;
-            public int h;
 
-            public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
+            public int gCost;
+            public int hCost;
+
+            public int gridX;
+            public int gridY;
+            public Node parent;
+            
+
+            public Node(bool _walkable, Vector3 _worldPos, int _gridX,int _gridY)
             {
                 walkable = _walkable;
                 worldPosition = _worldPos;
                 gridX = _gridX;
                 gridY = _gridY;
             }
-
-            public int f
+//calculating the lowest f cost for cheapest path
+            public int fCost
             {
-                get { return g + h; }
+                get { return gCost + hCost; }
             }
+            
+            
         }
         
-        private List<Node> closedNodes;
-
         //need a goal variable
         //start position
         private Node currentNode;
@@ -44,9 +47,8 @@ namespace AnthonyY
         //lists of nodes to follow to get to the objective
         private Node[,] nodeArray;
         private float nodeDiameter;
-        private Node nodeGoal;
         public float nodeRadius;
-        private Node nodeStart;
+      
 
         private List<Node> openNodes; //nodes that have been visited but not been expanded
 
@@ -60,6 +62,11 @@ namespace AnthonyY
             CreateNodes();
         }
 
+        public int MaxSize
+        {
+            get { return gridSizeX * gridSizeY; }
+        }
+
         /// <summary>
         /// Responsible for creating the grid and figuring out the goals and start position
         /// </summary>
@@ -67,7 +74,7 @@ namespace AnthonyY
         {
             nodeArray = new Node[gridSize.x, gridSize.y];
             Vector3 worldBottomLeft =
-                transform.position = Vector3.left * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
+                transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
 
             for (int x = 0; x < gridSize.x; x++)
             {
@@ -76,7 +83,7 @@ namespace AnthonyY
                     Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) +
                                          Vector3.forward * (y * nodeDiameter + nodeRadius);
                     bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unTouchableSurface));
-                    nodeArray[x, y] = new Node(walkable, worldPoint, x, y);
+                    nodeArray[x, y] = new Node(walkable, worldPoint,x,y);
                     Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
                 }
 
@@ -93,16 +100,16 @@ namespace AnthonyY
             List<Node> neighbours = new List<Node>();
             //check for borders you cant check for in an array
             //2d array grid
-            for (int x = -1; x < 1; x++)
+            for (int x = -1; x <= 1; x++)
             {
-                for (int y = -1; y < 1; y++)
+                for (int y = -1; y <= 1; y++)
                 {
-                    if ((x == 0) & (y == 0))
+                    if (x == 0 && y == 0)
                         continue;
                     int checkX = node.gridX + x;
                     int checkY = node.gridY + y;
 
-                    if (checkX < gridSizeX && checkX < 0 && checkY < 0 && checkY < gridSizeY)
+                    if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
                     {
                         neighbours.Add(nodeArray[checkX, checkY]);
                     }
