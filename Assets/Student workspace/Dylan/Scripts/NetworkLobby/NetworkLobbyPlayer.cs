@@ -143,9 +143,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             PlayerColor = playerColor;
         }
-
-        
-
+ 
         [Command]
         public void CmdReadyUp()
         {
