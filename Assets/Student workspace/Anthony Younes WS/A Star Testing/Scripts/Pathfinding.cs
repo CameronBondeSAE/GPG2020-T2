@@ -16,7 +16,7 @@ namespace AnthonyY
         {
             grid = GetComponent<AStarTest>();
         }
-
+//Gizmos to check the grid path
         private void Update()
         {
             FindPath(seeker.position,target.position);
@@ -62,10 +62,10 @@ namespace AnthonyY
                         continue;
                     }
                      //calculating the new GCost
-                    int NewMovementCostToNeighBour = currentNode.gCost + GetDistance(currentNode, neighbour);
-                    if (NewMovementCostToNeighBour < neighbour.gCost || !openSet.Contains(neighbour))
+                    int newMovementCostToNeighBour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                    if (newMovementCostToNeighBour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
-                        neighbour.gCost = NewMovementCostToNeighBour;
+                        neighbour.gCost = newMovementCostToNeighBour;
                         neighbour.hCost = GetDistance(neighbour, targetNode);
                         neighbour.parent = currentNode;
 
@@ -101,6 +101,8 @@ namespace AnthonyY
         {
             int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
             int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+            
+            //14 is the diagonal cost for the pathfinding
 
             if (dstX > dstY)
                 //the equation in full effect
