@@ -62,6 +62,11 @@ namespace AnthonyY
             CreateNodes();
         }
 
+        public int MaxSize
+        {
+            get { return gridSizeX * gridSizeY; }
+        }
+
         /// <summary>
         /// Responsible for creating the grid and figuring out the goals and start position
         /// </summary>
