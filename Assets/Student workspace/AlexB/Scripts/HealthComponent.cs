@@ -6,8 +6,8 @@ namespace AJ
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int currentMaxHealth;
-        public int currentMinHealth;
+        public int MaxHealth;
+        public int MinHealth;
         public int currentHealth;
         
 
