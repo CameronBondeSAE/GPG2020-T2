@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AJ;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : MonoBehaviour
+	public class PlayerControllerTopDown : NetworkBehaviour
 	{
 		public  float        speed;
 		public  Vector3      direction;
@@ -21,6 +22,14 @@ namespace alexM
 			GC.InGame.Move.performed += Movement;
 			GC.InGame.Move.canceled  += Movement;
 			RB                       =  GetComponent<Rigidbody>();
+		}
+
+		private void OnCollisionEnter(Collision other)
+		{
+			if (other.gameObject.GetComponent<HealthComponent>())
+			{
+				other.gameObject.GetComponent<HealthComponent>()?.EnemyDeath();
+			}
 		}
 
 		void Movement(InputAction.CallbackContext context)
