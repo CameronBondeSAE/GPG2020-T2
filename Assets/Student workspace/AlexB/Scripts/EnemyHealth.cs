@@ -5,15 +5,15 @@ using UnityEditor;
 
 namespace AJ
 {
-    [CustomEditor(typeof(HealthComponent))]
-    public class EnemyHealth : HealthComponent
+    
+    public class EnemyHealth : MonoBehaviour
     {
         public int enemyHealth = 100;
         public void DeductHealth(int deductHealth)
         {
             enemyHealth -= deductHealth;
 
-            if (enemyHealth <= 0) { EnemyDeath(); }
+            //if (enemyHealth <= 0) { Death(); }
         }
     }
 }
