@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace AnthonyY
 {
-    public class NPCAVOID : MonoBehaviour
+    public class NPCAVOID : NetworkBehaviour
     {
         // Start is called before the first frame update
         private Rigidbody rb;
@@ -18,7 +19,11 @@ namespace AnthonyY
         // Update is called once per frame
         void Update()
         {
-           rb.AddRelativeForce(0,0,speed);
+            if (isServer)
+            {
+                rb.AddRelativeForce(0,0,speed);
+            }
+           
         }
     }
 }
