@@ -39,6 +39,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public override void Start()
         {
+            NetworkGamePlayer.OnInstantiated += UIOff;
+            
             if (useSameScene)
             {
                 if (string.IsNullOrEmpty(gameScene))
@@ -59,12 +61,25 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                lobbyUI.SetActive(false);
+                // this never runs even when i am not ignoring or skipping the menus. this just never runs ever.
+                // It will run if same scene isn't active.  but if samescene is active, this will never run. but if you add that bool to the if statement, This will run instantly at start.
+                // and then the menu will never show. same scene is not the same as skip lobby ui.
+                
+                //run this on an event, invoke the event
+              UIOff();
             }
 
             base.Start();
         }
 
+        void UIOff(NetworkGamePlayer ngp)
+        {
+            lobbyUI.SetActive(false);
+        }
+        void UIOff()
+        {
+            lobbyUI.SetActive(false);
+        }
 
         /// <summary>
         ///when using prefabs to spawn objects you need to load them in when you start or connect to the server

@@ -28,7 +28,7 @@ namespace alexM
 		{
 			if (other.gameObject.GetComponent<HealthComponent>())
 			{
-				other.gameObject.GetComponent<HealthComponent>()?.Death();
+				other.gameObject.GetComponent<HealthComponent>().Death();
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace alexM
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
 
