@@ -9,6 +9,7 @@ namespace AJ
         public int currentMaxHealth;
         public int currentMinHealth;
         public int currentHealth;
+        
 
         public void AddHp()
         {
@@ -20,10 +21,11 @@ namespace AJ
             currentHealth--;
         }
 
-        /*public void Death()
+        public void EnemyDeath()
         {
-            //deathEvent.Invoke();
-        }*/
+            deathEvent.Invoke();
+            Destroy(gameObject);
+        }
     }
 }
 
