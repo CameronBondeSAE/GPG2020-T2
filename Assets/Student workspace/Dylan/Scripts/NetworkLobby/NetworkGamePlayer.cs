@@ -15,7 +15,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [SyncVar] public string displayName = "Loading...";
         [SyncVar] public Color playerColor;
                 
-
+        public static event Action<NetworkGamePlayer> OnInstantiated;
         private GameNetworkManager room;
 
         private GameNetworkManager Room
@@ -31,6 +31,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
         }
 
+        private void Start()
+        {
+            OnInstantiated?.Invoke(this);
+        }
 
         public override void OnStartClient()
         {
