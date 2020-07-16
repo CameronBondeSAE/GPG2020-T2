@@ -28,7 +28,7 @@ namespace alexM
 		{
 			if (other.gameObject.GetComponent<HealthComponent>())
 			{
-				other.gameObject.GetComponent<HealthComponent>()?.EnemyDeath();
+				other.gameObject.GetComponent<HealthComponent>()?.Death();
 			}
 		}
 
