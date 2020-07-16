@@ -13,32 +13,30 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     public class GameNetworkManager : NetworkManager
     {
         [SerializeField] private int minPlayer = 2;
-
+        
         [Scene] [SerializeField] private string menuScene = string.Empty;
         [Scene] [SerializeField] private string gameScene = string.Empty;
-
+        
         [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
 
         public bool allowHotJoining;
         [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
-
-
+        
         [SerializeField] private GameObject playerSpawnSystem;
-
-
+        
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
 
         public static event Action<NetworkConnection> OnServerReadied;
-
+        
         public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
-
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
-
+        
+        [Header("Lobby")]
         public GameObject lobbyUI;
         public bool useSameScene;
-
+        
         public override void Start()
         {
             if (useSameScene)
