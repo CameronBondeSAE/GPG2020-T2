@@ -15,12 +15,17 @@ namespace AJ
             base.OnInspectorGUI();
             if (GUILayout.Button("Add HP"))
             {
-                ((HealthComponent)target).AddHp();
+                ((HealthComponent)target).AddHp(10);
             }
 
             if (GUILayout.Button("Take HP"))
             {
-                ((HealthComponent)target).TakeHp();
+                ((HealthComponent)target).TakeHp(10);
+            }
+
+            if (GUILayout.Button("Death"))
+            {
+                ((HealthComponent)target).Death();
             }
         }
     }
