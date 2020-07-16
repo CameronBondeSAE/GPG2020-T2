@@ -5,6 +5,7 @@ using System.ComponentModel;
 using AJ;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
@@ -21,6 +22,8 @@ public class SpawnManager : MonoBehaviour
     private int monNum;
 
     public List<GameObject> units = new List<GameObject>();
+
+    public UnityEvent wavesCompletedEvent;
 
     [Header("Enemies")] public int enemies;
     public float spawnInterval = 0f;
@@ -81,6 +84,6 @@ public class SpawnManager : MonoBehaviour
 
     public void RemoveFromList(HealthComponent arg0)
     {
-        units.Remove();
+        units.Remove(arg0.gameObject);
     }
 }

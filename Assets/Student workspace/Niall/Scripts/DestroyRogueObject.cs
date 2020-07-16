@@ -9,7 +9,7 @@ namespace Niall
     {
         public void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<NolanUnit>().Dead();
+          //  other.GetComponent<NolanUnit>().Dead();
         }
     }
 }
