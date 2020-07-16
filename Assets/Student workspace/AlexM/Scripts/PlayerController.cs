@@ -6,46 +6,57 @@ using UnityEngine.InputSystem;
 
 namespace alexM
 {
-    public class PlayerController : MonoBehaviour
-    {
-        public float sensitivity;
-        private float _xRot, _yRot, _mouseX, _mouseY;
-        public Transform neckJoint;
-        public GameControls gc;
+	public class PlayerController : MonoBehaviour
+	{
+		public  bool         cursorLocked;
+		public  float        sensitivity;
+		private float        _xRot,     _yRot; //_mouseX, _mouseY;
+		public  Transform    neckJoint, body;
+		public  GameControls gc;
+		private Vector2      mousePosition;
+		public  float        maxAngle = 80;
 
-        private void Awake()
-        {
-             gc = new GameControls();
-             gc.InGame.Enable();
-        }
+		private void Awake()
+		{
+			mouseLock();
+			gc = new GameControls();
+			gc.InGame.Enable();
+		}
 
-        void MouseLook()
-        {
-             _mouseX += (InputSystem.GetDevice<Mouse>().delta.x.ReadValue() * sensitivity ) * Time.deltaTime;
-             _mouseY += (InputSystem.GetDevice<Mouse>().delta.y.ReadValue() * sensitivity ) * Time.deltaTime;
+		void MouseLook()
+		{
+			mousePosition.x = (InputSystem.GetDevice<Mouse>().delta.x.ReadValue() * sensitivity) * Time.deltaTime;
+			mousePosition.y = (InputSystem.GetDevice<Mouse>().delta.y.ReadValue() * sensitivity) * Time.deltaTime;
+			
+			_yRot = mousePosition.x;
 
-            _xRot = _mouseY;
-            _xRot = Mathf.Clamp(_xRot, -50, 50);
-            
-             _yRot = _mouseX;
-             _yRot = Mathf.Clamp(_yRot, -50, 50);
-            
-            //neckJoint.Rotate(Vector3.up * mouseX);
-            neckJoint.transform.rotation = Quaternion.Euler(-_xRot, _yRot ,0);
+			Quaternion yQuat = Quaternion.AngleAxis(mousePosition.y, -Vector3.right).normalized;
+			Quaternion temp  = neckJoint.rotation * yQuat;
+			
+			if (Quaternion.Angle(body.rotation, temp) < maxAngle)
+			{
+				neckJoint.rotation = temp;
+			}
+			
+			body.Rotate(0, _yRot, 0);
 
-            Debug.Log("x: " + _mouseX + " y: " + _mouseY);
+		}
 
-            // xRot -= mouseY;
-            // xRot = Mathf.Clamp(xRot, -90, 90);
-            //
-            // neckJoint.Rotate(Vector3.up * xRot);
+		void mouseLock()
+		{
+			if (cursorLocked)
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.None;
+			}
+		}
 
-        }
-
-
-        private void FixedUpdate()
-        {
-            MouseLook();
-        }
-    }
+		private void FixedUpdate()
+		{
+			MouseLook();
+		}
+	}
 }
