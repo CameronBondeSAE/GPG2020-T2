@@ -10,7 +10,8 @@ namespace AJ
         public int MaxHealth;
         public int MinHealth;
         public int currentHealth;
-        public UnityEvent deathEvent;
+
+		public UnityEvent<HealthComponent> deathEvent;
 
         public void AddHp(int amount)
         {
@@ -30,7 +31,7 @@ namespace AJ
         {
             if(deathEvent!=null)
             {
-                deathEvent.Invoke();
+                deathEvent.Invoke(this);
             }
             
             
