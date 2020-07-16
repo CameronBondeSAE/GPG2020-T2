@@ -1,29 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AJ
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int currentMaxHealth;
-        public int currentMinHealth;
+        public int MaxHealth;
+        public int MinHealth;
         public int currentHealth;
+        public UnityEvent deathEvent;
 
-        public void AddHp()
+        public void AddHp(int amount)
         {
-            currentHealth++;
+            currentHealth += amount;
         }
 
-        public void TakeHp()
+        public void TakeHp(int amount)
         {
-            currentHealth--;
+            currentHealth -= amount;
+            if( currentHealth <= 0)
+            {
+                Death();
+            }
         }
 
-        /*public void Death()
+        public void Death()
         {
-            //deathEvent.Invoke();
-        }*/
+            if(deathEvent!=null)
+            {
+                deathEvent.Invoke();
+            }
+            
+            
+        }
     }
 }
 
