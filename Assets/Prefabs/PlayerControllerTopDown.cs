@@ -34,18 +34,25 @@ namespace alexM
 
 		void Movement(InputAction.CallbackContext context)
 		{
-			//WSAD For moving on axis'
-
 			direction = context.ReadValue<Vector2>();
 			direction = new Vector3(direction.x, 0, direction.y);
+
+			
+
 		}
 
 		private void FixedUpdate()
 		{
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
-
+			
 			//Do the stuff here
 			RB.AddForce(direction * speed);
+			
+			if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
+			{
+				Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
+				//Debug.Log(hit.transform.name + " Was hit");
+			}
 		}
 		
 
