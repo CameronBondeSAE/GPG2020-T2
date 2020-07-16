@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 958461670}
-  speed: 10
+  speed: 5
   direction: {x: 0, y: 0, z: 0}
   anything: {fileID: 102900000, guid: abd25944d966ddb4aa11b93f33be8f81, type: 3}
 --- !u!54 &1925380773
