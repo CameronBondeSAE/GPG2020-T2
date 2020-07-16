@@ -18,6 +18,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [SerializeField] private TMP_Text[] playerReadyTexts;
         [SerializeField] private Button startGameButton = null;
 
+
+
+        public static event Action<NetworkLobbyPlayer> OnInstantiated;
+        
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string DisplayName = "Loading...";
         [SyncVar(hook = nameof(HandlePlayerColorChanged))]
@@ -64,6 +68,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             Room.RoomPlayers.Add(this);
 
             UpdateDisplay();
+            OnInstantiated?.Invoke(this);
             
         }
 
@@ -144,8 +149,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             PlayerColor = playerColor;
         }
 
-        
-
         [Command]
         public void CmdReadyUp()
         {
@@ -161,7 +164,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                 return;
             }
-            
             Room.StartGame();
         }
     }

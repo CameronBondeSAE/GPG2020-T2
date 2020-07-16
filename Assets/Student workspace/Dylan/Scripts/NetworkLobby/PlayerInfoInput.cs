@@ -20,10 +20,16 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         private const string PlayerPrefsNameKey = "PlayerName";
         private const string PlayerPrefsColorKey = "PlayerColor";
 
-        private void Start()
+
+        private void Awake()
         {
             SetupPlayerInfo();
-            
+            SavePlayerInfo();
+        }
+
+        private void Start()
+        {
+
         }
 
         private void SetupPlayerInfo()

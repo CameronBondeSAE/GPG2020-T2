@@ -5,21 +5,24 @@ using UnityEditor;
 using UnityEngine.Experimental.GlobalIllumination;
 
 
-
-[CustomEditor(typeof(HealthComponent))]
-public class HealthEditor : Editor
+namespace AJ
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(HealthComponent))]
+    public class HealthEditor : Editor
     {
-        base.OnInspectorGUI();
-        if (GUILayout.Button("Add HP"))
+        public override void OnInspectorGUI()
         {
-            ((HealthComponent)target).AddHp();
-        }
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Add HP"))
+            {
+                ((HealthComponent)target).AddHp();
+            }
 
-        if(GUILayout.Button("Take HP"))
-        {
-            ((HealthComponent)target).TakeHp();
+            if (GUILayout.Button("Take HP"))
+            {
+                ((HealthComponent)target).TakeHp();
+            }
         }
     }
 }
+

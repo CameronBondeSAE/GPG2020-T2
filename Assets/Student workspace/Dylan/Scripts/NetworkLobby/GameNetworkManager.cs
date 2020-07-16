@@ -19,27 +19,51 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
         [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
-        
+
+        public bool allowHotJoining;
         [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
-        
+
 
         [SerializeField] private GameObject playerSpawnSystem;
 
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+
         public static event Action<NetworkConnection> OnServerReadied;
 
         public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
 
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
+        public GameObject lobbyUI;
+        public bool useSameScene;
+
         public override void Start()
         {
-            if (string.IsNullOrEmpty(gameScene))
+            if (useSameScene)
             {
-                gameScene = SceneManager.GetActiveScene().path;
+                if (string.IsNullOrEmpty(gameScene))
+                {
+                    gameScene = SceneManager.GetActiveScene().path;
+                }
+
+                if (string.IsNullOrEmpty(menuScene))
+                {
+                    menuScene = SceneManager.GetActiveScene().path;
+                    onlineScene = menuScene;
+                }
             }
+
+            if (SceneManager.GetActiveScene().path == menuScene)
+            {
+                lobbyUI.SetActive(true);
+            }
+            else
+            {
+                lobbyUI.SetActive(false);
+            }
+
             base.Start();
         }
 
@@ -65,17 +89,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public override void OnClientConnect(NetworkConnection conn)
         {
-            /*
-            bChat = Instantiate(bChatPrefab);
-            bChat.netIdentity.AssignClientAuthority(conn);
-            bChat.SetPlayerColor(PlayerInfoInput.PlayerColor);
-            bChat.SetPlayerName(PlayerInfoInput.DisplayName);
-            */
 
             base.OnClientConnect(conn);
             OnClientConnected?.Invoke();
             bChatUI.gameObject.SetActive(true);
         }
+
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
@@ -94,7 +113,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
 
             //this does stop joining in progress will need to change depending on game requirement
-            if (SceneManager.GetActiveScene().path != menuScene)
+            if (SceneManager.GetActiveScene().path != menuScene  || ! allowHotJoining)
             {
                 conn.Disconnect();
                 return;
@@ -113,8 +132,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
                 NetworkServer.AddPlayerForConnection(conn, lobbyPlayerInstance.gameObject);
                 lobbyPlayerInstance.GetComponent<BChatNetworkHandler>().enabled = true;
-               // bChatUI.gameObject.SetActive(true);
+
+               
             }
+            
         }
 
 
@@ -189,13 +210,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     var conn = RoomPlayers[i].connectionToClient;
                     var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                    gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName,RoomPlayers[i].PlayerColor);
+                    gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName, RoomPlayers[i].PlayerColor);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
+
             base.ServerChangeScene(newSceneName);
         }
 
@@ -206,7 +228,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
                 NetworkServer.Spawn(playerSpawnSystemInstance);
             }
-            // base.OnServerChangeScene(sceneName);
         }
 
         public override void OnServerReady(NetworkConnection conn)
