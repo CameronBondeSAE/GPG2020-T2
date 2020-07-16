@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AJ
 {
@@ -9,22 +10,31 @@ namespace AJ
         public int MaxHealth;
         public int MinHealth;
         public int currentHealth;
-        
 
-        public void AddHp()
+		public UnityEvent<HealthComponent> deathEvent;
+
+        public void AddHp(int amount)
         {
-            currentHealth++;
+            currentHealth += amount;
         }
 
-        public void TakeHp()
+        public void TakeHp(int amount)
         {
-            currentHealth--;
+            currentHealth -= amount;
+            if( currentHealth <= 0)
+            {
+                Death();
+            }
         }
 
-        public void EnemyDeath()
+        public void Death()
         {
-            //deathEvent.Invoke();
-            Destroy(gameObject);
+            if(deathEvent!=null)
+            {
+                deathEvent.Invoke(this);
+            }
+            
+            
         }
     }
 }

@@ -25,16 +25,9 @@ namespace AJ
         {
             if (InputSystem.GetDevice<Keyboard>().spaceKey.IsPressed())
             {
-                TakeDamage(2);
+                //TakeDamage(2);
             }
-        }
-
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-
-            healthBar.SetHealth(currentHealth);
-        }
+        }       
     }
 }
 

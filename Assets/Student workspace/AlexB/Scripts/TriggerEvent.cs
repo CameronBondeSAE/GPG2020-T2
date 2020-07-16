@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
-public class TriggerEvent : MonoBehaviour
+public class TriggerEvent : NetworkBehaviour
 {
     public UnityEvent pressedEvent;
 
@@ -11,12 +12,13 @@ public class TriggerEvent : MonoBehaviour
    
     void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Object"))
+        if (isServer)
         {
-            pressedEvent.Invoke();
-            Debug.Log("Object has collided");
-        }
-    }   
-
-  
+            //if (other.CompareTag("Object"))
+            {
+                pressedEvent.Invoke();
+                Debug.Log("Object has collided");
+            }
+        }        
+    }     
 }
