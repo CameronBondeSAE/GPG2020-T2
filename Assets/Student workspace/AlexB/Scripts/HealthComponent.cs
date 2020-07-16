@@ -6,9 +6,10 @@ namespace AJ
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int currentMaxHealth;
-        public int currentMinHealth;
+        public int MaxHealth;
+        public int MinHealth;
         public int currentHealth;
+        
 
         public void AddHp()
         {
@@ -20,10 +21,11 @@ namespace AJ
             currentHealth--;
         }
 
-        /*public void Death()
+        public void EnemyDeath()
         {
             //deathEvent.Invoke();
-        }*/
+            Destroy(gameObject);
+        }
     }
 }
 
