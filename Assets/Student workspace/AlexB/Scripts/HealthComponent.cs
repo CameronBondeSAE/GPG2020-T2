@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthComponent : MonoBehaviour
+namespace AJ
 {
-    public int currentMaxHealth;
-    public int currentMinHealth;
-    public int currentHealth;
-
-    public void AddHp()
+    public class HealthComponent : MonoBehaviour
     {
-        currentHealth++;
+        public int currentMaxHealth;
+        public int currentMinHealth;
+        public int currentHealth;
+
+        public void AddHp()
+        {
+            currentHealth++;
+        }
+
+        public void TakeHp()
+        {
+            currentHealth--;
+        }
+
+        /*public void Death()
+        {
+            //deathEvent.Invoke();
+        }*/
     }
-
-    public void TakeHp()
-    {
-        currentHealth--;
-    }
-
-    /*public void Death()
-    {
-        //deathEvent.Invoke();
-    }*/
 }
+
