@@ -20,6 +20,7 @@ public class SpawnManager : MonoBehaviour
     public bool completeWaves;
 
     private int monNum;
+    private int currentWave;
 
     public List<GameObject> units = new List<GameObject>();
 
@@ -52,6 +53,8 @@ public class SpawnManager : MonoBehaviour
     {
         for (int wcounter = 0; wcounter < waveCount; wcounter++)
         {
+            currentWave = wcounter;
+
             for (int counter = 0; counter < enemies; counter++)
             {
                 monNum++;
@@ -82,8 +85,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void RemoveFromList(HealthComponent arg0)
+    private void RemoveFromList(HealthComponent arg0)
     {
         units.Remove(arg0.gameObject);
+
+        if (currentWave == waveCount - 1 && units.Count <= 0)
+        {
+            wavesCompletedEvent?.Invoke();
+        }
     }
 }

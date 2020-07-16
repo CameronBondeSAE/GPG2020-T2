@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AJ;
 using UnityEngine;
 
 namespace Niall
@@ -9,7 +10,7 @@ namespace Niall
     {
         public void OnTriggerEnter(Collider other)
         {
-          //  other.GetComponent<NolanUnit>().Dead();
+            other.GetComponent<HealthComponent>().Death();
         }
     }
 }
