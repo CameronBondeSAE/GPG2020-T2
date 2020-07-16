@@ -456,6 +456,12 @@ MonoBehaviour:
   toggleState: 0
   intensity: 0
   light: {fileID: 0}
+  turnedOnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  turnedOffEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &315159826
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +495,12 @@ MonoBehaviour:
   toggleState: 0
   intensity: 0
   light: {fileID: 0}
+  turnedOnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  turnedOffEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!108 &315159828
 Light:
   m_ObjectHideFlags: 0
@@ -826,7 +838,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1362
+  m_Name: pb_Mesh-4450
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -990,7 +1002,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1352
+  m_Name: pb_Mesh-4440
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2869,159 +2881,9 @@ PrefabInstance:
       objectReference: {fileID: 851793359}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
       propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 234545307}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TurnOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 234545307}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TurnOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 234545307}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TurnOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 315159827}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TurnOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -3029,29 +2891,19 @@ PrefabInstance:
       objectReference: {fileID: 315159827}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TurnOff
-      objectReference: {fileID: 0}
+      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 234545307}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: openedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: openingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 315159827}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 234545307}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -3059,74 +2911,14 @@ PrefabInstance:
       objectReference: {fileID: 315159827}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TurnOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
       propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 234545307}
     - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TurnOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LightController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
       propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 315159827}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TurnOn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1181243794400126849, guid: 74541504e802267498a24c7887ffc170,
-        type: 3}
-      propertyPath: closingEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1181243794400126850, guid: 74541504e802267498a24c7887ffc170,
         type: 3}
       propertyPath: m_LocalPosition.x
