@@ -27,7 +27,7 @@ namespace AnthonyY
                 Debug.DrawLine(t.position,t.forward ,Color.red);
             }
 
-            Mathf.PerlinNoise(distance, turnSpeed);
+            Mathf.PerlinNoise(turnSpeed, distance);
         }
     } 
 }
