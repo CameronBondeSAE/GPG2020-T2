@@ -2382,15 +2382,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopDownPLAYER
       objectReference: {fileID: 0}
-    - target: {fileID: 1651102968880965807, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
-        type: 3}
-      propertyPath: speed
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 5867219570622389952, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
-        type: 3}
-      propertyPath: MaxHealth
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
