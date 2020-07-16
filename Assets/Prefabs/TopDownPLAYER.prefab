@@ -446,7 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acdc5ae5d0cf054c8a2b2f02e811cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 120
+  syncMode: 0
+  syncInterval: 0.1
+  speed: 60
   direction: {x: 0, y: 0, z: 0}
 --- !u!114 &5867219570622389952
 MonoBehaviour:
@@ -460,6 +462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947aeea4b3f50d345a81f1974216e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMaxHealth: 0
-  currentMinHealth: 0
+  MaxHealth: 0
+  MinHealth: 0
   currentHealth: 0
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
