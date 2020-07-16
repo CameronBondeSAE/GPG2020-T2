@@ -13,8 +13,6 @@ namespace alexM
 		public  Vector3      direction;
 		private GameControls GC;
 		private Rigidbody    RB;
-		private Camera       camera;
-		private float        camOffset;
 
 		private void Awake()
 		{
@@ -23,8 +21,6 @@ namespace alexM
 			GC.InGame.Move.performed += Movement;
 			GC.InGame.Move.canceled  += Movement;
 			RB                       =  GetComponent<Rigidbody>();
-			camera                   =  GetComponentInChildren<Camera>();
-			camOffset                =  Vector3.Distance(camera.transform.position, gameObject.transform.position);
 		}
 
 		void Movement(InputAction.CallbackContext context)
@@ -42,10 +38,7 @@ namespace alexM
 			//Do the stuff here
 			RB.AddForce(direction * speed);
 		}
-
-		private void FixedUpdate()
-		{
-		}
+		
 
 		private void OnDestroy()
 		{
