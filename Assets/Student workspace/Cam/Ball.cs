@@ -5,27 +5,15 @@ using UnityEngine;
 
 namespace Cam
 {
-	public class Ball : MonoBehaviour
+	public class Ball : CharacterBase
 	{
-		// Start is called before the first frame update
-		void Start()
-		{
-		}
+		// public override void Die()
+		// {
+		// 	Debug.Log("Ball die");
+		// 	GetComponent<AudioSource>().Play();
+		// 	Destroy(gameObject);
+		// }
 
-		// Update is called once per frame
-		void Update()
-		{
-			// if (iWentThroughGoal)
-			// {
-			// 	for (int i = 0; i < audiencememebers; i++)
-			// 	{
-			// 		audience.Cheer();
-			// 	}
-			//
-			// 	scoreboard.Add(6);
-			// 	goalUmpire.PlayAnimation();
-			// 	
-			// }
-		}
+
 	}
 }

@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 366631937131053708, guid: 2141030dd5db9f040b1bc98824893398, type: 3}
+  spawnAreaMin: -3
+  spawnAreaMax: 3
   enemies: 10
-  spawn: 0
-  spawnInterval: 0.1
+  spawn: 1

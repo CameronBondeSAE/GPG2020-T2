@@ -1,0 +1,33 @@
+{
+    "name": "VisionTest",
+    "maps": [
+        {
+            "name": "Vision",
+            "id": "926d1df9-6b1a-48c6-b0c7-590ceaa39b3d",
+            "actions": [
+                {
+                    "name": "Ability",
+                    "type": "Button",
+                    "id": "6c0328cb-5059-49fb-b823-430672813c3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1eb6fc92-481e-42f3-982e-b9b8f21ed8d8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
