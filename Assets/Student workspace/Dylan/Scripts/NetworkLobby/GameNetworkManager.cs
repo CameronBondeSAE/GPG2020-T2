@@ -53,9 +53,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                     menuScene = SceneManager.GetActiveScene().path;
                     onlineScene = menuScene;
                 }
+                
             }
-
-            if (SceneManager.GetActiveScene().path == menuScene)
+            if (SceneManager.GetActiveScene().path == menuScene )
             {
                 lobbyUI.SetActive(true);
             }
@@ -68,6 +68,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 //run this on an event, invoke the event
               UIOff();
             }
+            
 
             base.Start();
         }
@@ -84,21 +85,21 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         /// <summary>
         ///when using prefabs to spawn objects you need to load them in when you start or connect to the server
         /// </summary>
-        public override void OnStartServer() =>
-            spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
-
-        /// <summary>
-        ///when using prefabs to spawn objects you need to load them in when you start or connect to the server
-        /// </summary>
-        public override void OnStartClient()
-        {
-            var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
-
-            foreach (var prefab in spawnablePrefabs)
-            {
-                ClientScene.RegisterPrefab(prefab);
-            }
-        }
+        // public override void OnStartServer() =>
+        //     spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
+        //
+        // /// <summary>
+        // ///when using prefabs to spawn objects you need to load them in when you start or connect to the server
+        // /// </summary>
+        // public override void OnStartClient()
+        // {
+        //     var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
+        //
+        //     foreach (var prefab in spawnablePrefabs)
+        //     {
+        //         ClientScene.RegisterPrefab(prefab);
+        //     }
+        // }
 
         public override void OnClientConnect(NetworkConnection conn)
         {

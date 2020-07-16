@@ -27,9 +27,9 @@ namespace AnthonyY
                 if (Physics.Raycast(t.position, t.forward, out hit, distance))
                 {
                     rb.AddTorque(0,turnSpeed,0);
-                    Debug.DrawLine(t.position,t.forward ,Color.red);
+                   
                 }
-
+                Debug.DrawLine(t.position,t.forward ,Color.red);
                 Mathf.PerlinNoise(turnSpeed, distance);
             }
             }
