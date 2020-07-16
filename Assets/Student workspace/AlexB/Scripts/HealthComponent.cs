@@ -23,7 +23,7 @@ namespace AJ
 
         public void EnemyDeath()
         {
-            deathEvent.Invoke();
+            //deathEvent.Invoke();
             Destroy(gameObject);
         }
     }
