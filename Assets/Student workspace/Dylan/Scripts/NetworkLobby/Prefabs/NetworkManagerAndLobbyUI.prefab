@@ -774,10 +774,14 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 449850144686953301, guid: 490a71eaf5fef634a97ec079f8f4b4c2,
     type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 0}
+  - {fileID: 1651102968880965806, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
+  - {fileID: 160307577924929259, guid: 8c31ce50d8a2c174a89804b59345b6f7, type: 3}
+  - {fileID: 8005808769771261553, guid: b0ff4a0d18883524484dcd533e153d24, type: 3}
+  - {fileID: 8284762099497019277, guid: 0af046d068606a041accfa88ba019577, type: 3}
+  - {fileID: 5861387322311652483, guid: 2a31497c133919941b4780b5378c4dd7, type: 3}
   minPlayer: 1
   menuScene: Assets/Main.unity
   gameScene: Assets/Main.unity
@@ -785,7 +789,7 @@ MonoBehaviour:
     type: 3}
   gamePlayerPrefab: {fileID: 2696317799798203801, guid: 8c31ce50d8a2c174a89804b59345b6f7,
     type: 3}
-  allowHotJoining: 1
+  allowHotJoining: 0
   bChatUI: {fileID: 6497264541529332942}
   playerSpawnSystem: {fileID: 5861387322311652483, guid: 2a31497c133919941b4780b5378c4dd7,
     type: 3}
@@ -861,8 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b138015157523a4c974a04f6bafddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostOnStart: 1
-  bypassLobby: 1
+  hostOnStart: 0
+  bypassLobby: 0
   gameNetworkManager: {fileID: 6181736370761581532}
   MainMenuStuff: {fileID: 6181736371903567431}
   lobbyUI: {fileID: 6181736371903567480}

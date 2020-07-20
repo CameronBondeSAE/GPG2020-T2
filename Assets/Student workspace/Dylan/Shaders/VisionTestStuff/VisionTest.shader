@@ -16,6 +16,7 @@
             ZWrite Off 
                         
             ZTest Always
+            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -51,7 +52,7 @@
         
         Pass
         {
-             CGPROGRAM
+            CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
