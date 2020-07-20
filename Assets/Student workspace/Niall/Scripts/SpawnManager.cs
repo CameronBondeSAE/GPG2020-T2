@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-//TODO if timedWaves is ticked, spawn enemies every WaveInterval, if completeWaves is ticked, spawn enemies when units List == 0. instantiate units in a child object of Spawn Manager.
+
     public IEnumerator EnemySpawn()
     {
         for (int wcounter = 0; wcounter < waveCount; wcounter++)
@@ -60,11 +60,11 @@ public class SpawnManager : MonoBehaviour
                 monNum++;
                 posX = Random.Range(spawnAreaMin, spawnAreaMax);
                 posZ = Random.Range(spawnAreaMin, spawnAreaMax);
-                GameObject newGameObject = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ),
+                GameObject newEnemy = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ),
                     Quaternion.identity);
-                Debug.Log(monNum + " " + spawnPrefab.name + " Spawned");
-                units.Add(newGameObject);
-                newGameObject.GetComponent<HealthComponent>().deathEvent.AddListener(RemoveFromList);
+                Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
+                units.Add(newEnemy);
+                newEnemy.GetComponent<HealthComponent>().deathEvent.AddListener(RemoveFromList);
                 yield return new WaitForSeconds(spawnInterval);
             }
 
