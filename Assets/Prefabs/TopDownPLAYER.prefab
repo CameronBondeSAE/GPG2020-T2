@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &202150322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 202150323}
+  m_Layer: 10
+  m_Name: CamPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &202150323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202150322}
+  m_LocalRotation: {x: -0.3328172, y: -0.009865002, z: 0.0034996169, w: -0.94293326}
+  m_LocalPosition: {x: -0.081774, y: 12.918222, z: -12.341228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1651102968452027886}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1651102968285152718
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +42,7 @@ GameObject:
   - component: {fileID: 1651102968285152722}
   - component: {fileID: 1651102968285152717}
   - component: {fileID: 1651102968285152716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +138,7 @@ GameObject:
   - component: {fileID: 1651102968452027885}
   - component: {fileID: 1651102968452027884}
   - component: {fileID: 1651102968452027887}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +157,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1651102968285152719}
+  - {fileID: 202150323}
   m_Father: {fileID: 1651102968880965804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -204,7 +235,7 @@ GameObject:
   - component: {fileID: 1651102968533518020}
   - component: {fileID: 1651102968533518023}
   - component: {fileID: 1651102968533518022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +314,7 @@ SphereCollider:
   m_GameObject: {fileID: 1651102968533518016}
   m_Material: {fileID: 13400000, guid: d4a21fde670306840abfca745b310c90, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -299,7 +330,8 @@ GameObject:
   - component: {fileID: 1651102968848330724}
   - component: {fileID: 1651102968848330727}
   - component: {fileID: 1651102968848330726}
-  m_Layer: 0
+  - component: {fileID: 1115198753}
+  m_Layer: 10
   m_Name: BottomFric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651102968848330720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.834, y: -0.646, z: -0.402}
+  m_LocalPosition: {x: -0.834, y: -0.545, z: -0.402}
   m_LocalScale: {x: 0.46257, y: 0.46257, z: 0.46257}
   m_Children: []
   m_Father: {fileID: 1651102968880965804}
@@ -382,6 +414,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1115198753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968848330720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098a31007d2d61848b27dfbd044c594f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1651102968880965806
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +439,7 @@ GameObject:
   - component: {fileID: 1651102968880965807}
   - component: {fileID: 7487281604307372431}
   - component: {fileID: 5867219570622389952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -447,8 +491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acdc5ae5d0cf054c8a2b2f02e811cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 120
+  speed: 80
+  jumpForce: 150
   direction: {x: 0, y: 0, z: 0}
+  _isGrounded: 0
 --- !u!114 &7487281604307372431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f680e4389d83e2f46bbbf047ee305d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraLocation: {fileID: 202150322}
 --- !u!114 &5867219570622389952
 MonoBehaviour:
   m_ObjectHideFlags: 0
