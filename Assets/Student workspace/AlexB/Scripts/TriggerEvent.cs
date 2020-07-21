@@ -4,21 +4,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
 
-public class TriggerEvent : NetworkBehaviour
+namespace alexM
 {
-    public UnityEvent pressedEvent;
-
-    // Start is called before the first frame update
-   
-    void OnTriggerEnter(Collider other)
+    public class TriggerEvent : MonoBehaviour
     {
-        if (isServer)
+        public UnityEvent pressedEvent;
+
+        // Start is called before the first frame update
+
+        void OnTriggerEnter(Collider other)
         {
-            //if (other.CompareTag("Object"))
-            {
-                pressedEvent.Invoke();
-                Debug.Log("Object has collided");
-            }
-        }        
-    }     
+            pressedEvent.Invoke();
+            Debug.Log("Button was triggered");
+        }
+    }
+
 }
