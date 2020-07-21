@@ -6,6 +6,10 @@ using UnityEngine.Jobs;
 
 public class NotJobs : MonoBehaviour
 {
+    [Header("This just loops on a single thread.")]
+    [Space]
+    [Space]
+    
     public GameObject ObjPrefab;
     public int objCount;
 
@@ -14,6 +18,8 @@ public class NotJobs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         transforms = new Transform[objCount];
         for (int i = 0; i < transforms.Length; i++)
         {

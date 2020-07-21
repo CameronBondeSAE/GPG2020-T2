@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EntitySpawner : MonoBehaviour
 {
+    [Header("This Uses ECS / DOTs")]
+    [Space]
+    [Space]
+    
     public GameObject ObjPrefab;
     public int objCount;
 
