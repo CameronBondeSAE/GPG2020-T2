@@ -2542,6 +2542,11 @@ PrefabInstance:
       propertyPath: m_SelectedVertices.Array.data[3]
       value: 151
       objectReference: {fileID: 0}
+    - target: {fileID: 8587643545226409851, guid: ccfe7019454cff14595d1a59004264db,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3b88d719334d274ab2c664200c7c938, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccfe7019454cff14595d1a59004264db, type: 3}
 --- !u!1 &1781373231
@@ -2694,7 +2699,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-113466
+  m_Name: pb_Mesh-1934
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
