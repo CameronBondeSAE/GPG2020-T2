@@ -7,23 +7,22 @@ using Mirror;
 
 namespace alexM
 {
-    public class TriggerEvent : MonoBehaviour
-    {
-        public UnityEvent pressedEvent, releasedEvent;
+	public class TriggerEvent : MonoBehaviour
+	{
+		public UnityEvent pressedEvent, releasedEvent;
 
-        // Start is called before the first frame update
+		// Start is called before the first frame update
 
-        void OnTriggerEnter(Collider other)
-        {
-            pressedEvent.Invoke();
-            Debug.Log("Zone was entered");
-        }
+		void OnTriggerEnter(Collider other)
+		{
+			pressedEvent.Invoke();
+			Debug.Log("Zone was entered");
+		}
 
-        private void OnTriggerExit(Collider other)
-        {
-            releasedEvent.Invoke();
-            Debug.Log("Zone was left");
-        }
-    }
-
+		private void OnTriggerExit(Collider other)
+		{
+			releasedEvent.Invoke();
+			Debug.Log("Zone was left");
+		}
+	}
 }

@@ -74,9 +74,9 @@ namespace alexM
 		public bool TargetReached(Vector3 tgt)
 		{
 			var position = door.transform.position;
-			var dist = Vector3.Distance(position, tgt);
+			var dist     = Vector3.Distance(position, tgt);
 			doorPos = position;
-			
+
 			if (dist <= 0.01f)
 			{
 				//openedEvent?.Invoke();
