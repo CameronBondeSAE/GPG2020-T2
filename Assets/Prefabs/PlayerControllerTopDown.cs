@@ -63,17 +63,16 @@ namespace alexM
             int layerMask = 1 << 10;
             layerMask = ~layerMask;
 
-            //GameObject bottom;
-            //bottom = GameObject.Find("Base");
+            
             Vector3 down = bottom.transform.TransformDirection(Vector3.down);
             RaycastHit hit;
+            
             //AirSpeed control (Check for ground and set speed to airSpeed [Slower])
             if (Physics.Raycast(bottom.transform.position, down, out hit, 0.8f, layerMask))
             {
                 Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
                 _isGrounded = true;
                 return true;
-                //Debug.Log("Hit: " + hit.transform.name.ToString() + ", Dist: " + hit.distance.ToString());
             }
             else
             {
@@ -84,11 +83,6 @@ namespace alexM
 
         private void FixedUpdate()
         {
-            // if (GroundCheck())
-            // {
-            // 	Debug.Log("Grounded!!");
-            // }
-
             //Do the stuff here
             GroundCheck();
 
