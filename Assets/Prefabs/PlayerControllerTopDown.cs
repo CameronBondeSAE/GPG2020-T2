@@ -6,34 +6,36 @@ using DG.Tweening;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 namespace alexM
 {
 	public class PlayerControllerTopDown : NetworkBehaviour
 	{
-		public           float             speed, jumpForce;
-		public           Vector3           direction;
-		private          GameControls      GC;
-		private          Rigidbody         RB;
-		private          GameObject        bottom;
-		private          Camera_Controller cameraController;
-		[SerializeField] bool              _isGrounded;
+		public float speed, jumpForce;
+		public Vector3 direction;
+		private GameControls GC;
+		private Rigidbody RB;
+		private GameObject bottom, neck;
+		private Camera_Controller cameraController;
+		[SerializeField] bool _isGrounded;
 
 		private void Awake()
 		{
 			GC = new GameControls();
 			GC.Enable();
 			GC.InGame.Move.performed += Movement;
-			GC.InGame.Move.canceled  += Movement;
+			GC.InGame.Move.canceled += Movement;
 			GC.InGame.Jump.performed += Jump;
-			GC.InGame.Jump.canceled  += Jump;
+			GC.InGame.Jump.canceled += Jump;
 			// GC.InGame.Fire.performed += LookAtMouse;
 			// GC.InGame.Fire.canceled  += LookAtMouse;
 			GC.InGame.MousePosition.performed += LookAtMouse;
 			//GC.InGame.MousePosition.canceled += LookAtMouse;
-			RB                       =  GetComponent<Rigidbody>();
-			bottom                   =  GameObject.Find("Base");
-			cameraController         =  GetComponent<Camera_Controller>();
+			RB = GetComponent<Rigidbody>();
+			bottom = GameObject.Find("Base");
+			neck = GameObject.Find("Neck");
+			cameraController = GetComponent<Camera_Controller>();
 		}
 
 		private void OnCollisionEnter(Collision other)
@@ -71,13 +73,14 @@ namespace alexM
 			layerMask = ~layerMask;
 
 
-			Vector3    down = bottom.transform.TransformDirection(Vector3.down);
+			Vector3 down = bottom.transform.TransformDirection(Vector3.down);
 			RaycastHit hit;
 
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
-			if (Physics.Raycast(bottom.transform.position, down, out hit, 0.8f, layerMask))
+			if (Physics.Raycast(bottom.transform.position, down, out hit, 0.9f, layerMask))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
+				//Debug.Log("dist: " + hit.distance);
 				_isGrounded = true;
 				return true;
 			}
@@ -90,24 +93,16 @@ namespace alexM
 
 		void LookAtMouse(InputAction.CallbackContext context)
 		{
-			//Vector3 mousePosition = cameraController.cam.ScreenToWorldPoint(GC.InGame.MousePosition.ReadValue<Vector2>()); //GC.InGame.MousePosition.ReadValue<Vector2>();
-			// Vector3    forward       = cameraController.cameraLocation.transform.TransformDirection(Vector3.forward);
-			// RaycastHit hit;
-			// Ray        ray = cameraController.cam.ScreenPointToRay(mousePosition);
-			//
-			// if (Physics.Raycast(ray, out hit))
-			// {
-			// 	Debug.DrawRay(cameraController.cam.transform.position, mousePosition * hit.distance, Color.green, 1f);
-			// }
+			Ray ray = cameraController.cam.ScreenPointToRay(context
+				.ReadValue<Vector2>());
+			RaycastHit hit;
 
-			Vector3 worldMousePosition = cameraController.cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
-			
-			Ray ray = new Ray(transform.position, worldMousePosition);
-			//RaycastHit hit;
-			// if (Physics.Raycast(ray, out hit))
-			// {
-			 	Debug.DrawRay(transform.position, worldMousePosition - transform.position , Color.green, 1f);
-			// }
+			if (Physics.Raycast(ray, out hit))
+			{
+				neck.transform.LookAt(new Vector3(hit.point.x,neck.transform.position.y, hit.point.z));
+				
+				//Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 0.1f);
+			}
 		}
 
 		private void FixedUpdate()
@@ -136,9 +131,9 @@ namespace alexM
 		private void OnDestroy()
 		{
 			GC.InGame.Move.performed -= Movement;
-			GC.InGame.Move.canceled  -= Movement;
+			GC.InGame.Move.canceled -= Movement;
 			GC.InGame.Jump.performed -= Jump;
-			GC.InGame.Jump.canceled  -= Jump;
+			GC.InGame.Jump.canceled -= Jump;
 			// GC.InGame.Fire.performed -= LookAtMouse;
 			// GC.InGame.Fire.canceled  -= LookAtMouse;
 			GC.InGame.MousePosition.performed -= LookAtMouse;
