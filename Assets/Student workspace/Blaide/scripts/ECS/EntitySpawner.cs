@@ -29,3 +29,17 @@ public class EntitySpawner : MonoBehaviour
     }
 
 }
+
+
+public interface IColorChanger
+{
+    void changedColor( Color Color);
+}
+
+public class thing : IColorChanger
+{
+    public void changedColor(Color Color)
+    {
+        
+    }
+}
