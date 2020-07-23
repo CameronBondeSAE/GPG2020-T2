@@ -27,7 +27,7 @@ namespace alexM
 		//     return camPos;
 		// }
 
-		private void Awake()
+		public void Start()
 		{
 			Setup();
 		}
