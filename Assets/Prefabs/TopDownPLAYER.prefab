@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 1651102968880965807}
   - component: {fileID: 7487281604307372431}
   - component: {fileID: 5867219570622389952}
+  - component: {fileID: -4836006220161003944}
   m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
@@ -508,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraLocation: {fileID: 202150322}
+  cam: {fileID: 0}
 --- !u!114 &5867219570622389952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +526,40 @@ MonoBehaviour:
   MinHealth: 0
   currentHealth: 0
   deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-4836006220161003944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968880965806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6aba6265d22d04a9c9375548eddf3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  originalTarget: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  doorPos: {x: 0, y: 0, z: 0}
+  speed: 0
+  isOpening: 0
+  isClosing: 0
+  door: {fileID: 0}
+  state: 1
+  openedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  openingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  closedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  closingEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &3621068786733965071
