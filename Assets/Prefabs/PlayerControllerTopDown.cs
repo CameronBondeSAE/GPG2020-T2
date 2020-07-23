@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AJ;
+using DG.Tweening;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,8 +27,10 @@ namespace alexM
 			GC.InGame.Move.canceled  += Movement;
 			GC.InGame.Jump.performed += Jump;
 			GC.InGame.Jump.canceled  += Jump;
-			GC.InGame.Fire.performed += LookAtMouse;
-			GC.InGame.Fire.canceled  += LookAtMouse;
+			// GC.InGame.Fire.performed += LookAtMouse;
+			// GC.InGame.Fire.canceled  += LookAtMouse;
+			GC.InGame.MousePosition.performed += LookAtMouse;
+			//GC.InGame.MousePosition.canceled += LookAtMouse;
 			RB                       =  GetComponent<Rigidbody>();
 			bottom                   =  GameObject.Find("Base");
 			cameraController         =  GetComponent<Camera_Controller>();
@@ -87,7 +90,7 @@ namespace alexM
 
 		void LookAtMouse(InputAction.CallbackContext context)
 		{
-			// Vector3 mousePosition = cameraController.cam.ScreenToWorldPoint(GC.InGame.MousePosition.ReadValue<Vector2>()); //GC.InGame.MousePosition.ReadValue<Vector2>();
+			//Vector3 mousePosition = cameraController.cam.ScreenToWorldPoint(GC.InGame.MousePosition.ReadValue<Vector2>()); //GC.InGame.MousePosition.ReadValue<Vector2>();
 			// Vector3    forward       = cameraController.cameraLocation.transform.TransformDirection(Vector3.forward);
 			// RaycastHit hit;
 			// Ray        ray = cameraController.cam.ScreenPointToRay(mousePosition);
@@ -97,16 +100,14 @@ namespace alexM
 			// 	Debug.DrawRay(cameraController.cam.transform.position, mousePosition * hit.distance, Color.green, 1f);
 			// }
 
-			if (Mouse.current.leftButton.wasPressedThisFrame)
-			{
-				Ray ray = cameraController.cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-				RaycastHit hit;
-				if (Physics.Raycast(ray, out hit))
-				{
-					Debug.DrawRay(cameraController.cam.transform.position, hit.point * hit.distance, Color.green, 1f);
-				}
-			}
+			Vector3 worldMousePosition = cameraController.cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
 			
+			Ray ray = new Ray(transform.position, worldMousePosition);
+			//RaycastHit hit;
+			// if (Physics.Raycast(ray, out hit))
+			// {
+			 	Debug.DrawRay(transform.position, worldMousePosition - transform.position , Color.green, 1f);
+			// }
 		}
 
 		private void FixedUpdate()
@@ -138,8 +139,10 @@ namespace alexM
 			GC.InGame.Move.canceled  -= Movement;
 			GC.InGame.Jump.performed -= Jump;
 			GC.InGame.Jump.canceled  -= Jump;
-			GC.InGame.Fire.performed -= LookAtMouse;
-			GC.InGame.Fire.canceled  -= LookAtMouse;
+			// GC.InGame.Fire.performed -= LookAtMouse;
+			// GC.InGame.Fire.canceled  -= LookAtMouse;
+			GC.InGame.MousePosition.performed -= LookAtMouse;
+			//GC.InGame.MousePosition.canceled += LookAtMouse;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/Anthony Younes WS/ActionMap/InventoryTestControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/Anthony Younes WS/Inventory Testing/InventoryTestControls.inputactions'
 
 using System;
 using System.Collections;
