@@ -323,12 +323,17 @@ PrefabInstance:
     - target: {fileID: 6916112035812595151, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: hostOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6916112035812595151, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: bypassLobby
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916112035812595151, guid: 29e34919de67780449d043c16eef9f5e,
+        type: 3}
+      propertyPath: disableChat
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6181736370761581530, guid: 29e34919de67780449d043c16eef9f5e, type: 3}
@@ -1195,6 +1200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CamMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900539201409411847, guid: 710d74b1fcda2bc41bbadb632114df1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4019870855937546036, guid: 710d74b1fcda2bc41bbadb632114df1e,
         type: 3}

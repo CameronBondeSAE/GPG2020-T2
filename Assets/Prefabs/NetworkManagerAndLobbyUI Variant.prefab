@@ -197,5 +197,10 @@ PrefabInstance:
       propertyPath: hostOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6916112035812595151, guid: 29e34919de67780449d043c16eef9f5e,
+        type: 3}
+      propertyPath: disableChat
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e34919de67780449d043c16eef9f5e, type: 3}
