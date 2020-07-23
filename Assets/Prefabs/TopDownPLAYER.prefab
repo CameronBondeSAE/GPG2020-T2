@@ -439,6 +439,8 @@ GameObject:
   - component: {fileID: 1651102968880965807}
   - component: {fileID: 7487281604307372431}
   - component: {fileID: 5867219570622389952}
+  - component: {fileID: 802036457}
+  - component: {fileID: 802036456}
   m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
@@ -491,6 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acdc5ae5d0cf054c8a2b2f02e811cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   speed: 80
   jumpForce: 250
   direction: {x: 0, y: 0, z: 0}
@@ -527,6 +531,40 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &802036457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968880965806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &802036456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968880965806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
 --- !u!1 &3621068786733965071
 GameObject:
   m_ObjectHideFlags: 0

@@ -1522,7 +1522,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5508
+  m_Name: pb_Mesh-10948
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1687,6 +1687,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 802036457, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
+      propertyPath: sceneId
+      value: 3948843160
+      objectReference: {fileID: 0}
+    - target: {fileID: 802036457, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
+      propertyPath: m_AssetId
+      value: f14f29cfe3fa01847be03fa9f93c7c8a
+      objectReference: {fileID: 0}
     - target: {fileID: 463370638716333761, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
         type: 3}
       propertyPath: m_Mesh
