@@ -41,13 +41,29 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""760a5d95-03a9-47a9-b6ba-5bbbbce870a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""f54862e0-8fad-4abb-9205-8538147b25e4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""df65d254-0cd0-4803-b340-6d023d4bdfcc"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""149ec3dd-b4b2-415a-a17c-ac16dd84bcbf"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -57,8 +73,8 @@ public class @GameControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""149ec3dd-b4b2-415a-a17c-ac16dd84bcbf"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""b7a26e8f-37df-4cc3-9c3b-9f96b9d0e298"",
+                    ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -153,6 +169,28 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e1ebf6f-a119-49e9-b810-b27a07cfa8c1"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6d0bb92-91f7-4371-8350-40e6694d48ac"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -191,6 +229,8 @@ public class @GameControls : IInputActionCollection, IDisposable
         m_InGame_Fire = m_InGame.FindAction("Fire", throwIfNotFound: true);
         m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         m_InGame_Look = m_InGame.FindAction("Look", throwIfNotFound: true);
+        m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
+        m_InGame_MousePosition = m_InGame.FindAction("MousePosition", throwIfNotFound: true);
         // In Menu
         m_InMenu = asset.FindActionMap("In Menu", throwIfNotFound: true);
         m_InMenu_Newaction = m_InMenu.FindAction("New action", throwIfNotFound: true);
@@ -246,6 +286,8 @@ public class @GameControls : IInputActionCollection, IDisposable
     private readonly InputAction m_InGame_Fire;
     private readonly InputAction m_InGame_Move;
     private readonly InputAction m_InGame_Look;
+    private readonly InputAction m_InGame_Jump;
+    private readonly InputAction m_InGame_MousePosition;
     public struct InGameActions
     {
         private @GameControls m_Wrapper;
@@ -253,6 +295,8 @@ public class @GameControls : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_InGame_Fire;
         public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputAction @Look => m_Wrapper.m_InGame_Look;
+        public InputAction @Jump => m_Wrapper.m_InGame_Jump;
+        public InputAction @MousePosition => m_Wrapper.m_InGame_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +315,12 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnLook;
+                @Jump.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnJump;
+                @MousePosition.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -284,6 +334,12 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -326,6 +382,8 @@ public class @GameControls : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
     public interface IInMenuActions
     {
