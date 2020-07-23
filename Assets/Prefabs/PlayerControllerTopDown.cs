@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : MonoBehaviour
+	public class PlayerControllerTopDown : NetworkBehaviour
 	{
 		public           float             speed, jumpForce;
 		public           Vector3           direction;
@@ -35,10 +35,10 @@ namespace alexM
 
 		private void OnCollisionEnter(Collision other)
 		{
-			if (other.gameObject.GetComponent<HealthComponent>())
-			{
-				other.gameObject.GetComponent<HealthComponent>().Death();
-			}
+			// if (other.gameObject.GetComponent<HealthComponent>())
+			// {
+			// 	other.gameObject.GetComponent<HealthComponent>().Death();
+			// }
 		}
 
 		void Movement(InputAction.CallbackContext context)

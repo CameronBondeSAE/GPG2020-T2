@@ -1522,7 +1522,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5508
+  m_Name: pb_Mesh-10948
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1754,6 +1754,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
+--- !u!1 &802036455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1651102968880965806, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 802036454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &802036456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802036455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+--- !u!114 &802036457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802036455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3948843160
+  serverOnly: 0
+  m_AssetId: f14f29cfe3fa01847be03fa9f93c7c8a
+  hasSpawned: 0
 --- !u!1001 &1218494371
 PrefabInstance:
   m_ObjectHideFlags: 0
