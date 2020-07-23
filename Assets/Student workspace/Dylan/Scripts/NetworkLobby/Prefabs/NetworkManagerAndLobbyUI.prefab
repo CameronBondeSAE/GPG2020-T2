@@ -720,7 +720,6 @@ GameObject:
   - component: {fileID: 6181736370761581531}
   - component: {fileID: 6181736370761581532}
   - component: {fileID: 6181736370761581533}
-  - component: {fileID: 6181736370761581530}
   - component: {fileID: 6916112035812595151}
   m_Layer: 0
   m_Name: NetworkManagerAndLobbyUI
@@ -774,7 +773,7 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 449850144686953301, guid: 490a71eaf5fef634a97ec079f8f4b4c2,
     type: 3}
-  autoCreatePlayer: 0
+  autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1651102968880965806, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
@@ -837,22 +836,6 @@ MonoBehaviour:
   serverMaxReceivesPerTick: 10000
   clientMaxMessageSize: 16384
   clientMaxReceivesPerTick: 16384
---- !u!114 &6181736370761581530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6181736370761581534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &6916112035812595151
 MonoBehaviour:
   m_ObjectHideFlags: 0
