@@ -9,14 +9,15 @@ public class DidSomethingCoolEventArgs : EventArgs
 	public bool woo;
 }
 
+
 public class CamMonster : CharacterBase
 {
 	public Animator animator;
 
 	public bool shield;
+	public float speed = 100;
 
 
-	
 	// Using Action generics
 	public event Action<object, EventArgs> didSomethingCool ;
 	
@@ -38,7 +39,7 @@ public class CamMonster : CharacterBase
 	private void OnDidSomethingCool(object sender, EventArgs e)
 	{
 		DidSomethingCoolEventArgs args = e as DidSomethingCoolEventArgs;
-		Debug.Log(args.stuff);
+		// Debug.Log(args.stuff);
 	}
 
 	private void OnDestroy()
@@ -58,6 +59,8 @@ public class CamMonster : CharacterBase
 										  stuff  = "Cam",
 										  woo    = true
 									  });
+		
+		GetComponent<Rigidbody>().AddRelativeForce(0,0,speed);
 	}
 
 

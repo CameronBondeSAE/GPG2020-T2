@@ -41,7 +41,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             DontDestroyOnLoad(gameObject);
 
             Room.GamePlayers.Add(this);
-        }
+			
+			Debug.Log("Connection = "+NetworkClient.connection.identity.netId);
+			Debug.Log("Player GO = "+netIdentity.netId);
+		}
 
         public override void OnStopClient()
         {
