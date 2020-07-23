@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/Dylan/Shaders/VisionTest.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Student workspace/Dylan/Shaders/VisionTestStuff/VisionTest.inputactions'
 
 using System;
 using System.Collections;
