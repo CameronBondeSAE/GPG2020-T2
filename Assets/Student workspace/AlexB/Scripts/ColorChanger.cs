@@ -15,6 +15,10 @@ namespace AJ
             {
                 renderer = gameObject.GetComponent<Renderer>();                
             }
+            else
+            {
+                Debug.Log("No renderer");
+            }
         }
         public void ChangeTo(Color newColor)
         {
