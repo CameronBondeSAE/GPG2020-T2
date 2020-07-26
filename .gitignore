@@ -64,3 +64,5 @@ DirSync settings.dsc
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
 
 ProjectSettings/ProjectVersion.txt
+
+*.meta

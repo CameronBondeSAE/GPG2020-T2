@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.UI;
 
-public class UIButton : MonoBehaviour
+namespace AJ
 {
-    public GameObject Button;
-
-
-    public void Enable()
+    public class UIButton : MonoBehaviour
     {
-        Button.SetActive(true);
-    }
+        public GameObject Button;
 
-    public void Disable()
-    {
-        Button.SetActive(false);
 
+        public void Enable()
+        {
+            Button.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            Button.SetActive(false);
+
+        }
     }
 }
