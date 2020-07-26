@@ -69,7 +69,7 @@ namespace alexM
 
 		bool GroundCheck()
 		{
-			int layerMask = 1 << 10;
+			int layerMask = 1 << 12;
 			layerMask = ~layerMask;
 
 

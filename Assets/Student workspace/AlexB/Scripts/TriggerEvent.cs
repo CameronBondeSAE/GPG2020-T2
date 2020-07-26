@@ -10,18 +10,33 @@ namespace alexM
 	public class TriggerEvent : MonoBehaviour
 	{
 		public UnityEvent pressedEvent, releasedEvent;
+		public LayerMask mask;
+		private void Awake()
+		{
+			
+		}
 
-		// Start is called before the first frame update
 
 		void OnTriggerEnter(Collider other)
 		{
-			pressedEvent.Invoke();
+			
+			// int layerMask = 1 << 10;
+			// layerMask = ~layerMask;
+			
+			if ((mask.value & 1<<other.gameObject.layer) != 12)
+			{
+				pressedEvent.Invoke();
+			}
+			
 			//Debug.Log("Zone was entered");
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			releasedEvent.Invoke();
+			if ((mask.value & 1<<other.gameObject.layer) != 12)
+			{
+				releasedEvent.Invoke();
+			}
 			//Debug.Log("Zone was left");
 		}
 	}
