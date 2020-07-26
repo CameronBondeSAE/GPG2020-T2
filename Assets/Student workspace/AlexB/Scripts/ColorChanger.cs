@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorChanger : MonoBehaviour
+namespace AJ
 {
-     private Color previousColor;
-     private Renderer renderer;
-
-    private void Awake()
+    public class ColorChanger : MonoBehaviour
     {
-        renderer = gameObject.GetComponent<Renderer>();
+        private Color previousColor;
+        private Renderer renderer;
+
+        private void Awake()
+        {
+            if (gameObject.GetComponent<Renderer>()!= null)
+            {
+                renderer = gameObject.GetComponent<Renderer>();                
+            }
+        }
+        public void ChangeTo(Color newColor)
+        {
+            Material mat = renderer.material;
+            previousColor = mat.color;
+            mat.color = newColor;
+        }
     }
-    public void ChangeTo(Color newColor)
-     {
-        previousColor = renderer.material.color;
-        renderer.material.color = newColor;
-     }
 }
