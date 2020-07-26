@@ -27,15 +27,7 @@ namespace alexM
 		private Vector3           _dir;
 		private bool              reached = false;
 		private int               targetInt;
-
-
-		// public enum SortBy
-		// {
-		//     Random,
-		//     Ordered,
-		//     Loop
-		// }
-
+		
 		private void Awake()
 		{
 			rB = this.gameObject.GetComponent<Rigidbody>();
