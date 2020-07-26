@@ -4,31 +4,31 @@ using UnityEngine;
 using Unity.UI;
 using UnityEngine.InputSystem;
 
-public class ActiveButton : MonoBehaviour
+namespace AJ
 {
-    public GameObject Cube;
-    Animator animator;
-
-    void Start()
+    public class ActiveButton : MonoBehaviour
     {
-        animator = Cube.GetComponent<Animator>();
-    }
+        public GameObject Cube;
+        Animator animator;
 
-    void Update()
-    {
-        if (InputSystem.GetDevice<Keyboard>().spaceKey.IsPressed())
+        void Start()
         {
-            Cube.SetActive(false);
-            animator.enabled = false;
+            animator = Cube.GetComponent<Animator>();
         }
-        else
+
+        void Update()
         {
-            Cube.SetActive(true);
-            animator.enabled = true;
+            if (InputSystem.GetDevice<Keyboard>().spaceKey.IsPressed())
+            {
+                Cube.SetActive(false);
+                animator.enabled = false;
+            }
+            else
+            {
+                Cube.SetActive(true);
+                animator.enabled = true;
+            }
         }
     }
-
-
-
-
 }
+
