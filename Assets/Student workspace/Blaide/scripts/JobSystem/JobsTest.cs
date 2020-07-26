@@ -13,8 +13,14 @@ namespace Student_workspace.Blaide.scripts
     /// <summary>
     /// This is just my test script for the unity jobs system. essentially i'll create a job that does some heavy load of math/work. and then i will create and schedule a bunch of instances of that job and it shouldn't freeze up unity.
     /// </summary>
+
+
     public class JobsTest : MonoBehaviour
     {
+        [Header("This is just a test using the job system.")]
+        [Space]
+        [Space]
+
         public GameObject ObjPrefab;
         public int objCount;
         public Transform[] transforms;

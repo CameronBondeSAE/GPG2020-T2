@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental;
 
-public class Player : MonoBehaviour
+namespace AJ
 {
-    public InputMaster controls;
-
-    void Awake()
+    public class Player : MonoBehaviour
     {
-        controls.Player.Shoot.performed += _ => Shoot();
+        public InputMaster controls;
+
+        void Awake()
+        {
+            controls.Player.Shoot.performed += _ => Shoot();
+        }
+
+        void Shoot() => Debug.Log("I shot the sheriff!");
+
+        void OnEnable()
+        {
+            controls.Enable();
+        }
+
+        void OnDisable()
+        {
+            controls.Disable();
+        }
     }
-
-    void Shoot() => Debug.Log("I shot the sheriff!");
-
-    void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable()
-    {
-        controls.Disable();
-    }
-
 }
+

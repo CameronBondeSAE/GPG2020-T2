@@ -103,7 +103,7 @@ namespace alexM
 
 			reached = false;
 		}
-
+//TODO: Create the patrol code for currently assigned task!
 		private void DoPatrol()
 		{
 			//Movement for patrolling

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NotJobsOrLooped : MonoBehaviour
 {
+    
+    [Header("This  spawns cubes that move themselves.")]
+    [Space]
+    [Space]
+    
     public GameObject ObjPrefab;
     public int objCount;
 

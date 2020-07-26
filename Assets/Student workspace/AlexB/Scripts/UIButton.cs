@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.UI;
+using UnityEngine.InputSystem;
 
-public class UIButton : MonoBehaviour
+namespace AJ
 {
-    public GameObject Button;
-
-
-    public void Enable()
+    public class ActiveButton : MonoBehaviour
     {
-        Button.SetActive(true);
-    }
+        public GameObject Cube;
+        Animator animator;
 
-    public void Disable()
-    {
-        Button.SetActive(false);
+        void Start()
+        {
+            animator = Cube.GetComponent<Animator>();
+        }
 
+        void Update()
+        {
+            if (InputSystem.GetDevice<Keyboard>().spaceKey.IsPressed())
+            {
+                Cube.SetActive(false);
+                animator.enabled = false;
+            }
+            else
+            {
+                Cube.SetActive(true);
+                animator.enabled = true;
+            }
+        }
     }
 }
+

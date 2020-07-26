@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EntitySpawner : MonoBehaviour
 {
+    [Header("This Uses ECS / DOTs")]
+    [Space]
+    [Space]
+    
     public GameObject ObjPrefab;
     public int objCount;
 
@@ -24,4 +28,18 @@ public class EntitySpawner : MonoBehaviour
         }
     }
 
+}
+
+
+public interface IColorChanger
+{
+    void changedColor( Color Color);
+}
+
+public class thing : IColorChanger
+{
+    public void changedColor(Color Color)
+    {
+        
+    }
 }
