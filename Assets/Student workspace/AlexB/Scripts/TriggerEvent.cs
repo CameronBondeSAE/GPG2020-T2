@@ -16,13 +16,13 @@ namespace alexM
 		void OnTriggerEnter(Collider other)
 		{
 			pressedEvent.Invoke();
-			Debug.Log("Zone was entered");
+			//Debug.Log("Zone was entered");
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
 			releasedEvent.Invoke();
-			Debug.Log("Zone was left");
+			//Debug.Log("Zone was left");
 		}
 	}
 }
