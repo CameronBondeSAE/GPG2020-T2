@@ -41,6 +41,7 @@ namespace AnthonyY
         //start position
         private Node currentNode;
         public Vector2Int gridSize;
+        public bool displayGrid;
 
         private int gridSizeX, gridSizeY;
 
@@ -139,20 +140,15 @@ namespace AnthonyY
         /// <summary>
         /// Draws a line towards the Node goal from the starting node
         /// </summary>
-        public List<Node> path;
-
         public void OnDrawGizmos()
         {
             Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, 1, gridSize.y));
 
-            if (nodeArray != null)
+            if (nodeArray != null && displayGrid)
             {
                 foreach (Node n in nodeArray)
                 {
                     Gizmos.color = n.walkable ? Color.white : Color.red;
-                    if(path!=null)
-                        if (path.Contains(n))
-                            Gizmos.color = Color.green;
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                 }
             }
