@@ -6,6 +6,7 @@ namespace AJ
 {
     public class Slime : MonoBehaviour
     {
+        //hello, test
         private Color myColor;
         private void Awake()
         {
