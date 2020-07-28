@@ -512,7 +512,9 @@ MonoBehaviour:
   speed: 80
   jumpForce: 250
   direction: {x: 0, y: 0, z: 0}
-  _isGrounded: 0
+  RB: {fileID: 1651102968880965805}
+  bottom: {fileID: 1651102968533518016}
+  neck: {fileID: 6582501386692850780}
 --- !u!114 &7487281604307372431
 MonoBehaviour:
   m_ObjectHideFlags: 0

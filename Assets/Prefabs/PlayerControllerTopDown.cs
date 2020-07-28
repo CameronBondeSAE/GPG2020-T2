@@ -14,12 +14,13 @@ namespace alexM
 	{
 		public float speed, jumpForce;
 		public Vector3 direction;
-		private GameControls GC;
-		private Rigidbody RB;
-		private GameObject bottom, neck;
+		public Rigidbody RB;
+		public GameObject bottom, neck;
 		private Camera_Controller cameraController;
-		[SerializeField] bool _isGrounded;
-
+		bool _isGrounded;
+		private GameControls GC;
+		
+		
 		private void Awake()
 		{
 			GC = new GameControls();
@@ -28,22 +29,8 @@ namespace alexM
 			GC.InGame.Move.canceled += Movement;
 			GC.InGame.Jump.performed += Jump;
 			GC.InGame.Jump.canceled += Jump;
-			// GC.InGame.Fire.performed += LookAtMouse;
-			// GC.InGame.Fire.canceled  += LookAtMouse;
 			GC.InGame.MousePosition.performed += LookAtMouse;
-			//GC.InGame.MousePosition.canceled += LookAtMouse;
-			RB = GetComponent<Rigidbody>();
-			bottom = GameObject.Find("Base");
-			neck = GameObject.Find("Neck");
 			cameraController = GetComponent<Camera_Controller>();
-		}
-
-		private void OnCollisionEnter(Collision other)
-		{
-			// if (other.gameObject.GetComponent<HealthComponent>())
-			// {
-			// 	other.gameObject.GetComponent<HealthComponent>().Death();
-			// }
 		}
 
 		void Movement(InputAction.CallbackContext context)
