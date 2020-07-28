@@ -7,9 +7,8 @@ namespace AJ
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int MaxHealth;
-        public int MinHealth;
-        public int currentHealth;
+        public int MaxHealth = 100;
+        public int currentHealth = 100;
 
 		public UnityEvent<HealthComponent> deathEvent;
 
@@ -32,9 +31,7 @@ namespace AJ
             if(deathEvent!=null)
             {
                 deathEvent.Invoke(this);
-            }
-            
-            
+            }           
         }
     }
 }
