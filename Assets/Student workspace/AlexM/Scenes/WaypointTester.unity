@@ -419,25 +419,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485005209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a81bdf5880fe444b8de508be5d85c93, type: 3}
+  m_Script: {fileID: 11500000, guid: c7c861430d1d88446b149f999304a575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speedMulti: 300
+  wayPoints: []
+  speedMulti: 100
   targetReachedThreshold: 0.5
   target: {fileID: 0}
-  AttachRigidbody: 1
+  AttachRigidbody: 0
   _currentType: 0
 --- !u!1 &1588109060
 GameObject:
