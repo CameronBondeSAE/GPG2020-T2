@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7159536422502920289}
   - component: {fileID: 7159536422502920290}
+  - component: {fileID: 832989319}
   m_Layer: 0
   m_Name: 'Left Antenna '
   m_TagString: Untagged
@@ -48,6 +49,22 @@ MonoBehaviour:
   rb: {fileID: 7159536423060581995}
   distance: 15
   turnSpeed: 50
+--- !u!114 &832989319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536422502920288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &7159536423060581993
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +81,7 @@ GameObject:
   - component: {fileID: 7159536423060581984}
   - component: {fileID: 7159536423060581994}
   - component: {fileID: 675454488002533348}
+  - component: {fileID: 160034310}
   m_Layer: 0
   m_Name: Player(Avoid)
   m_TagString: Untagged
@@ -80,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 7159536423060581993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.5, y: 21.4, z: 4.1}
-  m_LocalScale: {x: 4.644629, y: 4.644629, z: 4.644629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7159536424233861752}
   - {fileID: 7159536422502920289}
@@ -182,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 20
+  speed: 100
 --- !u!114 &7159536423060581994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +234,21 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &160034310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536423060581993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd59972fb11d348209c78007b795e48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  health: 10
 --- !u!1 &7159536423713701037
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7159536423713701038}
   - component: {fileID: 7159536423713701039}
+  - component: {fileID: 710780822}
   m_Layer: 0
   m_Name: Emergency Antenna
   m_TagString: Untagged
@@ -264,6 +298,22 @@ MonoBehaviour:
   rb: {fileID: 7159536423060581995}
   distance: 3
   turnSpeed: 1000
+--- !u!114 &710780822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536423713701037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &7159536424004671351
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +326,7 @@ GameObject:
   - component: {fileID: 7159536424004671347}
   - component: {fileID: 7159536424004671346}
   - component: {fileID: 7159536424004671345}
+  - component: {fileID: 970421490}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -359,6 +410,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &970421490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536424004671351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &7159536424233861759
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7159536424233861752}
   - component: {fileID: 7159536424233861753}
+  - component: {fileID: 1424030712}
   m_Layer: 0
   m_Name: Right Antenna
   m_TagString: Untagged
@@ -407,3 +475,19 @@ MonoBehaviour:
   rb: {fileID: 7159536423060581995}
   distance: 15
   turnSpeed: -50
+--- !u!114 &1424030712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536424233861759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
