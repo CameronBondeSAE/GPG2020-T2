@@ -685,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a81bdf5880fe444b8de508be5d85c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachRigidbody: 1
   wayPoints:
   - {fileID: 1920966782260733702}
   - {fileID: 1499208176}
@@ -696,8 +695,8 @@ MonoBehaviour:
   speedMulti: 300
   targetReachedThreshold: 0.3
   target: {fileID: 0}
+  AttachRigidbody: 1
   _currentType: 0
-  _targetId: 0
 --- !u!43 &421026179
 Mesh:
   m_ObjectHideFlags: 0
@@ -1622,7 +1621,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 6.6842e-41, z: 0, w: -2}
+  m_BoundingSphereOverride: {x: 0, y: 6.6601e-41, z: 0, w: 2.78125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

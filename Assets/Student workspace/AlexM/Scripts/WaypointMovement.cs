@@ -96,11 +96,6 @@ namespace alexM
 					//Not Reached
 				}
 			}
-			// else
-			// {
-			// 	return true;
-			// }
-
 			return false;
 		}
 
@@ -109,11 +104,7 @@ namespace alexM
 		#region CountAndReset
 
 			_listCount = wayPoints.Count;
-			// if (_targetId == _maxCount)
-			// {
-			// 	_targetId = 0;
-			// }
-
+			
 		#endregion
 
 			switch (_currentType)
@@ -145,6 +136,7 @@ namespace alexM
 				case MoveType.LoopBetween:
 					//Debug.Log("Set to LoopBetween");
 					//Just for now making this only loop between the first two slots of the list for convenience
+
 					if (_targetId == 1)
 					{
 						_targetId = 0;
