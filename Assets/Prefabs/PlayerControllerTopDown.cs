@@ -18,7 +18,7 @@ namespace alexM
 		public GameObject bottom, neck;
 		private Camera_Controller cameraController;
 		[SerializeField] bool _isGrounded;
-		private GameControls GC;
+		private GameControls GameControls;
 
 		
 		public NetworkIdentity Owner { get; set; }
@@ -26,13 +26,13 @@ namespace alexM
 		
 		private void Awake()
 		{
-			GC = new GameControls();
-			GC.Enable();
-			GC.InGame.Move.performed += Movement;
-			GC.InGame.Move.canceled += Movement;
-			GC.InGame.Jump.performed += Jump;
-			GC.InGame.Jump.canceled += Jump;
-			GC.InGame.MousePosition.performed += LookAtMouse;
+			GameControls = new GameControls();
+			GameControls.Enable();
+			GameControls.InGame.Move.performed += Movement;
+			GameControls.InGame.Move.canceled += Movement;
+			GameControls.InGame.Jump.performed += Jump;
+			GameControls.InGame.Jump.canceled += Jump;
+			GameControls.InGame.MousePosition.performed += LookAtMouse;
 			cameraController = GetComponent<Camera_Controller>();
 		}
 
@@ -120,13 +120,13 @@ namespace alexM
 
 		private void OnDestroy()
 		{
-			GC.InGame.Move.performed -= Movement;
-			GC.InGame.Move.canceled -= Movement;
-			GC.InGame.Jump.performed -= Jump;
-			GC.InGame.Jump.canceled -= Jump;
+			GameControls.InGame.Move.performed -= Movement;
+			GameControls.InGame.Move.canceled -= Movement;
+			GameControls.InGame.Jump.performed -= Jump;
+			GameControls.InGame.Jump.canceled -= Jump;
 			// GC.InGame.Fire.performed -= LookAtMouse;
 			// GC.InGame.Fire.canceled  -= LookAtMouse;
-			GC.InGame.MousePosition.performed -= LookAtMouse;
+			GameControls.InGame.MousePosition.performed -= LookAtMouse;
 			//GC.InGame.MousePosition.canceled += LookAtMouse;
 		}
 
