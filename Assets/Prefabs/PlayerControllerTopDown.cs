@@ -10,20 +10,22 @@ using UnityEngine.InputSystem.HID;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : NetworkBehaviour
+	public class PlayerControllerTopDown : NetworkBehaviour , IOwnable
 	{
 		public float speed, jumpForce;
 		public Vector3 direction;
 		public Rigidbody RB;
 		public GameObject bottom, neck;
 		private Camera_Controller cameraController;
-		bool _isGrounded;
-		private GameControls GC;
+		[SerializeField] bool _isGrounded;
+		
+		
+		public NetworkIdentity Owner { get; set; }
 		
 		
 		private void Awake()
 		{
-			GC = new GameControls();
+			GaC = new GameControls();
 			GC.Enable();
 			GC.InGame.Move.performed += Movement;
 			GC.InGame.Move.canceled += Movement;
@@ -126,5 +128,7 @@ namespace alexM
 			GC.InGame.MousePosition.performed -= LookAtMouse;
 			//GC.InGame.MousePosition.canceled += LookAtMouse;
 		}
+
+		
 	}
 }
