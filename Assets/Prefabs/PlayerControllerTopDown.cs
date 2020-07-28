@@ -69,7 +69,7 @@ namespace alexM
 
 		bool GroundCheck()
 		{
-			int layerMask = 1 << 10;
+			int layerMask = 1 << 12;
 			layerMask = ~layerMask;
 
 
@@ -77,7 +77,7 @@ namespace alexM
 			RaycastHit hit;
 
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
-			if (Physics.Raycast(bottom.transform.position, down, out hit, 0.9f, layerMask))
+			if (Physics.Raycast(bottom.transform.position, down, out hit, 1f, layerMask))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
 				//Debug.Log("dist: " + hit.distance);
