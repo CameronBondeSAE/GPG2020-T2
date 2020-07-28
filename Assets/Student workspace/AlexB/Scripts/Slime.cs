@@ -19,7 +19,6 @@ namespace AJ
                 other.gameObject.GetComponent<ColorChanger>().ChangeTo(myColor);
             }
         }
-
     }
 }
 
