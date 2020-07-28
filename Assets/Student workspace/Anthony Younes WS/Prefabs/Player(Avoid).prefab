@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 7159536423060581984}
   - component: {fileID: 7159536423060581994}
   - component: {fileID: 675454488002533348}
-  - component: {fileID: 160034310}
+  - component: {fileID: 2273444557451666772}
   m_Layer: 0
   m_Name: Player(Avoid)
   m_TagString: Untagged
@@ -234,7 +234,7 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &160034310
+--- !u!114 &2273444557451666772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,12 +243,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7159536423060581993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd59972fb11d348209c78007b795e48c, type: 3}
+  m_Script: {fileID: 11500000, guid: 947aeea4b3f50d345a81f1974216e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  health: 10
+  MaxHealth: 0
+  MinHealth: 0
+  currentHealth: 100
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7159536423713701037
 GameObject:
   m_ObjectHideFlags: 0
