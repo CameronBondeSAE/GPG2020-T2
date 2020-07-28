@@ -18,14 +18,15 @@ namespace alexM
 		public GameObject bottom, neck;
 		private Camera_Controller cameraController;
 		[SerializeField] bool _isGrounded;
-		
+		private GameControls GC;
+
 		
 		public NetworkIdentity Owner { get; set; }
 		
 		
 		private void Awake()
 		{
-			GaC = new GameControls();
+			GC = new GameControls();
 			GC.Enable();
 			GC.InGame.Move.performed += Movement;
 			GC.InGame.Move.canceled += Movement;
