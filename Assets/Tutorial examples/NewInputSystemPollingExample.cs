@@ -10,9 +10,9 @@ public class NewInputSystemPollingExample : MonoBehaviour
     void Update()
     {
 		// Polling example (use Events though)
-        if (InputSystem.GetDevice<Keyboard>().spaceKey.isPressed)
-        {
-            Debug.Log("Test polling input system");
-        }
+        // if (InputSystem.GetDevice<Keyboard>().spaceKey.isPressed)
+        // {
+            // Debug.Log("Test polling input system");
+        // }
     }
 }
