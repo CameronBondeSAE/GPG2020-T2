@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using alexM;
 using Mirror;
 using UnityEngine;
 
@@ -52,6 +53,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             GameObject playerInstance = Instantiate(playerPrefab, spawnPoints[nextIndex].position,
                 spawnPoints[nextIndex].rotation);
             NetworkServer.Spawn(playerInstance,conn);
+
+            if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
+            {
+                playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
+            }
 
             nextIndex++;
         }
