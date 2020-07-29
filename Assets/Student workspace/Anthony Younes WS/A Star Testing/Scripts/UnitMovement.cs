@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using AnthonyY;
 using UnityEngine;
@@ -10,6 +11,16 @@ public class UnitMovement : MonoBehaviour
     public float speed = 1;
     public Vector3[] path;
     public int targetIndex;
+    public bool ConstantRecalculate;
+
+
+    private void Update()
+    {
+        if (ConstantRecalculate == true)
+        {
+            RecalculatePath();
+        }
+    }
 
     public void RecalculatePath() {
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
