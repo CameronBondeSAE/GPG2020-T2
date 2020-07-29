@@ -7,26 +7,23 @@ namespace AJ
 {
     public class AJPlayer : MonoBehaviour
     {
-
-        public int maxHealth = 100;
-        public int currentHealth;
-
         public HealthBar healthBar;
+        public HealthComponent health;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetMaxHealth(health.MaxHealth);            
         }
 
-        // Update is called once per frame
-        void Update()
+        void TakeDamage()
         {
-            if (InputSystem.GetDevice<Keyboard>().spaceKey.IsPressed())
-            {
-                //TakeDamage(2);
-            }
+            health.TakeHp(2);
+        }
+
+        void Update()
+        {   
+            //Need to turn into event later
+            healthBar.SetHealth(health.currentHealth);          
         }       
     }
 }

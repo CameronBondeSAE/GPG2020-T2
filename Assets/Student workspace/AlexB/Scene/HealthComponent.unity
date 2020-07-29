@@ -725,6 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457085883}
   - component: {fileID: 1457085882}
+  - component: {fileID: 1457085881}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -732,6 +733,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1457085881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457085880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947aeea4b3f50d345a81f1974216e386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
+  currentHealth: 100
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1457085882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,9 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5496cbb597c870040ad2d5c8a3e989a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 465777485}
+  health: {fileID: 1457085881}
 --- !u!4 &1457085883
 Transform:
   m_ObjectHideFlags: 0
