@@ -11,7 +11,7 @@ public class UnitMovement : MonoBehaviour
     public Vector3[] path;
     public int targetIndex;
 
-    void Start() {
+    public void RecalculatePath() {
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
     }
 
