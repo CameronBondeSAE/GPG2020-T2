@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 namespace Student_workspace.Dylan.Scripts
 {
+    /// <summary>
+    /// attach to camera and drag in main player 
+    /// </summary>
     public class MouseLook : MonoBehaviour
     {
         private PlayerControl controls;
@@ -19,6 +22,7 @@ namespace Student_workspace.Dylan.Scripts
         private void Awake()
         {
             controls = new PlayerControl();
+            controls.Enable();
             Cursor.lockState = CursorLockMode.Locked;
 
             if (playerBody == null)
