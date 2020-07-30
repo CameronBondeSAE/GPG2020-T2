@@ -32,12 +32,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             GameNetworkManager.OnServerReadied += SpawnPlayer;
         }
 
-        [ServerCallback]
+        //[ServerCallback]
         // private void OnDestroy() => GameNetworkManager.OnServerReadied -= SpawnPlayer;
-        // private void OnDestroy()
-        // {
-        //     GameNetworkManager.OnServerReadied -= SpawnPlayer;
-        // }
+        private void OnDestroy()
+         { 
+             if(isServer)
+                GameNetworkManager.OnServerReadied -= SpawnPlayer;
+         }
 
         [Server]
         public void SpawnPlayer(NetworkConnection conn)
@@ -61,6 +62,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             nextIndex++;
         }
-        
+
+
+
     }
 }

@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 1651102968533518020}
   - component: {fileID: 1651102968533518023}
   - component: {fileID: 1651102968533518022}
-  - component: {fileID: 606538883}
   m_Layer: 10
   m_Name: Base
   m_TagString: Untagged
@@ -318,18 +317,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &606538883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651102968533518016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 772319e2495e22547bdf72362eb326ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1651102968848330720
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +440,7 @@ GameObject:
   - component: {fileID: 5867219570622389952}
   - component: {fileID: 802036457}
   - component: {fileID: 802036456}
-  - component: {fileID: 1861282074}
+  - component: {fileID: 6652313427199698561}
   m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
@@ -469,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651102968880965806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.49, y: 1.543, z: 0.78}
+  m_LocalPosition: {x: 2.49, y: 2.512, z: 0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202150323}
@@ -515,6 +502,8 @@ MonoBehaviour:
   RB: {fileID: 1651102968880965805}
   bottom: {fileID: 1651102968533518016}
   neck: {fileID: 6582501386692850780}
+  _isGrounded: 0
+  _owner: {fileID: 0}
 --- !u!114 &7487281604307372431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,11 +566,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
---- !u!114 &1861282074
+--- !u!114 &6652313427199698561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,9 +579,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1651102968880965806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 772319e2495e22547bdf72362eb326ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  target: {fileID: 2063307386975068432}
 --- !u!1 &6582501386692850780
 GameObject:
   m_ObjectHideFlags: 0

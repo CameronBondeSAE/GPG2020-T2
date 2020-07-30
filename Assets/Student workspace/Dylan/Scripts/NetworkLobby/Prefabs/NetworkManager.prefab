@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6928151917455071246}
   - component: {fileID: 6928151917455071241}
   - component: {fileID: 6928151917455071240}
-  - component: {fileID: 6928151917455071247}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -119,22 +118,6 @@ MonoBehaviour:
   serverMaxReceivesPerTick: 10000
   clientMaxMessageSize: 16384
   clientMaxReceivesPerTick: 16384
---- !u!114 &6928151917455071247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6928151917455071243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!1001 &6928151917444257166
 PrefabInstance:
   m_ObjectHideFlags: 0
