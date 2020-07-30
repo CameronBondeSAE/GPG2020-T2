@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Student_workspace.Dylan.Shaders
 {
-    public class EnemyTest : MonoBehaviour
+    public class EnemyVisionActivation : MonoBehaviour
     {
         public bool visionActivated;
         public Material visionMat;
