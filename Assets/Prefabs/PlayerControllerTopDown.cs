@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using AJ;
 using DG.Tweening;
 using Mirror;
+using UnityEditor.Build.CacheServer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
+using NetworkBehaviour = Mirror.NetworkBehaviour;
+using NetworkIdentity = Mirror.NetworkIdentity;
 
 namespace alexM
 {
@@ -18,24 +22,76 @@ namespace alexM
 		public GameObject bottom, neck;
 		private Camera_Controller cameraController;
 		[SerializeField] bool _isGrounded;
-		private GameControls GameControls;
+		private GameControls gameControls;
 
-		
-		public NetworkIdentity Owner { get; set; }
-		
-		
-		private void Awake()
+
+		public NetworkIdentity Owner
 		{
-			GameControls = new GameControls();
-			GameControls.Enable();
-			GameControls.InGame.Move.performed += Movement;
-			GameControls.InGame.Move.canceled += Movement;
-			GameControls.InGame.Jump.performed += Jump;
-			GameControls.InGame.Jump.canceled += Jump;
-			GameControls.InGame.MousePosition.performed += LookAtMouse;
-			cameraController = GetComponent<Camera_Controller>();
+			get => _owner;
+			set => _owner = value;
+		}
+		[SerializeField]
+		private NetworkIdentity _owner;
+
+		private void Start()
+		{
+			if (isServer)
+			{
+				RpcSyncOwner(Owner);
+			}
+
 		}
 
+		#region PlayerNetworkSetup
+
+		private void CheckIfClient()
+		{
+			if (isClient)
+			{
+				cameraController = GetComponent<Camera_Controller>();
+				if (Owner != null)
+				{
+					if (Owner.isLocalPlayer)
+					{
+						Debug.Log(this + " Is local.");
+
+						AssignControl();
+					}
+					else
+					{
+						Debug.Log(this + " is not local.");
+						cameraController.cam.gameObject.SetActive(false);
+						cameraController.enabled = false;
+					}
+				}
+				else
+				{
+					Debug.LogWarning("Owner Is NULL");
+				}
+			}
+		}
+
+		[ClientRpc]
+		public void RpcSyncOwner( NetworkIdentity n)
+		{
+			Owner = n;
+			CheckIfClient();
+		}
+
+		void AssignControl()
+		{
+			gameControls = new GameControls();
+			gameControls.Enable();
+			gameControls.InGame.Move.performed += Movement;
+			gameControls.InGame.Move.canceled += Movement;
+			gameControls.InGame.Jump.performed += Jump;
+			gameControls.InGame.Jump.canceled += Jump;
+			gameControls.InGame.MousePosition.performed += LookAtMouse;
+		}
+
+		#endregion
+
+		
 		void Movement(InputAction.CallbackContext context)
 		{
 			direction = context.ReadValue<Vector2>();
@@ -120,13 +176,13 @@ namespace alexM
 
 		private void OnDestroy()
 		{
-			GameControls.InGame.Move.performed -= Movement;
-			GameControls.InGame.Move.canceled -= Movement;
-			GameControls.InGame.Jump.performed -= Jump;
-			GameControls.InGame.Jump.canceled -= Jump;
+			gameControls.InGame.Move.performed -= Movement;
+			gameControls.InGame.Move.canceled -= Movement;
+			gameControls.InGame.Jump.performed -= Jump;
+			gameControls.InGame.Jump.canceled -= Jump;
 			// GC.InGame.Fire.performed -= LookAtMouse;
 			// GC.InGame.Fire.canceled  -= LookAtMouse;
-			GameControls.InGame.MousePosition.performed -= LookAtMouse;
+			gameControls.InGame.MousePosition.performed -= LookAtMouse;
 			//GC.InGame.MousePosition.canceled += LookAtMouse;
 		}
 
