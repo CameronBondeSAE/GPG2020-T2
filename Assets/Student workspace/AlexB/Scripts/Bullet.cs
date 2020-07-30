@@ -7,6 +7,7 @@ namespace AJ
     public class Bullet : MonoBehaviour
     {
         public float disappearTimer = 1.5f;
+        public float bulletSpeed = 5.0f;
         IEnumerator Disappear()
         {
             yield return new WaitForSeconds(disappearTimer);
@@ -16,6 +17,11 @@ namespace AJ
         void Awake()
         {
             StartCoroutine("Disappear");
+        }
+
+        private void Start()
+        {
+            GetComponent<Rigidbody>().velocity = transform.InverseTransformDirection(0,0, 10f); 
         }
     }
 }
