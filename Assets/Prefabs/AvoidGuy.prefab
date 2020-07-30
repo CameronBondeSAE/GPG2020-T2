@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 8075238831746804991}
   - component: {fileID: 2572859297417655316}
   - component: {fileID: 1490774813438023675}
+  - component: {fileID: 2940811892491024499}
   - component: {fileID: 6194005842662451128}
   - component: {fileID: 1796218529759148028}
   - component: {fileID: 6246033244442313035}
@@ -329,6 +330,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2940811892491024499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3479998447190896919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791896d087198344e93756d11cab2fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  rb: {fileID: 6246033244442313035}
+  distance: 8
+  turnSpeed: 1000
 --- !u!114 &6194005842662451128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  MinHealth: 0
   currentHealth: 100
   deathEvent:
     m_PersistentCalls:
@@ -361,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   shield: 0
-  speed: 1000
+  speed: 100
 --- !u!54 &6246033244442313035
 Rigidbody:
   m_ObjectHideFlags: 0

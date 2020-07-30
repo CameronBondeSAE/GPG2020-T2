@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159536422502920288}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7159536423060581991}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
 --- !u!114 &7159536422502920290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 15
-  turnSpeed: 50
+  distance: 3
+  turnSpeed: 100
 --- !u!114 &832989319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ Rigidbody:
   m_GameObject: {fileID: 7159536423060581993}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1.72
+  m_Drag: 2.32
   m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 100
+  speed: 15
 --- !u!114 &7159536423060581994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159536423060581993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 791896d087198344e93756d11cab2fcf, type: 3}
   m_Name: 
@@ -216,8 +216,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 10
-  turnSpeed: 2000
+  distance: 8
+  turnSpeed: 1000
 --- !u!114 &675454488002533348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  MinHealth: 0
   currentHealth: 100
   deathEvent:
     m_PersistentCalls:
@@ -299,8 +298,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 3
-  turnSpeed: 1000
+  distance: 2
+  turnSpeed: -1000
 --- !u!114 &710780822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,13 +453,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159536424233861759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7159536423060581991}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!114 &7159536424233861753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,8 +475,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 15
-  turnSpeed: -50
+  distance: 3
+  turnSpeed: -100
 --- !u!114 &1424030712
 MonoBehaviour:
   m_ObjectHideFlags: 0
