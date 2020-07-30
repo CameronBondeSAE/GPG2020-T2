@@ -19,11 +19,7 @@ namespace AnthonyY
         // Update is called once per frame
         void Update()
         {
-            if (isServer)
-            {
-                rb.AddRelativeForce(0,0,speed);
-            }
-           
+            rb.AddRelativeForce(0,0,speed);
         }
     }
 }
