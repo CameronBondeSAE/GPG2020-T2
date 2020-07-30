@@ -1209,6 +1209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6aba6265d22d04a9c9375548eddf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   target: {fileID: 1181243793243096976}
   originalTarget: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
@@ -1218,7 +1220,7 @@ MonoBehaviour:
   isOpening: 0
   isClosing: 0
   door: {fileID: 5875497365457106279}
-  state: 1
+  state: 2
   openedEvent:
     m_PersistentCalls:
       m_Calls:
