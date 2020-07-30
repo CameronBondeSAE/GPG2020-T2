@@ -32,27 +32,45 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             GameNetworkManager.OnServerReadied += SpawnPlayer;
         }
 
-        [ServerCallback]
-        // private void OnDestroy() => GameNetworkManager.OnServerReadied -= SpawnPlayer;
-        // private void OnDestroy()
-        // {
-        //     GameNetworkManager.OnServerReadied -= SpawnPlayer;
-        // }
+		[ServerCallback]
+		// private void OnDestroy() => GameNetworkManager.OnServerReadied -= SpawnPlayer;
+		// private void OnDestroy()
+		// {
+		//     GameNetworkManager.OnServerReadied -= SpawnPlayer;
+		// }
 
-        [Server]
-        public void SpawnPlayer(NetworkConnection conn)
-        {
-            Transform spawnPoint = spawnPoints.ElementAtOrDefault(nextIndex);
+		[Server]
+		public void SpawnPlayer(NetworkConnection conn)
+		{
+			Transform spawnPoint = spawnPoints.ElementAtOrDefault(nextIndex);
 
-            if (spawnPoint == null)
-            {
-                Debug.LogError($"Missing spawn point for player {nextIndex}");
-                return;
-            }
+			if (spawnPoint == null)
+			{
+				Debug.LogError($"Missing spawn point for player {nextIndex}");
+				return;
+			}
 
-            GameObject playerInstance = Instantiate(playerPrefab, spawnPoints[nextIndex].position,
-                spawnPoints[nextIndex].rotation);
-            NetworkServer.Spawn(playerInstance,conn);
+			GameObject playerInstance = Instantiate(playerPrefab, spawnPoints[nextIndex].position, spawnPoints[nextIndex].rotation);
+
+			float maxHeight=0, minHeight = 0;
+
+			foreach (Collider c in playerInstance.GetComponentsInChildren<Collider>())
+			{
+				if (c.bounds.max.y>maxHeight)
+				{
+					maxHeight = c.bounds.max.y;
+				}
+				if (c.bounds.min.y<minHeight)
+				{
+					minHeight = c.bounds.min.y;
+				}
+			}
+
+			float totalHeight = maxHeight - minHeight;
+			
+			
+
+		NetworkServer.Spawn(playerInstance,conn);
 
             if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
             {
