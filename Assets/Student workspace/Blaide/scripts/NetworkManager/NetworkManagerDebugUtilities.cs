@@ -7,10 +7,12 @@ namespace Student_workspace.Blaide.scripts.NetworkManager
 {
     public class NetworkManagerDebugUtilities : MonoBehaviour
     {
+        public bool DisplayDebugButtons;
         public bool hostOnStart = false;
         public bool bypassLobby = false;
         public bool disableChat = false;
         public GameNetworkManager gameNetworkManager;
+        public GameObject networkDebugUi;
 
         public MainMenuStuff MainMenuStuff;
        // public PlayerInfoInput PlayerInfoInput;
@@ -20,6 +22,17 @@ namespace Student_workspace.Blaide.scripts.NetworkManager
         // Start is called before the first frame update
         void Start()
         {
+            if (DisplayDebugButtons)
+            {
+                networkDebugUi.SetActive(true);
+            }
+            else
+            {
+                
+                networkDebugUi.SetActive(true);
+            }
+
+
             gameNetworkManager = GetComponent<GameNetworkManager>();
             MainMenuStuff = FindObjectOfType<MainMenuStuff>();
             if (MainMenuStuff != null)
@@ -52,11 +65,28 @@ namespace Student_workspace.Blaide.scripts.NetworkManager
             }
         }
 
-        public void DebugHostNow()
+        public void DebugSkipLobbyHostNow()
         {
             hostOnStart = true;
             bypassLobby = true;
             MainMenuStuff.HostLobby();
+            lobbyUI.SetActive(false);
+        }
+
+        public void DebugHostNowToLobby()
+        {
+            hostOnStart = true;
+            bypassLobby = false;
+            MainMenuStuff.HostLobby();
+            lobbyUI.SetActive(false);
+        }
+
+        public void DebugJoinNow(string address)
+        {
+            gameNetworkManager.networkAddress = address;
+            gameNetworkManager.StartClient();
+           
+            // TODO Only do this if Joining is successful, Probably subscribe to an event, and check connection.
             lobbyUI.SetActive(false);
         }
 
