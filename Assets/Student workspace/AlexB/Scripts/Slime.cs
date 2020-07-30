@@ -6,8 +6,9 @@ namespace AJ
 {
     public class Slime : MonoBehaviour
     {
-        //hello, test
+        private SlimeEnum _slimeEnum;
         private Color myColor;
+        
         private void Awake()
         {
             myColor = gameObject.GetComponent<Renderer>().material.color;
@@ -20,6 +21,15 @@ namespace AJ
                 other.gameObject.GetComponent<ColorChanger>().ChangeTo(myColor);
             }
         }
+
+
+
+        // Research other ways to update code in edit mode
+      /*  void OnDrawGizmos()
+        {
+            Gizmos.DrawCube(transform.position, Vector3.one);
+            GetComponent<Renderer>().material.color = gameObject.GetComponent<ColorChanger>().ChangeTo(SlimeEnum _slimeEnum);
+        }*/
     }
 }
 
