@@ -11,7 +11,7 @@ namespace alexM
 		[HideInInspector] public Camera     cam;
 		private                  Vector3    camPos;
 
-		void Setup()
+		public void Setup()
 		{
 			GameObject o;
 			o = this.gameObject;
@@ -29,7 +29,7 @@ namespace alexM
 
 		public void Start()
 		{
-			Setup();
+			// Setup();
 		}
 	}
 }

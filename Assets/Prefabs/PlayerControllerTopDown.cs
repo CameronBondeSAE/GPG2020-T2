@@ -14,14 +14,17 @@ using NetworkIdentity = Mirror.NetworkIdentity;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : NetworkBehaviour , IOwnable
+	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable
 	{
-		public float speed, jumpForce;
-		public Vector3 direction;
-		public Rigidbody RB;
-		public GameObject bottom, neck;
+		public  float             speed, jumpForce;
+		public  Vector3           direction;
+		public  Rigidbody         RB;
+		public  GameObject        bottom, neck;
 		private Camera_Controller cameraController;
-		[SerializeField] bool _isGrounded;
+
+		[SerializeField]
+		bool _isGrounded;
+
 		private GameControls gameControls;
 
 
@@ -30,6 +33,7 @@ namespace alexM
 			get => _owner;
 			set => _owner = value;
 		}
+
 		[SerializeField]
 		private NetworkIdentity _owner;
 
@@ -39,7 +43,6 @@ namespace alexM
 			{
 				RpcSyncOwner(Owner);
 			}
-
 		}
 
 		#region PlayerNetworkSetup
@@ -55,14 +58,16 @@ namespace alexM
 					{
 						Debug.Log(this + " Is local.");
 
+						cameraController.Setup();
 						AssignControl();
 					}
-					else
-					{
-						Debug.Log(this + " is not local.");
-						cameraController.cam.gameObject.SetActive(false);
-						cameraController.enabled = false;
-					}
+
+					// else
+					// {
+					// 	Debug.Log(this + " is not local.");
+					// 	cameraController.cam.gameObject.SetActive(false);
+					// 	cameraController.enabled = false;
+					// }
 				}
 				else
 				{
@@ -72,7 +77,7 @@ namespace alexM
 		}
 
 		[ClientRpc]
-		public void RpcSyncOwner( NetworkIdentity n)
+		public void RpcSyncOwner(NetworkIdentity n)
 		{
 			Owner = n;
 			CheckIfClient();
@@ -82,16 +87,16 @@ namespace alexM
 		{
 			gameControls = new GameControls();
 			gameControls.Enable();
-			gameControls.InGame.Move.performed += Movement;
-			gameControls.InGame.Move.canceled += Movement;
-			gameControls.InGame.Jump.performed += Jump;
-			gameControls.InGame.Jump.canceled += Jump;
+			gameControls.InGame.Move.performed          += Movement;
+			gameControls.InGame.Move.canceled           += Movement;
+			gameControls.InGame.Jump.performed          += Jump;
+			gameControls.InGame.Jump.canceled           += Jump;
 			gameControls.InGame.MousePosition.performed += LookAtMouse;
 		}
 
 		#endregion
 
-		
+
 		void Movement(InputAction.CallbackContext context)
 		{
 			direction = context.ReadValue<Vector2>();
@@ -119,7 +124,7 @@ namespace alexM
 			layerMask = ~layerMask;
 
 
-			Vector3 down = bottom.transform.TransformDirection(Vector3.down);
+			Vector3    down = bottom.transform.TransformDirection(Vector3.down);
 			RaycastHit hit;
 
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
@@ -139,14 +144,13 @@ namespace alexM
 
 		void LookAtMouse(InputAction.CallbackContext context)
 		{
-			Ray ray = cameraController.cam.ScreenPointToRay(context
-				.ReadValue<Vector2>());
+			Ray        ray = cameraController.cam.ScreenPointToRay(context.ReadValue<Vector2>());
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit))
 			{
-				neck.transform.LookAt(new Vector3(hit.point.x,neck.transform.position.y, hit.point.z));
-				
+				neck.transform.LookAt(new Vector3(hit.point.x, neck.transform.position.y, hit.point.z));
+
 				//Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 0.1f);
 			}
 		}
@@ -176,16 +180,23 @@ namespace alexM
 
 		private void OnDestroy()
 		{
-			gameControls.InGame.Move.performed -= Movement;
-			gameControls.InGame.Move.canceled -= Movement;
-			gameControls.InGame.Jump.performed -= Jump;
-			gameControls.InGame.Jump.canceled -= Jump;
-			// GC.InGame.Fire.performed -= LookAtMouse;
-			// GC.InGame.Fire.canceled  -= LookAtMouse;
-			gameControls.InGame.MousePosition.performed -= LookAtMouse;
-			//GC.InGame.MousePosition.canceled += LookAtMouse;
+			if (isClient)
+			{
+				if (Owner != null)
+				{
+					if (Owner.isLocalPlayer)
+					{
+						gameControls.InGame.Move.performed -= Movement;
+						gameControls.InGame.Move.canceled  -= Movement;
+						gameControls.InGame.Jump.performed -= Jump;
+						gameControls.InGame.Jump.canceled  -= Jump;
+						// GC.InGame.Fire.performed -= LookAtMouse;
+						// GC.InGame.Fire.canceled  -= LookAtMouse;
+						gameControls.InGame.MousePosition.performed -= LookAtMouse;
+						//GC.InGame.MousePosition.canceled += LookAtMouse;
+					}
+				}
+			}
 		}
-
-		
 	}
 }
