@@ -1509,10 +1509,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b138015157523a4c974a04f6bafddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayDebugButtons: 1
   hostOnStart: 0
   bypassLobby: 0
   disableChat: 0
   gameNetworkManager: {fileID: 6181736370761581532}
+  networkDebugUi: {fileID: 4436482502032770896}
   MainMenuStuff: {fileID: 6181736371903567431}
   lobbyUI: {fileID: 6181736371903567480}
   chatUI: {fileID: 6497264541529332943}

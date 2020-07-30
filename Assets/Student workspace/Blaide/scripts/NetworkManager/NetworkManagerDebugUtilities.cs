@@ -7,7 +7,7 @@ namespace Student_workspace.Blaide.scripts.NetworkManager
 {
     public class NetworkManagerDebugUtilities : MonoBehaviour
     {
-        public bool DisplayDebugButtons;
+        public bool DisplayDebugButtons = true;
         public bool hostOnStart = false;
         public bool bypassLobby = false;
         public bool disableChat = false;
@@ -22,14 +22,16 @@ namespace Student_workspace.Blaide.scripts.NetworkManager
         // Start is called before the first frame update
         void Start()
         {
-            if (DisplayDebugButtons)
+            if (networkDebugUi != null)
             {
-                networkDebugUi.SetActive(true);
-            }
-            else
-            {
-                
-                networkDebugUi.SetActive(true);
+                if (DisplayDebugButtons)
+                {
+                    networkDebugUi.SetActive(true);
+                }
+                else
+                {
+                    networkDebugUi.SetActive(false);
+                }
             }
 
 
