@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 7159536423060581995}
   - component: {fileID: 7159536423060581984}
   - component: {fileID: 7159536423060581994}
-  - component: {fileID: 4801107124723680892}
   - component: {fileID: 675454488002533348}
   - component: {fileID: 5754125090776066855}
   - component: {fileID: 2273444557451666772}
@@ -221,21 +220,6 @@ MonoBehaviour:
   rb: {fileID: 7159536423060581995}
   distance: 8
   turnSpeed: 1000
---- !u!114 &4801107124723680892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159536423060581993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4697f070a1eed43ba95d2abb83334d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FollowPos: {fileID: 0}
-  force: 0.1
-  topdown: {fileID: 1651102968880965807, guid: f14f29cfe3fa01847be03fa9f93c7c8a, type: 3}
 --- !u!114 &675454488002533348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,14 +243,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159536423060581993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d4697f070a1eed43ba95d2abb83334d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FollowPos: {fileID: 0}
   force: 0.1
-  topdown: {fileID: 0}
 --- !u!114 &2273444557451666772
 MonoBehaviour:
   m_ObjectHideFlags: 0

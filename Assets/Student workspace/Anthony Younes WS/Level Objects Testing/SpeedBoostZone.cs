@@ -13,12 +13,13 @@ namespace AnthonyY
     {
         // public PlayerControllerTopDown _player;
         public int triggerBoost;
+        public bool displaySize = true;
 
         // Start is called before the first frame update
         void Start()
         {
             // _player = _player.GetComponent<PlayerControllerTopDown>();
-            Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+            
         }
 
         // Update is called once per frame
@@ -42,6 +43,15 @@ namespace AnthonyY
             Debug.Log("Exited the area");
         }
 
-
+        // private void OnDrawGizmosSelected()
+        //          {
+        //              Gizmos.color = Color.yellow;
+        //              Gizmos.DrawSphere(transform.position,0.1f);
+        //  
+        //              if (transform.GetComponent<Renderer>() != null)
+        //              {
+        //                  Gizmos.DrawWireCube(transform.position,transform.GetComponent<Renderer>().bounds.size);
+        //              }
+        //          }
     }
 }
