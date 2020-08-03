@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ForceField
-  m_Shader: {fileID: -6465566751694194690, guid: 598c60ffbd86d7449a27bb7a0c91c38f,
+  m_Name: Shader Graphs_Hologram
+  m_Shader: {fileID: -6465566751694194690, guid: f6c89fe6de59294478948eed619c14b3,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,18 +20,15 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_28DB7C79:
-        m_Texture: {fileID: 2800000, guid: 4b47f5c1b5fc8364080bb47d1842b084, type: 3}
+    - Texture2D_7E5FBA90:
+        m_Texture: {fileID: 2800000, guid: ade402761dfddf3429269454f3dfea40, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_7D6FCC0A: 0.34
-    - Vector1_B322C093: 3
-    - Vector1_CC43514F: 0.02
-    - Vector1_D4AB7B16: 0.13
+    - Vector1_52AAA7E: 1
+    - Vector1_FD0C7CC4: 0.1
     m_Colors:
-    - Color_3363256E: {r: 0, g: 0, b: 0, a: 0}
-    - Color_700CDF1A: {r: 0.2184617, g: 0.7490196, b: 0, a: 0}
-    - Color_882ABEA4: {r: 0, g: 0, b: 0, a: 0}
-    - Vector3_70A492F2: {r: 1.93, g: 2.38, b: -1.3, a: -6.87}
+    - Color_2F4A953: {r: 1, g: 0.6408558, b: 0.1179245, a: 0}
+    - Color_E783CECA: {r: 0, g: 1, b: 0.9687028, a: 0}
+    - Vector2_64EDE934: {r: 1, g: 3, b: 0, a: 0}
   m_BuildTextureStacks: []
