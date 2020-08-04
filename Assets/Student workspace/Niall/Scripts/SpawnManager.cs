@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
                     Quaternion.identity);
                 Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
                 units.Add(newEnemy);
-                newEnemy.GetComponent<HealthComponent>().deathEvent.AddListener(RemoveFromList);
+                newEnemy.GetComponent<HealthComponent>()?.deathEvent.AddListener(RemoveFromList);
                 yield return new WaitForSeconds(spawnInterval);
             }
 
