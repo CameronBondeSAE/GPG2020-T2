@@ -20,7 +20,6 @@ public class Speed : MonoBehaviour
             {
                 if (GimmeRigidBody)
                 {
-                    speed = rb.velocity.magnitude;
                     if (!gameObject.GetComponent<Rigidbody>())
                     {
                         gameObject.GetComponent<Rigidbody>();
@@ -38,7 +37,7 @@ public class Speed : MonoBehaviour
                     }
                         
 
-                    speed = Vector3.Distance(previousPosition, transform.position)/Time.deltaTime;
+                    speed = (previousPosition - transform.position).magnitude/Time.deltaTime;
                     previousPosition = transform.position;
                     
                 }
