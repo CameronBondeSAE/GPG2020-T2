@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using AJ;
 using DG.Tweening;
 using Mirror;
+using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEditor.Build.CacheServer;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +15,7 @@ using NetworkIdentity = Mirror.NetworkIdentity;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable
+	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable, IPossesable
 	{
 		public  float             speed, jumpForce;
 		public  Vector3           direction;
@@ -25,23 +26,22 @@ namespace alexM
 		[SerializeField]
 		bool _isGrounded;
 
-		private GameControls gameControls;
-
-
 		public NetworkIdentity Owner
 		{
 			get => _owner;
 			set => _owner = value;
 		}
-
 		[SerializeField]
 		private NetworkIdentity _owner;
+
+		public NetworkGamePlayer posessor { get; set; }
 
 		private void Start()
 		{
 			if (isServer)
 			{
 				RpcSyncOwner(Owner);
+				RpcSyncPosessor(Owner);
 			}
 		}
 
@@ -59,7 +59,6 @@ namespace alexM
 						Debug.Log(this + " Is local.");
 
 						cameraController.Setup();
-						AssignControl();
 					}
 
 					// else
@@ -82,32 +81,26 @@ namespace alexM
 			Owner = n;
 			CheckIfClient();
 		}
-
-		void AssignControl()
+		[ClientRpc]
+		public void RpcSyncPosessor(NetworkIdentity n)
 		{
-			gameControls = new GameControls();
-			gameControls.Enable();
-			gameControls.InGame.Move.performed          += Movement;
-			gameControls.InGame.Move.canceled           += Movement;
-			gameControls.InGame.Jump.performed          += Jump;
-			gameControls.InGame.Jump.canceled           += Jump;
-			gameControls.InGame.MousePosition.performed += LookAtMouse;
+
+			posessor = n.gameObject.GetComponent<NetworkGamePlayer>();
+			
+			// Setting itself as the possessable in the game player may not be a good idea.
+			//n.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable) this);
 		}
-
 		#endregion
-
-
-		void Movement(InputAction.CallbackContext context)
+		
+		public void Movement(Vector2 dir)
 		{
-			direction = context.ReadValue<Vector2>();
+			direction = dir;
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
 
-		void Jump(InputAction.CallbackContext context)
+		 public void Jump()
 		{
-			if (context.performed)
-			{
-				if (GroundCheck())
+			if (GroundCheck())
 				{
 					RB.AddForce(direction.x, jumpForce, direction.z);
 				}
@@ -115,7 +108,6 @@ namespace alexM
 				{
 					Debug.Log("Not Grounded, Can't jump!");
 				}
-			}
 		}
 
 		bool GroundCheck()
@@ -142,9 +134,11 @@ namespace alexM
 			}
 		}
 
-		void LookAtMouse(InputAction.CallbackContext context)
+
+
+		public void Aiming(Vector2 pos)
 		{
-			Ray        ray = cameraController.cam.ScreenPointToRay(context.ReadValue<Vector2>());
+			Ray        ray = cameraController.cam.ScreenPointToRay(pos);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit))
@@ -168,35 +162,32 @@ namespace alexM
 			{
 				RB.AddForce(direction * speed);
 			}
-
-
+			
 			// if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
 			// {
 			// 	Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
 			// 	//Debug.Log(hit.transform.name + " Was hit");
 			// }
 		}
-
-
-		private void OnDestroy()
+		public void Fire()
 		{
-			if (isClient)
-			{
-				if (Owner != null)
-				{
-					if (Owner.isLocalPlayer)
-					{
-						gameControls.InGame.Move.performed -= Movement;
-						gameControls.InGame.Move.canceled  -= Movement;
-						gameControls.InGame.Jump.performed -= Jump;
-						gameControls.InGame.Jump.canceled  -= Jump;
-						// GC.InGame.Fire.performed -= LookAtMouse;
-						// GC.InGame.Fire.canceled  -= LookAtMouse;
-						gameControls.InGame.MousePosition.performed -= LookAtMouse;
-						//GC.InGame.MousePosition.canceled += LookAtMouse;
-					}
-				}
-			}
+		
+		}
+		public void Interact()
+		{
+			
+		}
+		public void Action1()
+		{
+			
+		}
+		public void Action2()
+		{
+		
+		}
+		public void Action3()
+		{
+			
 		}
 	}
 }
