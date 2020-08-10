@@ -23,13 +23,24 @@ namespace alexM
 			
 			// int layerMask = 1 << 10;
 			// layerMask = ~layerMask;
-			if (other.gameObject.GetComponent<Renderer>().material.color == doorColor.color)
+
+			if (doorColor != null)
+			{
+				if (other.gameObject.GetComponent<Renderer>().material.color == doorColor.color)
+				{
+					if ((mask.value & 1<<other.gameObject.layer) != 12)
+					{
+						pressedEvent.Invoke();
+					}
+					//Debug.Log(other.gameObject.GetComponent<Renderer>().material.color.ToString());
+				}
+			}
+			else if (doorColor == null)
 			{
 				if ((mask.value & 1<<other.gameObject.layer) != 12)
 				{
 					pressedEvent.Invoke();
 				}
-				//Debug.Log(other.gameObject.GetComponent<Renderer>().material.color.ToString());
 			}
 
 			//Debug.Log("Zone was entered");
