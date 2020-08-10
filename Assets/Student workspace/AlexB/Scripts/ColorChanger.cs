@@ -24,7 +24,7 @@ namespace AJ
         {
             Material mat = renderer.material;
             previousColor = mat.color;
-            mat.color = newColor;
+            renderer.material.color = newColor;
         }
     }
 }

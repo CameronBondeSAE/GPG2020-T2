@@ -11,6 +11,7 @@ namespace alexM
 	{
 		public UnityEvent pressedEvent, releasedEvent;
 		public LayerMask mask;
+		public Material doorColor;
 		private void Awake()
 		{
 			
@@ -22,12 +23,15 @@ namespace alexM
 			
 			// int layerMask = 1 << 10;
 			// layerMask = ~layerMask;
-			
-			if ((mask.value & 1<<other.gameObject.layer) != 12)
+			if (other.gameObject.GetComponent<Renderer>().material.color == doorColor.color)
 			{
-				pressedEvent.Invoke();
+				if ((mask.value & 1<<other.gameObject.layer) != 12)
+				{
+					pressedEvent.Invoke();
+				}
+				//Debug.Log(other.gameObject.GetComponent<Renderer>().material.color.ToString());
 			}
-			
+
 			//Debug.Log("Zone was entered");
 		}
 
