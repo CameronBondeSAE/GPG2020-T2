@@ -9,6 +9,7 @@ namespace AJ
         private SlimeEnum _slimeEnum;
         private Color myColor;
         
+        
         private void Awake()
         {
             myColor = gameObject.GetComponent<Renderer>().material.color;
@@ -22,7 +23,12 @@ namespace AJ
             }
         }
 
-
+        /*private void Update()
+        {          
+            player.transform.position = transform.position;             
+            Debug.Log(transform.position);
+        }
+        
 
         // Research other ways to update code in edit mode
       /*  void OnDrawGizmos()
