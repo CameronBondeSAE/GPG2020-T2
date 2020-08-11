@@ -7,12 +7,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     {
         private void Awake()
         {
-            PlayerSpawnSystem.AddSpawnPoint(transform);
+            GameNetworkManager.AddSpawnPoint(transform);
         }
 
         private void OnDestroy()
         {
-            PlayerSpawnSystem.RemoveSpawnPoint(transform);
+			GameNetworkManager.RemoveSpawnPoint(transform);
         }
 
         private void OnDrawGizmos()
