@@ -8,6 +8,8 @@ namespace AJ
     {
         private Color previousColor;
         private Renderer renderer;
+        public Color currentColor;
+
 
         private void Awake()
         {
@@ -22,9 +24,11 @@ namespace AJ
         }
         public void ChangeTo(Color newColor)
         {
+
             Material mat = renderer.material;
             previousColor = mat.color;
             renderer.material.color = newColor;
+            currentColor = newColor;
         }
     }
 }

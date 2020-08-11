@@ -35,9 +35,11 @@ namespace alexM
 		private NetworkIdentity _owner;
 
 		public NetworkGamePlayer posessor { get; set; }
-
+		
 		private void Start()
 		{
+			
+			cameraController = GetComponent<Camera_Controller>();
 			if (isServer)
 			{
 				RpcSyncOwner(Owner);
@@ -51,7 +53,7 @@ namespace alexM
 		{
 			if (isClient)
 			{
-				cameraController = GetComponent<Camera_Controller>();
+
 				if (Owner != null)
 				{
 					if (Owner.isLocalPlayer)
@@ -138,15 +140,30 @@ namespace alexM
 
 		public void Aiming(Vector2 pos)
 		{
-			Ray        ray = cameraController.cam.ScreenPointToRay(pos);
-			RaycastHit hit;
-
-			if (Physics.Raycast(ray, out hit))
+			if (cameraController != null)
 			{
-				neck.transform.LookAt(new Vector3(hit.point.x, neck.transform.position.y, hit.point.z));
+				if (cameraController.cam != null)
+				{
+					Ray ray = cameraController.cam.ScreenPointToRay(pos);
+					RaycastHit hit;
 
-				//Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 0.1f);
+					if (Physics.Raycast(ray, out hit))
+					{
+						neck.transform.LookAt(new Vector3(hit.point.x, neck.transform.position.y, hit.point.z));
+
+						//Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 0.1f);
+					}
+				}
+				else
+				{
+					Debug.Log("No Camera set");
+				}
 			}
+			else
+			{
+				Debug.Log("noCamController");
+			}
+
 		}
 
 		private void FixedUpdate()
