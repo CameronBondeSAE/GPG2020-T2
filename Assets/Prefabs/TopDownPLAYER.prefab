@@ -515,6 +515,7 @@ MonoBehaviour:
   RB: {fileID: 1651102968880965805}
   bottom: {fileID: 1651102968533518016}
   neck: {fileID: 6582501386692850780}
+  cameraController: {fileID: 7487281604307372431}
   _isGrounded: 0
   _owner: {fileID: 0}
 --- !u!114 &7487281604307372431
