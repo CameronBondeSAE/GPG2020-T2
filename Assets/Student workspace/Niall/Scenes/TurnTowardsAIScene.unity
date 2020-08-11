@@ -610,6 +610,11 @@ PrefabInstance:
       propertyPath: FollowPos
       value: 
       objectReference: {fileID: 1945445472}
+    - target: {fileID: 4743110655705440945, guid: 16a67255845e3374e81f31dacf9d2011,
+        type: 3}
+      propertyPath: force
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4743110655705440946, guid: 16a67255845e3374e81f31dacf9d2011,
         type: 3}
       propertyPath: m_Name
