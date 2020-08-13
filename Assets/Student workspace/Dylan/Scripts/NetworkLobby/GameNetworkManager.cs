@@ -35,6 +35,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        
+        
+        [SyncEvent]
         public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
@@ -232,16 +235,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 				{
 					SpawnPlayer(gamePlayer.connectionToClient);
 				}
-				
-				RpcGameStart();
+
+				OnGameStart?.Invoke(); 
             }
         }
 
-        [ClientRpc]
-        public void RpcGameStart()
-        {
-	        OnGameStart?.Invoke(); 
-        }
 
 
         public override void ServerChangeScene(string newSceneName)
