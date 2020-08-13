@@ -30,8 +30,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 		public  GameObject physicalPlayerPrefab;
 
         public bool allowHotJoining;
-        [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
-        
+
         [SerializeField] private GameObject playerSpawnSystem;
         
         public static event Action OnClientConnected;
@@ -120,16 +119,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             base.OnClientConnect(conn);
             OnClientConnected?.Invoke();
-
-			// TODO UI viewmodel
-			bChatUI.gameObject.SetActive(true);
+            
         }
 
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
-            /*Destroy(bChat);*/
-            base.OnClientDisconnect(conn);
+	        base.OnClientDisconnect(conn);
             OnClientDisconnected?.Invoke();
         }
 
