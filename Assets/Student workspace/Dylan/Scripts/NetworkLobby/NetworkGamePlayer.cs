@@ -40,7 +40,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             OnInstantiated?.Invoke(this);
             
-            FindPosessable();
+            //FindPosessable();
             EnableControls();
         }
 
@@ -122,7 +122,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         private void JumpOnperformed(InputAction.CallbackContext obj)
         {
             if(possesable != null)
-            possesable.Jump();
+                possesable.Jump();
         }
 
         private void OnDisable()
@@ -147,7 +147,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }
@@ -160,7 +160,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }
@@ -173,7 +173,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }

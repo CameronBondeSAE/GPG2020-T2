@@ -35,6 +35,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        
+        
+        //[SyncEvent]
         public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
@@ -226,16 +229,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 }
 
                 ServerChangeScene(gameScene);
-				
-				// Spawn physical player
-				foreach (NetworkGamePlayer gamePlayer in GamePlayers)
-				{
-					SpawnPlayer(gamePlayer.connectionToClient);
-				}
-				
-				OnGameStart?.Invoke();
+                // Spawn physical player
             }
         }
+
 
 
         public override void ServerChangeScene(string newSceneName)
@@ -258,7 +255,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             //Changing scenes is deleting the physical player that gets spawned on start game..
             // and it also deletes them even if they're spawned in OnServerChangeScene
-          // base.ServerChangeScene(newSceneName);
+           base.ServerChangeScene(newSceneName);
         }
 		
         public override void OnServerChangeScene(string sceneName)
@@ -267,16 +264,30 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
                // NetworkServer.Spawn(playerSpawnSystemInstance);
-               
+
             }
+
         }
 
-        public override void OnServerReady(NetworkConnection conn)
+        public override void OnServerSceneChanged(string sceneName)
         {
-            base.OnServerReady(conn);
+	        foreach (NetworkGamePlayer gamePlayer in GamePlayers)
+	        {
+		        SpawnPlayer(gamePlayer.connectionToClient);
+	        }
 
+	        OnGameStart?.Invoke(); 
+	        
+	        base.OnServerSceneChanged(sceneName);
         }
-		
+
+        public override void OnClientSceneChanged(NetworkConnection conn)
+        {
+	        OnGameStart?.Invoke();
+	        
+	        base.OnClientSceneChanged(conn);
+        }
+        
 		
 		/// <summary>
 		/// Spawn physical player at Spawn point
@@ -319,6 +330,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
 			{
 				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
+				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable)playerInstance.GetComponent<PlayerControllerTopDown>());
 			}
 
 			nextIndex++;
