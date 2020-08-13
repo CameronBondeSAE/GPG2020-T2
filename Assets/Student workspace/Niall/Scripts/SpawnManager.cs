@@ -51,10 +51,10 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(EnemySpawn());
     }
 
-    public void KillAll();
-    {
-        StartCoroutine(KillSpawn());
-    }
+  //  public void KillAll();
+ //   {
+  //      StartCoroutine(KillSpawn());
+ //   }
 
 
 
@@ -97,7 +97,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator KillSpawn()
     {
-        for 
+         
     }
 
     private void RemoveFromList(HealthComponent arg0)
