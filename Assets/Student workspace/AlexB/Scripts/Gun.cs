@@ -11,8 +11,7 @@ namespace AJ
         public Transform bulletSpawn;
         private GameControls gameControls;
         //public Player player;
-        public ColorChanger colorChanger;
-        
+        public ColorChanger colorChanger;        
 
         void Awake()
         {
@@ -26,8 +25,6 @@ namespace AJ
             GameObject bulletPrefab = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
             Debug.Log("I Shot");
             bulletPrefab.GetComponent<Renderer>().sharedMaterial.color = colorChanger.currentColor;
-        }        
-
-   
+        }     
     }
 }
