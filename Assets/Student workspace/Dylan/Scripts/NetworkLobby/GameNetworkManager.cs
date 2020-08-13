@@ -319,6 +319,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
 			{
 				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
+				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable)playerInstance.GetComponent<PlayerControllerTopDown>());
 			}
 
 			nextIndex++;
