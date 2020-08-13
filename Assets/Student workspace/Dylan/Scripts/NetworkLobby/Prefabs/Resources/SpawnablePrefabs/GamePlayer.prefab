@@ -250,7 +250,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6803218254681226090}
         m_TargetAssemblyTypeName: Student_workspace.Dylan.Scripts.NetworkLobby.NetworkLobbyPlayer,
           Assembly-CSharp
-        m_MethodName: CallCmdReadyUp
+        m_MethodName: CmdReadyUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -517,7 +517,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6803218254681226090}
         m_TargetAssemblyTypeName: Student_workspace.Dylan.Scripts.NetworkLobby.NetworkLobbyPlayer,
           Assembly-CSharp
-        m_MethodName: CallCmdStartGame
+        m_MethodName: CmdStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
