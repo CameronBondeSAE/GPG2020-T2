@@ -49,6 +49,10 @@ namespace alexM
 		private void Start()
 		{
 			
+			//DontDestroyOnLoad(gameObject);
+			
+			
+
 			cameraController = GetComponent<Camera_Controller>();
 			if (isServer)
 			{
