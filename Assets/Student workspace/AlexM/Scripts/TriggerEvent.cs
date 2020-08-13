@@ -10,49 +10,54 @@ namespace alexM
 	public class TriggerEvent : MonoBehaviour
 	{
 		public UnityEvent pressedEvent, releasedEvent;
+		
+		[Tooltip("This option will only allow one mask to be chosen at a time. <DEFAULT TO PLAYER_BODY>")]
 		public LayerMask mask;
-		public Material doorColor;
-		private void Awake()
+		
+		public Material usingColorChanger;
+
+		private Collider _other;
+		
+		public void Activate()
 		{
-			
-		}
-
-
-		void OnTriggerEnter(Collider other)
-		{
-			
-			// int layerMask = 1 << 10;
-			// layerMask = ~layerMask;
-
-			if (doorColor != null)
+			if (usingColorChanger != null)
 			{
-				if (other.gameObject.GetComponent<Renderer>().material.color == doorColor.color)
+				if (_other.gameObject.GetComponent<Renderer>().material.color == usingColorChanger.color)
 				{
-					if ((mask.value & 1<<other.gameObject.layer) != 12)
+					//if ((mask.value & 1<<other.gameObject.layer) != 12)
+					if(mask == LayerMask.NameToLayer("Player_Body"))
 					{
 						pressedEvent.Invoke();
 					}
-					//Debug.Log(other.gameObject.GetComponent<Renderer>().material.color.ToString());
 				}
 			}
-			else if (doorColor == null)
+			else if (usingColorChanger == null)
 			{
-				if ((mask.value & 1<<other.gameObject.layer) != 12)
+				if ((mask.value & 1 << _other.gameObject.layer) != 12)
 				{
 					pressedEvent.Invoke();
 				}
 			}
+		}
 
-			//Debug.Log("Zone was entered");
+		public void Deactivate()
+		{
+			if ((mask.value & 1 << _other.gameObject.layer) != 12)
+			{
+				releasedEvent.Invoke();
+			}
+		}
+		
+		void OnTriggerEnter(Collider other)
+		{
+			_other = other;
+			Activate();
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			if ((mask.value & 1<<other.gameObject.layer) != 12)
-			{
-				releasedEvent.Invoke();
-			}
-			//Debug.Log("Zone was left");
+			_other = other;
+			Deactivate();
 		}
 	}
 }
