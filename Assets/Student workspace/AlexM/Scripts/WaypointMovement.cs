@@ -10,11 +10,28 @@ namespace alexM
 	{
 	#region Variables
 
-		public List<Waypoint> wayPoints;
-		public float speedMulti = 100, targetReachedThreshold = 0.5f;
-		public Transform target;
-		public bool AttachRigidbody;
 
+		[Header("Object Settings")]
+		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>")]
+		public bool useGravity = false;
+		[Tooltip("This option will determine whether or not the object will move directly AT the target, or only its X and Z positions (Staying on the Y pos it is currently at.)")]
+		public bool useYaxis = false;
+		public float speedMulti = 100;
+		[Tooltip("This is the distance to the target left before this component switches to the next target based on Current Move Type below")]
+		public float targetReachedThreshold = 0.5f;
+		
+		[Header("Targeting/MoveType")]
+		[Tooltip("Add as many Waypoint prefabs to your scene as you need and drag them all into this list for this component to work!")]
+		public List<Waypoint> wayPoints;
+		[SerializeField] private MoveType _currMoveType = MoveType.Ordered;
+		[SerializeField] private DistanceType _currDistanceType = DistanceType.Center;
+		
+		
+		[Header("Optional/Debug")]
+		public bool AttachRigidbody;
+		public Transform target;
+		
+		
 		private enum MoveType
 		{
 			Ordered,
@@ -28,7 +45,13 @@ namespace alexM
 			TargetFound
 		}
 
-		[SerializeField] private MoveType _currentType = MoveType.Ordered;
+		private enum DistanceType
+		{
+			Center,
+			ClosestPoint
+		}
+
+		
 		private TargetStatus _targetStatus = TargetStatus.NoTarget;
 		private int _targetId = 0;
 		private int _listCount;
@@ -36,6 +59,7 @@ namespace alexM
 		private Rigidbody RB;
 		private float dist;
 		private bool targetReached;
+		private Collider _collider;
 
 	#endregion
 
@@ -72,24 +96,35 @@ namespace alexM
 			if (_targetStatus == TargetStatus.NoTarget)
 			{
 				_targetId = 0;
-				target = wayPoints[_targetId].transform;
-				_targetStatus = TargetStatus.TargetFound;
-				_dir = (target.position - transform.position).normalized;
+				TargetSetup();
 			}
+
+			_collider = GetComponent<Collider>();
+
 		}
 
 		bool isReached()
 		{
 			if (_targetStatus == TargetStatus.TargetFound)
 			{
-				dist = Vector3.Distance(gameObject.transform.position, target.position);
-				if (dist < targetReachedThreshold)
+				if (_currDistanceType == DistanceType.ClosestPoint)
+				{
+					var tPosition = target.position;
+					dist = Vector3.Distance(_collider.ClosestPointOnBounds(tPosition), tPosition);
+				}
+				else if (_currDistanceType == DistanceType.Center)
+				{
+					dist = Vector3.Distance(gameObject.transform.position, target.position);	
+				}
+				
+				
+				if (dist <= targetReachedThreshold)
 				{
 					targetReached = true;
 					return true;
 					//target Reached
 				}
-				else if (dist > targetReachedThreshold)
+				else if (dist >= targetReachedThreshold)
 				{
 					targetReached = false;
 					return false;
@@ -99,6 +134,14 @@ namespace alexM
 			return false;
 		}
 
+		void TargetSetup()
+		{
+			target = wayPoints[_targetId].transform;
+			_dir = (target.position - transform.position).normalized;
+			_dir = new Vector3(_dir.x, 0, _dir.z);
+			_targetStatus = TargetStatus.TargetFound;	
+		}
+		
 		void SelectTarget()
 		{
 		#region CountAndReset
@@ -107,7 +150,7 @@ namespace alexM
 			
 		#endregion
 
-			switch (_currentType)
+			switch (_currMoveType)
 			{
 				case MoveType.Ordered:
 					//Debug.Log("Set to Ordered");
@@ -121,17 +164,13 @@ namespace alexM
 						_targetId = 0;
 					}
 
-					target = wayPoints[_targetId].transform;
-					_dir = (target.position - transform.position).normalized;
-					_targetStatus = TargetStatus.TargetFound;
+					TargetSetup();
 					break;
 				case MoveType.Random:
 					//Debug.Log("Set to Random");
 					_targetId = Random.Range(0, _listCount);
 
-					target = wayPoints[_targetId].transform;
-					_dir = (target.position - transform.position).normalized;
-					_targetStatus = TargetStatus.TargetFound;
+					TargetSetup();
 					break;
 				case MoveType.LoopBetween:
 					//Debug.Log("Set to LoopBetween");
@@ -146,9 +185,7 @@ namespace alexM
 						_targetId++;
 					}
 
-					target = wayPoints[_targetId].transform;
-					_dir = (target.position - transform.position).normalized;
-					_targetStatus = TargetStatus.TargetFound;
+					TargetSetup();
 					break;
 			}
 
@@ -161,7 +198,24 @@ namespace alexM
 
 		void MoveTo(Transform target)
 		{
-			RB.velocity = _dir * (speedMulti * Time.deltaTime);
+			
+			if (!useGravity)
+			{
+				RB.useGravity = false;
+			}
+			else
+			{
+				RB.useGravity = true;
+			}
+
+			if (!useYaxis)
+			{
+				RB.velocity = new Vector3(_dir.x, 0, _dir.z) * (speedMulti * Time.deltaTime);
+			}
+			else
+			{
+				RB.velocity = _dir * (speedMulti * Time.deltaTime);
+			}
 		}
 
 		private void FixedUpdate()
