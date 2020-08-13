@@ -19,9 +19,14 @@ namespace Cam
 		// C# events
 		public event Action turnOnEventCSHARP;
 
-		private void Start()
+		private void OnTriggerEnter(Collider other)
 		{
 			TurnOn();
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			TurnOff();
 		}
 
 		public void TurnOn()

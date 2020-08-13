@@ -25,7 +25,8 @@ public class CamMonster : CharacterBase
 	// Using manually defined delegate
 	public delegate void DidSomethingCoolDelegate(object sender, EventArgs e);
 	public event DidSomethingCoolDelegate DidSomethingCool;
-	
+
+	public Component MonoBehaviour;
 	
 	
 	
@@ -34,6 +35,8 @@ public class CamMonster : CharacterBase
 		GetComponent<HealthComponent>().deathEvent.AddListener(Die);
 		
 		DidSomethingCool += OnDidSomethingCool;
+		
+		
 	}
 
 	private void OnDidSomethingCool(object sender, EventArgs e)
