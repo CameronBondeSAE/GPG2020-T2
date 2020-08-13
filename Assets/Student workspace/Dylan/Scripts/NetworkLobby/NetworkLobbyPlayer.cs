@@ -55,12 +55,24 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
         }
 
+        private void OnEnable()
+        {
+
+            GameNetworkManager.OnGameStart += hideUI;
+        }
+
+        public void hideUI()
+        {
+            lobbyUI.SetActive(false);
+        }
+
         public override void OnStartAuthority()
         {
             CmdSetDisplayName(PlayerInfoInput.DisplayName);
             CmdSetPlayerColor(PlayerInfoInput.PlayerColor);
-
             lobbyUI.SetActive(true);
+
+            
         }
 
         public override void OnStartClient()
@@ -69,7 +81,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             UpdateDisplay();
             OnInstantiated?.Invoke(this);
-            
+
         }
 
         public override void OnStopClient()
@@ -160,13 +172,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [Command]
         public void CmdStartGame()
         {
+
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient)
             {
                 return;
             }
             Room.StartGame();
-            
-            
+    
+
         }
     }
 }

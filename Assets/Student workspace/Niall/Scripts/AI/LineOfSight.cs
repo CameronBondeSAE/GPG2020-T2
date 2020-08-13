@@ -17,7 +17,8 @@ namespace Niall
 
         void Update()
         {
-            Los();
+          if (target != null)
+          {Los();}
         }
 
         public void Los()
