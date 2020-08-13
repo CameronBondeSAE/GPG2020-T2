@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,14 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa966c1b215e9944a51965fdb980d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 366631937131053708, guid: 2141030dd5db9f040b1bc98824893398, type: 3}
-  enemyUnits: {fileID: 8867646278774038514}
+  spawnPrefab: {fileID: 0}
   spawnAreaMin: -3
   spawnAreaMax: 3
   spawnOnStart: 1
   timedWaves: 0
-  completeWaves: 0
+  completedWaves: 0
   units: []
+  wavesCompletedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   enemies: 10
   spawnInterval: 0
   waveCount: 3

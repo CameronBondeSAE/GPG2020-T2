@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     private float posZ;
     public float spawnAreaMin;
     public float spawnAreaMax;
-    public bool spawnOnStart;
+    public bool spawnOnStart = false;
     
     [Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
     public bool timedWaves;
@@ -25,15 +25,20 @@ public class SpawnManager : MonoBehaviour
 
     private int monNum;
     private int currentWave;
-
+    
+    public UnityEvent wavesCompletedEvent;
+    
+    [Header("Debug")]
     public List<GameObject> units = new List<GameObject>();
 
-    public UnityEvent wavesCompletedEvent;
+    
 
-    [Header("Enemies")] public int enemies;
+    [Header("Enemies")]
+    public int enemies;
     public float spawnInterval = 0f;
 
-    [Header("Waves")] public int waveCount = 3;
+    [Header("Waves")] 
+    public int waveCount = 3;
     public float waveInterval = 5f;
 
 
@@ -52,12 +57,13 @@ public class SpawnManager : MonoBehaviour
     }
 
    public void KillAll()
-    {
-        foreach (var newEnemy in units)
+   {
+       List<GameObject> tempUnits = new List<GameObject>(units);
+       foreach (var newEnemy in tempUnits)
         {
-            newEnemy.GetComponent<HealthComponent>().Death();
+            newEnemy?.GetComponent<HealthComponent>().Death();
         }
-    }
+   }
 
 
 
@@ -74,7 +80,7 @@ public class SpawnManager : MonoBehaviour
                 posZ = Random.Range(spawnAreaMin, spawnAreaMax);
                 GameObject newEnemy = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ),
                     Quaternion.identity);
-                Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
+               // Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
                 units.Add(newEnemy);
                 newEnemy.GetComponent<HealthComponent>()?.deathEvent.AddListener(RemoveFromList);
                 yield return new WaitForSeconds(spawnInterval);
