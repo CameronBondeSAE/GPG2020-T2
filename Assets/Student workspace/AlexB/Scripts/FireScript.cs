@@ -6,8 +6,7 @@ using UnityEngine;
 namespace AJ
 {
     public class FireScript : MonoBehaviour
-    {
-        
+    {       
         void Fire()
         {
            

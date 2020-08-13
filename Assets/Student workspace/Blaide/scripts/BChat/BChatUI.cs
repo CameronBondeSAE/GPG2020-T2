@@ -40,12 +40,42 @@ namespace Student_workspace.Blaide.scripts
             inputField.onSubmit.AddListener(OnMessageSubmit);
             UpdateText();
             BChatNetworkHandler.OnMessage += AddMessage;
+            
+
         }
+
+        private void Awake()
+        {
+            GameNetworkManager.OnClientConnected += OnClientConnected;
+            GameNetworkManager.OnClientDisconnected += OnClientDisconnected;
+            gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            GameNetworkManager.OnClientConnected -= OnClientConnected;
+            GameNetworkManager.OnClientDisconnected -= OnClientDisconnected;
+        }
+
+        private void OnClientDisconnected()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void OnClientConnected()
+        {
+            gameObject.SetActive(true);
+        }
+        
+        
 
         private void OnDisable()
         {
             inputField.onSubmit.RemoveListener(OnMessageSubmit);
         }
+        
+        
+        
         public void OnMessageSubmit(string message)
         {
             bChatNetworkHandler = NetworkClient.connection.identity.GetComponent<BChatNetworkHandler>();

@@ -84,6 +84,15 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             Debug.Log("Player GO = " + netIdentity.netId);
         }
 
+		
+		// LOCAL Client side object is fully usable at this stage
+		public override void OnStartLocalPlayer()
+		{
+			base.OnStartLocalPlayer();
+			
+			
+		}
+
         public override void OnStopClient()
         {
             Room.GamePlayers.Remove(this);
@@ -168,5 +177,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 FindPosessable();
             }
         }
+		
+
     }
 }

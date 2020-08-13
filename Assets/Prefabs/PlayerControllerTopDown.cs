@@ -35,7 +35,17 @@ namespace alexM
 		private NetworkIdentity _owner;
 
 		public NetworkGamePlayer posessor { get; set; }
-		
+
+
+		public override void OnStartServer()
+		{
+			base.OnStartServer();
+			
+			Debug.Log("Mine = "+netIdentity.netId + "Owner = "+netIdentity.connectionToClient.identity.netId);
+		}
+
+
+
 		private void Start()
 		{
 			

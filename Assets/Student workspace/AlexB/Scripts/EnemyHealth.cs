@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace AJ
 {
@@ -13,7 +14,15 @@ namespace AJ
         {
             enemyHealth -= deductHealth;
 
-            //if (enemyHealth <= 0) { Death(); }
+            if (enemyHealth <= 0) 
+            { 
+                DestroyObject(); 
+            }
+        }
+
+        private void DestroyObject()
+        {
+            throw new NotImplementedException();
         }
     }
 }
