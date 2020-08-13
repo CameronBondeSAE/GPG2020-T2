@@ -51,10 +51,13 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(EnemySpawn());
     }
 
-  //  public void KillAll();
- //   {
-  //      StartCoroutine(KillSpawn());
- //   }
+   public void KillAll()
+    {
+        foreach (var newEnemy in units)
+        {
+            newEnemy.GetComponent<HealthComponent>().Death();
+        }
+    }
 
 
 
@@ -94,11 +97,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
-  //  public IEnumerator KillSpawn()
-  //  {
-        
-  //  }
+    
 
     private void RemoveFromList(HealthComponent arg0)
     {

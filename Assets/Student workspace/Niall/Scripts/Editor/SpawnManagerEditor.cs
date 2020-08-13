@@ -20,7 +20,7 @@ namespace Niall
 
             if (GUILayout.Button("Destroy All Enemies"))
             {
-                ((SpawnManager) target.KillAll());
+                ((SpawnManager)target).KillAll();
             }
         }
     }
