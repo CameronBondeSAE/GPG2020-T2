@@ -16,7 +16,12 @@ namespace Niall
                 ((SpawnManager)target).SpawnAll();
                 Debug.Log("Spawned Via Inspector Button.");
             }
-                
+
+
+            if (GUILayout.Button("Destroy All Enemies"))
+            {
+                ((SpawnManager) target.KillAll());
+            }
         }
     }
 }

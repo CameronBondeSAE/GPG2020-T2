@@ -16,8 +16,12 @@ public class SpawnManager : MonoBehaviour
     public float spawnAreaMin;
     public float spawnAreaMax;
     public bool spawnOnStart;
+    
+    [Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
     public bool timedWaves;
-    public bool completeWaves;
+    
+    [Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
+    public bool completedWaves;
 
     private int monNum;
     private int currentWave;
@@ -47,6 +51,11 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(EnemySpawn());
     }
 
+    public void KillAll();
+    {
+        StartCoroutine(KillSpawn());
+    }
+
 
 
     public IEnumerator EnemySpawn()
@@ -73,7 +82,7 @@ public class SpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(waveInterval);
             }
 
-            if (completeWaves)
+            if (completedWaves)
             {
                 while (units.Count > 0)
                 {
@@ -83,6 +92,12 @@ public class SpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(waveInterval);
             }
         }
+    }
+
+
+    public IEnumerator KillSpawn()
+    {
+        for 
     }
 
     private void RemoveFromList(HealthComponent arg0)
