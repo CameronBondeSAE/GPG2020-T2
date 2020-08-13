@@ -23,7 +23,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [Scene] [SerializeField] private string menuScene = string.Empty;
         [Scene] [SerializeField] private string gameScene = string.Empty;
         
-        [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
+        //[Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
         [Header("Game")] [SerializeField] 
 		private NetworkGamePlayer  gamePlayerPrefab  = null;
 		
@@ -35,6 +35,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
         
@@ -153,7 +154,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                 bool isLeader = RoomPlayers.Count == 0;
 
-                NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(lobbyPlayerPrefab);
+                NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(gamePlayerPrefab).GetComponent<NetworkLobbyPlayer>();
 
                 lobbyPlayerInstance.IsLeader = isLeader;
 
@@ -231,7 +232,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 				{
 					SpawnPlayer(gamePlayer.connectionToClient);
 				}
-			}
+				
+				OnGameStart?.Invoke();
+            }
         }
 
 
@@ -244,24 +247,27 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 {
                     var conn = RoomPlayers[i].connectionToClient;
 					// TODO comment, real guy?
-                    var gameplayerInstance = Instantiate(gamePlayerPrefab);
+					var gameplayerInstance = RoomPlayers[i].GetComponent<NetworkGamePlayer>();
                     gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName, RoomPlayers[i].PlayerColor);
 
-                    NetworkServer.Destroy(conn.identity.gameObject);
+                    //NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
+                   // NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
 
-            base.ServerChangeScene(newSceneName);
+            //Changing scenes is deleting the physical player that gets spawned on start game..
+            // and it also deletes them even if they're spawned in OnServerChangeScene
+          // base.ServerChangeScene(newSceneName);
         }
 		
         public override void OnServerChangeScene(string sceneName)
         {
             if (sceneName.StartsWith(gameScene))
             {
-                GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-                NetworkServer.Spawn(playerSpawnSystemInstance);
+               // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+               // NetworkServer.Spawn(playerSpawnSystemInstance);
+               
             }
         }
 
