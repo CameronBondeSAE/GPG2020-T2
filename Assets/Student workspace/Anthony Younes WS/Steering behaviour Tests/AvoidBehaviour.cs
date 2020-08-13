@@ -44,12 +44,11 @@ namespace AnthonyY
 
             private void FixedUpdate()
             {
-                raycast = Physics.Raycast(t.position, t.forward, out hit, distance);
+                if (t != null) raycast = Physics.Raycast(t.position, t.forward, out hit, distance);
                 if (raycast)
                 {
-                    rb.AddTorque(0, turnSpeed*direction, 0);
+                     rb?.AddTorque(0, turnSpeed * direction, 0);
                     // Debug.DrawLine(t.position, t.forward,gameObject.name,distance,Color.green);
-
                 }
 
 

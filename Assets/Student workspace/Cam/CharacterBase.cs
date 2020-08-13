@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
 {
-
+	public void DestroyObject()
+	{
+		Destroy(gameObject);
+	}
 }
