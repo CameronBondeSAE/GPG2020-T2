@@ -322,16 +322,18 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			}
 
 			float totalHeight = maxHeight - minHeight;
-			
-			
+
+
 
 			NetworkServer.Spawn(playerInstance, conn);
-
+			
 			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
 			{
 				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
 				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable)playerInstance.GetComponent<PlayerControllerTopDown>());
-			}
+			}			
+
+
 
 			nextIndex++;
 		}

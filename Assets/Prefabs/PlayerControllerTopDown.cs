@@ -50,14 +50,27 @@ namespace alexM
 		{
 			
 			//DontDestroyOnLoad(gameObject);
-			
-			
-
+	
 			cameraController = GetComponent<Camera_Controller>();
+			
+			
+			
 			if (isServer)
 			{
 				RpcSyncOwner(Owner);
 				RpcSyncPosessor(Owner);
+			}
+		}
+
+		private void Update()
+		{
+			if (InputSystem.GetDevice<Keyboard>().rKey.wasPressedThisFrame)
+			{
+				if (isServer)
+				{
+					RpcSyncOwner(Owner);
+					RpcSyncPosessor(Owner);
+				}
 			}
 		}
 
@@ -104,7 +117,7 @@ namespace alexM
 			posessor = n.gameObject.GetComponent<NetworkGamePlayer>();
 			
 			// Setting itself as the possessable in the game player may not be a good idea.
-			//n.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable) this);
+			n.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable) this);
 		}
 		#endregion
 		
@@ -116,6 +129,8 @@ namespace alexM
 
 		 public void Jump()
 		{
+			
+			
 			if (GroundCheck())
 				{
 					RB.AddForce(direction.x, jumpForce, direction.z);
@@ -182,6 +197,8 @@ namespace alexM
 
 		private void FixedUpdate()
 		{
+	
+			
 			//Do the stuff here
 			GroundCheck();
 
