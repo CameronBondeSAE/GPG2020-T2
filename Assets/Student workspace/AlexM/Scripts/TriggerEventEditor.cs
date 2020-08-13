@@ -15,14 +15,13 @@ namespace alexM
 
          if (GUILayout.Button("Activate"))
          {
-            ((TriggerEvent)target).ActivateDoor();
+            ((TriggerEvent)target).Activate();
          }
          
          if (GUILayout.Button("Deactivate"))
          {
-            ((TriggerEvent)target).DeactivateDoor();
+            ((TriggerEvent)target).Deactivate();
          }
       }
    }
-
 }

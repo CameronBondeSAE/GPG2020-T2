@@ -136,10 +136,10 @@ GameObject:
   - component: {fileID: 17687329}
   - component: {fileID: 17687328}
   - component: {fileID: 17687327}
-  - component: {fileID: 17687326}
   - component: {fileID: 17687325}
   - component: {fileID: 17687324}
   - component: {fileID: 17687331}
+  - component: {fileID: 17687326}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -192,8 +192,8 @@ MonoBehaviour:
   _currDistanceType: 1
   AttachRigidbody: 0
   target: {fileID: 0}
---- !u!64 &17687326
-MeshCollider:
+--- !u!65 &17687326
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -202,10 +202,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2071861721}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.5, y: 0.5, z: -0.5}
 --- !u!114 &17687327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +528,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1024
-  doorColor: {fileID: 0}
+  usingColorChanger: {fileID: 0}
 --- !u!1001 &134764325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7467,7 +7466,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1324
+  m_Name: pb_Mesh-1318
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
