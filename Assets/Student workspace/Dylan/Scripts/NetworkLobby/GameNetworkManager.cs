@@ -35,6 +35,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        
+        
+        [SyncEvent]
         public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
@@ -232,10 +235,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 				{
 					SpawnPlayer(gamePlayer.connectionToClient);
 				}
-				
-				OnGameStart?.Invoke();
+
+				OnGameStart?.Invoke(); 
             }
         }
+
 
 
         public override void ServerChangeScene(string newSceneName)
@@ -258,7 +262,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             //Changing scenes is deleting the physical player that gets spawned on start game..
             // and it also deletes them even if they're spawned in OnServerChangeScene
-          // base.ServerChangeScene(newSceneName);
+           base.ServerChangeScene(newSceneName);
         }
 		
         public override void OnServerChangeScene(string sceneName)
@@ -319,6 +323,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
 			{
 				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
+				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable)playerInstance.GetComponent<PlayerControllerTopDown>());
 			}
 
 			nextIndex++;

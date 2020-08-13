@@ -40,7 +40,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             OnInstantiated?.Invoke(this);
             
-            FindPosessable();
+            //FindPosessable();
             EnableControls();
         }
 
@@ -147,7 +147,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }
@@ -160,7 +160,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }
@@ -173,7 +173,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else
             {
-                Debug.Log("Possable = null");
+                Debug.Log("Possesable = null");
                 FindPosessable();
             }
         }
