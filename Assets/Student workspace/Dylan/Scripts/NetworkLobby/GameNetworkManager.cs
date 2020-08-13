@@ -37,7 +37,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public static event Action OnClientDisconnected;
         
         
-        [SyncEvent]
+        //[SyncEvent]
         public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
@@ -229,14 +229,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 }
 
                 ServerChangeScene(gameScene);
-				
-				// Spawn physical player
-				foreach (NetworkGamePlayer gamePlayer in GamePlayers)
-				{
-					SpawnPlayer(gamePlayer.connectionToClient);
-				}
-
-				OnGameStart?.Invoke(); 
+                // Spawn physical player
             }
         }
 
@@ -271,16 +264,30 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
                // NetworkServer.Spawn(playerSpawnSystemInstance);
-               
+
             }
+
         }
 
-        public override void OnServerReady(NetworkConnection conn)
+        public override void OnServerSceneChanged(string sceneName)
         {
-            base.OnServerReady(conn);
+	        foreach (NetworkGamePlayer gamePlayer in GamePlayers)
+	        {
+		        SpawnPlayer(gamePlayer.connectionToClient);
+	        }
 
+	        OnGameStart?.Invoke(); 
+	        
+	        base.OnServerSceneChanged(sceneName);
         }
-		
+
+        public override void OnClientSceneChanged(NetworkConnection conn)
+        {
+	        OnGameStart?.Invoke();
+	        
+	        base.OnClientSceneChanged(conn);
+        }
+        
 		
 		/// <summary>
 		/// Spawn physical player at Spawn point

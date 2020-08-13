@@ -122,7 +122,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         private void JumpOnperformed(InputAction.CallbackContext obj)
         {
             if(possesable != null)
-            possesable.Jump();
+                possesable.Jump();
         }
 
         private void OnDisable()
