@@ -20,7 +20,7 @@ namespace Niall
 
         public void Update()
         {
-            if (lineOfSight.haveLOS)
+            if (lineOfSight.haveLOS && FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
 
