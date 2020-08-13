@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireScript : MonoBehaviour
+
+namespace AJ
 {
-    void Fire()
-    {
-        
+    public class FireScript : MonoBehaviour
+    {       
+        void Fire()
+        {
+           
+        }
     }
 }

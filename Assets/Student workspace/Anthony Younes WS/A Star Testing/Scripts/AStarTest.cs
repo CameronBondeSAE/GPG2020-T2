@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using AnthonyY;
+using Unity.Entities;
 
 namespace AnthonyY
 {
@@ -49,7 +51,8 @@ namespace AnthonyY
         private Node[,] nodeArray;
         private float nodeDiameter;
         public float nodeRadius;
-      
+        public int start, end;
+        public Vector3 checkNodeThreshold;
 
         private List<Node> openNodes; //nodes that have been visited but not been expanded
 
@@ -60,6 +63,7 @@ namespace AnthonyY
             nodeDiameter = nodeRadius * 2;
             gridSizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);
             gridSizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);
+            nodeArray = new Node[gridSize.x, gridSize.y];
             CreateNodes();
         }
 
@@ -73,24 +77,31 @@ namespace AnthonyY
         /// </summary>
         public void CreateNodes()
         {
-            nodeArray = new Node[gridSize.x, gridSize.y];
             Vector3 worldBottomLeft =
                 transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
 
-            for (int x = 0; x < gridSize.x; x++)
+            for (start = 0; start < gridSize.x; start++)
             {
-                for (int y = 0; y < gridSize.y; y++)
+                for (end = 0; end < gridSize.y; end++)
                 {
-                    Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) +
-                                         Vector3.forward * (y * nodeDiameter + nodeRadius);
+                    Vector3 worldPoint = worldBottomLeft + Vector3.right * (start * nodeDiameter + nodeRadius) +
+                                         Vector3.forward * (end * nodeDiameter + nodeRadius);
                     bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unTouchableSurface));
-                    nodeArray[x, y] = new Node(walkable, worldPoint,x,y);
+                    if (nodeArray[start, end] == new Node(walkable, worldPoint, start, end))
+                    {
+                        walkable = true;
+                    }
+                    else
+                    {
+                        walkable = false;
+                    }
+
                     Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
                 }
 
             }
         }
-
+        
         /// <summary>
         /// Searches for neighbour nodes and goes to the direction of the f cost
         /// </summary>

@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using alexM;
 using Mirror;
 using Student_workspace.Blaide.scripts;
 using Student_workspace.Dylan.Scripts.Player;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Student_workspace.Dylan.Scripts.NetworkLobby
 {
+	// Spawn player non-physical representation
+	// Change scene to main
+	// 
+
     public class GameNetworkManager : NetworkManager
     {
         [SerializeField] private int minPlayer = 2;
@@ -17,16 +23,19 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [Scene] [SerializeField] private string menuScene = string.Empty;
         [Scene] [SerializeField] private string gameScene = string.Empty;
         
-        [Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
-        [Header("Game")] [SerializeField] private NetworkGamePlayer gamePlayerPrefab = null;
+        //[Header("Room")] [SerializeField] private NetworkLobbyPlayer lobbyPlayerPrefab = null;
+        [Header("Game")] [SerializeField] 
+		private NetworkGamePlayer  gamePlayerPrefab  = null;
+		
+		public  GameObject physicalPlayerPrefab;
 
         public bool allowHotJoining;
-        [Header("BChatUI")] [SerializeField] private BChatUI bChatUI = null;
-        
+
         [SerializeField] private GameObject playerSpawnSystem;
         
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
+        public static event Action OnGameStart;
 
         public static event Action<NetworkConnection> OnServerReadied;
         
@@ -39,8 +48,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public override void Start()
         {
-            NetworkGamePlayer.OnInstantiated += UIOff;
-            
+			// TODO move to UI ViewModel
+			NetworkGamePlayer.OnInstantiated += UIOff;
+
+			// For debugging, use the same scene that you're testing easily
             if (useSameScene)
             {
                 if (string.IsNullOrEmpty(gameScene))
@@ -55,6 +66,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 }
                 
             }
+			
+			// TODO Move to UI ViewModel
             if (SceneManager.GetActiveScene().path == menuScene )
             {
                 lobbyUI.SetActive(true);
@@ -70,6 +83,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             
 
+			// Need to subscribe before network starts
             base.Start();
         }
 
@@ -106,14 +120,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             base.OnClientConnect(conn);
             OnClientConnected?.Invoke();
-            bChatUI.gameObject.SetActive(true);
+            
         }
 
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {
-            /*Destroy(bChat);*/
-            base.OnClientDisconnect(conn);
+	        base.OnClientDisconnect(conn);
             OnClientDisconnected?.Invoke();
         }
 
@@ -126,6 +139,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 return;
             }
 
+			// TODO comment WHY. Maybe changescene on client if wrong
             //this does stop joining in progress will need to change depending on game requirement
             if (SceneManager.GetActiveScene().path != menuScene  || ! allowHotJoining)
             {
@@ -140,7 +154,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             {
                 bool isLeader = RoomPlayers.Count == 0;
 
-                NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(lobbyPlayerPrefab);
+                NetworkLobbyPlayer lobbyPlayerInstance = Instantiate(gamePlayerPrefab).GetComponent<NetworkLobbyPlayer>();
 
                 lobbyPlayerInstance.IsLeader = isLeader;
 
@@ -212,35 +226,48 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 }
 
                 ServerChangeScene(gameScene);
+				
+				// Spawn physical player
+				foreach (NetworkGamePlayer gamePlayer in GamePlayers)
+				{
+					SpawnPlayer(gamePlayer.connectionToClient);
+				}
+				
+				OnGameStart?.Invoke();
             }
         }
 
 
         public override void ServerChangeScene(string newSceneName)
         {
+			// TODO comment
             if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith(gameScene))
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
-                    var gameplayerInstance = Instantiate(gamePlayerPrefab);
+					// TODO comment, real guy?
+					var gameplayerInstance = RoomPlayers[i].GetComponent<NetworkGamePlayer>();
                     gameplayerInstance.SetPlayerInfo(RoomPlayers[i].DisplayName, RoomPlayers[i].PlayerColor);
 
-                    NetworkServer.Destroy(conn.identity.gameObject);
+                    //NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
+                   // NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject, true);
                 }
             }
 
-            base.ServerChangeScene(newSceneName);
+            //Changing scenes is deleting the physical player that gets spawned on start game..
+            // and it also deletes them even if they're spawned in OnServerChangeScene
+          // base.ServerChangeScene(newSceneName);
         }
-
+		
         public override void OnServerChangeScene(string sceneName)
         {
             if (sceneName.StartsWith(gameScene))
             {
-                GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-                NetworkServer.Spawn(playerSpawnSystemInstance);
+               // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+               // NetworkServer.Spawn(playerSpawnSystemInstance);
+               
             }
         }
 
@@ -248,7 +275,64 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             base.OnServerReady(conn);
 
-            OnServerReadied?.Invoke(conn);
         }
-    }
+		
+		
+		/// <summary>
+		/// Spawn physical player at Spawn point
+		/// </summary>
+		private static List<Transform> spawnPoints = new List<Transform>();
+		private int    nextIndex = 0;
+
+		public void SpawnPlayer(NetworkConnection conn)
+		{
+			Transform spawnPoint = spawnPoints.ElementAtOrDefault(nextIndex);
+
+			if (spawnPoint == null)
+			{
+				Debug.LogError($"Missing spawn point for player {nextIndex}");
+				return;
+			}
+
+			GameObject playerInstance = Instantiate(physicalPlayerPrefab, spawnPoints[nextIndex].position, spawnPoints[nextIndex].rotation);
+
+			float maxHeight =0, minHeight = 0;
+
+			foreach (Collider c in playerInstance.GetComponentsInChildren<Collider>())
+			{
+				if (c.bounds.max.y>maxHeight)
+				{
+					maxHeight = c.bounds.max.y;
+				}
+				if (c.bounds.min.y<minHeight)
+				{
+					minHeight = c.bounds.min.y;
+				}
+			}
+
+			float totalHeight = maxHeight - minHeight;
+			
+			
+
+			NetworkServer.Spawn(playerInstance, conn);
+
+			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
+			{
+				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
+			}
+
+			nextIndex++;
+		}
+
+		public static void AddSpawnPoint(Transform transform)
+		{
+			spawnPoints.Add(transform);
+			spawnPoints = spawnPoints.OrderBy(x => x.GetSiblingIndex()).ToList();
+		}
+
+		public static void RemoveSpawnPoint(Transform transform)
+		{
+			spawnPoints.Remove(transform);
+		}
+	}
 }

@@ -7,8 +7,12 @@ public class LineofSight : MonoBehaviour
     public Transform sight;
     public float range;
 
-
     void Update()
+    {
+        TargetAcquired();
+    }
+    
+    public void TargetAcquired()
     {
         RaycastHit hit;
         Debug.DrawRay (transform.position,sight.forward*range,Color.red,2f,false);

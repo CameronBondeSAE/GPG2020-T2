@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2946153121101485699}
   - component: {fileID: 3186273425591895541}
   - component: {fileID: 7279647853250169016}
+  - component: {fileID: 6134207410355082677}
+  - component: {fileID: 6585639704282602063}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -126,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e468575d48e08a43ba6e21602782da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOfSight: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &7279647853250169016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,9 +142,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947aeea4b3f50d345a81f1974216e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
-  MinHealth: 0
+  MaxHealth: 10
   currentHealth: 10
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6134207410355082677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366631937131053708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6717400c560b04a913d18e1c70b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyes: {fileID: 8324829519180399345}
+  target: {fileID: 0}
+  range: 3
+  haveLOS: 0
+  changedLOS:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6585639704282602063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366631937131053708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4697f070a1eed43ba95d2abb83334d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowPos: {fileID: 0}
+  force: 0.1
