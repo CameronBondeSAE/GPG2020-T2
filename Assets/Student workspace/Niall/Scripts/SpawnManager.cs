@@ -95,10 +95,10 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    public IEnumerator KillSpawn()
-    {
-         
-    }
+  //  public IEnumerator KillSpawn()
+  //  {
+        
+  //  }
 
     private void RemoveFromList(HealthComponent arg0)
     {
