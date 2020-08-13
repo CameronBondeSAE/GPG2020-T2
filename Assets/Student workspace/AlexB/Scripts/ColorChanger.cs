@@ -7,28 +7,18 @@ namespace AJ
     public class ColorChanger : MonoBehaviour
     {
         private Color previousColor;
-        private Renderer renderer;
         public Color currentColor;
 
 
-        private void Awake()
-        {
-            if (gameObject.GetComponent<Renderer>()!= null)
-            {
-                renderer = gameObject.GetComponent<Renderer>();                
-            }
-            else
-            {
-                Debug.Log("No renderer");
-            }
-        }
         public void ChangeTo(Color newColor)
         {
-
-            Material mat = renderer.material;
-            previousColor = mat.color;
-            renderer.material.color = newColor;
-            currentColor = newColor;
-        }
+			foreach (Renderer renderer in transform.root.GetComponentsInChildren<Renderer>())
+			{
+				Material mat = renderer.material;
+				previousColor           = mat.color;
+				renderer.material.color = newColor;
+				currentColor            = newColor;
+			}
+		}
     }
 }
