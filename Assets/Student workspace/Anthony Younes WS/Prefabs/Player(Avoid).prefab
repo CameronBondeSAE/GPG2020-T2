@@ -78,8 +78,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 3
-  turnSpeed: 100
+  distance: 2
+  turnSpeed: 10
+  direction: 10
 --- !u!114 &832989319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   rb: {fileID: 7159536423060581995}
   distance: 8
   turnSpeed: 1000
+  direction: 0
 --- !u!114 &675454488002533348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,8 +420,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 2
+  distance: 1
   turnSpeed: -1000
+  direction: 30
 --- !u!114 &710780822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,8 +598,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   rb: {fileID: 7159536423060581995}
-  distance: 3
-  turnSpeed: -100
+  distance: 2
+  turnSpeed: -10
+  direction: 10
 --- !u!114 &1424030712
 MonoBehaviour:
   m_ObjectHideFlags: 0
