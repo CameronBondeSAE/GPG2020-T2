@@ -113,12 +113,10 @@ GameObject:
   - component: {fileID: 7159536423060581984}
   - component: {fileID: 7159536423060581994}
   - component: {fileID: 675454488002533348}
-  - component: {fileID: 5754125090776066855}
   - component: {fileID: 2273444557451666772}
   - component: {fileID: -5459505228319863565}
   - component: {fileID: 7365957182386954905}
   - component: {fileID: -3137845345987375112}
-  - component: {fileID: 8171599291113273536}
   m_Layer: 0
   m_Name: Player(Avoid)
   m_TagString: Untagged
@@ -273,20 +271,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &5754125090776066855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159536423060581993}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4697f070a1eed43ba95d2abb83334d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FollowPos: {fileID: 7159536423060581991}
-  force: 0.1
 --- !u!114 &2273444557451666772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +329,9 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 10
   haveLOS: 1
+  changedLOS:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-3137845345987375112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,20 +346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sight: {fileID: 3838460950509793537, guid: 4ad8a2b06b019aa42a218fc10cf62bee, type: 3}
   range: 10
---- !u!114 &8171599291113273536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159536423060581993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4697f070a1eed43ba95d2abb83334d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FollowPos: {fileID: 0}
-  force: 0.1
 --- !u!1 &7159536423713701037
 GameObject:
   m_ObjectHideFlags: 0
