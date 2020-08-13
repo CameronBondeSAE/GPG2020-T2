@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Niall 
 {
-    public class LookAtEnemy : MonoBehaviour
+    public class TurnTowardsBehaviour : MonoBehaviour
     {
 
         public Transform FollowPos;
@@ -20,8 +20,8 @@ namespace Niall
 
         public void Update()
         {
-          //  if (lineOfSight.haveLOS)
-          //  {
+            if (lineOfSight.haveLOS)
+            {
                 Vector3 targetDelta = FollowPos.position - transform.position;
 
                 float angleDiff = Vector3.Angle(transform.forward, targetDelta);
@@ -29,7 +29,7 @@ namespace Niall
                 Vector3 cross = Vector3.Cross(transform.forward, targetDelta);
 
                 GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * force));
-          //  }
+            }
         }
     }
 }
