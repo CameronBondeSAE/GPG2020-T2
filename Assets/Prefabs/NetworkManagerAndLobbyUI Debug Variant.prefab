@@ -192,6 +192,12 @@ PrefabInstance:
       propertyPath: gameScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6181736370761581532, guid: 29e34919de67780449d043c16eef9f5e,
+        type: 3}
+      propertyPath: physicalPlayerPrefab
+      value: 
+      objectReference: {fileID: 1651102968880965806, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
+        type: 3}
     - target: {fileID: 6181736370761581534, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: m_Name
@@ -210,7 +216,7 @@ PrefabInstance:
     - target: {fileID: 6497264540845348792, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 1.0000794
       objectReference: {fileID: 0}
     - target: {fileID: 6497264541271784024, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
@@ -220,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 6497264541850599242, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6497264542663693228, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
