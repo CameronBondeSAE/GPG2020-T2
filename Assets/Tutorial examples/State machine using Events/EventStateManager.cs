@@ -4,15 +4,22 @@ public class EventStateManager
 
 	public void ChangeState(EventState newState)
 	{
-		if (currentState != null) currentState.active = false;
-		currentState?.Exit();
-		newState.active = true;
-		newState?.Enter();
-		currentState = newState;
+		if (currentState != null)
+		{
+			currentState.active = false;
+			currentState.Exit?.Invoke();
+		}
+		
+		if (newState != null)
+		{
+			newState.active = true;
+			newState.Enter?.Invoke();
+			currentState = newState;
+		}
 	}
 
 	public void ExecuteCurrentState()
 	{
-		currentState?.Execute();
+		currentState?.Execute?.Invoke();
 	}
 }

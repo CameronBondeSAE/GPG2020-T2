@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AJ
 {
-    public class ColourChanger : MonoBehaviour
+	public class ColourChanger : MonoBehaviour
     {
         private Color previousColor;
         public Color currentColor;
@@ -19,6 +19,12 @@ namespace AJ
 				renderer.material.color = newColor;
 				currentColor            = newColor;
 			}
+		}
+
+		public bool IsSameColour(Material a, Material b)
+		{
+			// TODO
+			return true;
 		}
     }
 }
