@@ -2,40 +2,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using AJ;
+using alexM;
+using AnthonyY;
 using ReGoap.Core;
 using ReGoap.Unity;
 using UnityEngine;
 
 namespace AnthonyY
+{ 
+    public class PatrolAction : ReGoapAction<string,object>
 {
-    public class ShootAction : ReGoapAction<string,object>
-{
-    public Gun pistol;
-    public bool isShooting = true;
+    private bool canPatrol = true;
+    private Patrol _patrol;
     protected override void Awake()
     {
         base.Awake();
         Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-
     }
 
     public override void Run(IReGoapAction<string, object> previous, IReGoapAction<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done,
         Action<IReGoapAction<string, object>> fail)
     {
-        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
         base.Run(previous, next, settings, goalState, done, fail);
-        if (isShooting)
+    }
+    
+    public override ReGoapState<string, object> GetPreconditions(GoapActionStackData<string, object> stackData)
+    {
+        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
+        preconditions.Set("canSeePlayer",false);
+        return base.GetPreconditions(stackData);
+    }
+    
+    public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
+    {
+        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
+        if (canPatrol)
         {
-            Debug.Log("I am shooting the enemy");
-            doneCallback(this);
+            effects.Set("canPatrol",true);
+            Debug.Log("I am strolling around the map");
+
         }
-        else if(!isShooting)
-        {
-            failCallback(this);
-        }
+        return base.GetEffects(stackData);
     }
 
+    
     public override void PlanEnter(IReGoapAction<string, object> previousAction, IReGoapAction<string, object> nextAction, ReGoapState<string, object> settings, ReGoapState<string, object> goalState)
     {
         base.PlanEnter(previousAction, nextAction, settings, goalState);
@@ -44,24 +54,6 @@ namespace AnthonyY
     public override void PlanExit(IReGoapAction<string, object> previousAction, IReGoapAction<string, object> nextAction, ReGoapState<string, object> settings, ReGoapState<string, object> goalState)
     {
         base.PlanExit(previousAction, nextAction, settings, goalState);
-    }
-
-    public override ReGoapState<string, object> GetPreconditions(GoapActionStackData<string, object> stackData)
-    {
-        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        preconditions.Set("canSeePlayer",true);
-        return base.GetPreconditions(stackData);
-    }
-
-    public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
-    {
-        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        if (isShooting)
-        {
-            effects.Set("killGuy",true);
-            effects.Set("canSeePlayer",false);
-        }
-        return base.GetEffects(stackData);
     }
 
     public override void Exit(IReGoapAction<string, object> next)
@@ -76,4 +68,5 @@ namespace AnthonyY
     }
 }
 
+    
 }

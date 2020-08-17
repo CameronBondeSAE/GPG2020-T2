@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 563366531}
   - component: {fileID: 563366530}
   - component: {fileID: 563366529}
+  - component: {fileID: 563366533}
   m_Layer: 9
   m_Name: Obstacle 1
   m_TagString: Untagged
@@ -518,6 +519,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563366533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563366528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4a616d1d393974dac5ae477450d621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rescanTime: 5
 --- !u!4 &615682319
 Transform:
   m_ObjectHideFlags: 0
@@ -927,6 +941,7 @@ MonoBehaviour:
   speed: 5
   path: []
   targetIndex: 0
+  ConstantRecalculate: 0
 --- !u!1 &1531751646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1444,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 615682319}
+    - target: {fileID: 2131217593893370690, guid: d004d04022522d74dbed304b4752aef1,
+        type: 3}
+      propertyPath: displayGrid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131217593893370690, guid: d004d04022522d74dbed304b4752aef1,
+        type: 3}
+      propertyPath: nodeDiameter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2131217593893370691, guid: d004d04022522d74dbed304b4752aef1,
         type: 3}
       propertyPath: m_LocalPosition.x

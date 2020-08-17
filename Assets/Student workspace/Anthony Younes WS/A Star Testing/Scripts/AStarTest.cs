@@ -5,9 +5,25 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using AnthonyY;
 using Unity.Entities;
+using Unity.Mathematics;
+using UnityEditor;
+using UnityEngine.Rendering.VirtualTexturing;
 
 namespace AnthonyY
 {
+    [CustomEditor(typeof(AStarTest))]
+    public class AStarTestEditor : Editor
+    {
+        void OnSceneGUI()
+        {
+            Handles.color = Color.green;
+            AStarTest aStar = (AStarTest) target;
+            Handles.FreeMoveHandle(aStar.transform.position, aStar.transform.rotation, aStar.nodeRadius, Vector3.right,
+                Handles.CubeHandleCap);
+
+
+        }
+    }
     public class AStarTest : MonoBehaviour
     {
         public class Node //cost variables
@@ -51,20 +67,24 @@ namespace AnthonyY
         private Node[,] nodeArray;
         private float nodeDiameter;
         public float nodeRadius;
-        public int start, end;
-        public Vector3 checkNodeThreshold;
+        private Renderer rd;
+        private Vector3 checkNodeBoundThreshold;
 
         private List<Node> openNodes; //nodes that have been visited but not been expanded
 
         public LayerMask unTouchableSurface; //mask for obstacles
 
+        
         private void Awake()
-        {
+        {        
+            rd = GetComponent<Renderer>();
+          
             nodeDiameter = nodeRadius * 2;
             gridSizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);
             gridSizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);
             nodeArray = new Node[gridSize.x, gridSize.y];
-            CreateNodes();
+            CreateNodes(0,gridSize.x,0, gridSize.y);
+            // CreateNodes(0,rd.bounds.min(gridSize.x - Vector3.right)
         }
 
         public int MaxSize
@@ -75,19 +95,20 @@ namespace AnthonyY
         /// <summary>
         /// Responsible for creating the grid and figuring out the goals and start position
         /// </summary>
-        public void CreateNodes()
+        public void CreateNodes(int startX, int endX, int startY, int endY)
         {
+
             Vector3 worldBottomLeft =
                 transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
-
-            for (start = 0; start < gridSize.x; start++)
+            
+            for (int x = startX; x < endX; x++)
             {
-                for (end = 0; end < gridSize.y; end++)
+                for (int y = endY; y < startY; y++)
                 {
-                    Vector3 worldPoint = worldBottomLeft + Vector3.right * (start * nodeDiameter + nodeRadius) +
-                                         Vector3.forward * (end * nodeDiameter + nodeRadius);
+                    Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) +
+                                         Vector3.forward * (y * nodeDiameter + nodeRadius);
                     bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unTouchableSurface));
-                    if (nodeArray[start, end] == new Node(walkable, worldPoint, start, end))
+                    if (nodeArray[x, y] == new Node(walkable, worldPoint, x, y))
                     {
                         walkable = true;
                     }
@@ -95,13 +116,13 @@ namespace AnthonyY
                     {
                         walkable = false;
                     }
-
+            
                     Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
                 }
-
+            
             }
         }
-        
+
         /// <summary>
         /// Searches for neighbour nodes and goes to the direction of the f cost
         /// </summary>

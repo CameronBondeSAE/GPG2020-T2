@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Niall;
 using ReGoap.Core;
 using ReGoap.Unity;
 using UnityEngine;
 
-public class CanSeePlayerAction : ReGoapAction<string,object>
+namespace AnthonyY
+{
+    public class CanSeePlayerAction : ReGoapAction<string,object>
 {
     public bool canSeePlayer = true;
+    private LineOfSight _lineOfSight;
     protected override void Awake()
     {
         base.Awake();
+        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
+
         // effects.Set("canSeePlayer",false);
     }
     
@@ -18,9 +25,16 @@ public class CanSeePlayerAction : ReGoapAction<string,object>
         Action<IReGoapAction<string, object>> fail)
     {
         base.Run(previous, next, settings, goalState, done, fail);
-        
-    
+        if (canSeePlayer)
+        {
+            _lineOfSight.Los();
+        }
         doneCallback(this);
+    }
+
+    public override ReGoapState<string, object> GetPreconditions(GoapActionStackData<string, object> stackData)
+    {
+        return base.GetPreconditions(stackData);
     }
 
     public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
@@ -28,10 +42,21 @@ public class CanSeePlayerAction : ReGoapAction<string,object>
         if (canSeePlayer)
         {
             effects.Set("canSeePlayer",true);
+            effects.Set("canPatrol",false);
             Debug.Log("I can see the enemy");
         }
         return base.GetEffects(stackData);
     }
+    public override void PlanEnter(IReGoapAction<string, object> previousAction, IReGoapAction<string, object> nextAction, ReGoapState<string, object> settings, ReGoapState<string, object> goalState)
+    {
+        base.PlanEnter(previousAction, nextAction, settings, goalState);
+    }
+
+    public override void PlanExit(IReGoapAction<string, object> previousAction, IReGoapAction<string, object> nextAction, ReGoapState<string, object> settings, ReGoapState<string, object> goalState)
+    {
+        base.PlanExit(previousAction, nextAction, settings, goalState);
+    }
+
 
     public override void Exit(IReGoapAction<string, object> next)
     {
@@ -43,4 +68,6 @@ public class CanSeePlayerAction : ReGoapAction<string,object>
             worldState.Set(pair.Key,pair.Value);
         }
     }
+}
+
 }
