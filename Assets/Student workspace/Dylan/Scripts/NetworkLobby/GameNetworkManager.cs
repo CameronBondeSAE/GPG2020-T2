@@ -269,6 +269,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         }
 
+        
+        
+        
+        
+        
+        // The physical players need to be spawned here, so that they don't get removed on scene change. Because OnServerChangeScene and StartGame are called before changing scenes.
         public override void OnServerSceneChanged(string sceneName)
         {
 	        foreach (NetworkGamePlayer gamePlayer in GamePlayers)
@@ -330,7 +336,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
 			{
 				playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
-				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable)playerInstance.GetComponent<PlayerControllerTopDown>());
+				conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possessable = ((IPossessable)playerInstance.GetComponent<PlayerControllerTopDown>());
 			}			
 
 

@@ -15,7 +15,7 @@ using NetworkIdentity = Mirror.NetworkIdentity;
 
 namespace alexM
 {
-	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable, IPossesable
+	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable, IPossessable
 	{
 		public  float             speed, jumpForce;
 		public  Vector3           direction;
@@ -34,7 +34,7 @@ namespace alexM
 		[SerializeField]
 		private NetworkIdentity _owner;
 
-		public NetworkGamePlayer posessor { get; set; }
+		public NetworkGamePlayer possessor { get; set; }
 
 
 		public override void OnStartServer()
@@ -78,6 +78,7 @@ namespace alexM
 
 		private void CheckIfClient()
 		{
+			
 			if (isClient)
 			{
 
@@ -114,20 +115,20 @@ namespace alexM
 		public void RpcSyncPosessor(NetworkIdentity n)
 		{
 
-			posessor = n.gameObject.GetComponent<NetworkGamePlayer>();
+			possessor = n.gameObject.GetComponent<NetworkGamePlayer>();
 			
 			// Setting itself as the possessable in the game player may not be a good idea.
-			n.gameObject.GetComponent<NetworkGamePlayer>().possesable = ((IPossesable) this);
+			n.gameObject.GetComponent<NetworkGamePlayer>().possessable = ((IPossessable) this);
 		}
 		#endregion
 		
-		public void Movement(Vector2 dir)
+		public void Movement(Vector2 dir,InputAction.CallbackContext ctx)
 		{
 			direction = dir;
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
 
-		 public void Jump()
+		 public void Jump(InputAction.CallbackContext ctx)
 		{
 			
 			
@@ -167,7 +168,7 @@ namespace alexM
 
 
 
-		public void Aiming(Vector2 pos)
+		public void Aiming(Vector2 pos,InputAction.CallbackContext ctx)
 		{
 			if (cameraController != null)
 			{
@@ -217,23 +218,24 @@ namespace alexM
 			// 	//Debug.Log(hit.transform.name + " Was hit");
 			// }
 		}
-		public void Fire()
+		public void Fire(InputAction.CallbackContext ctx)
 		{
 		
 		}
-		public void Interact()
+
+		public void Interact(InputAction.CallbackContext ctx)
 		{
 			
 		}
-		public void Action1()
+		public void Action1(InputAction.CallbackContext ctx)
 		{
 			
 		}
-		public void Action2()
+		public void Action2(InputAction.CallbackContext ctx)
 		{
 		
 		}
-		public void Action3()
+		public void Action3(InputAction.CallbackContext ctx)
 		{
 			
 		}

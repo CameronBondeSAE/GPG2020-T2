@@ -21,7 +21,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public static event Action<NetworkGamePlayer> OnInstantiated;
         private GameNetworkManager room;
 
-        public IPossesable possesable;
+        public IPossessable possessable;
 
         private GameNetworkManager Room
         {
@@ -64,12 +64,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             
             
             // TODO Probably pass the Possessable to this script rather than searching for it on start.... Bit of  HACK.
-            var ss = FindObjectsOfType<MonoBehaviour>().OfType<IPossesable>();
-            foreach (IPossesable s in ss)
+            var ss = FindObjectsOfType<MonoBehaviour>().OfType<IPossessable>();
+            foreach (IPossessable s in ss)
             {
                 if (((IOwnable) s).Owner = netIdentity)
                 {
-                    possesable = s;
+                    possessable = s;
                 }
             }
         }
@@ -110,19 +110,23 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             //if (isLocalPlayer)
             //{
                 _gameControls = new GameControls();
-                _gameControls.InGame.Move.performed += MoveOnperformed;
-                _gameControls.InGame.Move.canceled += MoveOnperformed;
-                _gameControls.InGame.MousePosition.performed += LookOnperformed;
-                _gameControls.InGame.Fire.performed += FireOnperformed;
-                _gameControls.InGame.Jump.performed += JumpOnperformed;
+                EnableControls();
+                _gameControls.InGame.Move.performed += MoveOnInputChange;
+                _gameControls.InGame.Move.canceled += MoveOnInputChange;
+                _gameControls.InGame.MousePosition.performed += LookOnInputChange;
+                _gameControls.InGame.MousePosition.canceled += LookOnInputChange;
+                _gameControls.InGame.Fire.performed += FireOnInputChange;
+                _gameControls.InGame.Fire.canceled += FireOnInputChange;
+                _gameControls.InGame.Jump.performed += JumpOnInputChange;
+                _gameControls.InGame.Jump.canceled += JumpOnInputChange;
             //}
 
         }
 
-        private void JumpOnperformed(InputAction.CallbackContext obj)
+        private void JumpOnInputChange(InputAction.CallbackContext obj)
         {
-            if(possesable != null)
-                possesable.Jump();
+            if(possessable != null)
+                possessable.Jump(obj);
         }
 
         private void OnDisable()
@@ -131,19 +135,23 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             //{
                 _gameControls = new GameControls();
                 _gameControls.Disable();
-                _gameControls.InGame.Move.performed -= MoveOnperformed;
-                _gameControls.InGame.Move.canceled -= MoveOnperformed;
-                _gameControls.InGame.MousePosition.performed -= LookOnperformed;
-                _gameControls.InGame.Fire.performed -= FireOnperformed;
-                _gameControls.InGame.Jump.performed -= JumpOnperformed;
+                _gameControls.InGame.Move.performed -= MoveOnInputChange;
+                _gameControls.InGame.Move.canceled -= MoveOnInputChange;
+                _gameControls.InGame.MousePosition.performed -= LookOnInputChange;
+                _gameControls.InGame.MousePosition.canceled -= LookOnInputChange;
+                _gameControls.InGame.Fire.performed -= FireOnInputChange;
+                _gameControls.InGame.Fire.canceled -= FireOnInputChange;
+                _gameControls.InGame.Jump.performed -= JumpOnInputChange;
+                _gameControls.InGame.Jump.canceled -= JumpOnInputChange;
+                //}
             //}
         }
 
-        private void FireOnperformed(InputAction.CallbackContext obj)
+        private void FireOnInputChange(InputAction.CallbackContext obj)
         {
-            if (possesable != null)
+            if (possessable != null)
             {
-                possesable.Fire();
+                possessable.Fire(obj);
             }
             else
             {
@@ -152,11 +160,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
         }
 
-        private void LookOnperformed(InputAction.CallbackContext obj)
+        private void LookOnInputChange(InputAction.CallbackContext obj)
         {
-            if (possesable != null)
+            if (possessable != null)
             {
-                possesable.Aiming(obj.ReadValue<Vector2>());
+                possessable.Aiming(obj.ReadValue<Vector2>(),obj);
             }
             else
             {
@@ -165,11 +173,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
         }
 
-        private void MoveOnperformed(InputAction.CallbackContext obj)
+        private void MoveOnInputChange(InputAction.CallbackContext obj)
         {
-            if (possesable != null)
+            if (possessable != null)
             {
-                possesable.Movement(obj.ReadValue<Vector2>());
+                possessable.Movement(obj.ReadValue<Vector2>(),obj);
             }
             else
             {
