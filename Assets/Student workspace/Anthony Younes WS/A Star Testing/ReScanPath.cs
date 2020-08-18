@@ -14,7 +14,7 @@ public class ReScanPath : MonoBehaviour
 
     IEnumerator ScanForNodes()
     {
-        gameObject.GetComponent<AStarTest>().CreateNodes();
+        // gameObject.GetComponent<AStarTest>().CreateNodes();
         
         yield return new WaitForSeconds(rescanTime);
     }
