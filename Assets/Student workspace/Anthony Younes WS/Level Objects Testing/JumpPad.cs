@@ -12,7 +12,7 @@ public class JumpPad : NetworkBehaviour
         Vector3 gameThrust = new Vector3(thrustX, thrustY, thrustZ);
         if (other.gameObject.GetComponent<Rigidbody>() != null)
             {
-                other.gameObject.GetComponent<Rigidbody>().AddForce(gameThrust * 40, ForceMode.Acceleration);
+                other.gameObject.GetComponent<Rigidbody>().AddForce(gameThrust, ForceMode.VelocityChange);
 
             }
        

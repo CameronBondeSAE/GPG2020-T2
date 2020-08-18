@@ -39,12 +39,10 @@ namespace AnthonyY
 
     public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
     {
-        if (canSeePlayer)
-        {
-            effects.Set("canSeePlayer",true);
-            effects.Set("canPatrol",false);
-            Debug.Log("I can see the enemy");
-        }
+        effects.Set("canMoveTowardsPlayer",true);
+        effects.Set("canPatrol",false);
+        // Debug.Log("I can see the enemy");
+        
         return base.GetEffects(stackData);
     }
     public override void PlanEnter(IReGoapAction<string, object> previousAction, IReGoapAction<string, object> nextAction, ReGoapState<string, object> settings, ReGoapState<string, object> goalState)

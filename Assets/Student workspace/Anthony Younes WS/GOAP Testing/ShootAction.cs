@@ -49,7 +49,7 @@ namespace AnthonyY
     public override ReGoapState<string, object> GetPreconditions(GoapActionStackData<string, object> stackData)
     {
         Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        preconditions.Set("canSeePlayer",true);
+        preconditions.Set("canMoveTowardsPlayer",true);
         return base.GetPreconditions(stackData);
     }
 
