@@ -20,7 +20,7 @@ namespace AJ
             gameControls.InGame.Fire.performed += Shoot;
         }
         
-        void Shoot(InputAction.CallbackContext context) 
+        public void Shoot(InputAction.CallbackContext context) 
         {
             GameObject bulletPrefab = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
             Debug.Log("I Shot");
