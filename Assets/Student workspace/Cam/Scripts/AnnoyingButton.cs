@@ -17,9 +17,10 @@ public class AnnoyingButton : MonoBehaviour
 
 	private void SawPlayerStartMoving(bool arg0)
 	{
+		// If it saw ANY player
 		if (arg0 == true)
 		{
-			WaypointMovement.Start();
+			// WaypointMovement.Start();
 		}
 	}
 }

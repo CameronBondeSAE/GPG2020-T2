@@ -11,13 +11,18 @@ namespace AJ
         public Transform bulletSpawn;
         private GameControls gameControls;
         //public Player player;
-        public ColourChanger colourChanger;        
+        public ColourChanger colourChanger;
 
+		public bool debugInput = false;
+		
         void Awake()
         {
-            gameControls = new GameControls();
-            gameControls.Enable();
-            gameControls.InGame.Fire.performed += Shoot;
+			if (debugInput)
+			{
+				gameControls = new GameControls();
+				gameControls.Enable();
+				gameControls.InGame.Fire.performed += Shoot;
+			}
         }
         
         public void Shoot(InputAction.CallbackContext context) 
