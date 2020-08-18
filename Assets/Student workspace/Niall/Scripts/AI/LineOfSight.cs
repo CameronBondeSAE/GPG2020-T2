@@ -10,39 +10,43 @@ namespace Niall
     public class LineOfSight : MonoBehaviour
     {
         public Transform eyes;
-        public Transform target;
+        public List<Transform> targets = new List<Transform>();
         public float range;
         public bool haveLOS;
         public UnityEvent<bool> changedLOS;
 
         void Update()
         {
-          if (target != null)
+          if (targets != null)
           {Los();}
         }
 
         public void Los()
         {
-            
-            RaycastHit hit;
-            Debug.DrawRay(eyes.position, eyes.forward * range, Color.red);
-            if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
+            foreach (Transform target in targets)
             {
-                Debug.Log(this.name + " found Target! = " + hit.collider.name);
-            }
 
-            //  TODO Only look at target when a clear line of sight is available (no objects between this and target.)
-            RaycastHit hitt;
-            Debug.DrawLine(eyes.position, target.position, Color.white);
-            if (Physics.Linecast(eyes.position, target.position, out hitt))
-            {
-                if (hitt.collider != target.GetComponent<Collider>())
+
+                RaycastHit hit;
+                Debug.DrawRay(eyes.position, eyes.forward * range, Color.red);
+                if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
                 {
-                    haveLOS = false;
+                    Debug.Log(this.name + " found Target! = " + hit.collider.name);
                 }
-                else
+
+                //  TODO Only look at target when a clear line of sight is available (no objects between this and target.)
+                RaycastHit hitt;
+                Debug.DrawLine(eyes.position, target.position, Color.white);
+                if (Physics.Linecast(eyes.position, target.position, out hitt))
                 {
-                    haveLOS = true;
+                    if (hitt.collider != target.GetComponent<Collider>())
+                    {
+                        haveLOS = false;
+                    }
+                    else
+                    {
+                        haveLOS = true;
+                    }
                 }
             }
         }
