@@ -48,11 +48,10 @@ namespace alexM
 
 		private void Start()
 		{
-			
 			//DontDestroyOnLoad(gameObject);
-	
+
 			cameraController = GetComponent<Camera_Controller>();
-			
+
 			
 			
 			if (isServer)
@@ -202,16 +201,17 @@ namespace alexM
 			
 			//Do the stuff here
 			GroundCheck();
-
-			if (!_isGrounded)
+			if (!_isGrounded)			
 			{
 				RB.AddForce((direction * speed) / 3);
+				RB.velocity = Vector3.ClampMagnitude(RB.velocity, speed);
 			}
 			else
-			{
+			{				
 				RB.AddForce(direction * speed);
+				RB.velocity = Vector3.ClampMagnitude(RB.velocity, speed);
 			}
-			
+
 			// if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
 			// {
 			// 	Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
