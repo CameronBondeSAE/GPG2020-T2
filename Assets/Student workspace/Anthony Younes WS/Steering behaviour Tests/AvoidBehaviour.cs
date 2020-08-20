@@ -36,23 +36,26 @@ namespace AnthonyY
             public float direction;
             RaycastHit hit;
             private bool raycast;
-
-            void Start()
+            
+            public override void OnStartServer()
             {
                 t = transform;
+                base.OnStartServer();
             }
 
             private void FixedUpdate()
             {
-                if (t != null) raycast = Physics.Raycast(t.position, t.forward, out hit, distance);
-                if (raycast)
+                if (isServer)
                 {
-                     rb?.AddTorque(0, turnSpeed * direction, 0);
-                    // Debug.DrawLine(t.position, t.forward,gameObject.name,distance,Color.green);
+                    if (t != null) raycast = Physics.Raycast(t.position, t.forward, out hit, distance);
+                    if (raycast)
+                    {
+                        rb?.AddTorque(0, turnSpeed * direction, 0);
+                        // Debug.DrawLine(t.position, t.forward,gameObject.name,distance,Color.green);
+                    }
+                    Mathf.PerlinNoise(turnSpeed, distance);
                 }
-
-
-                Mathf.PerlinNoise(turnSpeed, distance);
+               
             }
 
           void OnDrawGizmos()
