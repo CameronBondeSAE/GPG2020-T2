@@ -13,6 +13,8 @@ namespace AnthonyY
         private Rigidbody rb;
         public float speed;
 
+		public int damageAmount = 20;
+		
         void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -26,7 +28,7 @@ namespace AnthonyY
         
         void OnCollisionEnter(Collision other)
         {
-            other.gameObject?.GetComponent<PlayerControllerTopDown>()?.GetComponent<HealthComponent>()?.TakeHp(20);
+			other.gameObject?.GetComponent<PlayerControllerTopDown>()?.GetComponent<HealthComponent>()?.TakeHp(damageAmount);
             Debug.Log("I done damage to the player!!");
         }
 
