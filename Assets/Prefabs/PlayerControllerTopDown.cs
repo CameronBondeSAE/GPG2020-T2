@@ -23,6 +23,8 @@ namespace alexM
 		public  GameObject        bottom, neck;
 		private Camera_Controller cameraController;
 
+		public Gun gun;
+
 		[SerializeField]
 		bool _isGrounded;
 
@@ -220,7 +222,7 @@ namespace alexM
 		}
 		public void Fire(InputAction.CallbackContext ctx)
 		{
-		
+			gun.Shoot(ctx);
 		}
 
 		public void Interact(InputAction.CallbackContext ctx)

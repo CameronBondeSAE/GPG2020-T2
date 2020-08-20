@@ -23,19 +23,28 @@ namespace AnthonyY
         // Update is called once per frame
         void Update()
         {
-            rb.AddRelativeForce(0,0,speed);
+			if (isServer)
+			{
+				rb.AddRelativeForce(0, 0, speed);
+			}
         }
         
         void OnCollisionEnter(Collision other)
         {
-			other.gameObject?.GetComponent<PlayerControllerTopDown>()?.GetComponent<HealthComponent>()?.TakeHp(damageAmount);
-            Debug.Log("I done damage to the player!!");
+			if (isServer)
+			{
+				other.gameObject?.GetComponent<PlayerControllerTopDown>()?.GetComponent<HealthComponent>()?.TakeHp(damageAmount);
+				Debug.Log("I done damage to the player!!");
+			}
         }
 
         void Death()
         {
-            gameObject.GetComponent<HealthComponent>()?.Death();
-            Debug.Log("player Deadd");
+			if (isServer)
+			{
+				gameObject.GetComponent<HealthComponent>()?.Death();
+				Debug.Log("player Deadd");
+			}
         }
     }
 }

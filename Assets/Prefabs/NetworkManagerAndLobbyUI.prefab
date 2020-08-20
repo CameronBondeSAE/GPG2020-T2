@@ -1703,8 +1703,8 @@ MonoBehaviour:
   startOnHeadless: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: Assets/Main.unity
-  onlineScene: Assets/Main.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 6181736370761581533}
   networkAddress: localhost
   maxConnections: 4
@@ -1721,9 +1721,13 @@ MonoBehaviour:
   - {fileID: 8005808769771261553, guid: b0ff4a0d18883524484dcd533e153d24, type: 3}
   - {fileID: 8284762099497019277, guid: 0af046d068606a041accfa88ba019577, type: 3}
   - {fileID: 5861387322311652483, guid: 2a31497c133919941b4780b5378c4dd7, type: 3}
+  - {fileID: 3479998447190896919, guid: 271d209dbcf7c954cbebc582da0bd349, type: 3}
+  - {fileID: 7159536423060581993, guid: c0659dc2345a37b4ebf0e38bb697011a, type: 3}
+  - {fileID: 4050683963965574109, guid: c1356d4dc89da014394aa10d472a0097, type: 3}
+  - {fileID: 897416773700603751, guid: f446683264781a24683796598a0405a8, type: 3}
   minPlayer: 1
-  menuScene: Assets/Main.unity
-  gameScene: Assets/Main.unity
+  menuScene: 
+  gameScene: 
   gamePlayerPrefab: {fileID: 2696317799798203801, guid: 8c31ce50d8a2c174a89804b59345b6f7,
     type: 3}
   physicalPlayerPrefab: {fileID: 1651102968880965806, guid: f14f29cfe3fa01847be03fa9f93c7c8a,

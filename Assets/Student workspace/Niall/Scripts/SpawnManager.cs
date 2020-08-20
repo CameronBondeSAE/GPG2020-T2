@@ -3,115 +3,126 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using AJ;
+using Mirror;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : NetworkBehaviour
 {
-    public GameObject spawnPrefab;
-    private float posX;
-    private float posZ;
-    public float spawnAreaMin;
-    public float spawnAreaMax;
-    public bool spawnOnStart = false;
-    
-    [Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
-    public bool timedWaves;
-    
-    [Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
-    public bool completedWaves;
+	public  GameObject spawnPrefab;
+	private float      posX;
+	private float      posZ;
+	public  float      spawnAreaMin;
+	public  float      spawnAreaMax;
+	public  bool       spawnOnStart = false;
 
-    private int monNum;
-    private int currentWave;
-    
-    public UnityEvent wavesCompletedEvent;
-    
-    [Header("Debug")]
-    public List<GameObject> units = new List<GameObject>();
+	[Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
+	public bool timedWaves;
 
-    
+	[Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
+	public bool completedWaves;
 
-    [Header("Enemies")]
-    public int enemies;
-    public float spawnInterval = 0f;
+	private int monNum;
+	private int currentWave;
 
-    [Header("Waves")] 
-    public int waveCount = 3;
-    public float waveInterval = 5f;
+	public UnityEvent wavesCompletedEvent;
+
+	[Header("Debug")]
+	public List<GameObject> units = new List<GameObject>();
 
 
-    public void Start()
-    {
-        if (spawnOnStart)
-        {
-            StartCoroutine(EnemySpawn());
-        }
-    }
+	[Header("Enemies")]
+	public int enemies;
+
+	public float spawnInterval = 0f;
+
+	[Header("Waves")]
+	public int waveCount = 3;
+
+	public float waveInterval = 5f;
 
 
-    public void SpawnAll()
-    {
-        StartCoroutine(EnemySpawn());
-    }
+	public override void OnStartServer()
+	{
+		base.OnStartServer();
 
-   public void KillAll()
-   {
-       List<GameObject> tempUnits = new List<GameObject>(units);
-       foreach (var newEnemy in tempUnits)
-        {
-            newEnemy?.GetComponent<HealthComponent>().Death();
-        }
-   }
+		if (spawnOnStart)
+		{
+			StartCoroutine(EnemySpawn());
+		}
+	}
 
 
+	public void SpawnAll()
+	{
+		StartCoroutine(EnemySpawn());
+	}
 
-    public IEnumerator EnemySpawn()
-    {
-        for (int wcounter = 0; wcounter < waveCount; wcounter++)
-        {
-            currentWave = wcounter;
+	public void KillAll()
+	{
+		List<GameObject> tempUnits = new List<GameObject>(units);
+		foreach (var newEnemy in tempUnits)
+		{
+			newEnemy?.GetComponent<HealthComponent>().Death();
+		}
+	}
 
-            for (int counter = 0; counter < enemies; counter++)
-            {
-                monNum++;
-                posX = Random.Range(spawnAreaMin, spawnAreaMax);
-                posZ = Random.Range(spawnAreaMin, spawnAreaMax);
-                GameObject newEnemy = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ),
-                    Quaternion.identity);
-               // Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
-                units.Add(newEnemy);
-                newEnemy.GetComponent<HealthComponent>()?.deathEvent.AddListener(RemoveFromList);
-                yield return new WaitForSeconds(spawnInterval);
-            }
 
-            if (timedWaves)
-            {
-                yield return new WaitForSeconds(waveInterval);
-            }
+	public IEnumerator EnemySpawn()
+	{
+		// Server
+		if (isServer)
+		{
+			Debug.Log("Spawn", this);
+			for (int wcounter = 0; wcounter < waveCount; wcounter++)
+			{
+				currentWave = wcounter;
 
-            if (completedWaves)
-            {
-                while (units.Count > 0)
-                {
-                    yield return null;
-                }
+				for (int counter = 0; counter < enemies; counter++)
+				{
+					monNum++;
+					posX = Random.Range(spawnAreaMin, spawnAreaMax);
+					posZ = Random.Range(spawnAreaMin, spawnAreaMax);
+					GameObject newEnemy = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
+					// Debug.Log( spawnPrefab.name + monNum + " " + "Spawned");
+					units.Add(newEnemy);
+					newEnemy.GetComponent<HealthComponent>()?.deathEvent.AddListener(RemoveFromList);
+					
+					// Networking
+					NetworkServer.Spawn(newEnemy);
+					
+					
+					yield return new WaitForSeconds(spawnInterval);
+				}
 
-                yield return new WaitForSeconds(waveInterval);
-            }
-        }
-    }
+				if (timedWaves)
+				{
+					yield return new WaitForSeconds(waveInterval);
+				}
 
-    
+				if (completedWaves)
+				{
+					while (units.Count > 0)
+					{
+						yield return null;
+					}
 
-    private void RemoveFromList(HealthComponent arg0)
-    {
-        units.Remove(arg0.gameObject);
+					yield return new WaitForSeconds(waveInterval);
+				}
+			}
+		}
+	}
 
-        if (currentWave == waveCount - 1 && units.Count <= 0)
-        {
-            wavesCompletedEvent?.Invoke();
-        }
-    }
+
+	private void RemoveFromList(HealthComponent arg0)
+	{
+		units.Remove(arg0.gameObject);
+
+		if (currentWave == waveCount - 1 && units.Count <= 0)
+		{
+			wavesCompletedEvent?.Invoke();
+		}
+	}
 }
