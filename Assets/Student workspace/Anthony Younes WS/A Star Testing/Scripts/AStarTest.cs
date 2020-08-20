@@ -180,7 +180,7 @@ namespace AnthonyY
                 foreach (Node n in nodeArray)
                 {
                     Gizmos.color = n.walkable ? Color.white : Color.red;
-                    Gizmos.DrawCube(n.worldPosition, Vector3.one);
+                    Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                 }
             }
 
