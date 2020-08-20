@@ -311,7 +311,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 				return;
 			}
 
-			GameObject playerInstance = Instantiate(physicalPlayerPrefab, spawnPoints[nextIndex].position, spawnPoints[nextIndex].rotation);
+			GameObject playerInstance = Instantiate(physicalPlayerPrefab, spawnPoints[nextIndex].position + new Vector3(0,1,0), spawnPoints[nextIndex].rotation);
 
 			float maxHeight =0, minHeight = 0;
 
