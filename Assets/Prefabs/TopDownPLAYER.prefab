@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 802036457}
   - component: {fileID: 802036456}
   - component: {fileID: 6652313427199698561}
+  - component: {fileID: 1095455084552709738}
   m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
@@ -614,6 +615,21 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 2063307386975068432}
+--- !u!114 &1095455084552709738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968880965806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2a4b73c57032a4d863b78e389dc2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6582501386692850780
 GameObject:
   m_ObjectHideFlags: 0
