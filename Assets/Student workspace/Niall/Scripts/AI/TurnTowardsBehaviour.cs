@@ -16,10 +16,12 @@ namespace Niall
         public void Start()
         {
             lineOfSight = GetComponent<LineOfSight>();
+
         }
 
         public void Update()
         {
+            
             if (lineOfSight.haveLOS && FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
