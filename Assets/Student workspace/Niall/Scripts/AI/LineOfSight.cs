@@ -25,28 +25,24 @@ namespace Niall
         {
             foreach (Transform target in targets)
             {
-
+                haveLOS = false;
 
                 RaycastHit hit;
-                Debug.DrawRay(eyes.position, eyes.forward * range, Color.red);
+                Debug.DrawRay(eyes.position, eyes.forward * range, Color.white);
                 if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
                 {
                     Debug.Log(this.name + " found Target! = " + hit.collider.name);
                 }
-
-                //  TODO Only look at target when a clear line of sight is available (no objects between this and target.)
+                
                 RaycastHit hitt;
-                Debug.DrawLine(eyes.position, target.position, Color.white);
+               
                 if (Physics.Linecast(eyes.position, target.position, out hitt))
                 {
-                    if (hitt.collider != target.GetComponent<Collider>())
-                    {
-                        haveLOS = false;
-                    }
-                    else
+                    if (hitt.collider == target.GetComponent<Collider>())
                     {
                         haveLOS = true;
                     }
+                    Debug.DrawLine(eyes.position, target.position, Color.red);
                 }
             }
         }
