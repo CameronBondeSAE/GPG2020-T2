@@ -67,8 +67,6 @@ namespace AnthonyY
         private Node[,] nodeArray;
         private float nodeDiameter;
         public float nodeRadius;
-        private Renderer rd;
-        private Vector3 checkNodeBoundThreshold;
 
         private List<Node> openNodes; //nodes that have been visited but not been expanded
 
@@ -76,9 +74,7 @@ namespace AnthonyY
 
         
         private void Awake()
-        {        
-            rd = GetComponent<Renderer>();
-          
+        {
             nodeDiameter = nodeRadius * 2;
             gridSizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);
             gridSizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);
@@ -97,13 +93,12 @@ namespace AnthonyY
         /// </summary>
         public void CreateNodes(int startX, int endX, int startY, int endY)
         {
-
             Vector3 worldBottomLeft =
                 transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
             
             for (int x = startX; x < endX; x++)
             {
-                for (int y = endY; y < startY; y++)
+                for (int y = startY; y < endY; y++)
                 {
                     Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) +
                                          Vector3.forward * (y * nodeDiameter + nodeRadius);
@@ -116,7 +111,7 @@ namespace AnthonyY
                     {
                         walkable = false;
                     }
-            
+                    
                     Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
                 }
             
@@ -181,7 +176,7 @@ namespace AnthonyY
                 foreach (Node n in nodeArray)
                 {
                     Gizmos.color = n.walkable ? Color.white : Color.red;
-                    Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
+                    Gizmos.DrawCube(n.worldPosition, Vector3.one);
                 }
             }
 
