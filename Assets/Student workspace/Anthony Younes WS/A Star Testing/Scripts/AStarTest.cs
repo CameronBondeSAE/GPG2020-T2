@@ -102,15 +102,19 @@ namespace AnthonyY
                 {
                     Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) +
                                          Vector3.forward * (y * nodeDiameter + nodeRadius);
+                   
                     bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unTouchableSurface));
-                    if (nodeArray[x, y] == new Node(walkable, worldPoint, x, y))
+                    if (nodeArray[x, y] != null)
                     {
-                        walkable = true;
+                        
                     }
                     else
                     {
-                        walkable = false;
+                       
                     }
+
+
+                    nodeArray[x, y] = new Node(walkable, worldPoint, x, y);
                     
                     Vector2Int gridPos = new Vector2Int(gridSize.x, gridSize.y);
                 }
