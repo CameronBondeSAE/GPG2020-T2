@@ -57,6 +57,14 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenPauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d616cba-54ac-4764-936c-c0a101cf60d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -191,6 +199,28 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4cb4b63-b525-4d14-a4ae-fdc0784110b4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92d7e4de-156b-4e3a-a3bd-9bacae04136b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -231,6 +261,7 @@ public class @GameControls : IInputActionCollection, IDisposable
         m_InGame_Look = m_InGame.FindAction("Look", throwIfNotFound: true);
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
         m_InGame_MousePosition = m_InGame.FindAction("MousePosition", throwIfNotFound: true);
+        m_InGame_OpenPauseMenu = m_InGame.FindAction("OpenPauseMenu", throwIfNotFound: true);
         // In Menu
         m_InMenu = asset.FindActionMap("In Menu", throwIfNotFound: true);
         m_InMenu_Newaction = m_InMenu.FindAction("New action", throwIfNotFound: true);
@@ -288,6 +319,7 @@ public class @GameControls : IInputActionCollection, IDisposable
     private readonly InputAction m_InGame_Look;
     private readonly InputAction m_InGame_Jump;
     private readonly InputAction m_InGame_MousePosition;
+    private readonly InputAction m_InGame_OpenPauseMenu;
     public struct InGameActions
     {
         private @GameControls m_Wrapper;
@@ -297,6 +329,7 @@ public class @GameControls : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_InGame_Look;
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
         public InputAction @MousePosition => m_Wrapper.m_InGame_MousePosition;
+        public InputAction @OpenPauseMenu => m_Wrapper.m_InGame_OpenPauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +354,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @MousePosition.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnMousePosition;
+                @OpenPauseMenu.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnOpenPauseMenu;
+                @OpenPauseMenu.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnOpenPauseMenu;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -340,6 +376,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @OpenPauseMenu.started += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
+                @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
             }
         }
     }
@@ -384,6 +423,7 @@ public class @GameControls : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnOpenPauseMenu(InputAction.CallbackContext context);
     }
     public interface IInMenuActions
     {
