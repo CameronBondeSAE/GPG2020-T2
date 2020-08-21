@@ -23,6 +23,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public IPossessable possessable;
 
+        public GameObject pauseMenu;
+
         private GameNetworkManager Room
         {
             get
@@ -80,8 +82,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             Room.GamePlayers.Add(this);
 
-            Debug.Log("Connection = " + NetworkClient.connection.identity.netId);
-            Debug.Log("Player GO = " + netIdentity.netId);
+            // Debug.Log("Connection = " + NetworkClient.connection.identity.netId);
+            // Debug.Log("Player GO = " + netIdentity.netId);
         }
 
 		
@@ -93,6 +95,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 			
 		}
 
+        
         public override void OnStopClient()
         {
             Room.GamePlayers.Remove(this);
@@ -119,8 +122,20 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 _gameControls.InGame.Fire.canceled += FireOnInputChange;
                 _gameControls.InGame.Jump.performed += JumpOnInputChange;
                 _gameControls.InGame.Jump.canceled += JumpOnInputChange;
-            //}
+                _gameControls.InGame.OpenPauseMenu.performed += OpenPauseMenu;
+                //}
 
+        }
+
+        
+        private void OpenPauseMenu(InputAction.CallbackContext obj)
+        {
+            pauseMenu.SetActive(true);
+        }
+
+        public void ResumeGame()
+        {
+            pauseMenu.SetActive(false);
         }
 
         private void JumpOnInputChange(InputAction.CallbackContext obj)

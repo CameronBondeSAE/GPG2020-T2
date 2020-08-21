@@ -11,21 +11,29 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
     /// </summary>
     public class NetworkLobbyPlayer : NetworkBehaviour
     {
-        
         //if you wish to change the max amount of players change the array number in the two text fields below
-        [Header("UI")] [SerializeField] private GameObject lobbyUI = null;
-        [SerializeField] private TMP_Text[] playerNameTexts;
-        [SerializeField] private TMP_Text[] playerReadyTexts;
-        [SerializeField] private Button startGameButton = null;
+        [Header("UI")]
+        [SerializeField]
+        private GameObject lobbyUI = null;
 
+        [SerializeField]
+        private TMP_Text[] playerNameTexts;
+
+        [SerializeField]
+        private TMP_Text[] playerReadyTexts;
+
+        [SerializeField]
+        private Button startGameButton = null;
 
 
         public static event Action<NetworkLobbyPlayer> OnInstantiated;
-        
+
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string DisplayName = "Loading...";
+
         [SyncVar(hook = nameof(HandlePlayerColorChanged))]
         public Color PlayerColor;
+
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
         public bool IsReady = false;
 
@@ -57,13 +65,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         private void OnEnable()
         {
-
             GameNetworkManager.OnGameStart += hideUI;
         }
 
         public void hideUI()
         {
-            lobbyUI.SetActive(false);
+            if (lobbyUI != null) lobbyUI.SetActive(false);
         }
 
         public override void OnStartAuthority()
@@ -71,8 +78,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             CmdSetDisplayName(PlayerInfoInput.DisplayName);
             CmdSetPlayerColor(PlayerInfoInput.PlayerColor);
             lobbyUI.SetActive(true);
-
-            
         }
 
         public override void OnStartClient()
@@ -81,7 +86,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             UpdateDisplay();
             OnInstantiated?.Invoke(this);
-
         }
 
         public override void OnStopClient()
@@ -100,12 +104,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             UpdateDisplay();
         }
-        
+
         public void HandlePlayerColorChanged(Color oldValue, Color newValue)
         {
             UpdateDisplay();
         }
-        
+
 
         private void UpdateDisplay()
         {
@@ -165,21 +169,49 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public void CmdReadyUp()
         {
             IsReady = !IsReady;
-            
+
             Room.NotifyPlayersOfReadyState();
         }
 
         [Command]
         public void CmdStartGame()
         {
-
             if (Room.RoomPlayers[0].connectionToClient != connectionToClient)
             {
                 return;
             }
-            Room.StartGame();
-    
 
+            Room.StartGame();
+        }
+
+        public void DisconnectFromGame()
+        {
+            if (isLeader)
+            {
+                room.StopHost();
+            }
+            else
+            {
+                room.StopClient();
+            }
+        }
+
+        [SerializeField]
+        private Button restartButton;
+
+        public void RestartLevel()
+        {
+            if (isLeader)
+            {
+                room.RestartLevel();
+                restartButton.interactable = true;
+            }
+            else
+            {
+                restartButton.interactable = false;
+                //only restart if you are the leader
+                return;
+            }
         }
     }
 }
