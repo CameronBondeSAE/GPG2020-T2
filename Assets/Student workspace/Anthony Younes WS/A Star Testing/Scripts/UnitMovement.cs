@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using alexM;
 using AnthonyY;
 using UnityEngine;
 
@@ -11,18 +12,29 @@ public class UnitMovement : MonoBehaviour
     public float speed = 1;
     public Vector3[] path;
     public int targetIndex;
-    public bool ConstantRecalculate;
+    public bool constantRecalculate;
+    public WaypointMovement waypointMovement;
 
+    private void Awake()
+    {
+        waypointMovement.TargetChanged += ReCalculatePath;
+    }
+
+    private void ReCalculatePath(Transform obj)
+    {
+        PathRequestManager.RequestPath(transform.position,obj.position, OnPathFound);
+        Debug.Log(obj.position.ToString());
+    }
 
     private void Update()
     {
-        if (ConstantRecalculate == true)
+        if (constantRecalculate == true)
         {
-            RecalculatePath();
+           RecalculatePathHack();
         }
     }
 
-    public void RecalculatePath() {
+    public void RecalculatePathHack() {
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
     }
 
@@ -36,22 +48,25 @@ public class UnitMovement : MonoBehaviour
     }
 
     IEnumerator FollowPath() {
-        Vector3 currentWaypoint = path[0];
-        while (true) {
-            if (transform.position == currentWaypoint) {
-                targetIndex ++;
-                if (targetIndex >= path.Length)
-                {
-                    targetIndex = 0;
-                    path = new Vector3[0];
-                    yield break;
+        if (path != null)
+        {
+            Vector3 currentWaypoint = path[0];
+            while (true) {
+                if (transform.position == currentWaypoint) {
+                    targetIndex ++;
+                    if (targetIndex >= path.Length)
+                    {
+                        targetIndex = 0;
+                        path = new Vector3[0];
+                        yield break;
+                    }
+                    currentWaypoint = path[targetIndex];
                 }
-                currentWaypoint = path[targetIndex];
+
+                transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,speed * Time.deltaTime);
+                yield return null;
+
             }
-
-            transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,speed * Time.deltaTime);
-            yield return null;
-
         }
     }
 

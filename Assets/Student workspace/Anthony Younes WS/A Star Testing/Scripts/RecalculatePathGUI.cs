@@ -14,7 +14,7 @@ public class RecalculatePathGUI : Editor
 
         if (GUILayout.Button("ReCalculate Path"))
         {
-            myscript.RecalculatePath();
+            myscript.RecalculatePathHack();
         }
         base.OnInspectorGUI();
     }

@@ -25,9 +25,9 @@ public class ReScanPath : MonoBehaviour
     
     IEnumerator ScanForNodes()
     {
+        scanNodeEvent?.Invoke();
         yield return new WaitForSeconds(rescanTime);
         aStar.CreateNodes(0,aStar.gridSize.x,0,aStar.gridSize.y);
-       
     }
 
     
