@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7530270861744274220}
   - component: {fileID: 9009514170641065976}
   - component: {fileID: 3795543327605494697}
-  - component: {fileID: 5149952759796197071}
+  - component: {fileID: 3953156352837807238}
   m_Layer: 0
   m_Name: TriggerZone(AlexM)
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1408443200586379761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.7616, y: 6.7616, z: 6.7616}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -216,23 +216,23 @@ MonoBehaviour:
   - {x: 0, y: 1, z: 0}
   - {x: 1, y: 1, z: 0}
   - {x: 1, y: 0, z: 0}
-  - {x: 1, y: 0, z: -1}
+  - {x: 0.99999994, y: 0.000000014859694, z: -1.4276074}
   - {x: 1, y: 1, z: 0}
-  - {x: 1, y: 1, z: -1}
-  - {x: 1, y: 0, z: -1}
-  - {x: 0, y: 0, z: -1}
-  - {x: 1, y: 1, z: -1}
-  - {x: 0, y: 1, z: -1}
-  - {x: 0, y: 0, z: -1}
+  - {x: 0.99999994, y: 0.99999994, z: -1.4276074}
+  - {x: 0.99999994, y: 0.000000014859694, z: -1.4276074}
+  - {x: -0.000000026852945, y: 0.000000014859694, z: -1.4276074}
+  - {x: 0.99999994, y: 0.99999994, z: -1.4276074}
+  - {x: -0.000000026852945, y: 0.99999994, z: -1.4276074}
+  - {x: -0.000000026852945, y: 0.000000014859694, z: -1.4276074}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1, z: -1}
+  - {x: -0.000000026852945, y: 0.99999994, z: -1.4276074}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 1, y: 1, z: 0}
-  - {x: 0, y: 1, z: -1}
-  - {x: 1, y: 1, z: -1}
-  - {x: 0, y: 0, z: -1}
-  - {x: 1, y: 0, z: -1}
+  - {x: -0.000000026852945, y: 0.99999994, z: -1.4276074}
+  - {x: 0.99999994, y: 0.99999994, z: -1.4276074}
+  - {x: -0.000000026852945, y: 0.000000014859694, z: -1.4276074}
+  - {x: 0.99999994, y: 0.000000014859694, z: -1.4276074}
   - {x: 0, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   m_Textures0:
@@ -240,24 +240,24 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: 1}
   - {x: -1, y: 1}
+  - {x: 0.000000041751427, y: 0}
+  - {x: -1.4276074, y: 0.000000014859694}
+  - {x: 0.000000041751427, y: 1}
+  - {x: -1.4276074, y: 0.99999994}
+  - {x: 0.99999994, y: 0.000000014859694}
+  - {x: -0.000000026852945, y: 0.000000014859694}
+  - {x: 0.99999994, y: 0.99999994}
+  - {x: -0.000000026852945, y: 0.99999994}
+  - {x: 1.4276074, y: 0.000000014859694}
   - {x: 0, y: 0}
-  - {x: -1, y: 0}
+  - {x: 1.4276074, y: 0.99999994}
   - {x: 0, y: 1}
-  - {x: -1, y: 1}
-  - {x: 1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  - {x: 0, y: -1}
-  - {x: -1, y: -1}
+  - {x: 0, y: 0.000000041751427}
+  - {x: 1, y: 0.000000041751427}
+  - {x: -0.000000026852945, y: -1.4276074}
+  - {x: 0.99999994, y: -1.4276074}
+  - {x: 0.000000026852945, y: -1.4276074}
+  - {x: -0.99999994, y: -1.4276074}
   - {x: 0, y: 0}
   - {x: -1, y: 0}
   m_Textures2: []
@@ -267,18 +267,18 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
+  - {x: 0.000000041751427, y: 0, z: 1, w: -1}
+  - {x: 0.000000041751427, y: 0, z: 1, w: -1}
+  - {x: 0.000000041751427, y: 0, z: 1, w: -1}
+  - {x: 0.000000041751427, y: 0, z: 1, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
-  - {x: 0, y: 0, z: -1, w: -1}
+  - {x: -0.000000018809754, y: 0, z: -1, w: -1}
+  - {x: -0.000000018809754, y: 0, z: -1, w: -1}
+  - {x: -0.000000018809754, y: 0, z: -1, w: -1}
+  - {x: -0.000000018809754, y: 0, z: -1, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
@@ -313,7 +313,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &5149952759796197071
+--- !u!114 &3953156352837807238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,15 +322,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408443200586379761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f2101f8d8d6914e9b26cf8931aad87, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d41f0cbdd7f90468d6edf869b9a6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressedEvent:
+  triggeredEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: alexM.Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   releasedEvent:
     m_PersistentCalls:
-      m_Calls: []
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: alexM.Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isUsingColourSystem: 0
+  targetMat: {fileID: 0}

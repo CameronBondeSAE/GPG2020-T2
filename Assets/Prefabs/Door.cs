@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AJ;
 using Mirror;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,16 +10,22 @@ namespace alexM
 {
 	public class Door : NetworkBehaviour
 	{
-		public GameObject target;
-		[HideInInspector] public GameObject originalTarget;
-		public Vector3 startPos, targetPos, doorPos;
-		public float speed;
 		
-		[SyncVar] 
-		public bool isOpening, isClosing;
+		[Header("Settings")]
+		public float speed;
 
+		public bool autoClose;
+		public float timeToClose;
+		
+		[HideInInspector, SyncVar] public bool isOpening, isClosing;
+
+		[Header("Door Parts")]
+		public GameObject hinge;
 		public GameObject door;
-
+		public GameObject target;
+		private ColourChanger _colourChanger;
+		private GameObject originalTarget;
+		private Vector3 startPos, targetPos, doorPos;
 		public enum State
 		{
 			Opened,
@@ -27,28 +34,26 @@ namespace alexM
 			Closing
 		}
 
+		
+		[Header("States and Events")]
 		public State state = State.Closed;
 
 		public UnityEvent openedEvent, openingEvent;
 		public UnityEvent closedEvent, closingEvent;
 
 
-		// Start is called before the first frame update
 		void Awake()
 		{
+			if (GetComponent<ColourChanger>() != null)
+			{
+				_colourChanger = GetComponent<ColourChanger>();
+				_colourChanger.currentColor = door.GetComponent<Renderer>().material.color;
+			}
+			
 			originalTarget = target;
-			startPos = door.transform.position;
+			startPos = hinge.transform.position;
 			doorPos = startPos;
 		}
-
-		// void SetTarget(GameObject tgt)
-		// {
-		// 	if (target != null)
-		// 	{
-		// 		target = tgt;
-		// 		targetPos = target.transform.position;
-		// 	}
-		// }
 
 		public void Open()
 		{
@@ -58,16 +63,6 @@ namespace alexM
 				state = State.Opening;
 				openingEvent?.Invoke();
 			}
-			
-			// if (!isOpening && !isClosing)
-			// {
-			// 	targetPos = target.transform.position;
-			// 	isOpening = true;
-			// }
-			// else
-			// {
-			// 	isOpening = false;
-			// }
 		}
 
 		public void Close()
@@ -78,21 +73,11 @@ namespace alexM
 				state = State.Closing;
 				closingEvent?.Invoke();
 			}
-			
-			// if (!isClosing && !isOpening)
-			// {
-			// 	targetPos = startPos;
-			// 	isClosing = true;
-			// }
-			// else
-			// {
-			// 	isClosing = false;
-			// }
 		}
 
 		public bool isReached(Vector3 tgt)
 		{
-			var position = door.transform.position;
+			var position = hinge.transform.position;
 			var dist = Vector3.Distance(position, tgt);
 			doorPos = position;
 
@@ -106,33 +91,75 @@ namespace alexM
 			}
 		}
 
+		IEnumerator doWait(float cd)
+		{
+			yield return new WaitForSeconds(cd);
+			Close();
+		}
+
 		private void Update()
 		{
-			//Do move stuff here
-			if (state == State.Opening)
-			{
-				//openingEvent?.Invoke();
-				//lerp to targetPos
-				door.transform.position = Vector3.MoveTowards(doorPos, targetPos, 1f * Time.deltaTime * speed);
+			// //Old movement stuff
+			// if (state == State.Opening)
+			// {
+			// 	//openingEvent?.Invoke();
+			// 	//lerp to targetPos
+			// 	hinge.transform.position = Vector3.MoveTowards(doorPos, targetPos, 1f * Time.deltaTime * speed);
+			//
+			// 	if (isReached(target.transform.position))
+			// 	{
+			// 		openedEvent?.Invoke();
+			// 		state = State.Opened;
+			// 	}
+			// }
+			// else if (state == State.Closing)
+			// {
+			// 	//closingEvent?.Invoke();
+			// 	hinge.transform.position =
+			// 		Vector3.MoveTowards(hinge.transform.position, startPos, 1f * Time.deltaTime * speed);
+			//
+			// 	if (isReached(startPos))
+			// 	{
+			// 		closedEvent?.Invoke();
+			// 		state = State.Closed;
+			// 	}
+			// }
 
-				if (isReached(target.transform.position))
-				{
+			switch (state)
+			{
+				case State.Opening:
+					openingEvent?.Invoke();
+					hinge.transform.position = Vector3.MoveTowards(doorPos, targetPos, 1f * Time.deltaTime * speed);
+
+					if (isReached(target.transform.position))
+					{
+						state = State.Opened;
+					}
+					break;
+				case State.Opened:
+					//I would like to check if the player is still inside the triggerzone but havent throught of a great way to do this yet.
 					openedEvent?.Invoke();
-					state = State.Opened;
-				}
-			}
-			else if (state == State.Closing)
-			{
-				//closingEvent?.Invoke();
-				door.transform.position =
-					Vector3.MoveTowards(door.transform.position, startPos, 1f * Time.deltaTime * speed);
+					
+					if (autoClose)
+					{
+						StartCoroutine(doWait(timeToClose));	
+					}
+					break;
+				case State.Closing:
+					closingEvent?.Invoke();
+					hinge.transform.position = Vector3.MoveTowards(hinge.transform.position, startPos, 1f * Time.deltaTime * speed);
 
-				if (isReached(startPos))
-				{
+					if (isReached(startPos))
+					{
+						state = State.Closed;
+					}
+					break;
+				case State.Closed:
 					closedEvent?.Invoke();
-					state = State.Closed;
-				}
+					break;
 			}
+			
+			
 		}
 	}
 }
