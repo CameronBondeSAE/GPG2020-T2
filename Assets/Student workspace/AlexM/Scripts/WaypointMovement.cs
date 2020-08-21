@@ -97,13 +97,6 @@ namespace alexM
 				}
 			}
 
-
-			if (_targetStatus == TargetStatus.NoTarget)
-			{
-				_targetId = 0;
-				TargetSetup();
-			}
-
 			_collider = GetComponent<Collider>();
 
 			
@@ -114,6 +107,15 @@ namespace alexM
 			else
 			{
 				RB.useGravity = true;
+			}
+		}
+
+		private void Start()
+		{
+			if (_targetStatus == TargetStatus.NoTarget)
+			{
+				_targetId = 0;
+				TargetSetup();
 			}
 		}
 
