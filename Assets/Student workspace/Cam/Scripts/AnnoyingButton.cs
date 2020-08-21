@@ -12,7 +12,8 @@ public class AnnoyingButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LineOfSight.changedLOS.AddListener(SawPlayerStartMoving);
+		// WaypointMovement.activate = false;
+        // LineOfSight.changedLOS.AddListener(SawPlayerStartMoving);
     }
 
 	private void SawPlayerStartMoving(bool arg0)
@@ -20,7 +21,7 @@ public class AnnoyingButton : MonoBehaviour
 		// If it saw ANY player
 		if (arg0 == true)
 		{
-			// WaypointMovement.Start();
+			// WaypointMovement.activate = true;
 		}
 	}
 }

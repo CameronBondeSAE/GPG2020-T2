@@ -12,6 +12,9 @@ namespace alexM
 
 
 		[Header("Object Settings")]
+		public bool activate = true;
+		[Tooltip("You can disable movement if you want to do your own")]
+		public bool movement = true;
 		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>")]
 		public bool useGravity = false;
 		[Tooltip("This option will determine whether or not the object will move directly AT the target, or only its X and Z positions (Staying on the Y pos it is currently at.)")]
@@ -30,7 +33,8 @@ namespace alexM
 		[Header("Optional/Debug")]
 		public bool AttachRigidbody;
 		public Transform target;
-		
+
+		public event Action<Transform> TargetChanged;
 		
 		private enum MoveType
 		{
@@ -72,8 +76,9 @@ namespace alexM
 					if (!gameObject.GetComponent<Rigidbody>())
 					{
 						gameObject.AddComponent<Rigidbody>();
-						RB = gameObject.GetComponent<Rigidbody>();
+						RB             = gameObject.GetComponent<Rigidbody>();
 						RB.constraints = RigidbodyConstraints.FreezeRotation;
+						// RB.isKinematic = true;
 					}
 				}
 				else
@@ -101,6 +106,15 @@ namespace alexM
 
 			_collider = GetComponent<Collider>();
 
+			
+			if (!useGravity)
+			{
+				RB.useGravity = false;
+			}
+			else
+			{
+				RB.useGravity = true;
+			}
 		}
 
 		bool isReached()
@@ -139,7 +153,9 @@ namespace alexM
 			target = wayPoints[_targetId].transform;
 			_dir = (target.position - transform.position).normalized;
 			_dir = new Vector3(_dir.x, 0, _dir.z);
-			_targetStatus = TargetStatus.TargetFound;	
+			_targetStatus = TargetStatus.TargetFound;
+
+			TargetChanged?.Invoke(target);
 		}
 		
 		void SelectTarget()
@@ -220,13 +236,16 @@ namespace alexM
 
 		private void FixedUpdate()
 		{
-			if (_targetStatus == TargetStatus.NoTarget || isReached())
+			if (activate)
 			{
-				SelectTarget();
-			}
-			else if (_targetStatus == TargetStatus.TargetFound && !isReached())
-			{
-				MoveTo(target);
+				if (_targetStatus == TargetStatus.NoTarget || isReached())
+				{
+					SelectTarget();
+				}
+				else if (movement && _targetStatus == TargetStatus.TargetFound && !isReached())
+				{
+					MoveTo(target);
+				}
 			}
 		}
 	}
