@@ -7,19 +7,17 @@ using ReGoap.Core;
 using ReGoap.Unity;
 using UnityEngine;
 
-namespace AnthonyY
+public class BezerkerAction :  ReGoapAction<string,object>
 {
-    public class CanSeePlayerAction : ReGoapAction<string,object>
-{
-    public bool canSeePlayer = true;
-    public LineOfSight lineOfSight;
-    protected override void Awake()
+    public float attackPower;
+    public Rigidbody rb;
+  protected override void Awake()
     {
         base.Awake();
         Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        effects.Set("Bezerker",true);
-        
-        
+        rb = GetComponent<Rigidbody>();
+        preconditions.Set("canSeePlayer",true);
+        effects.Set("killGuy", true);
     }
     
     public override void Run(IReGoapAction<string, object> previous, IReGoapAction<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done,
@@ -27,12 +25,11 @@ namespace AnthonyY
     {
         base.Run(previous, next, settings, goalState, done, fail);
         //Action Code
-        lineOfSight.Los();
-        
+        rb.AddForce(transform.forward * attackPower,ForceMode.Impulse);
+
         //its successful
         doneCallback(this);
     }
-    
 
 //Record the action into the memory
     public override void Exit(IReGoapAction<string, object> next)
@@ -47,4 +44,3 @@ namespace AnthonyY
     }
 }
 
-}
