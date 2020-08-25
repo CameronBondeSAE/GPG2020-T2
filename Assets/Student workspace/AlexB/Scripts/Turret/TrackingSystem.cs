@@ -8,22 +8,26 @@ namespace AJ
     {
         public float speed = 3.0f;
         public GameObject m_target = null;
-        Vector3 m_lastKnownPosition = Vector3.zero;
-        Quaternion m_lookAtRotation;
+        Vector3 lastKnownPosition = Vector3.zero;
+        Quaternion lookAtRotation;
 
-        // Update is called once per frame
-        void Update()
+		void SearchState()
+		{
+			
+		}
+		
+        void AttackState()
         {
             if (m_target)
             {
-                if (m_lastKnownPosition != m_target.transform.position)
+                if (lastKnownPosition != m_target.transform.position)
                 {
-                    m_lastKnownPosition = m_target.transform.position;
-                    m_lookAtRotation = Quaternion.LookRotation(m_lastKnownPosition - transform.position);
+                    lastKnownPosition = m_target.transform.position;
+                    lookAtRotation = Quaternion.LookRotation(lastKnownPosition - transform.position);
                 }
-                if (transform.rotation != m_lookAtRotation)
+                if (transform.rotation != lookAtRotation)
                 {
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, m_lookAtRotation, speed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtRotation, speed * Time.deltaTime);
                 }
             }
         }
