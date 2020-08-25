@@ -2016,6 +2016,7 @@ MonoBehaviour:
   playerSpawnSystem: {fileID: 5861387322311652483, guid: 2a31497c133919941b4780b5378c4dd7,
     type: 3}
   lobbyUI: {fileID: 6181736371903567480}
+  nameInputUI: {fileID: 6181736370856029006}
   mainMenu: {fileID: 6181736371995921298}
   useSameScene: 1
   heightOffset: 1.5
