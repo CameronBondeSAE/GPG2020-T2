@@ -24,6 +24,8 @@ public class SpawnManager : NetworkBehaviour
 	[Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
 	public bool completedWaves;
 
+	public int WaveType;
+
 	private int monNum;
 	private int currentWave;
 
