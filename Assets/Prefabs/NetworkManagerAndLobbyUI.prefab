@@ -1738,7 +1738,7 @@ MonoBehaviour:
   lobbyUI: {fileID: 6181736371903567480}
   mainMenu: {fileID: 6181736371995921298}
   useSameScene: 1
-  heightOffset: 0
+  heightOffset: 1.5
 --- !u!114 &6181736370761581533
 MonoBehaviour:
   m_ObjectHideFlags: 0
