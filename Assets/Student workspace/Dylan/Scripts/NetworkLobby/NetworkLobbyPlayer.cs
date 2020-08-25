@@ -204,13 +204,12 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             if (isLeader)
             {
                 room.RestartLevel();
-                restartButton.interactable = true;
+                restartButton.gameObject.SetActive(true);
             }
             else
             {
-                restartButton.interactable = false;
+                restartButton.gameObject.SetActive(false);
                 //only restart if you are the leader
-                return;
             }
         }
     }
