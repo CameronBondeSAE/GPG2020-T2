@@ -7,23 +7,45 @@ namespace AJ
     public class TrackingSystem : MonoBehaviour
     {
         public float speed = 3.0f;
-        public GameObject m_target = null;
-        Vector3 m_lastKnownPosition = Vector3.zero;
-        Quaternion m_lookAtRotation;
+        public GameObject target = null;
+        Vector3 lastKnownPosition = Vector3.zero;
+        Quaternion lookAtRotation;
+
+        private EventStateManager stateManager;
+        public EventState SearchState;
+        public EventState AttackState;
+
+        private void Start()
+        {
+            stateManager = new EventStateManager();
+            SearchState = new EventState();
+            SearchState.Execute = SearchStateUpdate;
+            stateManager.ChangeState(SearchState);
+        }
+
+        private void Update()
+        {
+            stateManager.ExecuteCurrentState();
+        }
+
+        void SearchStateUpdate()
+        {
+            stateManager.ChangeState(AttackState);
+        }
 
         // Update is called once per frame
-        void Update()
+        void AttackStateUpdate()
         {
-            if (m_target)
+            if (target)
             {
-                if (m_lastKnownPosition != m_target.transform.position)
+                if (lastKnownPosition != target.transform.position)
                 {
-                    m_lastKnownPosition = m_target.transform.position;
-                    m_lookAtRotation = Quaternion.LookRotation(m_lastKnownPosition - transform.position);
+                    lastKnownPosition = target.transform.position;
+                    lookAtRotation = Quaternion.LookRotation(lastKnownPosition - transform.position);
                 }
-                if (transform.rotation != m_lookAtRotation)
+                if (transform.rotation != lookAtRotation)
                 {
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, m_lookAtRotation, speed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtRotation, speed * Time.deltaTime);
                 }
             }
         }
@@ -35,7 +57,7 @@ namespace AJ
                 return false;
             }
 
-            m_target = target;
+            target = target;
 
             return true;
         }
