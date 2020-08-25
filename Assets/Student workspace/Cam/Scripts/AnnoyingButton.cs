@@ -10,6 +10,7 @@ public class AnnoyingButton : MonoBehaviour
 	public  WaypointMovement WaypointMovement;
 	public  LineOfSight      LineOfSight;
 	private Vector3          target;
+	private float            speed =1f;
 
 	// Start is called before the first frame update
     void Awake()
@@ -26,7 +27,7 @@ public class AnnoyingButton : MonoBehaviour
 
 	private void Update()
 	{
-		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * 4f);
+		transform.position = Vector3.MoveTowards(transform.position, target, Mathf.PerlinNoise(Time.deltaTime * 4f,0 ) * speed);
 	}
 
 	private void SawPlayerStartMoving(bool arg0)
