@@ -4,23 +4,25 @@ using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEngine;
 
-namespace Student_workspace.Dylan.Scripts
+public class GeneralLevelLoader : MonoBehaviour
 {
-    public class GeneralLevelLoader : MonoBehaviour
-    {
-        public static event Action<string> LoadLevelEvent;
+    public static event Action<string> LoadLevelEvent;
 
-        [Scene]
-        public string levelToLoad;
-        private void OnCollisionEnter(Collision other)
+    [Scene]
+    public string levelToLoad;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null)
         {
-            if (other != null)
+            if(other.gameObject.GetComponent<PlayerControllerTopDown>())
             {
-                if(other.gameObject.GetComponent<PlayerControllerTopDown>())
-                {
-                    LoadLevelEvent?.Invoke(levelToLoad);
-                }
+                LoadLevel();
             }
         }
+    }
+
+    public void LoadLevel()
+    {
+        LoadLevelEvent?.Invoke(levelToLoad);
     }
 }
