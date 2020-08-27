@@ -38,7 +38,10 @@ namespace alexM
 		{
 			if (isUsingColourSystem)
 			{
-				targetColour = ColourChangerTarget.GetComponent<ColourChanger>().currentColor;	
+				if (ColourChangerTarget)
+				{
+					targetColour = ColourChangerTarget.GetComponent<ColourChanger>().currentColor;
+				}
 			}
 		}
 
