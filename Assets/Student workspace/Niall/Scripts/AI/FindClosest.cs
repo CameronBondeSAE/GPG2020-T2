@@ -9,10 +9,10 @@ namespace Niall
 {
     public class FindClosest : MonoBehaviour
     { 
-        PlayerControllerTopDown closestPlayer;
+        public PlayerControllerTopDown closestPlayer;
         private PlayerControllerTopDown[] players;
         public float playerDist;
-        public float closestPlayerDist;
+        public float closestPlayerDist = 10000f;
 
         private void Start()
         {
@@ -21,8 +21,7 @@ namespace Niall
 
         public void Update()
         {
-          //  float Maxdist = 999;
-           
+
             foreach (PlayerControllerTopDown player in players)
             {
                 playerDist = Vector3.Distance(transform.position, player.transform.position);
