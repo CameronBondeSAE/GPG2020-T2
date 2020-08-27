@@ -152,22 +152,21 @@ namespace alexM
 
 		void TargetSetup()
 		{
-			target = wayPoints[_targetId].transform;
-			_dir = (target.position - transform.position).normalized;
-			_dir = new Vector3(_dir.x, 0, _dir.z);
-			_targetStatus = TargetStatus.TargetFound;
+			if (wayPoints != null && wayPoints.Count > 0)
+			{
+				target = wayPoints[_targetId].transform;
+				_dir = (target.position - transform.position).normalized;
+				_dir = new Vector3(_dir.x, 0, _dir.z);
+				_targetStatus = TargetStatus.TargetFound;
 
-			TargetChanged?.Invoke(target);
+				TargetChanged?.Invoke(target);
+			}
 		}
 		
 		void SelectTarget()
 		{
-		#region CountAndReset
-
 			_listCount = wayPoints.Count;
 			
-		#endregion
-
 			switch (_currMoveType)
 			{
 				case MoveType.Ordered:
