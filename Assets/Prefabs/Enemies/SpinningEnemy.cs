@@ -61,8 +61,6 @@ public class SpinningEnemy : MonoBehaviour
                 }
                 break;
         }
-        
-        
     }
 
     private void OnTriggerEnter(Collider other)
