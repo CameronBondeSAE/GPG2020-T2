@@ -61,7 +61,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         
         public override void Start()
         {
-            Debug.Log("Level Loaded");
+            // Debug.Log("Level Loaded");
             // TODO move to UI ViewModel
             NetworkGamePlayer.OnInstantiated += UIOff;
             GeneralLevelLoader.LoadLevelEvent += LoadLevel;
