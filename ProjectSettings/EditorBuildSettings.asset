@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: 85736108e08ebac44bcc5fc6aee02a45
+  - enabled: 1
+    path: Assets/Scenes/CamsDungeon.unity
+    guid: 5e159185f5cdcd14db6836c1423b657d
+  - enabled: 1
+    path: Assets/Scenes/KAMIKAZI AND TEST LEVEL.unity
+    guid: e8105108a98acb045bc8990f4044d237
   m_configObjects: {}
