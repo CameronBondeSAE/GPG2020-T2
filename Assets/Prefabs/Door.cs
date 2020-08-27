@@ -41,6 +41,8 @@ namespace alexM
 		[Header("States and Events")]
 		public UnityEvent openedEvent, openingEvent;
 		public UnityEvent closedEvent, closingEvent;
+		
+		[SyncVar]
 		public State state = State.Closed;
 	#endregion
 		

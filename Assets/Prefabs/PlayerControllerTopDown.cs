@@ -120,6 +120,8 @@ namespace alexM
 			direction = dir;
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
+		
+		
 
 		private void FixedUpdate()
 		{
