@@ -17,9 +17,9 @@ namespace AJ
         void OnTriggerEnter(Collider other)
         {
             //Debug.Log(transform.name.ToString() +  " Hello");
-            if (other.gameObject.GetComponent<ColourChanger>())
+            if (other.transform.root.gameObject.GetComponent<ColourChanger>())
             {
-                other.gameObject.GetComponent<ColourChanger>().ChangeTo(myColor);
+                other.transform.root.gameObject.GetComponent<ColourChanger>().ChangeTo(myColor);
             }
         }
 
