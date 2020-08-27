@@ -12,6 +12,7 @@ namespace Niall
         public float force = 0.1f;
         private LineOfSight lineOfSight;
         public FindClosest FindClosest;
+        public bool playerfollow;
 
 
         public void Start()
@@ -23,9 +24,11 @@ namespace Niall
 
         public void Update()
         {
+            if (playerfollow)
+            {
+                FollowPos = FindClosest.closestPlayer.transform;
+            }
 
-            FollowPos = FindClosest.closestPlayer.transform;
-            
             if (lineOfSight.haveLOS && FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
