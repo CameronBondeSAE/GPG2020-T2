@@ -11,16 +11,20 @@ namespace Niall
         public Transform FollowPos;
         public float force = 0.1f;
         private LineOfSight lineOfSight;
+        public FindClosest FindClosest;
 
 
         public void Start()
         {
             lineOfSight = GetComponent<LineOfSight>();
+            
 
         }
 
         public void Update()
         {
+
+            FollowPos = FindClosest.closestPlayer.transform;
             
             if (lineOfSight.haveLOS && FollowPos != null)
             {

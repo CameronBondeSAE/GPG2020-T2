@@ -18,15 +18,17 @@ public class SpawnManager : NetworkBehaviour
 	public  float      spawnAreaMax;
 	public  bool       spawnOnStart = false;
 
-	[Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
-	public bool timedWaves;
+//	[Tooltip("Next wave will begin after 'Wave Interval' timer reaches 0")]
+	private bool timedWaves = false;
 
-	[Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
-	public bool completedWaves;
+//	[Tooltip("Next wave will begin when all enemies of current wave are destroyed.")]
+	private bool completedWaves = false;
 
+	[Tooltip("0 : Timed Waves (Next wave will begin after 'Wave Interval' timer reaches 0)" + "                                                  " + 
+	         "1 : Completed Waves (Next wave will begin when all enemies of current wave are destroyed)")]
 	public int WaveType;
 
-	private int monNum;
+	//private int monNum;
 	private int currentWave;
 
 	public UnityEvent wavesCompletedEvent;
@@ -53,6 +55,31 @@ public class SpawnManager : NetworkBehaviour
 		if (spawnOnStart)
 		{
 			StartCoroutine(EnemySpawn());
+		}
+	}
+
+	void Start()
+	{
+		if (WaveType == 0)
+		{
+			completedWaves = false;
+			timedWaves = true;
+		}
+
+		if (WaveType == 1)
+		{
+			timedWaves = false;
+			completedWaves = true;
+		}
+
+		if (WaveType >= 2)
+		{
+			WaveType = 1;
+		}
+
+		if (WaveType <= -1)
+		{
+			WaveType = 0;
 		}
 	}
 
@@ -84,7 +111,7 @@ public class SpawnManager : NetworkBehaviour
 
 				for (int counter = 0; counter < enemies; counter++)
 				{
-					monNum++;
+					//monNum++;
 					posX = Random.Range(spawnAreaMin, spawnAreaMax);
 					posZ = Random.Range(spawnAreaMin, spawnAreaMax);
 					GameObject newEnemy = Instantiate(spawnPrefab, transform.position + new Vector3(posX, 1, posZ), Quaternion.identity);
