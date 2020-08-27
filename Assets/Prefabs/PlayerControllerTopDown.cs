@@ -129,17 +129,18 @@ namespace alexM
 			GroundCheck();
 			if (!_isGrounded)
 			{
-				RB.AddForce((direction * moveForce) / 3);
+				// RB.AddForce((direction * moveForce) / 3);
 			}
 			else
 			{
 				RB.AddForce(direction * moveForce);
+
+				// Velocity cap
+				float oldYVel = RB.velocity.y; // Let's keep our Y speed, for jumping etc
+				RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+				RB.velocity = new Vector3(RB.velocity.x, oldYVel, RB.velocity.z);
 			}
 
-			// Velocity cap
-			float oldYVel = RB.velocity.y; // Let's keep our Y speed, for jumping etc
-			RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
-			RB.velocity = new Vector3(RB.velocity.x, oldYVel, RB.velocity.z);
 
 			// if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
 			// {

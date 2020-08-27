@@ -14,7 +14,7 @@ public class GeneralLevelLoader : MonoBehaviour
     {
         if (other != null)
         {
-            if(other.gameObject.GetComponent<PlayerControllerTopDown>())
+            if(other.transform.root.GetComponent<PlayerControllerTopDown>())
             {
                 LoadLevel();
             }

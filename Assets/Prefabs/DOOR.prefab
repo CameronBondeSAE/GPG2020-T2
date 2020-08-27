@@ -1147,9 +1147,17 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 00000000
+  m_SelectedEdges:
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  - a: 0
+    b: 0
+  m_SelectedVertices: 00000000000000000000000000000000
 --- !u!64 &1181243794175995851
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1175,6 +1183,8 @@ GameObject:
   - component: {fileID: 1181243794400126850}
   - component: {fileID: 8484998180918681108}
   - component: {fileID: 1181243794400126849}
+  - component: {fileID: 1305567152}
+  - component: {fileID: 276103029526096453}
   m_Layer: 0
   m_Name: DOOR
   m_TagString: Untagged
@@ -1191,7 +1201,7 @@ Transform:
   m_GameObject: {fileID: 1181243794400126851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0.75010014, z: -1}
-  m_LocalScale: {x: 2.2664, y: 2.2664, z: 2.2664}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1181243794164154150}
   - {fileID: 1181243793243096983}
@@ -1210,6 +1220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a244d604f35c12b41829cd33056cf794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1181243794400126849
 MonoBehaviour:
@@ -1225,17 +1237,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  target: {fileID: 1181243793243096976}
-  originalTarget: {fileID: 0}
   speed: 3
+  autoClose: 0
+  timeToClose: 0
   isOpening: 0
   isClosing: 0
   hinge: {fileID: 5875497365457106279}
   door: {fileID: 1181243794175995861}
-  state: 2
+  target: {fileID: 1181243793243096976}
   openedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: alexM.Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   openingEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1257,6 +1281,39 @@ MonoBehaviour:
   closingEvent:
     m_PersistentCalls:
       m_Calls: []
+  state: 2
+--- !u!114 &1305567152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181243794400126851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d123d85b42622f8478e3f03d580985ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current: 0
+  dieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &276103029526096453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181243794400126851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &5875497365457106279
 GameObject:
   m_ObjectHideFlags: 0
