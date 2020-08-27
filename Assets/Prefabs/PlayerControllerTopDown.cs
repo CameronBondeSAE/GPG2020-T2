@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using AJ;
-using DG.Tweening;
+﻿using AJ;
 using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
-using UnityEditor.Build.CacheServer;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 using NetworkBehaviour = Mirror.NetworkBehaviour;
 using NetworkIdentity = Mirror.NetworkIdentity;
 
@@ -17,7 +10,8 @@ namespace alexM
 {
 	public class PlayerControllerTopDown : NetworkBehaviour, IOwnable, IPossessable
 	{
-		public  float             speed, jumpForce;
+		public  float             moveForce, jumpForce;
+		public  float             maxSpeed;
 		public  Vector3           direction;
 		public  Rigidbody         RB;
 		public  GameObject        bottom, neck;
@@ -33,6 +27,7 @@ namespace alexM
 			get => _owner;
 			set => _owner = value;
 		}
+
 		[SerializeField]
 		private NetworkIdentity _owner;
 
@@ -42,10 +37,9 @@ namespace alexM
 		public override void OnStartServer()
 		{
 			base.OnStartServer();
-			
-			Debug.Log("Mine = "+netIdentity.netId + "Owner = "+netIdentity.connectionToClient.identity.netId);
-		}
 
+			Debug.Log("Mine = " + netIdentity.netId + "Owner = " + netIdentity.connectionToClient.identity.netId);
+		}
 
 
 		private void Start()
@@ -54,8 +48,7 @@ namespace alexM
 
 			cameraController = GetComponent<Camera_Controller>();
 
-			
-			
+
 			if (isServer)
 			{
 				RpcSyncOwner(Owner);
@@ -79,10 +72,8 @@ namespace alexM
 
 		private void CheckIfClient()
 		{
-			
 			if (isClient)
 			{
-
 				if (Owner != null)
 				{
 					if (Owner.isLocalPlayer)
@@ -112,35 +103,59 @@ namespace alexM
 			Owner = n;
 			CheckIfClient();
 		}
+
 		[ClientRpc]
 		public void RpcSyncPosessor(NetworkIdentity n)
 		{
-
 			possessor = n.gameObject.GetComponent<NetworkGamePlayer>();
-			
+
 			// Setting itself as the possessable in the game player may not be a good idea.
 			n.gameObject.GetComponent<NetworkGamePlayer>().possessable = ((IPossessable) this);
 		}
+
 		#endregion
-		
-		public void Movement(Vector2 dir,InputAction.CallbackContext ctx)
+
+		public void Movement(Vector2 dir, InputAction.CallbackContext ctx)
 		{
 			direction = dir;
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
 
-		 public void Jump(InputAction.CallbackContext ctx)
+		private void FixedUpdate()
 		{
-			
-			
+			//Do the stuff here
+			GroundCheck();
+			if (!_isGrounded)
+			{
+				RB.AddForce((direction * moveForce) / 3);
+			}
+			else
+			{
+				RB.AddForce(direction * moveForce);
+			}
+
+			// Velocity cap
+			float oldYVel = RB.velocity.y; // Let's keep our Y speed, for jumping etc
+			RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
+			RB.velocity = new Vector3(RB.velocity.x, oldYVel, RB.velocity.z);
+
+			// if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
+			// {
+			// 	Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
+			// 	//Debug.Log(hit.transform.name + " Was hit");
+			// }
+		}
+
+		public void Jump(InputAction.CallbackContext ctx)
+		{
 			if (GroundCheck())
-				{
-					RB.AddForce(direction.x, jumpForce, direction.z);
-				}
-				else
-				{
-					Debug.Log("Not Grounded, Can't jump!");
-				}
+			{
+				RB.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
+			}
+			else
+			{
+				Debug.Log("Not Grounded, Can't jump!");
+			}
 		}
 
 		bool GroundCheck()
@@ -168,14 +183,13 @@ namespace alexM
 		}
 
 
-
-		public void Aiming(Vector2 pos,InputAction.CallbackContext ctx)
+		public void Aiming(Vector2 pos, InputAction.CallbackContext ctx)
 		{
 			if (cameraController != null)
 			{
 				if (cameraController.cam != null)
 				{
-					Ray ray = cameraController.cam.ScreenPointToRay(pos);
+					Ray        ray = cameraController.cam.ScreenPointToRay(pos);
 					RaycastHit hit;
 
 					if (Physics.Raycast(ray, out hit))
@@ -194,52 +208,27 @@ namespace alexM
 			{
 				Debug.Log("noCamController");
 			}
-
 		}
 
-		private void FixedUpdate()
-		{
-	
-			
-			//Do the stuff here
-			GroundCheck();
-			if (!_isGrounded)			
-			{
-				RB.AddForce((direction * speed) / 3);
-				RB.velocity = Vector3.ClampMagnitude(RB.velocity, speed);
-			}
-			else
-			{				
-				RB.AddForce(direction * speed);
-				RB.velocity = Vector3.ClampMagnitude(RB.velocity, speed);
-			}
-
-			// if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
-			// {
-			// 	Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
-			// 	//Debug.Log(hit.transform.name + " Was hit");
-			// }
-		}
 		public void Fire(InputAction.CallbackContext ctx)
 		{
-			gun.Shoot(ctx);
+			if (!(gun is null)) gun.Shoot(ctx);
 		}
 
 		public void Interact(InputAction.CallbackContext ctx)
 		{
-			
 		}
+
 		public void Action1(InputAction.CallbackContext ctx)
 		{
-			
 		}
+
 		public void Action2(InputAction.CallbackContext ctx)
 		{
-		
 		}
+
 		public void Action3(InputAction.CallbackContext ctx)
 		{
-			
 		}
 	}
 }

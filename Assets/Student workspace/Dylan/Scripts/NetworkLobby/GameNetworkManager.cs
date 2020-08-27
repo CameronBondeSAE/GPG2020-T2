@@ -54,12 +54,14 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         [Header("Lobby")]
         public GameObject lobbyUI;
-
+        public GameObject nameInputUI;
         public GameObject mainMenu;
+        
         public bool useSameScene;
 
         public override void Start()
         {
+            Debug.Log("Level Loaded");
             // TODO move to UI ViewModel
             NetworkGamePlayer.OnInstantiated += UIOff;
 
@@ -208,6 +210,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             lobbyUI.SetActive(true);
             mainMenu.SetActive(true);
+            nameInputUI.SetActive(false);
             nextIndex = 0;
         }
 

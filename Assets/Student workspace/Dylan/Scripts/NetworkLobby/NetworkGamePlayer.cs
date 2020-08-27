@@ -148,8 +148,6 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             //if (isLocalPlayer)
             //{
-                _gameControls = new GameControls();
-                _gameControls.Disable();
                 _gameControls.InGame.Move.performed -= MoveOnInputChange;
                 _gameControls.InGame.Move.canceled -= MoveOnInputChange;
                 _gameControls.InGame.MousePosition.performed -= LookOnInputChange;
@@ -158,8 +156,21 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 _gameControls.InGame.Fire.canceled -= FireOnInputChange;
                 _gameControls.InGame.Jump.performed -= JumpOnInputChange;
                 _gameControls.InGame.Jump.canceled -= JumpOnInputChange;
+
                 //}
             //}
+        }
+
+        private void OnDestroy()
+        {
+            _gameControls.InGame.Move.performed -= MoveOnInputChange;
+            _gameControls.InGame.Move.canceled -= MoveOnInputChange;
+            _gameControls.InGame.MousePosition.performed -= LookOnInputChange;
+            _gameControls.InGame.MousePosition.canceled -= LookOnInputChange;
+            _gameControls.InGame.Fire.performed -= FireOnInputChange;
+            _gameControls.InGame.Fire.canceled -= FireOnInputChange;
+            _gameControls.InGame.Jump.performed -= JumpOnInputChange;
+            _gameControls.InGame.Jump.canceled -= JumpOnInputChange;
         }
 
         private void FireOnInputChange(InputAction.CallbackContext obj)
