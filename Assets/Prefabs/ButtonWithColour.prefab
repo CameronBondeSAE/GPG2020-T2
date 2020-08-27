@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1529177918638889906}
   - component: {fileID: 1529177918638889907}
   - component: {fileID: 1529177918638889868}
-  - component: {fileID: 1529177918638889870}
-  - component: {fileID: 1529177918638889871}
   - component: {fileID: 1529177918638889869}
   - component: {fileID: 1529177918638889904}
   m_Layer: 0
@@ -301,66 +299,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!114 &1529177918638889870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529177918638889864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c861430d1d88446b149f999304a575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activate: 1
-  movement: 1
-  useGravity: 0
-  useYaxis: 0
-  speedMulti: 100
-  targetReachedThreshold: 0.4
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _currMoveType: 0
-  _currDistanceType: 1
-  AttachRigidbody: 0
-  target: {fileID: 0}
---- !u!54 &1529177918638889871
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529177918638889864}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!65 &1529177918638889869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -386,25 +324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d41f0cbdd7f90468d6edf869b9a6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUsingColourSystem: 1
+  isUsingColourSystem: 0
   target: {fileID: 0}
   triggeredEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: alexM.Door, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   releasedEvent:
     m_PersistentCalls:
       m_Calls: []
   isPlayerInside: 0
-  tState: 1
+  toggleState: 1

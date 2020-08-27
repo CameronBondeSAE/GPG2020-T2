@@ -16,7 +16,8 @@ namespace alexM
 	public class TriggerSystem : MonoBehaviour
 	{
 		public bool isUsingColourSystem;
-		public GameObject target;
+		[Tooltip("the colour of the object assigned to this slot will be what determines the colour you need to be in order to have it activate")]
+		public GameObject ColourChangerTarget;
 		public UnityEvent triggeredEvent, releasedEvent;
 		
 		private Collider _other;
@@ -31,11 +32,14 @@ namespace alexM
 			Deactivated
 		}
 
-		public ToggleState tState = ToggleState.Deactivated;
+		public ToggleState toggleState = ToggleState.Deactivated;
 
 		public void Awake()
 		{
-			targetColour = target.GetComponent<ColourChanger>().currentColor;
+			if (isUsingColourSystem)
+			{
+				targetColour = ColourChangerTarget.GetComponent<ColourChanger>().currentColor;	
+			}
 		}
 
 		public void Activate()
@@ -47,21 +51,21 @@ namespace alexM
 					if (_otherColourChanger.currentColor == targetColour)
 					{
 						triggeredEvent.Invoke();
-						tState = ToggleState.Activated;
+						toggleState = ToggleState.Activated;
 					}
 				}
 			}
 			else
 			{
 				triggeredEvent.Invoke();
-				tState = ToggleState.Activated;
+				toggleState = ToggleState.Activated;
 			}
 		}
 
 		public void Deactivate()
 		{
 			releasedEvent.Invoke();
-			tState = ToggleState.Deactivated;
+			toggleState = ToggleState.Deactivated;
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -71,7 +75,7 @@ namespace alexM
 			if (isUsingColourSystem)
 			{
 				_otherColourChanger = other.GetComponent<ColourChanger>();
-				targetColour = target.GetComponent<ColourChanger>().currentColor;
+				targetColour = ColourChangerTarget.GetComponent<ColourChanger>().currentColor;
 			}
 
 			Activate();
