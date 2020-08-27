@@ -20,7 +20,7 @@ public class SpinningEnemy : MonoBehaviour
     
     private void Start()
     {
-        Collider col = GetComponent<Collider>();
+        Collider col = GetComponentInChildren<Collider>();
         if (kills)
         {
             col.isTrigger = true;

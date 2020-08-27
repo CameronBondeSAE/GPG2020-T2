@@ -61,21 +61,27 @@ namespace alexM
 
 		public void Open()
 		{
-			if (!(state == State.Opening) && !(state == State.Closing))
+			if (isServer)
 			{
-				targetPos = target.transform.position;
-				state = State.Opening;
-				openingEvent?.Invoke();
+				if (!(state == State.Opening) && !(state == State.Closing))
+				{
+					targetPos = target.transform.position;
+					state     = State.Opening;
+					openingEvent?.Invoke();
+				}
 			}
 		}
 
 		public void Close()
 		{
-			if (!(state == State.Closing) && !(state == State.Opening))
+			if (isServer)
 			{
-				targetPos = target.transform.position;
-				state = State.Closing;
-				closingEvent?.Invoke();
+				if (!(state == State.Closing) && !(state == State.Opening))
+				{
+					targetPos = target.transform.position;
+					state     = State.Closing;
+					closingEvent?.Invoke();
+				}
 			}
 		}
 

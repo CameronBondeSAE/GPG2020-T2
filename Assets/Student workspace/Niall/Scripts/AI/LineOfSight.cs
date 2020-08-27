@@ -23,13 +23,13 @@ namespace Niall
                 Los();
             }
             
-            Vector3 targetDir = _target.position - transform.position;
-            float angle = Vector3.Angle(targetDir, transform.forward);
-
-            if (angle < 3.0f)
-            {
-                print("Bang");
-            }
+            // Vector3 targetDir = _target.position - transform.position;
+            // float angle = Vector3.Angle(targetDir, transform.forward);
+            //
+            // if (angle < 3.0f)
+            // {
+            //     print("Bang");
+            // }
         }
 
         public bool Los()
