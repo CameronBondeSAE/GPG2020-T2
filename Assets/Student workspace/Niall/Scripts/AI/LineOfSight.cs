@@ -21,30 +21,33 @@ namespace Niall
           {Los();}
         }
 
-        public void Los()
+        public bool Los()
         {
-            foreach (Transform target in targets)
-            {
-                haveLOS = false;
+			haveLOS = false;
 
-                RaycastHit hit;
-                Debug.DrawRay(eyes.position, eyes.forward * range, Color.white);
-                if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
-                {
-                    Debug.Log(this.name + " found Target! = " + hit.collider.name);
-                }
+			foreach (Transform target in targets)
+            {
+
+                // RaycastHit hit;
+                // Debug.DrawRay(eyes.position, eyes.forward * range, Color.white);
+                // if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
+                // {
+                    // Debug.Log(this.name + " found Target! = " + hit.collider.name);
+                // }
                 
                 RaycastHit hitt;
                
                 if (Physics.Linecast(eyes.position, target.position, out hitt))
                 {
-                    if (hitt.collider == target.GetComponent<Collider>())
+                    if (hitt.transform.root == target) // This will check the main Transform against the target transforms
                     {
                         haveLOS = true;
+						Debug.DrawLine(eyes.position, hitt.point, Color.red);
                     }
-                    Debug.DrawLine(eyes.position, target.position, Color.red);
                 }
             }
-        }
+
+			return haveLOS;
+		}
     }
 }

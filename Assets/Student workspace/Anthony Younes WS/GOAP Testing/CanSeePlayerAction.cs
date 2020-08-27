@@ -14,8 +14,8 @@ namespace AnthonyY
 {
     public class CanSeePlayerAction : ReGoapAction<string,object>
 {
-    public bool canSeePlayer = false;
-    private LineOfSight _lineofSight;
+    public bool        canSeePlayer = false;
+	public LineOfSight _lineofSight;
 
     protected override void Awake()
     {
@@ -26,18 +26,26 @@ namespace AnthonyY
         Action<IReGoapAction<string, object>> fail)
     {
         base.Run(previous, next, settings, goalState, done, fail);
-        //Action Code
-        _lineofSight.Los();
-        Debug.Log("I detected player!");
         //its successful
         doneCallback(this);
     }
 
-    public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
-    {
-        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        effects.Set("canSeePlayer", true);
-        effects.Set("Bezerker",true);
+	public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
+	{
+		Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
+		//Action Code
+		if (_lineofSight.Los())
+		{
+			Debug.Log("I detected player!");
+
+			effects.Set("canSeePlayer", true);
+		}
+		else
+		{
+			effects.Set("canSeePlayer", false);
+		}
+
+        // effects.Set("Bezerker",true);
         return base.GetEffects(stackData);
     }
 
