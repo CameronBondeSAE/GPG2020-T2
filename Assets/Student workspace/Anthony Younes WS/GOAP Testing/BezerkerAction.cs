@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using alexM;
 using Niall;
 using ReGoap.Core;
 using ReGoap.Unity;
@@ -11,6 +12,7 @@ public class BezerkerAction :  ReGoapAction<string,object>
 {
     public float attackPower;
     public Rigidbody rb;
+    public LineOfSight _lineOfSight;
   protected override void Awake()
     {
         base.Awake();
@@ -22,7 +24,7 @@ public class BezerkerAction :  ReGoapAction<string,object>
     {
         base.Run(previous, next, settings, goalState, done, fail);
         //Action Code
-//		transform.LookAt(target);
+        transform.LookAt(_lineOfSight.targets[0]);
         rb.AddForce(transform.forward * attackPower,ForceMode.Impulse);
         Debug.Log("YEET!!");
 
