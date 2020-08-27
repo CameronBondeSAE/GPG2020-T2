@@ -18,10 +18,13 @@ public class Checkpoint : MonoBehaviour
 
             if (other.gameObject.transform.root.TryGetComponent(typeof(Respawnable), out comp))
             {
+                
                 res = (Respawnable) comp;
-                res.SetNewRespawnPoint(transform.position);
-                reached.Invoke();
-
+                if (res.useCheckpoints)
+                {
+                    res.SetNewRespawnPoint(transform.position);
+                    reached.Invoke();
+                }
             }
     }
 }
