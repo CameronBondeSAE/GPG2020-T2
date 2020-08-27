@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using alexM;
+using Mirror.Examples.NetworkRoom;
+using Mirror.Examples.Pong;
 using Niall;
 using ReGoap.Core;
 using ReGoap.Unity;
@@ -11,15 +14,12 @@ namespace AnthonyY
 {
     public class CanSeePlayerAction : ReGoapAction<string,object>
 {
-    public bool canSeePlayer = true;
-    public LineOfSight lineOfSight;
+    public bool canSeePlayer = false;
+    private LineOfSight _lineofSight;
+
     protected override void Awake()
     {
         base.Awake();
-        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-        effects.Set("Bezerker",true);
-        
-        
     }
     
     public override void Run(IReGoapAction<string, object> previous, IReGoapAction<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done,
@@ -27,14 +27,26 @@ namespace AnthonyY
     {
         base.Run(previous, next, settings, goalState, done, fail);
         //Action Code
-        lineOfSight.Los();
-        
+        _lineofSight.Los();
+        Debug.Log("I detected player!");
         //its successful
         doneCallback(this);
     }
-    
 
-//Record the action into the memory
+    public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
+    {
+        Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
+        effects.Set("canSeePlayer", true);
+        effects.Set("Bezerker",true);
+        return base.GetEffects(stackData);
+    }
+
+    public override bool CheckProceduralCondition(GoapActionStackData<string, object> stackData)
+    {
+        return true;
+    }
+
+    //Record the action into the memory
     public override void Exit(IReGoapAction<string, object> next)
     {
         base.Exit(next);
