@@ -152,7 +152,7 @@ namespace alexM
 
 		void TargetSetup()
 		{
-			if (wayPoints != null && wayPoints.Count > 0)
+			if (wayPoints != null && wayPoints[_targetId])
 			{
 				target = wayPoints[_targetId].transform;
 				_dir = (target.position - transform.position).normalized;
