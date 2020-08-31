@@ -24,7 +24,11 @@ public class BezerkerAction :  ReGoapAction<string,object>
     {
         base.Run(previous, next, settings, goalState, done, fail);
         //Action Code
-        transform.LookAt(_lineOfSight.targets[0]);
+        // transform.LookAt(_lineOfSight.targets[0]);
+        foreach (Transform target in _lineOfSight.targets)
+        {
+            transform.LookAt(target);
+        }
         rb.AddForce(transform.forward * attackPower,ForceMode.Impulse);
         Debug.Log("YEET!!");
 
