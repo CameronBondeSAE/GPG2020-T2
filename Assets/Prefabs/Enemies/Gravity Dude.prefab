@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 3201783780787633955}
   - component: {fileID: 5413772548081394720}
   - component: {fileID: 2573644128728303041}
-  - component: {fileID: 114024786}
   - component: {fileID: 2275277486849422665}
   m_Layer: 0
   m_Name: Gravity Dude
@@ -246,20 +245,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   currentColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &114024786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383219831056816355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35fc7212de7e1b4b82dd60f515c408e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearbyPlayers: {fileID: 0}
-  suctionPower: 50
 --- !u!114 &2275277486849422665
 MonoBehaviour:
   m_ObjectHideFlags: 0
