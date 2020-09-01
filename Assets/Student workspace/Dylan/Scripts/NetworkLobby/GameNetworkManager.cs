@@ -52,6 +52,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
+        [Tooltip("Not floating network dude")]
+        public List<PlayerControllerTopDown> topDownPlayers = new List<PlayerControllerTopDown>();
+
         [Header("Lobby")]
         public GameObject lobbyUI;
         public GameObject nameInputUI;
@@ -149,6 +152,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             RoomPlayers.Clear();
             GamePlayers.Clear();
+            topDownPlayers.Clear();
             StopConnection();
             base.OnStopClient();
         }
@@ -212,6 +216,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             RoomPlayers.Clear();
             GamePlayers.Clear();
+            topDownPlayers.Clear();
             StopConnection();
             base.OnStopServer();
         }
@@ -381,7 +386,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                     ((IPossessable) playerInstance.GetComponent<PlayerControllerTopDown>());
             }
             
-            
+            topDownPlayers.Add(playerInstance.GetComponent<PlayerControllerTopDown>());
             
             nextIndex++;
         }
