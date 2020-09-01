@@ -16,7 +16,7 @@ namespace alexM
 		public  Rigidbody         RB;
 		public  GameObject        bottom, neck;
 		private Camera_Controller cameraController;
-
+		public float GroundCheckRadius = 0.2f;
 		public Gun gun;
 
 		[SerializeField]
@@ -39,6 +39,11 @@ namespace alexM
 			base.OnStartServer();
 
 			Debug.Log("Mine = " + netIdentity.netId + "Owner = " + netIdentity.connectionToClient.identity.netId);
+			if (isServer)
+			{
+				RpcSyncOwner(Owner);
+				RpcSyncPosessor(Owner);
+			}
 		}
 
 
@@ -171,7 +176,22 @@ namespace alexM
 			RaycastHit hit;
 
 			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
-			if (Physics.Raycast(bottom.transform.position, down, out hit, 1f, layerMask))
+			/*if (Physics.Raycast(bottom.transform.position, down, out hit, 1f, layerMask))
+			{
+				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
+				//Debug.Log("dist: " + hit.distance);
+				_isGrounded = true;
+				return true;
+			}
+			else
+			{
+				_isGrounded = false;
+				return false;
+			}*/
+			
+			
+			
+			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 1f, layerMask))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
 				//Debug.Log("dist: " + hit.distance);
@@ -184,6 +204,8 @@ namespace alexM
 				return false;
 			}
 		}
+
+
 
 
 		public void Aiming(Vector2 pos, InputAction.CallbackContext ctx)

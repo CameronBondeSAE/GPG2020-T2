@@ -476,6 +476,7 @@ MonoBehaviour:
   RB: {fileID: 1651102968880965805}
   bottom: {fileID: 1651102968533518016}
   neck: {fileID: 6582501386692850780}
+  GroundCheckRadius: 0.2
   gun: {fileID: 0}
   _isGrounded: 0
   _owner: {fileID: 0}
