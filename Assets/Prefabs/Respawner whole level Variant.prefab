@@ -10,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 4335199943829662598, guid: 6ff962faeb54bc244957f308ef7eca2b,
         type: 3}
       propertyPath: m_Name
-      value: Respawner Variant
+      value: Respawner whole level Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4335199943829662648, guid: 6ff962faeb54bc244957f308ef7eca2b,
         type: 3}
       propertyPath: m_Size.x
-      value: 400
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4335199943829662648, guid: 6ff962faeb54bc244957f308ef7eca2b,
         type: 3}
       propertyPath: m_Size.z
-      value: 400
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4335199943829662648, guid: 6ff962faeb54bc244957f308ef7eca2b,
         type: 3}

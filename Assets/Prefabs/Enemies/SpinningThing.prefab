@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5454635131372201291}
   - component: {fileID: 6949695023759769285}
   - component: {fileID: 7942306979014781360}
+  - component: {fileID: -499888563612072279}
   m_Layer: 0
   m_Name: SpinningThing
   m_TagString: Enemy
@@ -67,6 +68,25 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &-499888563612072279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454635131372201301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  target: {fileID: 5454635132183370505}
 --- !u!1 &5454635132183370506
 GameObject:
   m_ObjectHideFlags: 0
