@@ -52,6 +52,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public List<NetworkLobbyPlayer> RoomPlayers { get; } = new List<NetworkLobbyPlayer>();
         public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
+        [Tooltip("Not floating network dude")]
+        public List<PlayerControllerTopDown> topDownPlayers = new List<PlayerControllerTopDown>();
+
         [Header("Lobby")]
         public GameObject lobbyUI;
         public GameObject nameInputUI;
@@ -149,6 +152,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             RoomPlayers.Clear();
             GamePlayers.Clear();
+            topDownPlayers.Clear();
             StopConnection();
             base.OnStopClient();
         }
@@ -212,6 +216,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         {
             RoomPlayers.Clear();
             GamePlayers.Clear();
+            topDownPlayers.Clear();
             StopConnection();
             base.OnStopServer();
         }
@@ -290,11 +295,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             //Changing scenes is deleting the physical player that gets spawned on start game..
             // and it also deletes them even if they're spawned in OnServerChangeScene
             base.ServerChangeScene(newSceneName);
+            
         }
 
         public void RestartLevel()
         {
             ServerChangeScene(SceneManager.GetActiveScene().name);
+            topDownPlayers.Clear();
             nextIndex = 0;
         }
 
@@ -302,11 +309,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public override void OnServerChangeScene(string sceneName)
         {
-            if (sceneName.StartsWith(gameScene))
-            {
-                // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-                // NetworkServer.Spawn(playerSpawnSystemInstance);
-            }
+            topDownPlayers.Clear();
         }
 
 
@@ -381,7 +384,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                     ((IPossessable) playerInstance.GetComponent<PlayerControllerTopDown>());
             }
             
-            
+            topDownPlayers.Add(playerInstance.GetComponent<PlayerControllerTopDown>());
             
             nextIndex++;
         }

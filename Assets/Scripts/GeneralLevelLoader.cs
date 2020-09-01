@@ -4,23 +4,28 @@ using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEngine;
 
-public class GeneralLevelLoader : MonoBehaviour
+public class GeneralLevelLoader : NetworkBehaviour
 {
     public static event Action<string> LoadLevelEvent;
 
     [Scene]
     public string levelToLoad;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null)
+        if (isServer)
         {
-            if(other.transform.root.GetComponent<PlayerControllerTopDown>())
+            if (other != null)
             {
-                LoadLevel();
+                if (other.transform.root.GetComponent<PlayerControllerTopDown>())
+                {
+                    LoadLevel();
+                }
             }
         }
     }
 
+    [Server]
     public void LoadLevel()
     {
         LoadLevelEvent?.Invoke(levelToLoad);
