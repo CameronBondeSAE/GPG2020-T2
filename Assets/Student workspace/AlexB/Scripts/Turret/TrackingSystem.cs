@@ -7,22 +7,40 @@ namespace AJ
     public class TrackingSystem : MonoBehaviour
     {
         public float speed = 3.0f;
-        public GameObject m_target = null;
+        public GameObject target = null;
         Vector3 lastKnownPosition = Vector3.zero;
         Quaternion lookAtRotation;
 
-		void SearchState()
-		{
-			
-		}
-		
-        void AttackState()
+        private EventStateManager stateManager;
+        public EventState SearchState;
+        public EventState AttackState;
+
+        private void Start()
         {
-            if (m_target)
+            stateManager = new EventStateManager();
+            SearchState = new EventState();
+            SearchState.Execute = SearchStateUpdate;
+            stateManager.ChangeState(SearchState);
+        }
+
+        private void Update()
+        {
+            stateManager.ExecuteCurrentState();
+        }
+
+        void SearchStateUpdate()
+        {
+            stateManager.ChangeState(AttackState);
+        }
+
+        // Update is called once per frame
+        void AttackStateUpdate()
+        {
+            if (target)
             {
-                if (lastKnownPosition != m_target.transform.position)
+                if (lastKnownPosition != target.transform.position)
                 {
-                    lastKnownPosition = m_target.transform.position;
+                    lastKnownPosition = target.transform.position;
                     lookAtRotation = Quaternion.LookRotation(lastKnownPosition - transform.position);
                 }
                 if (transform.rotation != lookAtRotation)
@@ -39,7 +57,7 @@ namespace AJ
                 return false;
             }
 
-            m_target = target;
+            target = target;
 
             return true;
         }
