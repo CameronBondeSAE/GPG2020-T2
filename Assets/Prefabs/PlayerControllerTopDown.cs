@@ -1,4 +1,6 @@
-﻿using AJ;
+﻿using System.Collections;
+using System.Collections.Generic;
+using AJ;
 using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEngine;
@@ -41,8 +43,23 @@ namespace alexM
 			Debug.Log("Mine = " + netIdentity.netId + "Owner = " + netIdentity.connectionToClient.identity.netId);
 			if (isServer)
 			{
+
+				StartCoroutine(ResyncCorountine());
+
+
+			}
+		}
+
+		IEnumerator ResyncCorountine()
+		{
+			yield return new WaitForSeconds(1);
+			
+			if (isServer)
+			{
 				RpcSyncOwner(Owner);
 				RpcSyncPosessor(Owner);
+				
+				
 			}
 		}
 
