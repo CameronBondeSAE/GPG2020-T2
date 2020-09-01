@@ -125,8 +125,8 @@ namespace alexM
 			{
 				if (_currDistanceType == DistanceType.ClosestPoint)
 				{
-					var tPosition = target.position;
-					dist = Vector3.Distance(_collider.ClosestPointOnBounds(tPosition), tPosition);
+					var tPosition                  = target.position;
+					if (!(_collider is null)) dist = Vector3.Distance(_collider.ClosestPointOnBounds(tPosition), tPosition);
 				}
 				else if (_currDistanceType == DistanceType.Center)
 				{

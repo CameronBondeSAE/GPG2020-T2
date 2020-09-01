@@ -16,7 +16,7 @@ TagManager:
   - 
   - Obstacle
   - Unwalkable
-  - Player_Body
+  - Gameplay relevant colliders
   - Player
   - Ignore
   - 

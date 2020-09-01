@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 202150323}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Camera position
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1651102968285152719}
   - component: {fileID: 1651102968285152722}
   - component: {fileID: 1651102968285152717}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 1651102968452027886}
   - component: {fileID: 1651102968452027885}
   - component: {fileID: 1651102968452027884}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1651102968848330727}
   - component: {fileID: 1651102968848330726}
   - component: {fileID: 1115198753}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Bottom friction base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 6652313427199698561}
   - component: {fileID: 1095455084552709738}
   - component: {fileID: 315070232936436084}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TopDownPLAYER
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 2063307386975068432}
   - component: {fileID: 7037078372498097155}
   - component: {fileID: 7475981206041671301}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
