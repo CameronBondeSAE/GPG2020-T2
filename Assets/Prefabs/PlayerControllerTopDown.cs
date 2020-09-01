@@ -20,7 +20,7 @@ namespace alexM
 		private Camera_Controller cameraController;
 		public float GroundCheckRadius = 0.2f;
 		public Gun gun;
-
+		[SerializeField] private LayerMask groundableLayers;
 		[SerializeField]
 		bool _isGrounded;
 
@@ -185,8 +185,10 @@ namespace alexM
 
 		bool GroundCheck()
 		{
+			/*
 			int layerMask = 1 << 12;
 			layerMask = ~layerMask;
+			*/
 
 
 			Vector3    down = bottom.transform.TransformDirection(Vector3.down);
@@ -208,7 +210,7 @@ namespace alexM
 			
 			
 			
-			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 1f, layerMask))
+			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 1f, groundableLayers))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
 				//Debug.Log("dist: " + hit.distance);
