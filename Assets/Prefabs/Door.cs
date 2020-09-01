@@ -26,7 +26,8 @@ namespace alexM
 		public GameObject target;
 		private ColourChanger _colourChanger;
 		private GameObject originalTarget;
-		private Vector3 startPos, targetPos, doorPos;
+		private Vector3 startPos, doorPos;
+		[SyncVar] private Vector3 targetPos;
 
 
 		public enum State
