@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: -5459505228319863565}
   - component: {fileID: 7365957182386954905}
   - component: {fileID: -3137845345987375112}
+  - component: {fileID: 7300455386907439570}
   m_Layer: 0
   m_Name: Player(Avoid)
   m_TagString: Untagged
@@ -330,12 +331,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyes: {fileID: -7122578875523263285}
   targets: []
-  _target: {fileID: 0}
   range: 10
   haveLOS: 1
   changedLOS:
     m_PersistentCalls:
       m_Calls: []
+  Degrees: 5
 --- !u!114 &-3137845345987375112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +351,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sight: {fileID: 3838460950509793537, guid: 4ad8a2b06b019aa42a218fc10cf62bee, type: 3}
   range: 10
+--- !u!114 &7300455386907439570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159536423060581993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
 --- !u!1 &7159536423713701037
 GameObject:
   m_ObjectHideFlags: 0
