@@ -105,6 +105,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             //possible issues might come up with gamescene not being this new scene
             //if so just assign game scene to this new scene when we load it here
             ServerChangeScene(levelToLoadName);
+            nextIndex = 0;
             GeneralLevelLoader.LoadLevelEvent -= LoadLevel;
             //should be done in start method if not can be uncommented
             GeneralLevelLoader.LoadLevelEvent += LoadLevel;
@@ -379,7 +380,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possessable =
                     ((IPossessable) playerInstance.GetComponent<PlayerControllerTopDown>());
             }
-
+            
+            
+            
             nextIndex++;
         }
 
