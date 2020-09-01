@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closestPlayer: {fileID: 0}
   playerDist: 0
-  closestPlayerDist: 0
+  closestPlayerDist: 1000
 --- !u!114 &4185143516174212087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FollowPos: {fileID: 0}
   force: 0.1
-  FindClosest: {fileID: 0}
+  playerfollow: 0
 --- !u!114 &4185143516174212081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyes: {fileID: 4185143517341978563}
   targets: []
+  _target: {fileID: 0}
   range: 10
   haveLOS: 0
   changedLOS:

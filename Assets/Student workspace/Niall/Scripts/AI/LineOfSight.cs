@@ -11,10 +11,14 @@ namespace Niall
     {
         public Transform eyes;
         public List<Transform> targets = new List<Transform>();
-        public Transform _target;
+        private Transform _target;
         public float range;
         public bool haveLOS;
         public UnityEvent<bool> changedLOS;
+        public float Degrees = 5.0f;
+
+
+
 
         void Update()
         {
@@ -23,13 +27,7 @@ namespace Niall
                 Los();
             }
             
-            // Vector3 targetDir = _target.position - transform.position;
-            // float angle = Vector3.Angle(targetDir, transform.forward);
-            //
-            // if (angle < 3.0f)
-            // {
-            //     print("Bang");
-            // }
+
         }
 
         public bool Los()
@@ -44,15 +42,19 @@ namespace Niall
                 // {
                 // Debug.Log(this.name + " found Target! = " + hit.collider.name);
                 // }
-
+                _target = target.transform;
+                
                 RaycastHit hitt;
-
+                
+                Vector3 targetDir = _target.position - transform.position;
+                float angle = Vector3.Angle(targetDir, transform.forward);
+                
                 if (Physics.Linecast(eyes.position, target.position, out hitt))
                 {
-                    if (hitt.transform.root == target) // This will check the main Transform against the target transforms
+                    if (angle < Degrees) 
                     {
                         haveLOS = true;
-                        _target = target.transform;
+                        
                         Debug.DrawLine(eyes.position, hitt.point, Color.red);
                     }
                 }
