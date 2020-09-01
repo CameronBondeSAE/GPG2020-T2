@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Respawnable : MonoBehaviour
 {
     public UnityEvent onRespawn;
-
+    public bool useCheckpoints = false;
     private Vector3 respawnPoint;
     // Start is called before the first frame update
     void Start()

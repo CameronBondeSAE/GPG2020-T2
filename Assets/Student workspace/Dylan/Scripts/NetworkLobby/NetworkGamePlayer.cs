@@ -146,8 +146,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         private void OnDisable()
         {
-            //if (isLocalPlayer)
-            //{
+
+
                 _gameControls.InGame.Move.performed -= MoveOnInputChange;
                 _gameControls.InGame.Move.canceled -= MoveOnInputChange;
                 _gameControls.InGame.MousePosition.performed -= LookOnInputChange;
@@ -157,8 +157,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 _gameControls.InGame.Jump.performed -= JumpOnInputChange;
                 _gameControls.InGame.Jump.canceled -= JumpOnInputChange;
 
-                //}
-            //}
+
         }
 
         private void OnDestroy()
@@ -172,6 +171,24 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             _gameControls.InGame.Jump.performed -= JumpOnInputChange;
             _gameControls.InGame.Jump.canceled -= JumpOnInputChange;
         }
+
+
+        public void RespawnPossessable()
+        {
+            Respawnable res;
+            Component comp;
+            if (possessable != null)
+            {
+
+                if (((MonoBehaviour) possessable).TryGetComponent(typeof(Respawnable), out comp))
+                {
+                    res = (Respawnable) comp;
+                    res.Respawn();
+
+                }
+            }
+        }
+
 
         private void FireOnInputChange(InputAction.CallbackContext obj)
         {
@@ -211,7 +228,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 FindPosessable();
             }
         }
-		
-
+        
+        
+        
+        
+        
     }
 }

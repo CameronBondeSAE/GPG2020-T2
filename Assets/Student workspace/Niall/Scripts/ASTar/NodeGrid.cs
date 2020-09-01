@@ -7,9 +7,7 @@ namespace Niall
 {
     public class NodeGrid : MonoBehaviour
     {
-        public Transform player;
-
-        //  public List<Node> ONodes = new List<Node>();
+        public bool displayGridGizmos;
         public LayerMask unwalkableMask;
         public Vector2 gridWorldSize;
         public float nodeRadius;
@@ -19,7 +17,7 @@ namespace Niall
         private int gridSizeY;
         private float nodeD;
 
-        public void Start()
+        public void Awake()
         {
             nodeD = nodeRadius * 2;
             gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeD);
@@ -84,31 +82,17 @@ namespace Niall
             return grid[x, y];
         }
 
-        public List<Node> path;
+
 
         public void OnDrawGizmos()
         {
             Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-            if (grid != null)
+            if (grid != null && displayGridGizmos)
             {
-                Node playerNode = NodeFromWorldPoint(player.position);
                 foreach (Node n in grid)
                 {
                     Gizmos.color = (n.walkable) ? Color.white : Color.black;
-                    if (path != null)
-                    {
-                        if (path.Contains(n))
-                        {
-                            Gizmos.color = Color.red;
-                        }
-                    }
-
-                    if (playerNode == n)
-                    {
-                        Gizmos.color = Color.green;
-                    }
-
                     Gizmos.DrawCube(n.worldposition, Vector3.one); // * (nodeD - 0.1f)
                 }
             }

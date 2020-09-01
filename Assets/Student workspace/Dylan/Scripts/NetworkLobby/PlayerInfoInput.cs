@@ -32,20 +32,25 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         }
 
-        private void SetupPlayerInfo()
+        public void SetupPlayerInfo()
         {
-            if (!PlayerPrefs.HasKey(PlayerPrefsNameKey) || !PlayerPrefs.HasKey(PlayerPrefsColorKey))
+
+            string defaultName = "Newbie";
+            Color defaultColor = Random.ColorHSV(0.2f, 0.8f, 0.3f, 1);
+            if (PlayerPrefs.HasKey(PlayerPrefsNameKey))
             {
-                return;
+   
+                defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
+
             }
 
-            string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
-            Color defaultColor = Random.ColorHSV(0.2f, 0.8f, 0.3f, 1);
-            Debug.Log( defaultColor);
-            
-            Debug.Log(ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString(PlayerPrefsColorKey), out defaultColor)); 
-            
-            
+           // if (PlayerPrefs.HasKey(PlayerPrefsColorKey))
+           // {
+                ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString(PlayerPrefsColorKey), out defaultColor);
+           // }
+
+
+
             nameInputField.text = defaultName;
             
             SetPlayerName(defaultName);

@@ -58,13 +58,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public GameObject mainMenu;
         
         public bool useSameScene;
-
+        
         public override void Start()
         {
-            Debug.Log("Level Loaded");
+            // Debug.Log("Level Loaded");
             // TODO move to UI ViewModel
             NetworkGamePlayer.OnInstantiated += UIOff;
-
+            GeneralLevelLoader.LoadLevelEvent += LoadLevel;
             // For debugging, use the same scene that you're testing easily
             if (useSameScene)
             {
@@ -98,6 +98,16 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             // Need to subscribe before network starts
             base.Start();
+        }
+
+        public void LoadLevel(string levelToLoadName)
+        {
+            //possible issues might come up with gamescene not being this new scene
+            //if so just assign game scene to this new scene when we load it here
+            ServerChangeScene(levelToLoadName);
+            GeneralLevelLoader.LoadLevelEvent -= LoadLevel;
+            //should be done in start method if not can be uncommented
+            GeneralLevelLoader.LoadLevelEvent += LoadLevel;
         }
 
         void UIOff(NetworkGamePlayer ngp)
@@ -286,6 +296,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             ServerChangeScene(SceneManager.GetActiveScene().name);
             nextIndex = 0;
         }
+
+        
 
         public override void OnServerChangeScene(string sceneName)
         {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202150323}
   m_Layer: 10
-  m_Name: CamPos
+  m_Name: Camera position
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.49999997, z: 0.49999997}
   m_Children: []
   m_Father: {fileID: 1651102968880965804}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 51.466, y: 0.052, z: -0.085}
 --- !u!1 &1651102968285152718
 GameObject:
@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 1651102968285152719}
   - component: {fileID: 1651102968285152722}
   - component: {fileID: 1651102968285152717}
-  - component: {fileID: 1651102968285152716}
   m_Layer: 10
   m_Name: Barrel
   m_TagString: Untagged
@@ -112,20 +111,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1651102968285152716
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651102968285152718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1651102968452027881
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +122,6 @@ GameObject:
   - component: {fileID: 1651102968452027886}
   - component: {fileID: 1651102968452027885}
   - component: {fileID: 1651102968452027884}
-  - component: {fileID: 1651102968452027887}
   m_Layer: 10
   m_Name: Top
   m_TagString: Untagged
@@ -209,19 +193,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1651102968452027887
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651102968452027881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1651102968533518016
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,9 +205,8 @@ GameObject:
   - component: {fileID: 1651102968533518020}
   - component: {fileID: 1651102968533518023}
   - component: {fileID: 1651102968533518022}
-  - component: {fileID: 4957656258900780444}
   m_Layer: 10
-  m_Name: Base
+  m_Name: Main body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +224,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 1651102968880965804}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1651102968533518020
 MeshFilter:
@@ -318,19 +288,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4957656258900780444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651102968533518016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a244d604f35c12b41829cd33056cf794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1651102968848330720
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +302,7 @@ GameObject:
   - component: {fileID: 1651102968848330726}
   - component: {fileID: 1115198753}
   m_Layer: 12
-  m_Name: BottomFric
+  m_Name: Bottom friction base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,6 +413,7 @@ GameObject:
   - component: {fileID: 802036456}
   - component: {fileID: 6652313427199698561}
   - component: {fileID: 1095455084552709738}
+  - component: {fileID: 315070232936436084}
   m_Layer: 10
   m_Name: TopDownPLAYER
   m_TagString: Player
@@ -474,9 +432,9 @@ Transform:
   m_LocalPosition: {x: 2.49, y: 2.512, z: 0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1651102968533518017}
   - {fileID: 202150323}
   - {fileID: 2063307386975068432}
-  - {fileID: 1651102968533518017}
   - {fileID: 1651102968848330721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -552,10 +510,10 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1651102968880965806}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1095455084552709738}
+        m_TargetAssemblyTypeName: Respawnable, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -632,6 +590,22 @@ MonoBehaviour:
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
+  useCheckpoints: 1
+--- !u!114 &315070232936436084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651102968880965806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a244d604f35c12b41829cd33056cf794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6582501386692850780
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +617,6 @@ GameObject:
   - component: {fileID: 2063307386975068432}
   - component: {fileID: 7037078372498097155}
   - component: {fileID: 7475981206041671301}
-  - component: {fileID: 97698212754563445}
   m_Layer: 10
   m_Name: Neck
   m_TagString: Untagged
@@ -664,7 +637,7 @@ Transform:
   m_Children:
   - {fileID: 1651102968452027886}
   m_Father: {fileID: 1651102968880965804}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7037078372498097155
 MeshFilter:
@@ -715,17 +688,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &97698212754563445
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582501386692850780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

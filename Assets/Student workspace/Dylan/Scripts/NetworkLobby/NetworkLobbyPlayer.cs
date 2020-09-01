@@ -41,6 +41,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public bool IsLeader
         {
+            get => isLeader;
             set
             {
                 isLeader = value;

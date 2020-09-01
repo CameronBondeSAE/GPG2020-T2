@@ -160,6 +160,7 @@ MonoBehaviour:
   rb: {fileID: 6246033244442313035}
   distance: 5
   turnSpeed: 100
+  direction: 0
 --- !u!1 &2007373027686182128
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   rb: {fileID: 6246033244442313035}
   distance: 2
   turnSpeed: -1000
+  direction: 0
 --- !u!1 &3479998447190896919
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ GameObject:
   - component: {fileID: 6246033244442313035}
   - component: {fileID: 6246033244442313034}
   m_Layer: 0
-  m_Name: AvoidGuy
+  m_Name: CamAvoidGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,6 +349,7 @@ MonoBehaviour:
   rb: {fileID: 6246033244442313035}
   distance: 8
   turnSpeed: 1000
+  direction: 0
 --- !u!114 &6194005842662451128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947aeea4b3f50d345a81f1974216e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 0
+  MaxHealth: 100
   currentHealth: 100
   deathEvent:
     m_PersistentCalls:
@@ -379,6 +382,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   shield: 0
   speed: 100
+  MonoBehaviour: {fileID: 0}
 --- !u!54 &6246033244442313035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -476,6 +480,7 @@ MonoBehaviour:
   rb: {fileID: 6246033244442313035}
   distance: 5
   turnSpeed: -100
+  direction: 0
 --- !u!1 &7334085072874589283
 GameObject:
   m_ObjectHideFlags: 0

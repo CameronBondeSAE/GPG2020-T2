@@ -11,17 +11,24 @@ namespace Niall
         public Transform FollowPos;
         public float force = 0.1f;
         private LineOfSight lineOfSight;
+        private FindClosest findClosest;
+        public bool playerfollow;
 
 
         public void Start()
         {
             lineOfSight = GetComponent<LineOfSight>();
+            
 
         }
 
         public void Update()
         {
-            
+            if (playerfollow)
+            {
+                FollowPos = findClosest.closestPlayer.transform;
+            }
+
             if (lineOfSight.haveLOS && FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
@@ -30,7 +37,7 @@ namespace Niall
 
                 Vector3 cross = Vector3.Cross(transform.forward, targetDelta);
 
-                GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * force));
+                GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * force * Time.deltaTime));
             }
         }
     }

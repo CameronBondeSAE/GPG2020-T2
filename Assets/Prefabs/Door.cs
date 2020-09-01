@@ -10,7 +10,8 @@ namespace alexM
 {
 	public class Door : NetworkBehaviour
 	{
-		
+	#region Variables
+
 		[Header("Settings")]
 		public float speed;
 
@@ -26,6 +27,8 @@ namespace alexM
 		private ColourChanger _colourChanger;
 		private GameObject originalTarget;
 		private Vector3 startPos, targetPos, doorPos;
+
+
 		public enum State
 		{
 			Opened,
@@ -36,12 +39,13 @@ namespace alexM
 
 		
 		[Header("States and Events")]
-		public State state = State.Closed;
-
 		public UnityEvent openedEvent, openingEvent;
 		public UnityEvent closedEvent, closingEvent;
-
-
+		
+		[SyncVar]
+		public State state = State.Closed;
+	#endregion
+		
 		void Awake()
 		{
 			if (GetComponent<ColourChanger>() != null)
@@ -57,21 +61,27 @@ namespace alexM
 
 		public void Open()
 		{
-			if (!(state == State.Opening) && !(state == State.Closing))
+			if (isServer)
 			{
-				targetPos = target.transform.position;
-				state = State.Opening;
-				openingEvent?.Invoke();
+				if (!(state == State.Opening) && !(state == State.Closing))
+				{
+					targetPos = target.transform.position;
+					state     = State.Opening;
+					openingEvent?.Invoke();
+				}
 			}
 		}
 
 		public void Close()
 		{
-			if (!(state == State.Closing) && !(state == State.Opening))
+			if (isServer)
 			{
-				targetPos = target.transform.position;
-				state = State.Closing;
-				closingEvent?.Invoke();
+				if (!(state == State.Closing) && !(state == State.Opening))
+				{
+					targetPos = target.transform.position;
+					state     = State.Closing;
+					closingEvent?.Invoke();
+				}
 			}
 		}
 
@@ -94,37 +104,14 @@ namespace alexM
 		IEnumerator doWait(float cd)
 		{
 			yield return new WaitForSeconds(cd);
-			Close();
+			if (state == State.Opened)//Incase its in some other state by the time we get here- stop this from activating and disturbing the other code.
+			{
+				Close();	
+			}
 		}
 
 		private void Update()
 		{
-			// //Old movement stuff
-			// if (state == State.Opening)
-			// {
-			// 	//openingEvent?.Invoke();
-			// 	//lerp to targetPos
-			// 	hinge.transform.position = Vector3.MoveTowards(doorPos, targetPos, 1f * Time.deltaTime * speed);
-			//
-			// 	if (isReached(target.transform.position))
-			// 	{
-			// 		openedEvent?.Invoke();
-			// 		state = State.Opened;
-			// 	}
-			// }
-			// else if (state == State.Closing)
-			// {
-			// 	//closingEvent?.Invoke();
-			// 	hinge.transform.position =
-			// 		Vector3.MoveTowards(hinge.transform.position, startPos, 1f * Time.deltaTime * speed);
-			//
-			// 	if (isReached(startPos))
-			// 	{
-			// 		closedEvent?.Invoke();
-			// 		state = State.Closed;
-			// 	}
-			// }
-
 			switch (state)
 			{
 				case State.Opening:
@@ -158,8 +145,6 @@ namespace alexM
 					closedEvent?.Invoke();
 					break;
 			}
-			
-			
 		}
 	}
 }

@@ -11,6 +11,8 @@ public class EventDrivenState_Beginner : MonoBehaviour
 
 	void Start()
 	{
+		Debug.Log("Press space to change to run state. HACK: It's just to test");
+		
 		// I'm ASSIGNING the variables to specific functions. Remember, variable just POINT to things... ANY thing! ints, strings, gameobjects, components... and... FUNCTIONS!
 		idle.Enter   = OnIdleEnter;
 		idle.Execute = OnIdleExecute;
@@ -25,12 +27,6 @@ public class EventDrivenState_Beginner : MonoBehaviour
 	void Update()
 	{
 		EventStateManager.ExecuteCurrentState();
-
-		// Just me forcing the state to change for testing
-		if (InputSystem.GetDevice<Keyboard>().spaceKey.wasPressedThisFrame)
-		{
-			EventStateManager.ChangeState(run);
-		}
 	}
 
 	private void OnRunEnter()
@@ -41,6 +37,12 @@ public class EventDrivenState_Beginner : MonoBehaviour
 	private void OnRunExecute()
 	{
 		Debug.Log("OnRunExecute");
+		
+		// Just me forcing the state to change for testing
+		if (InputSystem.GetDevice<Keyboard>().spaceKey.wasPressedThisFrame)
+		{
+			EventStateManager.ChangeState(run);
+		}
 	}
 
 	private void OnIdleEnter()

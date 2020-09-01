@@ -7,7 +7,7 @@ using Mirror;
 
 namespace alexM
 {
-	public class TriggerEvent : MonoBehaviour
+	public class TriggerEvent : NetworkBehaviour
 	{
 		public UnityEvent pressedEvent, releasedEvent;
 		
@@ -50,14 +50,20 @@ namespace alexM
 		
 		void OnTriggerEnter(Collider other)
 		{
-			_other = other;
-			Activate();
+			if (isServer)
+			{
+				_other = other;
+				Activate();
+			}
 		}
 
 		private void OnTriggerExit(Collider other)
 		{
-			_other = other;
-			Deactivate();
+			if (isServer)
+			{
+				_other = other;
+				Deactivate();
+			}
 		}
 	}
 }

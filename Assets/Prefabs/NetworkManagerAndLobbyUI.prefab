@@ -2094,7 +2094,7 @@ GameObject:
   - component: {fileID: 6181736370856029005}
   - component: {fileID: 6181736370856029002}
   - component: {fileID: 6181736370856029003}
-  - component: {fileID: 6181736370856029004}
+  - component: {fileID: 9193319556799288137}
   m_Layer: 5
   m_Name: Panel_NameInput
   m_TagString: Untagged
@@ -2162,7 +2162,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6181736370856029004
+--- !u!114 &9193319556799288137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2171,12 +2171,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 6181736370856029006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27286f6da12521499e7a69737ca0bf9, type: 3}
+  m_Script: {fileID: 11500000, guid: a03e67f5ea21f4a439df61aac5cecc05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameInputField: {fileID: 6181736371927238704}
-  continueButton: {fileID: 6181736372035177153}
-  colorPickerRgb: {fileID: 4381652640248491769}
+  startEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4547580819349917068}
+        m_TargetAssemblyTypeName: Student_workspace.Dylan.Scripts.NetworkLobby.PlayerInfoInput,
+          Assembly-CSharp
+        m_MethodName: SetupPlayerInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  destroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6181736370923634926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6181736371903567430}
   - component: {fileID: 6181736371903567431}
+  - component: {fileID: 4547580819349917068}
   m_Layer: 0
   m_Name: LobbyUI
   m_TagString: Untagged
@@ -3251,6 +3277,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameNetworkManager: {fileID: 6181736370761581532}
   landingPagePanel: {fileID: 6181736371995921298}
+--- !u!114 &4547580819349917068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181736371903567480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27286f6da12521499e7a69737ca0bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameInputField: {fileID: 6181736371927238704}
+  continueButton: {fileID: 6181736372035177153}
+  colorPickerRgb: {fileID: 4381652640248491769}
 --- !u!1 &6181736371927238705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,20 +3447,7 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6181736370856029004}
-        m_TargetAssemblyTypeName: Student_workspace.Dylan.Scripts.NetworkLobby.PlayerInfoInput,
-          Assembly-CSharp
-        m_MethodName: SetPlayerName
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3430,7 +3458,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
-  m_RichText: 1
+  m_RichText: 0
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
@@ -3770,8 +3798,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6181736370856029004}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4547580819349917068}
+        m_TargetAssemblyTypeName: Student_workspace.Dylan.Scripts.NetworkLobby.PlayerInfoInput,
+          Assembly-CSharp
         m_MethodName: SavePlayerInfo
         m_Mode: 1
         m_Arguments:
@@ -4196,8 +4225,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6497264542455689841}
   m_HandleRect: {fileID: 6497264542455689854}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: -0.0033063535
+  m_Size: 0.9971332
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4978,7 +5007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.3677766, y: 137.80412}
+  m_AnchoredPosition: {x: 0.0008100825, y: 0.28939918}
   m_SizeDelta: {x: 0, y: 101.01}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6497264541811411597
@@ -5133,7 +5162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6497264541850599243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5234,7 +5263,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6497264542568998323}
   m_HandleRect: {fileID: 6497264542568998320}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

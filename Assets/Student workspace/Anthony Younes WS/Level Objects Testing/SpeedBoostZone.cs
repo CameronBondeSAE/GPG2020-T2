@@ -11,14 +11,14 @@ namespace AnthonyY
 {
     public class SpeedBoostZone : NetworkBehaviour
     {
-        // public PlayerControllerTopDown _player;
+        public PlayerControllerTopDown _player;
         public int triggerBoost;
         public bool displaySize = true;
 
         // Start is called before the first frame update
         void Start()
         {
-            // _player = _player.GetComponent<PlayerControllerTopDown>();
+            _player = _player.GetComponent<PlayerControllerTopDown>();
             
         }
 
@@ -31,7 +31,7 @@ namespace AnthonyY
         private void OnTriggerEnter(Collider other)
         {
             // _player.speed += triggerBoost;
-            other.GetComponent<Rigidbody>().velocity += Vector3.forward * triggerBoost;
+            // other.GetComponent<Rigidbody>().velocity += Vector3.forward * triggerBoost;
             // collision.attachedRigidbody.AddForce(0,triggerBoost,0);
             Debug.Log("Entered the area");
         }
@@ -39,7 +39,7 @@ namespace AnthonyY
         private void OnTriggerExit(Collider other)
         {
             // _player.speed -= triggerBoost;
-            other.GetComponent<Rigidbody>().velocity -= Vector3.forward * triggerBoost;
+            // other.GetComponent<Rigidbody>().velocity -= Vector3.forward * triggerBoost;
             Debug.Log("Exited the area");
         }
 
