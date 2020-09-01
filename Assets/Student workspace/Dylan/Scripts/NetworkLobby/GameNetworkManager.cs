@@ -295,11 +295,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             //Changing scenes is deleting the physical player that gets spawned on start game..
             // and it also deletes them even if they're spawned in OnServerChangeScene
             base.ServerChangeScene(newSceneName);
+            
         }
 
         public void RestartLevel()
         {
             ServerChangeScene(SceneManager.GetActiveScene().name);
+            topDownPlayers.Clear();
             nextIndex = 0;
         }
 
@@ -307,11 +309,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public override void OnServerChangeScene(string sceneName)
         {
-            if (sceneName.StartsWith(gameScene))
-            {
-                // GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-                // NetworkServer.Spawn(playerSpawnSystemInstance);
-            }
+            topDownPlayers.Clear();
         }
 
 
