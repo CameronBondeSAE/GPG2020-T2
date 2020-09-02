@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &54487645 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8705932860604259461, guid: c1d616cd07402c64eb0c32d99d4a3610,
+    type: 3}
+  m_PrefabInstance: {fileID: 7589996086754064375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &331085657
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +867,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1664063103}
+    - target: {fileID: 7589996086655257081, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: gunBarrel
+      value: 
+      objectReference: {fileID: 54487645}
+    - target: {fileID: 7589996086655257081, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 897416773700603751, guid: f446683264781a24683796598a0405a8,
+        type: 3}
+    - target: {fileID: 7589996086655257081, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7589996086655257082, guid: c1d616cd07402c64eb0c32d99d4a3610,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -925,6 +947,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705932860604259461, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705932860604259461, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705932860604259461, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7589996087339689812, guid: c1d616cd07402c64eb0c32d99d4a3610, type: 3}
