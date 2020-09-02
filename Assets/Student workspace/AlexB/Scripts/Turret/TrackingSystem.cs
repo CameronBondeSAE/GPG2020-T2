@@ -11,14 +11,18 @@ namespace AJ
         public GameObject target = null;
         Vector3 lastKnownPosition = Vector3.zero;
         Quaternion lookAtRotation;
-
+        bool hasTarget = false;
         public LineOfSight lineOfSight;
         public Nearby nearby;
 
         private EventStateManager stateManager;
         public EventState SearchState;
         public EventState AttackState;
-
+        bool isFiring;
+        public GameObject bulletPrefab;
+        public Transform gunBarrel;
+        public float bulletSpeed = 10f;
+        public float rateOfFire = .5f;
         private void Start()
         {
             stateManager = new EventStateManager();
@@ -71,14 +75,28 @@ namespace AJ
                 }
                 if (transform.rotation != lookAtRotation)
                 {
+                    hasTarget = true;
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtRotation, speed * Time.deltaTime);
-                }
-            }
+                    while(hasTarget && !isFiring)
+                    {
+                        StartCoroutine(ShootBullet());
+                    }
+                }                
+            }            
 
             if (nearby.GetClosest() == null)
             {
                 stateManager.ChangeState(SearchState);
             }
+        }
+
+        private IEnumerator ShootBullet()
+        {
+            isFiring = true;
+            yield return new WaitForSeconds(rateOfFire);
+            GameObject bullet = Instantiate(bulletPrefab, gunBarrel.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
+            isFiring = false;
         }
 
         private bool SetTarget(GameObject target)

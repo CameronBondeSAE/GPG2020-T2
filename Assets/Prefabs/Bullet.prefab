@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2500008173265600246}
   - component: {fileID: 4601003829701196920}
   - component: {fileID: 3679827825430733171}
-  - component: {fileID: 5635356704463668306}
   - component: {fileID: 6234339538005328784}
   - component: {fileID: 9141784970506807265}
   - component: {fileID: -741936163986528030}
   - component: {fileID: 8260642953449142580}
+  - component: {fileID: 1500620146481763656}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 897416773700603751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.147, y: 0.359, z: 0.994}
-  m_LocalScale: {x: 0.044939, y: 0.044939, z: 0.044939}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,21 +100,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5635356704463668306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897416773700603751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190a0b62c1540c54bb4fd0c5a7a9b8ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearTimer: 1.5
-  bulletSpeed: 5
-  dmg: 100
 --- !u!54 &6234339538005328784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -180,3 +165,16 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &1500620146481763656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897416773700603751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c0119a4ebebd641818ce87ed67bdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackStrength: 10
