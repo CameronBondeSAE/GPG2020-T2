@@ -9,25 +9,25 @@ namespace AnthonyY
 {
     public class GravityGuy : MonoBehaviour
     {
-        public Nearby nearbyPlayers;
-        Vector3 playerDist;
+        public Nearby nearby;
+        public Vector3 playerDist;
         public float suctionPower = 1;
 
+        void Start()
+        {
+            nearby.PlayerListUpdated += SuckEmIn; 
+        }
         private void Update()
         {
-            if(GetComponentInChildren<Nearby>())
-            {
-                SuckEmIn();
-            }
+           SuckEmIn();
+            
         }
+        
 
-        public void SuckEmIn()
+        private void SuckEmIn()
         {
-            foreach ( PlayerControllerTopDown player in nearbyPlayers.players)
-            {
-                playerDist = transform.position - player.transform.position;
-                player.RB.AddForce(playerDist * suctionPower * (1 / Vector3.Distance(transform.position, player.transform.position)), ForceMode.Impulse);
-            }
+            playerDist = transform.position - nearby.GetClosest().transform.position;
+            nearby.GetClosest().RB.AddForce( playerDist * suctionPower * (1 / Vector3.Distance(transform.position, nearby.GetClosest().transform.position)), ForceMode.Impulse);
         }
     }
 

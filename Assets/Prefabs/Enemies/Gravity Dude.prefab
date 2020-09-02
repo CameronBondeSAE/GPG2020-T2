@@ -58,7 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ee61ab569b1b742ae5b029f06f5384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  origin: {fileID: 4240539164566335827}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1383219831056816355
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35fc7212de7e1b4b82dd60f515c408e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearbyPlayers: {fileID: 236068271}
+  nearby: {fileID: 236068271}
+  playerDist: {x: 0, y: 0, z: 0}
   suctionPower: 50
 --- !u!114 &4444155774481055291
 MonoBehaviour:

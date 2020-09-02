@@ -34,8 +34,9 @@ public class UnitMovement : MonoBehaviour
         }
     }
 
-    public void RecalculatePathHack() {
-        PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+    public void RecalculatePathHack()
+    {
+        if (!(target is null)) PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
