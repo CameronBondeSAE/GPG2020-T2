@@ -97,7 +97,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7589996086655257087}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  target: {fileID: 0}
   lineOfSight: {fileID: 1635039862}
   nearby: {fileID: 1635039863}
   SearchState:
@@ -125,7 +124,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 897416773700603751, guid: f446683264781a24683796598a0405a8,
     type: 3}
   gunBarrel: {fileID: 8705932860604259461}
-  bulletSpeed: 50
+  bulletSpeed: 10
   rateOfFire: 0.5
 --- !u!114 &6290073494820562944
 MonoBehaviour:
@@ -169,7 +168,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7589996086655257087}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 10.29}
@@ -187,6 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyes: {fileID: 8705932861058467984}
+  singleTarget: {fileID: 1651102968880965804, guid: f14f29cfe3fa01847be03fa9f93c7c8a,
+    type: 3}
   targets: []
   range: 0
   haveLOS: 0
@@ -194,6 +195,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Degrees: 30
+  nearby: {fileID: 0}
 --- !u!114 &1635039863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,8 +209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 7589996086655257082}
-  players:
-  - {fileID: 0}
+  players: []
+  useTriggerInGetClosest: 1
 --- !u!1001 &7589996087626209788
 PrefabInstance:
   m_ObjectHideFlags: 0
