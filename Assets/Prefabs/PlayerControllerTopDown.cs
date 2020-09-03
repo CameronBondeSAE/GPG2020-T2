@@ -143,24 +143,44 @@ namespace alexM
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
 		
-		
-
 		private void FixedUpdate()
 		{
 			//Do the stuff here
 			GroundCheck();
 			if (!_isGrounded)
 			{
-				// RB.AddForce((direction * moveForce) / 3);
+				 RB.AddForce((direction * moveForce) / 10);
 			}
 			else
 			{
+			
+				
+				//new method of max speed,  Addforce, if it excedes max speed after adding, Add the inverse to undo the add. A little hacky but far simpler than hand predicting the new velocity because of drag and friction.
+				
 				RB.AddForce(direction * moveForce);
 
+				if (RB.velocity.magnitude > maxSpeed) 
+				{
+					RB.AddForce(-direction * moveForce);
+				}
+
+
+				
+				
+				
+				//Old Method of max speed, gets in the way of other objects effecting the rigidbody.
+				
+				
+				/*
 				// Velocity cap
 				float oldYVel = RB.velocity.y; // Let's keep our Y speed, for jumping etc
 				RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 				RB.velocity = new Vector3(RB.velocity.x, oldYVel, RB.velocity.z);
+				*/
+				
+				
+				
+				
 			}
 
 
