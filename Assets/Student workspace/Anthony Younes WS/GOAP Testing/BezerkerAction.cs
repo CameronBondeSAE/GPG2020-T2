@@ -27,7 +27,7 @@ public class BezerkerAction :  ReGoapAction<string,object>
         //Action Code
         // transform.LookAt(_lineOfSight.targets[0]);
         _lineOfSight.singleTarget = nearby.GetClosest().transform;
-        if (_lineOfSight.Los())
+        if (_lineOfSight.CheckLOS())
         {
             transform.LookAt(_lineOfSight.singleTarget);
         }
