@@ -32,7 +32,7 @@ Material:
     - Vector1_3C6308AC: 1
     m_Colors:
     - Color_5F794305: {r: 1, g: 0.2308572, b: 0, a: 1}
-    - Color_CC2295AF: {r: 0.9185535, g: 1, b: 0.43867922, a: 1}
+    - Color_CC2295AF: {r: 0.8566635, g: 1, b: 0, a: 1}
     - Vector2_33C23091: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_E2C7024F: {r: -0.5, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -26,7 +26,6 @@ namespace AnthonyY
         Action<IReGoapAction<string, object>> fail)
     {
         base.Run(previous, next, settings, goalState, done, fail);
-       
         //its successful
         doneCallback(this);
     }
@@ -34,11 +33,11 @@ namespace AnthonyY
 	public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
 	{
 		Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-		// //Action Code
-		if (_lineofSight.CheckLOS())
+		//Action Code
+		if (_lineofSight.Los())
 		{
 			Debug.Log("I detected player!");
-		
+
 			effects.Set("canSeePlayer", true);
 		}
 		else
@@ -46,7 +45,7 @@ namespace AnthonyY
 			effects.Set("canSeePlayer", false);
 		}
 
-        effects.Set("Bezerker",true);
+        // effects.Set("Bezerker",true);
         return base.GetEffects(stackData);
     }
 

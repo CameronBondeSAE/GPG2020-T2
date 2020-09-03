@@ -21,7 +21,6 @@ namespace Niall
 
         public void Update()
         {
-            
 
             foreach (PlayerControllerTopDown player in players)
             {

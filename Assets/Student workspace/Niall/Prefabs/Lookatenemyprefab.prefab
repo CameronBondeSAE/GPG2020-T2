@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 4743110655705440940}
   - component: {fileID: 4743110655705440945}
   - component: {fileID: 1476294363}
-  - component: {fileID: 1685216613923750781}
   m_Layer: 0
   m_Name: Lookatenemyprefab
   m_TagString: Untagged
@@ -257,7 +256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FollowPos: {fileID: 0}
   force: 0.1
-  playerfollow: 0
 --- !u!114 &1476294363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,29 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyes: {fileID: 548850076}
-  targets: []
   range: 10
-  haveLOS: 0
-  changedLOS:
-    m_PersistentCalls:
-      m_Calls: []
-  Degrees: 90
---- !u!114 &1685216613923750781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4743110655705440946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!1 &4743110655746725986
 GameObject:
   m_ObjectHideFlags: 0

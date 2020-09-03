@@ -12,8 +12,7 @@ public class BezerkerAction :  ReGoapAction<string,object>
 {
     public float attackPower;
     public Rigidbody rb;
-    public LineOfSight _lineofSight;
-    public Nearby nearby;
+    public LineOfSight _lineOfSight;
   protected override void Awake()
     {
         base.Awake();
@@ -26,11 +25,10 @@ public class BezerkerAction :  ReGoapAction<string,object>
         base.Run(previous, next, settings, goalState, done, fail);
         //Action Code
         // transform.LookAt(_lineOfSight.targets[0]);
-        _lineofSight.singleTarget = nearby.GetClosest().transform;
-         if (_lineofSight.CheckLOS())
-          {
-             transform.LookAt(_lineofSight.singleTarget);
-          }
+        foreach (Transform target in _lineOfSight.targets)
+        {
+            transform.LookAt(target);
+        }
         rb.AddForce(transform.forward * attackPower,ForceMode.Impulse);
         Debug.Log("YEET!!");
 

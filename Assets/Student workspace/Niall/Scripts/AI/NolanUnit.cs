@@ -13,7 +13,7 @@ public class NolanUnit : MonoBehaviour
 
     public void Start()
     {
-        GetComponent<HealthComponent>()?.deathEvent.AddListener(Dead);
+        GetComponent<HealthComponent>().deathEvent.AddListener(Dead);
     }
 
 
@@ -30,6 +30,6 @@ public class NolanUnit : MonoBehaviour
 
     public void OnDestroy()
     {
-        GetComponent<HealthComponent>()?.deathEvent.RemoveListener(Dead);
+        GetComponent<HealthComponent>().deathEvent.RemoveListener(Dead);
     }
 }

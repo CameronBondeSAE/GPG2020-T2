@@ -2019,10 +2019,6 @@ MonoBehaviour:
   nameInputUI: {fileID: 6181736370856029006}
   mainMenu: {fileID: 6181736371995921298}
   useSameScene: 1
-  levels:
-  - Assets/Scenes/Main.unity
-  - Assets/Scenes/Goose.unity
-  - Assets/Scenes/DylanLevel.unity
   heightOffset: 1.5
 --- !u!114 &6181736370761581533
 MonoBehaviour:
@@ -4261,7 +4257,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6497264542455689841}
   m_HandleRect: {fileID: 6497264542455689854}
   m_Direction: 2
-  m_Value: -0.0008199757
+  m_Value: -0.0033857059
   m_Size: 0.99714446
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5043,7 +5039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00043011009, y: 0.28872028}
+  m_AnchoredPosition: {x: 0.00043011009, y: 0.28941187}
   m_SizeDelta: {x: 0, y: 101.01}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &6497264541811411597
@@ -5198,7 +5194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6497264541850599243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5656,7 +5652,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

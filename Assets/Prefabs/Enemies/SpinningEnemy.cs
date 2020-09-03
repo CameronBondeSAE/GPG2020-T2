@@ -36,6 +36,8 @@ public class SpinningEnemy : MonoBehaviour
         Spin();
     }
 
+    
+    
     public void Spin()
     {
         switch (spinDir)
