@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Goose.unity
     guid: ac94f436e66cdc94882a21f8a74f323a
   - enabled: 1
-    path: Assets/Student workspace/Dylan/Scenes/DylanLevel.unity
+    path: Assets/Scenes/DylanLevel.unity
     guid: 553f9b4df45af154f8ec8d1e3fa8ab69
   m_configObjects: {}
