@@ -8,16 +8,21 @@ public class JumpPad : NetworkBehaviour
 {
 	public int  thrustX, thrustY, thrustZ;
 	public bool relativeToRotation = false;
-	public bool useTrigger         = true;
 
-	public void OnCollisionEnter(Collision other)
-	{
-		Jump(other.collider);
-	}
+	public bool resetVelocity = false;
+	// public bool useTrigger         = true;
+
+	// public void OnCollisionEnter(Collision other)
+	// {
+	// 	Jump(other.collider);
+	// }
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Jump(other);
+		if (other.gameObject.layer == LayerMask.NameToLayer("Gameplay relevant colliders"))
+		{
+			Jump(other);
+		}
 	}
 
 	private void Jump(Collider other)
@@ -29,11 +34,25 @@ public class JumpPad : NetworkBehaviour
 		{
 			if (relativeToRotation)
 			{
-				other.transform.root.GetComponent<Rigidbody>().AddForce(transform.rotation * gameThrust, ForceMode.VelocityChange);
+				if (resetVelocity)
+				{
+					other.transform.root.GetComponent<Rigidbody>().velocity = transform.rotation * gameThrust;
+				}
+				else
+				{
+					other.transform.root.GetComponent<Rigidbody>().AddForce(transform.rotation * gameThrust, ForceMode.VelocityChange);
+				}
 			}
 			else
 			{
-				other.transform.root.GetComponent<Rigidbody>().AddForce(gameThrust, ForceMode.VelocityChange);
+				if (resetVelocity)
+				{
+					other.transform.root.GetComponent<Rigidbody>().velocity = gameThrust;
+				}
+				else
+				{
+					other.transform.root.GetComponent<Rigidbody>().AddForce(gameThrust, ForceMode.VelocityChange);
+				}
 			}
 		}
 
