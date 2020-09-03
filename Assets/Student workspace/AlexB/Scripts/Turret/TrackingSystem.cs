@@ -8,7 +8,6 @@ namespace AJ
     public class TrackingSystem : MonoBehaviour
     {
         public float speed = 3.0f;
-        public GameObject target = null;
         Vector3 lastKnownPosition = Vector3.zero;
         Quaternion lookAtRotation;
         bool hasTarget = false;
@@ -42,35 +41,27 @@ namespace AJ
         void SearchStateUpdate()
         {
             transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
-            if (lineOfSight.haveLOS == true)
+            
+			if(nearby.GetClosest() != null)
             {
-                stateManager.ChangeState(AttackState);
-            }
-
-            if(nearby.GetClosest() != null)
-            {
-                lineOfSight.targets = new List<Transform>();
-
-                lineOfSight.targets.Add(nearby.GetClosest().transform);
+				lineOfSight.singleTarget = nearby.GetClosest().transform;
                 
-                if (lineOfSight.haveLOS == true)
+                if (lineOfSight.Los() == true)
                 {
                     stateManager.ChangeState(AttackState);
                 }
             }
-            
-
-        }
+		}
 
         // Update is called once per frame
         void AttackStateUpdate()
         {
             //make target = nearby
-            if (target)
+            if (lineOfSight.singleTarget)
             {
-                if (lastKnownPosition != target.transform.position)
+                if (lastKnownPosition != lineOfSight.singleTarget.transform.position)
                 {
-                    lastKnownPosition = target.transform.position;
+                    lastKnownPosition = lineOfSight.singleTarget.transform.position;
                     lookAtRotation = Quaternion.LookRotation(lastKnownPosition - transform.position);
                 }
                 if (transform.rotation != lookAtRotation)

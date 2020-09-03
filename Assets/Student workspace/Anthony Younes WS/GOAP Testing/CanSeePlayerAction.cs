@@ -33,11 +33,11 @@ namespace AnthonyY
 	public override ReGoapState<string, object> GetEffects(GoapActionStackData<string, object> stackData)
 	{
 		Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
-		//Action Code
+		// //Action Code
 		if (_lineofSight.Los())
 		{
 			Debug.Log("I detected player!");
-
+		
 			effects.Set("canSeePlayer", true);
 		}
 		else

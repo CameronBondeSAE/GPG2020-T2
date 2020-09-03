@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using alexM;
 using Mirror.Examples.Pong;
+using Niall;
 using UnityEngine;
 
 namespace AnthonyY
@@ -10,25 +11,24 @@ namespace AnthonyY
     public class GravityGuy : MonoBehaviour
     {
         public Nearby nearby;
-        public Vector3 playerDist;
+        private Vector3 playerDist;
         public float suctionPower = 1;
-
-        void Start()
-        {
-            nearby.PlayerListUpdated += SuckEmIn; 
-        }
+        public LineOfSight lineofSight;
         private void Update()
         {
            SuckEmIn();
         }
-        
+
 
         private void SuckEmIn()
         {
-            playerDist = nearby.GetClosest().transform.position;
-            nearby.GetClosest().RB.AddForce( playerDist * suctionPower * (1 / Vector3.Distance(transform.position, nearby.GetClosest().transform.position)), ForceMode.Impulse);
+            lineofSight.singleTarget = nearby.GetClosest().transform;
+            var lineofSighttransform = lineofSight.singleTarget.transform;
+            if (lineofSight.Los())
+            {
+                nearby.GetClosest().RB.AddForce(lineofSighttransform.position * (-suctionPower * (1 / Vector3.Distance(transform.position, lineofSighttransform.position))), ForceMode.Impulse);
+            }
+            
         }
     }
-
-
 }
