@@ -408,12 +408,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &974160977 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3838460949872436054, guid: 0e8d928268d472f46bfc005690971776,
-    type: 3}
-  m_PrefabInstance: {fileID: 1196340108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &979773686
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,25 +762,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1196340112, guid: 0e8d928268d472f46bfc005690971776, type: 3}
-      propertyPath: Degrees
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 1383219831056816355, guid: 0e8d928268d472f46bfc005690971776,
         type: 3}
       propertyPath: m_Name
       value: Gravity Dude (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2275277486849422665, guid: 0e8d928268d472f46bfc005690971776,
-        type: 3}
-      propertyPath: suctionPower
-      value: -500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275277486849422665, guid: 0e8d928268d472f46bfc005690971776,
-        type: 3}
-      propertyPath: lineofSight
-      value: 
-      objectReference: {fileID: 1196340112}
     - target: {fileID: 2829784553226779895, guid: 0e8d928268d472f46bfc005690971776,
         type: 3}
       propertyPath: sceneId
@@ -882,37 +862,8 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: 0e8d928268d472f46bfc005690971776
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1196340112, guid: 0e8d928268d472f46bfc005690971776, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e8d928268d472f46bfc005690971776, type: 3}
---- !u!1 &1196340109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1383219831056816355, guid: 0e8d928268d472f46bfc005690971776,
-    type: 3}
-  m_PrefabInstance: {fileID: 1196340108}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1196340112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196340109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6717400c560b04a913d18e1c70b227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eyes: {fileID: 974160977}
-  singleTarget: {fileID: 0}
-  targets: []
-  range: 0
-  haveLOS: 0
-  changedLOS:
-    m_PersistentCalls:
-      m_Calls: []
-  Degrees: 40
-  nearby: {fileID: 0}
 --- !u!1 &1336325467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1363,7 @@ PrefabInstance:
     - target: {fileID: 6497264541767905667, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.31668743
+      value: 0.2891573
       objectReference: {fileID: 0}
     - target: {fileID: 6497264541767905667, guid: 29e34919de67780449d043c16eef9f5e,
         type: 3}
