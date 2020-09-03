@@ -13,7 +13,7 @@ public class MoveForward : MonoBehaviour
 
     public void Start()
     {
-        los = GetComponent<LineOfSight>().Los();
+        los = GetComponent<LineOfSight>().CheckLOS();
     }
 
     public void Update()
