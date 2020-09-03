@@ -10,6 +10,8 @@ namespace AJ
         private Color previousColor;
         public Color currentColor;
 
+        
+        
         [ClientRpc]
         public void RpcChangeTo(Color newColor)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,27 +12,27 @@ namespace alexM
 	#region Variables
 
 
-		[Header("Object Settings")]
+		[Header("Object Settings"), HideInInspector]
 		public bool activate = true;
 		[Tooltip("You can disable movement if you want to do your own")]
 		public bool movement = true;
-		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>")]
+		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>"), HideInInspector]
 		public bool useGravity = false;
 		[Tooltip("This option will determine whether or not the object will move directly AT the target, or only its X and Z positions (Staying on the Y pos it is currently at.)")]
 		public bool useYaxis = false;
-		public float speedMulti = 100;
+		public float speedMulti = 2;
 		[Tooltip("This is the distance to the target left before this component switches to the next target based on Current Move Type below")]
-		public float targetReachedThreshold = 0.5f;
+		public float targetReachedThreshold = 0.05f;
 		
 		[Header("Targeting/MoveType")]
 		[Tooltip("Add as many Waypoint prefabs to your scene as you need and drag them all into this list for this component to work!")]
 		public List<Waypoint> wayPoints;
 		[SerializeField] private MoveType _currMoveType = MoveType.Ordered;
-		[SerializeField] private DistanceType _currDistanceType = DistanceType.ClosestPoint;
+		[SerializeField] private DistanceType _currDistanceType = DistanceType.Center;
 		
 		
 		[Header("Optional/Debug")]
-		public bool AttachRigidbody;
+		public bool attachRigidbody;
 		public Transform target;
 
 		public event Action<Transform> TargetChanged;
@@ -71,13 +72,14 @@ namespace alexM
 		{
 			if (!RB)
 			{
-				if (AttachRigidbody)
+				if (attachRigidbody)
 				{
 					if (!gameObject.GetComponent<Rigidbody>())
 					{
 						gameObject.AddComponent<Rigidbody>();
 						RB             = gameObject.GetComponent<Rigidbody>();
-						RB.constraints = RigidbodyConstraints.FreezeRotation;
+						RB.isKinematic = true;
+						//RB.constraints = RigidbodyConstraints.FreezeRotation;
 						// RB.isKinematic = true;
 					}
 				}
@@ -86,6 +88,10 @@ namespace alexM
 					if (gameObject.GetComponent<Rigidbody>())
 					{
 						RB = gameObject.GetComponent<Rigidbody>();
+						if (!RB.isKinematic)
+							RB.isKinematic = true;
+						
+						
 					}
 					else
 					{
@@ -130,7 +136,15 @@ namespace alexM
 				}
 				else if (_currDistanceType == DistanceType.Center)
 				{
-					dist = Vector3.Distance(gameObject.transform.position, target.position);	
+					if (useYaxis)
+					{
+						dist = Vector3.Distance(gameObject.transform.position, target.position);
+					}
+					else
+					{
+						Vector3 targetPosOffset = new Vector3(target.position.x,transform.position.y, target.position.z);
+						dist = Vector3.Distance(gameObject.transform.position, targetPosOffset);
+					}
 				}
 				
 				
@@ -156,7 +170,14 @@ namespace alexM
 			{
 				target = wayPoints[_targetId].transform;
 				_dir = (target.position - transform.position).normalized;
-				_dir = new Vector3(_dir.x, 0, _dir.z);
+				if (!useYaxis)
+				{
+					_dir = new Vector3(_dir.x, 0, _dir.z);
+				}
+				else
+				{
+					_dir = new Vector3(_dir.x, _dir.y, _dir.z);
+				}
 				_targetStatus = TargetStatus.TargetFound;
 
 				TargetChanged?.Invoke(target);
@@ -227,11 +248,14 @@ namespace alexM
 
 			if (!useYaxis)
 			{
-				RB.velocity = new Vector3(_dir.x, 0, _dir.z) * (speedMulti * Time.deltaTime);
+				//RB.velocity = new Vector3(_dir.x, 0, _dir.z) * (speedMulti * Time.deltaTime);
+				
+				RB.MovePosition(transform.position + _dir * (Time.fixedDeltaTime * speedMulti));
 			}
 			else
 			{
-				RB.velocity = _dir * (speedMulti * Time.deltaTime);
+				//RB.velocity = _dir * (speedMulti * Time.deltaTime);
+				RB.MovePosition(transform.position + _dir * (Time.fixedDeltaTime * speedMulti));
 			}
 		}
 
