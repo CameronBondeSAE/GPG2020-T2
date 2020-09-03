@@ -6,12 +6,14 @@ using alexM;
 using AnthonyY;
 using Mirror;
 using Mirror.Examples.Pong;
+using Student_workspace.Dylan.Scripts.NetworkLobby;
 using UnityEngine;
 
 public class Nearby : MonoBehaviour
 {
 	public Transform                     origin;
 	public List<PlayerControllerTopDown> players;
+	public bool                          useTriggerInGetClosest = false;
 
 	public event Action PlayerListUpdated;
 
@@ -27,6 +29,14 @@ public class Nearby : MonoBehaviour
 	{
 		float                   closestDistance = 99999999f;
 		PlayerControllerTopDown closestPlayer   = null;
+
+		if (useTriggerInGetClosest == false)
+		{
+			if ((NetworkManager.singleton as GameNetworkManager).topDownPlayers.Count > 0)
+			{
+				players = (NetworkManager.singleton as GameNetworkManager).topDownPlayers;
+			}
+		}
 
 		foreach (PlayerControllerTopDown playerControllerTopDown in players)
 		{
@@ -53,7 +63,7 @@ public class Nearby : MonoBehaviour
 			{
 				players.Add(playerControllerTopDown);
 				PlayerListUpdated?.Invoke();
-				
+
 				Debug.Log("I have entered the trigger zone");
 				Debug.Log(playerControllerTopDown.gameObject.name);
 			}
@@ -70,7 +80,7 @@ public class Nearby : MonoBehaviour
 			{
 				players.Remove(playerControllerTopDown);
 				PlayerListUpdated?.Invoke();
-				
+
 				Debug.Log("I have exited the trigger zone");
 				Debug.Log(playerControllerTopDown.gameObject.name);
 			}
