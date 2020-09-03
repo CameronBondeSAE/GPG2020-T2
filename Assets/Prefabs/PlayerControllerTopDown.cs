@@ -230,7 +230,7 @@ namespace alexM
 			
 			
 			
-			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 1f, groundableLayers))
+			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 0.65f, groundableLayers))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
 				//Debug.Log("dist: " + hit.distance);
