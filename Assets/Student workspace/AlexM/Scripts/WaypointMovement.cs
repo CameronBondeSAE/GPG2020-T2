@@ -27,7 +27,7 @@ namespace alexM
 		[Tooltip("Add as many Waypoint prefabs to your scene as you need and drag them all into this list for this component to work!")]
 		public List<Waypoint> wayPoints;
 		[SerializeField] private MoveType _currMoveType = MoveType.Ordered;
-		[SerializeField] private DistanceType _currDistanceType = DistanceType.Center;
+		[SerializeField] private DistanceType _currDistanceType = DistanceType.ClosestPoint;
 		
 		
 		[Header("Optional/Debug")]
