@@ -20,13 +20,12 @@ namespace AnthonyY
         private void Update()
         {
            SuckEmIn();
-            
         }
         
 
         private void SuckEmIn()
         {
-            playerDist = transform.position - nearby.GetClosest().transform.position;
+            playerDist = nearby.GetClosest().transform.position;
             nearby.GetClosest().RB.AddForce( playerDist * suctionPower * (1 / Vector3.Distance(transform.position, nearby.GetClosest().transform.position)), ForceMode.Impulse);
         }
     }
