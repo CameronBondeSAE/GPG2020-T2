@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Niall 
 {
-    public class TurnTowardsBehaviour : MonoBehaviour
+    public class TurnTowardsBehaviour : SteeringBehaviourBase
     {
 
         public Transform FollowPos;
@@ -25,7 +25,7 @@ namespace Niall
                 FollowPos = findClosest.closestPlayer.transform;
             }
 
-            if (lineOfSight.CheckLOS() && FollowPos != null)
+            if (FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
 
@@ -33,7 +33,7 @@ namespace Niall
 
                 Vector3 cross = Vector3.Cross(transform.forward, targetDelta);
 
-                GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * force * Time.deltaTime));
+                rb.AddTorque(cross * (angleDiff * force * Time.deltaTime));
             }
         }
     }
