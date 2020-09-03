@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class GeneralLevelLoader : NetworkBehaviour
 {
-    public static event Action<string> LoadLevelEvent;
+    public static event Action<string,bool> LoadLevelEvent;
 
     [Scene]
     public string levelToLoad;
 
+    public bool LoadNextLevel = true;
     private void OnTriggerEnter(Collider other)
     {
         if (isServer)
@@ -28,6 +29,6 @@ public class GeneralLevelLoader : NetworkBehaviour
     [Server]
     public void LoadLevel()
     {
-        LoadLevelEvent?.Invoke(levelToLoad);
+        LoadLevelEvent?.Invoke(levelToLoad,LoadNextLevel);
     }
 }

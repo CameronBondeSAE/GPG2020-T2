@@ -2019,6 +2019,10 @@ MonoBehaviour:
   nameInputUI: {fileID: 6181736370856029006}
   mainMenu: {fileID: 6181736371995921298}
   useSameScene: 1
+  levels:
+  - Assets/Scenes/Main.unity
+  - Assets/Scenes/Goose.unity
+  - Assets/Student workspace/Dylan/Scenes/DylanLevel.unity
   heightOffset: 1.5
 --- !u!114 &6181736370761581533
 MonoBehaviour:

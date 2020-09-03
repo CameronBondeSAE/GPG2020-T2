@@ -61,6 +61,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public GameObject mainMenu;
         
         public bool useSameScene;
+
+        [Scene] [SerializeField] public List<string> levels;
         
         public override void Start()
         {
@@ -103,15 +105,35 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             base.Start();
         }
 
-        public void LoadLevel(string levelToLoadName)
+        public void LoadLevel(string levelToLoadName,bool loadNextLevel)
         {
             //possible issues might come up with gamescene not being this new scene
             //if so just assign game scene to this new scene when we load it here
-            ServerChangeScene(levelToLoadName);
+            if (loadNextLevel)
+            {
+                if (NextLevel() != null)
+                {
+                    ServerChangeScene(NextLevel());
+                }
+            }
+            else
+            {
+                
+                ServerChangeScene(levelToLoadName);
+
+            }
             nextIndex = 0;
             GeneralLevelLoader.LoadLevelEvent -= LoadLevel;
             //should be done in start method if not can be uncommented
             GeneralLevelLoader.LoadLevelEvent += LoadLevel;
+        }
+
+        public string NextLevel()
+        {
+            string currentLevel = SceneManager.GetActiveScene().path;
+            int currentlevelIndex = levels.IndexOf(currentLevel);
+
+            return  ( currentlevelIndex < levels.Count) ? levels[currentlevelIndex + 1] : null;
         }
 
         void UIOff(NetworkGamePlayer ngp)
