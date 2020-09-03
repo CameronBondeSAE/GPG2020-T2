@@ -125,7 +125,7 @@ MonoBehaviour:
     type: 3}
   gunBarrel: {fileID: 8705932860604259461}
   bulletSpeed: 10
-  rateOfFire: 0.5
+  rateOfFire: 0.8
 --- !u!114 &6290073494820562944
 MonoBehaviour:
   m_ObjectHideFlags: 0
