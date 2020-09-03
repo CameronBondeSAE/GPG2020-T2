@@ -34,7 +34,7 @@ namespace AnthonyY
 	{
 		Debug.Log("* " + MethodBase.GetCurrentMethod().ReflectedType.FullName + " - " + MethodBase.GetCurrentMethod().Name);
 		//Action Code
-		if (_lineofSight.Los())
+		if (_lineofSight.LOS())
 		{
 			Debug.Log("I detected player!");
 
