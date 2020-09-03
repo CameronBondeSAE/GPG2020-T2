@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224334383045777905}
-  - component: {fileID: 6715120617018338795}
   - component: {fileID: 2328804828578668811}
   m_Layer: 0
   m_Name: LevelLoader
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6715120617018338795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953545154567823685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb863822f228af44a0439c7311c7f04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  levelToLoad: Assets/Scenes/CamsDungeon.unity
 --- !u!114 &2328804828578668811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  serverOnly: 1
+  serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1 &8207977319267611822
@@ -76,7 +60,9 @@ GameObject:
   - component: {fileID: 120951156317007152}
   - component: {fileID: 4359846756084969455}
   - component: {fileID: 2267460426661529293}
-  - component: {fileID: 4224281736792394476}
+  - component: {fileID: 1153452709776092551}
+  - component: {fileID: 17235816284359682}
+  - component: {fileID: 2614510266225964120}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -171,10 +157,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
@@ -188,10 +174,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
@@ -205,10 +191,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 2
     m_ManualUV: 0
@@ -222,10 +208,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 1
     m_ManualUV: 0
@@ -239,10 +225,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 1
     m_ManualUV: 0
@@ -256,10 +242,10 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.03, y: 0.03}
       m_Offset: {x: 0, y: 0}
       m_Rotation: 0
-      m_Anchor: 9
+      m_Anchor: 0
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
@@ -274,7 +260,11 @@ MonoBehaviour:
   - m_Vertices: 070000000a00000013000000
   - m_Vertices: 090000000c00000014000000
   - m_Vertices: 0b0000000e00000012000000
-  m_SharedTextures: []
+  m_SharedTextures:
+  - m_Vertices: 0d000000
+  - m_Vertices: 00000000
+  - m_Vertices: 0f000000
+  - m_Vertices: 02000000
   m_Positions:
   - {x: -3.742815, y: 0, z: 0}
   - {x: 4.160796, y: 0, z: 0}
@@ -301,30 +291,30 @@ MonoBehaviour:
   - {x: -3.742815, y: 0, z: 0}
   - {x: 4.160796, y: 0, z: 0}
   m_Textures0:
-  - {x: 3.742815, y: 0}
-  - {x: -4.160796, y: 0}
-  - {x: 3.742815, y: 2.7883234}
-  - {x: -4.160796, y: 2.7883234}
-  - {x: 0, y: 0}
-  - {x: -2.5658817, y: 0}
-  - {x: 0, y: 2.7883234}
-  - {x: -2.5658817, y: 2.7883234}
-  - {x: 4.160796, y: 0}
-  - {x: -3.742815, y: 0}
-  - {x: 4.160796, y: 2.7883234}
-  - {x: -3.742815, y: 2.7883234}
-  - {x: 2.5658817, y: 0}
-  - {x: 0, y: 0}
-  - {x: 2.5658817, y: 2.7883234}
-  - {x: 0, y: 2.7883234}
-  - {x: -3.742815, y: 0}
-  - {x: 4.160796, y: 0}
-  - {x: -3.742815, y: -2.5658817}
-  - {x: 4.160796, y: -2.5658817}
-  - {x: 3.742815, y: -2.5658817}
-  - {x: -4.160796, y: -2.5658817}
-  - {x: 3.742815, y: 0}
-  - {x: -4.160796, y: 0}
+  - {x: 0.23710835, y: 0.91635036}
+  - {x: 0, y: 0.91635036}
+  - {x: 0.23710835, y: 1}
+  - {x: 0, y: 1}
+  - {x: 0.07697654, y: 0.91635036}
+  - {x: 0, y: 0.91635036}
+  - {x: 0.07697654, y: 1}
+  - {x: 0, y: 1}
+  - {x: 0.23710835, y: 0.91635036}
+  - {x: 0, y: 0.91635036}
+  - {x: 0.23710835, y: 1}
+  - {x: 0, y: 1}
+  - {x: 0.07697654, y: 0.91635036}
+  - {x: 0, y: 0.91635036}
+  - {x: 0.07697654, y: 1}
+  - {x: 0, y: 1}
+  - {x: 0, y: 0.9999999}
+  - {x: 0.23710835, y: 0.9999999}
+  - {x: 0, y: 0.92302334}
+  - {x: 0.23710835, y: 0.92302334}
+  - {x: 0.23710835, y: 0.92302334}
+  - {x: 0, y: 0.92302334}
+  - {x: 0.23710835, y: 0.9999999}
+  - {x: 0, y: 0.9999999}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -364,7 +354,39 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!64 &4224281736792394476
+--- !u!114 &1153452709776092551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207977319267611822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &17235816284359682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207977319267611822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb863822f228af44a0439c7311c7f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  levelToLoad: 
+  LoadNextLevel: 1
+--- !u!64 &2614510266225964120
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,7 +394,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8207977319267611822}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
