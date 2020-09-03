@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1529177918638889907}
   - component: {fileID: 1529177918638889868}
   - component: {fileID: 1529177918638889869}
+  - component: {fileID: 2053718318756924444}
   - component: {fileID: 1529177918638889904}
   m_Layer: 0
   m_Name: ButtonWithColour
@@ -312,6 +313,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.5, y: 0.5, z: -0.5}
+--- !u!114 &2053718318756924444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529177918638889864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c861430d1d88446b149f999304a575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activate: 1
+  movement: 1
+  useGravity: 0
+  useYaxis: 0
+  speedMulti: 100
+  targetReachedThreshold: 0.5
+  wayPoints: []
+  _currMoveType: 0
+  _currDistanceType: 0
+  AttachRigidbody: 0
+  target: {fileID: 0}
 --- !u!114 &1529177918638889904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUsingColourSystem: 0
-  target: {fileID: 0}
+  ColourChangerTarget: {fileID: 0}
   triggeredEvent:
     m_PersistentCalls:
       m_Calls: []
