@@ -26,6 +26,7 @@ namespace AnthonyY
         Action<IReGoapAction<string, object>> fail)
     {
         base.Run(previous, next, settings, goalState, done, fail);
+       
         //its successful
         doneCallback(this);
     }
@@ -45,7 +46,7 @@ namespace AnthonyY
 			effects.Set("canSeePlayer", false);
 		}
 
-        // effects.Set("Bezerker",true);
+        effects.Set("Bezerker",true);
         return base.GetEffects(stackData);
     }
 

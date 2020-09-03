@@ -1,12 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ReGoap.Core;
 using ReGoap.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class ShootyGoapAgent : ReGoapAgent<string,object>
 {
+    private void Start()
+    {
+        CalculateNewGoal(true);
+    }
+
     // Update is called once per frame
     public void CalculateNewGoal()
     {
@@ -28,5 +35,10 @@ public class ShootyGoapAgent : ReGoapAgent<string,object>
             CalculateNewGoal();
         }
     }
+
+     IEnumerator NewPlanDelay()
+     {
+         yield return new WaitForSeconds(5);
+     }
 }
  
