@@ -27,11 +27,11 @@ namespace Niall
 		{
 			if (targets.Count>0 || singleTarget)
 			{
-				Los();
+				CheckLOS();
 			}
 		}
 
-		public bool Los()
+		public bool CheckLOS()
 		{
 			haveLOS = false;
 

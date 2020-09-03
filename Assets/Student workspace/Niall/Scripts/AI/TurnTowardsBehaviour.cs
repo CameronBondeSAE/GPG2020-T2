@@ -25,7 +25,7 @@ namespace Niall
                 FollowPos = findClosest.closestPlayer.transform;
             }
 
-            if (lineOfSight.Los() && FollowPos != null)
+            if (lineOfSight.CheckLOS() && FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
 
