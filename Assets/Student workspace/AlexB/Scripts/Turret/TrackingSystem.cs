@@ -47,7 +47,7 @@ namespace AJ
             {
 				lineOfSight.singleTarget = nearby.GetClosest().transform;
                 
-                if (lineOfSight.LOS() == true)
+                if (lineOfSight.Los() == true)
                 {
                     stateManager.ChangeState(AttackState);
                 }

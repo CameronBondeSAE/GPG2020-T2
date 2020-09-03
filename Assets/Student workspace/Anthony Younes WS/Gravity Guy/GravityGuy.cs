@@ -12,11 +12,6 @@ namespace AnthonyY
         public Nearby nearby;
         public Vector3 playerDist;
         public float suctionPower = 1;
-
-        void Start()
-        {
-            nearby.PlayerListUpdated += SuckEmIn; 
-        }
         private void Update()
         {
            SuckEmIn();
@@ -25,8 +20,16 @@ namespace AnthonyY
 
         private void SuckEmIn()
         {
-            playerDist = nearby.GetClosest().transform.position;
-            nearby.GetClosest().RB.AddForce( playerDist * suctionPower * (1 / Vector3.Distance(transform.position, nearby.GetClosest().transform.position)), ForceMode.Impulse);
+            if (!(nearby is null))
+            {
+                playerDist = nearby.GetClosest().transform.position;
+                if (nearby.GetClosest() != null)
+                {
+                    nearby.GetClosest().RB
+                        .AddForce(playerDist * (suctionPower * (1 / Vector3.Distance(transform.position,
+                            nearby.GetClosest().transform.position))), ForceMode.Impulse);
+                }
+            }
         }
     }
 
