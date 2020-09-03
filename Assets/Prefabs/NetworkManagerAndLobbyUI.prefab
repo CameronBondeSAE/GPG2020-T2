@@ -2022,7 +2022,7 @@ MonoBehaviour:
   levels:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Goose.unity
-  - Assets/Student workspace/Dylan/Scenes/DylanLevel.unity
+  - Assets/Scenes/DylanLevel.unity
   heightOffset: 1.5
 --- !u!114 &6181736370761581533
 MonoBehaviour:
