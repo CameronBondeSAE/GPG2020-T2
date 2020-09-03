@@ -42,25 +42,17 @@ namespace AJ
         void SearchStateUpdate()
         {
             transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
-            if (lineOfSight.haveLOS == true)
+            
+			if(nearby.GetClosest() != null)
             {
-                stateManager.ChangeState(AttackState);
-            }
-
-            if(nearby.GetClosest() != null)
-            {
-                lineOfSight.targets = new List<Transform>();
-
-                lineOfSight.targets.Add(nearby.GetClosest().transform);
+				lineOfSight.singleTarget = nearby.GetClosest().transform;
                 
-                if (lineOfSight.haveLOS == true)
+                if (lineOfSight.LOS() == true)
                 {
                     stateManager.ChangeState(AttackState);
                 }
             }
-            
-
-        }
+		}
 
         // Update is called once per frame
         void AttackStateUpdate()
