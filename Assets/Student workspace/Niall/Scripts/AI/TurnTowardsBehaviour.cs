@@ -5,27 +5,34 @@ using UnityEngine;
 
 namespace Niall 
 {
-    public class TurnTowardsBehaviour : MonoBehaviour
+    public class TurnTowardsBehaviour : SteeringBehaviourBase
     {
 
-        public Transform FollowPos;
+        public Transform FollowPos = null;
         public float force = 0.1f;
         private LineOfSight lineOfSight;
-        private FindClosest findClosest;
         public bool playerfollow;
         public Nearby nearby;
 
-
+        private void Start()
+        {
+            nearby = GetComponent<Nearby>();
+        }
 
 
         public void Update()
         {
             if (playerfollow)
             {
-                FollowPos = findClosest.closestPlayer.transform;
+                FollowPos = nearby.GetClosest().transform;
             }
 
-            if (lineOfSight.CheckLOS() && FollowPos != null)
+            if (nearby.players.Count <= 0)
+            {
+                FollowPos = null;
+            }
+
+            if (/*lineOfSight.Los() &&*/ FollowPos != null)
             {
                 Vector3 targetDelta = FollowPos.position - transform.position;
 
@@ -33,7 +40,7 @@ namespace Niall
 
                 Vector3 cross = Vector3.Cross(transform.forward, targetDelta);
 
-                GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * force * Time.deltaTime));
+                GetComponent<Rigidbody>().AddTorque(cross * (angleDiff * (force * Time.deltaTime)));
             }
         }
     }
