@@ -16,6 +16,7 @@ namespace Niall
         public bool haveLOS;
         public UnityEvent<bool> changedLOS;
         public float Degrees = 5.0f;
+        public Nearby nearby;
 
 
 
@@ -36,12 +37,6 @@ namespace Niall
 
             foreach (Transform target in targets)
             {
-                // RaycastHit hit;
-                // Debug.DrawRay(eyes.position, eyes.forward * range, Color.white);
-                // if (Physics.Raycast(eyes.position, eyes.forward, out hit, range))
-                // {
-                // Debug.Log(this.name + " found Target! = " + hit.collider.name);
-                // }
                 _target = target.transform;
                 
                 RaycastHit hitt;

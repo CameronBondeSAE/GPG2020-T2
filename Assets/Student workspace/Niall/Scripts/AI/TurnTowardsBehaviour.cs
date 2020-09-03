@@ -13,14 +13,10 @@ namespace Niall
         private LineOfSight lineOfSight;
         private FindClosest findClosest;
         public bool playerfollow;
+        public Nearby nearby;
 
 
-        public void Start()
-        {
-            lineOfSight = GetComponent<LineOfSight>();
-            
 
-        }
 
         public void Update()
         {
