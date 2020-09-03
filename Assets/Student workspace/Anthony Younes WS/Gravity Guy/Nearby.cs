@@ -15,6 +15,13 @@ public class Nearby : MonoBehaviour
 
 	public event Action PlayerListUpdated;
 
+	private void Awake()
+	{
+		if (origin == null)
+		{
+			origin = transform;
+		}
+	}
 
 	public PlayerControllerTopDown GetClosest()
 	{

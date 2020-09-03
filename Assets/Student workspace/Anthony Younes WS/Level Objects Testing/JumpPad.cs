@@ -30,28 +30,36 @@ public class JumpPad : NetworkBehaviour
 		Vector3 gameThrust = new Vector3(thrustX, thrustY, thrustZ);
 		// if (isServer)
 		// {
-		if (other.transform.root.GetComponent<Rigidbody>() != null)
+		Rigidbody rb = other.transform.root.GetComponent<Rigidbody>();
+		
+		if (rb != null)
 		{
+			Vector3 rbVelocity = rb.velocity;
+			
 			if (relativeToRotation)
 			{
+				Vector3 transformRotation = transform.rotation * gameThrust;
+				
 				if (resetVelocity)
 				{
-					other.transform.root.GetComponent<Rigidbody>().velocity = transform.rotation * gameThrust;
+					rb.velocity = gameThrust;
+					rb.velocity = new Vector3(gameThrust.x < 0.01f ? rbVelocity.x : transformRotation.x, gameThrust.y < 0.01f ? rbVelocity.y : transformRotation.y, gameThrust.z < 0.01f ? rbVelocity.z : transformRotation.z);
 				}
 				else
 				{
-					other.transform.root.GetComponent<Rigidbody>().AddForce(transform.rotation * gameThrust, ForceMode.VelocityChange);
+					rb.AddForce(transformRotation, ForceMode.VelocityChange);
 				}
 			}
 			else
 			{
 				if (resetVelocity)
 				{
-					other.transform.root.GetComponent<Rigidbody>().velocity = gameThrust;
+					rb.velocity = gameThrust;
+					rb.velocity = new Vector3(gameThrust.x < 0.01f ? rbVelocity.x : rb.velocity.x, gameThrust.y < 0.01f ? rbVelocity.y : rb.velocity.y, gameThrust.z < 0.01f ? rbVelocity.z : rb.velocity.z);
 				}
 				else
 				{
-					other.transform.root.GetComponent<Rigidbody>().AddForce(gameThrust, ForceMode.VelocityChange);
+					rb.AddForce(gameThrust, ForceMode.VelocityChange);
 				}
 			}
 		}
