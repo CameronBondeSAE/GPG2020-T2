@@ -18,9 +18,12 @@ namespace alexM
 		public  Rigidbody         RB;
 		public  GameObject        bottom, neck;
 		private Camera_Controller cameraController;
-		public float GroundCheckRadius = 0.2f;
-		public Gun gun;
-		[SerializeField] private LayerMask groundableLayers;
+		public  float             GroundCheckRadius = 0.2f;
+		public  Gun               gun;
+
+		[SerializeField]
+		private LayerMask groundableLayers;
+
 		[SerializeField]
 		bool _isGrounded;
 
@@ -43,23 +46,18 @@ namespace alexM
 			Debug.Log("Mine = " + netIdentity.netId + "Owner = " + netIdentity.connectionToClient.identity.netId);
 			if (isServer)
 			{
-
 				StartCoroutine(ResyncCorountine());
-
-
 			}
 		}
 
 		IEnumerator ResyncCorountine()
 		{
 			yield return new WaitForSeconds(1);
-			
+
 			if (isServer)
 			{
 				RpcSyncOwner(Owner);
 				RpcSyncPosessor(Owner);
-				
-				
 			}
 		}
 
@@ -142,45 +140,36 @@ namespace alexM
 			direction = dir;
 			direction = new Vector3(direction.x, 0, direction.y);
 		}
-		
+
 		private void FixedUpdate()
 		{
 			//Do the stuff here
 			GroundCheck();
 			if (!_isGrounded)
 			{
-				 RB.AddForce((direction * moveForce) / 10);
+				RB.AddForce((direction * moveForce) / 10);
 			}
 			else
 			{
-			
-				
 				//new method of max speed,  Addforce, if it excedes max speed after adding, Add the inverse to undo the add. A little hacky but far simpler than hand predicting the new velocity because of drag and friction.
-				
+
 				RB.AddForce(direction * moveForce);
 
-				if (RB.velocity.magnitude > maxSpeed) 
+				if (RB.velocity.magnitude > maxSpeed)
 				{
 					RB.AddForce(-direction * moveForce);
 				}
 
 
-				
-				
-				
 				//Old Method of max speed, gets in the way of other objects effecting the rigidbody.
-				
-				
+
+
 				/*
 				// Velocity cap
 				float oldYVel = RB.velocity.y; // Let's keep our Y speed, for jumping etc
 				RB.velocity = Vector3.ClampMagnitude(RB.velocity, maxSpeed);
 				RB.velocity = new Vector3(RB.velocity.x, oldYVel, RB.velocity.z);
 				*/
-				
-				
-				
-				
 			}
 
 
@@ -211,11 +200,13 @@ namespace alexM
 			*/
 
 
-			Vector3    down = bottom.transform.TransformDirection(Vector3.down);
-			RaycastHit hit;
+			if (bottom != null)
+			{
+				Vector3    down = bottom.transform.TransformDirection(Vector3.down);
+				RaycastHit hit;
 
-			//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
-			/*if (Physics.Raycast(bottom.transform.position, down, out hit, 1f, layerMask))
+				//AirSpeed control (Check for ground and set speed to airSpeed [Slower])
+				/*if (Physics.Raycast(bottom.transform.position, down, out hit, 1f, layerMask))
 			{
 				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
 				//Debug.Log("dist: " + hit.distance);
@@ -227,24 +218,24 @@ namespace alexM
 				_isGrounded = false;
 				return false;
 			}*/
-			
-			
-			
-			if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 0.65f, groundableLayers))
-			{
-				Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
-				//Debug.Log("dist: " + hit.distance);
-				_isGrounded = true;
-				return true;
+
+
+				if (Physics.SphereCast(bottom.transform.position, GroundCheckRadius, down, out hit, 0.65f, groundableLayers))
+				{
+					Debug.DrawRay(bottom.transform.position, down * hit.distance, Color.yellow);
+					//Debug.Log("dist: " + hit.distance);
+					_isGrounded = true;
+					return true;
+				}
+				else
+				{
+					_isGrounded = false;
+					return false;
+				}
 			}
-			else
-			{
-				_isGrounded = false;
-				return false;
-			}
+
+			return false;
 		}
-
-
 
 
 		public void Aiming(Vector2 pos, InputAction.CallbackContext ctx)
