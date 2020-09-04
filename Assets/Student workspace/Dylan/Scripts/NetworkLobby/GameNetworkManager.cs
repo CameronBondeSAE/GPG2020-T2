@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AJ;
 using alexM;
 using Mirror;
 using Student_workspace.Blaide.scripts;
@@ -399,7 +400,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
             NetworkServer.Spawn(playerInstance, conn);
 
-            if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
+			if (playerInstance.GetComponent<PlayerControllerTopDown>() != null)
             {
                 playerInstance.GetComponent<PlayerControllerTopDown>().Owner = conn.identity;
                 conn.identity.gameObject.GetComponent<NetworkGamePlayer>().possessable =
