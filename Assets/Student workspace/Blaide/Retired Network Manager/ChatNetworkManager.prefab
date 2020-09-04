@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5991119322434044863}
   - component: {fileID: 5991119322434044800}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: ChatNetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   showDebugMessages: 0
   serverTickRate: 30
   offlineScene: 
-  onlineScene: Assets/Student workspace/Blaide/NetworkTestScene.unity
+  onlineScene: 
   transport: {fileID: 5991119322434044800}
   networkAddress: localhost
   maxConnections: 4
