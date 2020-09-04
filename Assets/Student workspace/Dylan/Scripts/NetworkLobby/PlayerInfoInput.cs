@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -29,8 +30,32 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         private void Start()
         {
-
+            nameInputField.onDeselect.AddListener(FilterNameInput);
         }
+
+        public void FilterNameInput(string s)
+        {
+            nameInputField.text = FilterForNaughtyWords(nameInputField.text);
+        }
+
+        public string FilterForNaughtyWords( string input)
+        {
+            string temp = input;
+            foreach (string naughtyWord in GetComponent<CSVReader>().naughtyWords)
+            {
+                string replacement = "";
+                for (int i = 0; i < naughtyWord.Length; i++)
+                {
+                    replacement += "*";
+                }
+                
+                temp = Regex.Replace(temp, naughtyWord, replacement, RegexOptions.IgnoreCase);
+                // temp = temp.Replace(naughtyWord, replacement);
+            }
+
+            return temp;
+        }
+        
 
         public void SetupPlayerInfo()
         {
@@ -50,7 +75,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString(PlayerPrefsColorKey), out defaultColor);
            // }
 
-
+           defaultName = FilterForNaughtyWords(defaultName);
 
             nameInputField.text = defaultName;
             
@@ -70,6 +95,7 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             DisplayName = nameInputField.text;
             PlayerColor = colorPickerRgb.color;
             
+            DisplayName = FilterForNaughtyWords(DisplayName);
             PlayerPrefs.SetString(PlayerPrefsNameKey,DisplayName);
             PlayerPrefs.SetString(PlayerPrefsColorKey, ColorUtility.ToHtmlStringRGBA(PlayerColor));
 

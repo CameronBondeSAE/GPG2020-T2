@@ -3334,6 +3334,7 @@ GameObject:
   - component: {fileID: 6181736371903567430}
   - component: {fileID: 6181736371903567431}
   - component: {fileID: 4547580819349917068}
+  - component: {fileID: 5456174812433616162}
   m_Layer: 0
   m_Name: LobbyUI
   m_TagString: Untagged
@@ -3385,6 +3386,20 @@ MonoBehaviour:
   nameInputField: {fileID: 6181736371927238704}
   continueButton: {fileID: 6181736372035177153}
   colorPickerRgb: {fileID: 4381652640248491769}
+--- !u!114 &5456174812433616162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181736371903567480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73022da18a7bb224a9a25b6a242eee6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  csvFile: {fileID: 4900000, guid: 1c109ab4697d9ba44ab74218e23e4c85, type: 3}
+  naughtyWords: []
 --- !u!1 &6181736371927238705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,12 +7474,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9a69e430ddc15245b12d361f521001e, type: 3}
---- !u!224 &4381652640248491768 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7568072289778255763, guid: d9a69e430ddc15245b12d361f521001e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6181736370547730795}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4381652640248491769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7568072289778255762, guid: d9a69e430ddc15245b12d361f521001e,
@@ -7477,3 +7486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d9a9910735c4143a4d189f704d9335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4381652640248491768 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7568072289778255763, guid: d9a69e430ddc15245b12d361f521001e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6181736370547730795}
+  m_PrefabAsset: {fileID: 0}
