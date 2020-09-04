@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using ReGoap.Core;
 using ReGoap.Unity;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
 
 public class ShootyGoapAgent : ReGoapAgent<string,object>
 {

@@ -1,29 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime;
-using System.Runtime.CompilerServices;
-using AnthonyY;
-using Unity.Entities;
-using Unity.Mathematics;
-using UnityEditor;
-using UnityEngine.Rendering.VirtualTexturing;
 
 namespace AnthonyY
 {
-    [CustomEditor(typeof(AStarTest))]
-    public class AStarTestEditor : Editor
-    {
-        void OnSceneGUI()
-        {
-            Handles.color = Color.green;
-            AStarTest aStar = (AStarTest) target;
-            Handles.FreeMoveHandle(aStar.transform.position, aStar.transform.rotation, aStar.nodeRadius, Vector3.right,
-                Handles.CubeHandleCap);
 
-
-        }
-    }
     public class AStarTest : MonoBehaviour
     {
         public class Node //cost variables

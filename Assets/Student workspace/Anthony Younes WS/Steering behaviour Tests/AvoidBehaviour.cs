@@ -1,31 +1,7 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using Mirror;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AnthonyY
 {
-	[CustomEditor(typeof(AvoidBehaviour))]
-	public class AvoidBehaviourEditor : Editor
-	{
-		void OnSceneGUI()
-		{
-			Handles.color = Color.red;
-			if (target != null)
-			{
-				AvoidBehaviour avoidBehaviour = (AvoidBehaviour) target;
-				Handles.DrawSolidArc(avoidBehaviour.transform.position, avoidBehaviour.transform.forward, avoidBehaviour.transform.forward, avoidBehaviour.turnSpeed, avoidBehaviour.distance);
-				Handles.color           = Color.white;
-				avoidBehaviour.distance = (float) Handles.ScaleValueHandle(avoidBehaviour.distance, avoidBehaviour.transform.position + avoidBehaviour.transform.forward * avoidBehaviour.distance, avoidBehaviour.transform.rotation, 1, Handles.ConeHandleCap, 1);
-			}
-		}
-	}
-
 	public class AvoidBehaviour : SteeringBehaviourBase
 	{
 		public float      distance = 3f;
