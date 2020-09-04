@@ -30,6 +30,7 @@ public class ShootyGoapAgent : ReGoapAgent<string,object>
      protected override void OnDonePlanning(IReGoapGoal<string, object> newGoal)
     {
         base.OnDonePlanning(newGoal);
+        StartCoroutine(NewPlanDelay());
         if (newGoal == null)
         {
             CalculateNewGoal();
@@ -38,6 +39,7 @@ public class ShootyGoapAgent : ReGoapAgent<string,object>
 
      IEnumerator NewPlanDelay()
      {
+         
          yield return new WaitForSeconds(5);
      }
 }
