@@ -6,7 +6,7 @@ namespace AJ
 {
     public class Bullet : MonoBehaviour
     {
-        public float disappearTimer = 1.5f;
+        public float disappearTimer = 8f;
         public float bulletSpeed = 5.0f;
         public int dmg = 100;
         IEnumerator Disappear()
@@ -17,7 +17,8 @@ namespace AJ
 
         void Awake()
         {
-            StartCoroutine("Disappear");
+			// Max Lifetime
+            StartCoroutine(nameof(Disappear));
         }
 
         private void Start()

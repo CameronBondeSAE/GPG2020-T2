@@ -20,7 +20,7 @@ namespace Niall
         }
 
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (playerfollow)
             {

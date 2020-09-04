@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AY Dungeon 2.unity
     guid: 1b036ac7d6d287049a72542d47aec8b4
+  - enabled: 1
+    path: Assets/Student workspace/AlexM/Scenes/AM01.unity
+    guid: 5d75c77ed1d4e2943906807e9f19ed03
   m_configObjects: {}
