@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DylanLevel.unity
     guid: 553f9b4df45af154f8ec8d1e3fa8ab69
+  - enabled: 1
+    path: Assets/Scenes/AJsLevel.unity
+    guid: 706d746b3c59f0e4988c38df9444a001
+  - enabled: 1
+    path: Assets/Scenes/AStarMaze.unity
+    guid: 7f6db2a09d43ed842a68f9df6de62db7
+  - enabled: 1
+    path: Assets/Scenes/AY Dungeon 2.unity
+    guid: 1b036ac7d6d287049a72542d47aec8b4
   m_configObjects: {}
