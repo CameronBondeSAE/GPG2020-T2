@@ -24,7 +24,7 @@ namespace Niall
         {
             if (playerfollow)
             {
-                FollowPos = nearby.GetClosest().transform;
+                FollowPos = nearby.GetClosest()?.transform;
             }
 
             if (nearby.players.Count <= 0)
