@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4444155774481055291}
   - component: {fileID: 4238137353553267460}
   - component: {fileID: 1196340112}
+  - component: {fileID: 957181200}
   m_Layer: 0
   m_Name: Gravity Dude
   m_TagString: Untagged
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 4240539164566335827}
   players: []
-  useTriggerInGetClosest: 0
+  useTriggerInGetClosest: 1
 --- !u!114 &1196340112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +260,19 @@ MonoBehaviour:
       m_Calls: []
   Degrees: 40
   nearby: {fileID: 0}
+--- !u!135 &957181200
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383219831056816355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2099919753117356082
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,12 +333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791896d087198344e93756d11cab2fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   rb: {fileID: 1873104239884801489}
   distance: 2
   turnSpeed: -10
   direction: 10
+  feelerRadius: 1
 --- !u!1 &6599723027239654530
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,12 +398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791896d087198344e93756d11cab2fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   rb: {fileID: 1873104239884801489}
   distance: 2
   turnSpeed: 10
   direction: 10
+  feelerRadius: 1
 --- !u!1 &8404035896262838733
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,12 +463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791896d087198344e93756d11cab2fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   rb: {fileID: 1873104239884801489}
   distance: 1
   turnSpeed: -1000
   direction: 30
+  feelerRadius: 1
 --- !u!1001 &637719127
 PrefabInstance:
   m_ObjectHideFlags: 0
