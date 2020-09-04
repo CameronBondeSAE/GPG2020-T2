@@ -141,7 +141,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             }
             else if (Room.RoomPlayers.Count < playerLobbyDisplays.Count)
             {
+                PlayerLobbyDisplay p = playerLobbyDisplays[playerLobbyDisplays.Count - 1];
                 playerLobbyDisplays.Remove(playerLobbyDisplays[playerLobbyDisplays.Count-1]); 
+                Destroy(p.gameObject);
             }
 
             for (var index = 0; index < Room.RoomPlayers.Count; index++)
