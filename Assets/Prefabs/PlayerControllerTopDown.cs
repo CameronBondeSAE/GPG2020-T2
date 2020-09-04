@@ -50,6 +50,21 @@ namespace alexM
 			}
 		}
 
+		public override void OnStartAuthority()
+		{
+			base.OnStartAuthority();
+
+			CmdGrantAuthority(gun);
+		}
+
+		[Command]
+		void CmdGrantAuthority(Gun target)
+		{
+			// target must have a NetworkIdentity component to be passed through a Command
+			// and must already exist on both server and client
+			target.netIdentity.AssignClientAuthority(connectionToClient);
+		}
+		
 		IEnumerator ResyncCorountine()
 		{
 			yield return new WaitForSeconds(1);
@@ -267,7 +282,13 @@ namespace alexM
 
 		public void Fire(InputAction.CallbackContext ctx)
 		{
-			if (!(gun is null)) gun.Shoot(ctx);
+			if (!(gun is null))
+			{
+				if (ctx.phase == InputActionPhase.Performed)
+				{
+					gun.CmdShoot();
+				}
+			}
 		}
 
 		public void Interact(InputAction.CallbackContext ctx)
