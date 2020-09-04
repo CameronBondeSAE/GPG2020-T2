@@ -31,12 +31,18 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
 
         public void JoinLobby()
         {
+            
             string ipAddress = ipAddressInputField.text;
 
-            gameNetworkManager.networkAddress = ipAddress;
-            gameNetworkManager.StartClient();
+            if (ipAddress.Length >= 2)
+            {
+                gameNetworkManager.networkAddress = ipAddress;
+                gameNetworkManager.StartClient();
 
-            joinButton.interactable = false;
+                joinButton.interactable = false;
+            }
+
+
         }
         
         private void HandleClientConnected()

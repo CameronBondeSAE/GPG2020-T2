@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Mirror;
 using TMPro;
 using UnityEngine;
@@ -15,17 +16,13 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         [Header("UI")]
         [SerializeField]
         private GameObject lobbyUI = null;
-
+        
         [SerializeField]
-        private TMP_Text[] playerNameTexts;
-
-        [SerializeField]
-        private TMP_Text[] playerReadyTexts;
+        private List<PlayerLobbyDisplay> playerLobbyDisplays = new List<PlayerLobbyDisplay>();
 
         [SerializeField]
         private Button startGameButton = null;
-
-
+        
         public static event Action<NetworkLobbyPlayer> OnInstantiated;
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
@@ -38,6 +35,9 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
         public bool IsReady = false;
 
         private bool isLeader;
+
+        public GameObject playerLobbyDisplayPrefab;
+        public Transform playerLobbyDisplayPanel;
 
         public bool IsLeader
         {
@@ -129,19 +129,45 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 return;
             }
 
-            for (int i = 0; i < playerNameTexts.Length; i++)
+            /*for (int i = 0; i < playerNameTexts.Length; i++)
             {
                 playerNameTexts[i].text = "Waiting For Player...";
                 playerReadyTexts[i].text = String.Empty;
+            }*/
+
+            if (Room.RoomPlayers.Count > playerLobbyDisplays.Count)
+            {
+                playerLobbyDisplays.Add(NewPlayerDisplay());
+            }
+            else if (Room.RoomPlayers.Count < playerLobbyDisplays.Count)
+            {
+                PlayerLobbyDisplay p = playerLobbyDisplays[playerLobbyDisplays.Count - 1];
+                playerLobbyDisplays.Remove(playerLobbyDisplays[playerLobbyDisplays.Count-1]); 
+                Destroy(p.gameObject);
             }
 
-            for (int i = 0; i < Room.RoomPlayers.Count; i++)
+            for (var index = 0; index < Room.RoomPlayers.Count; index++)
+            {
+                playerLobbyDisplays[index].nameText.text = Room.RoomPlayers[index].DisplayName;
+                playerLobbyDisplays[index].readyText.text = Room.RoomPlayers[index].IsReady
+                    ? "<color=green>Ready</color>"
+                    : "<color=red>Not Ready</color>";
+            }
+
+            /*for (int i = 0; i < Room.RoomPlayers.Count; i++)
             {
                 playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
                 playerReadyTexts[i].text = Room.RoomPlayers[i].IsReady
                     ? "<color=green>Ready</color>"
                     : "<color=red>Not Ready</color>";
-            }
+            }*/
+        }
+
+        public PlayerLobbyDisplay NewPlayerDisplay()
+        {
+            PlayerLobbyDisplay p = Instantiate(playerLobbyDisplayPrefab, playerLobbyDisplayPanel)
+                .GetComponent<PlayerLobbyDisplay>();
+            return p;
         }
 
         public void HandleReadyToStart(bool readyToStart)

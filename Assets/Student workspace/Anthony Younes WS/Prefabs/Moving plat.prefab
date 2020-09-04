@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 647001768889225273}
   - component: {fileID: 647001768889225272}
   - component: {fileID: 647001768889225275}
-  - component: {fileID: 647001768889225279}
   - component: {fileID: 647001768889225276}
   m_Layer: 0
   m_Name: Moving plat
@@ -122,31 +121,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   _currMoveType: 1
   _currDistanceType: 1
   AttachRigidbody: 0
   target: {fileID: 0}
---- !u!114 &647001768889225279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647001768889225269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6717400c560b04a913d18e1c70b227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eyes: {fileID: 0}
-  targets: []
-  range: 2
-  haveLOS: 0
-  changedLOS:
-    m_PersistentCalls:
-      m_Calls: []
-  Degrees: 5
 --- !u!54 &647001768889225276
 Rigidbody:
   m_ObjectHideFlags: 0

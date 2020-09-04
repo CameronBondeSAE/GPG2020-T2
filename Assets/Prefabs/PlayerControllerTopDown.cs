@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AJ;
 using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using NetworkBehaviour = Mirror.NetworkBehaviour;
@@ -21,6 +22,7 @@ namespace alexM
 		public  float             GroundCheckRadius = 0.2f;
 		public  Gun               gun;
 
+		public TextMeshPro tmpPlayerLabel;
 		[SerializeField]
 		private LayerMask groundableLayers;
 
@@ -50,6 +52,21 @@ namespace alexM
 			}
 		}
 
+		public override void OnStartAuthority()
+		{
+			base.OnStartAuthority();
+
+			CmdGrantAuthority(gun);
+		}
+
+		[Command]
+		void CmdGrantAuthority(Gun target)
+		{
+			// target must have a NetworkIdentity component to be passed through a Command
+			// and must already exist on both server and client
+			target.netIdentity.AssignClientAuthority(connectionToClient);
+		}
+		
 		IEnumerator ResyncCorountine()
 		{
 			yield return new WaitForSeconds(1);
@@ -129,8 +146,10 @@ namespace alexM
 		{
 			possessor = n.gameObject.GetComponent<NetworkGamePlayer>();
 
+			tmpPlayerLabel.text = possessor.displayName;
 			// Setting itself as the possessable in the game player may not be a good idea.
 			n.gameObject.GetComponent<NetworkGamePlayer>().possessable = ((IPossessable) this);
+			
 		}
 
 		#endregion
@@ -267,7 +286,13 @@ namespace alexM
 
 		public void Fire(InputAction.CallbackContext ctx)
 		{
-			if (!(gun is null)) gun.Shoot(ctx);
+			if (!(gun is null))
+			{
+				if (ctx.phase == InputActionPhase.Performed)
+				{
+					gun.CmdShoot();
+				}
+			}
 		}
 
 		public void Interact(InputAction.CallbackContext ctx)

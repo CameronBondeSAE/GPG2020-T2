@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activate: 1
   movement: 0
+  delay: 0
   useGravity: 0
   useYaxis: 0
   speedMulti: 100
@@ -159,11 +160,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   _currMoveType: 1
   _currDistanceType: 1
-  AttachRigidbody: 0
+  attachRigidbody: 0
   target: {fileID: 0}
+  loopCount: 0
 --- !u!114 &2474439639633579408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +206,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7164934260688938586}
     m_Modifications:
+    - target: {fileID: 1635039864, guid: c1d616cd07402c64eb0c32d99d4a3610, type: 3}
+      propertyPath: m_Size.y
+      value: 2.2747326
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635039864, guid: c1d616cd07402c64eb0c32d99d4a3610, type: 3}
+      propertyPath: m_Size.z
+      value: 10.289999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635039864, guid: c1d616cd07402c64eb0c32d99d4a3610, type: 3}
+      propertyPath: m_Center.y
+      value: -0.8345003
+      objectReference: {fileID: 0}
     - target: {fileID: 6290073494820562944, guid: c1d616cd07402c64eb0c32d99d4a3610,
         type: 3}
       propertyPath: sceneId
@@ -214,6 +227,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AssetId
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589996086655257081, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589996086655257081, guid: c1d616cd07402c64eb0c32d99d4a3610,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7589996086655257082, guid: c1d616cd07402c64eb0c32d99d4a3610,
         type: 3}

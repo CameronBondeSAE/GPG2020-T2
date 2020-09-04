@@ -37,6 +37,8 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
                 return room = NetworkManager.singleton as GameNetworkManager;
             }
         }
+        
+        
 
         private void Start()
         {
@@ -46,21 +48,23 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             EnableControls();
         }
 
-        void EnableControls()
+         public void EnableControls()
         {
             if (netIdentity.isLocalPlayer)
             {
-                Debug.Log(gameObject.name + " is the local player.");
                 _gameControls.Enable();
             }
-            else
-            {
-                Debug.Log( gameObject.name + " is not the local player.");
-            }
-
         }
 
-        void FindPosessable()
+         public void DisableControls()
+         {
+             if (netIdentity.isLocalPlayer)
+             {
+                 _gameControls.Disable();
+             }
+         }
+
+         void FindPosessable()
         {
             
             

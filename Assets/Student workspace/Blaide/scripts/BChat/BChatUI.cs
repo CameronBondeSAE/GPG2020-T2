@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
 using TMPro;
@@ -23,6 +24,25 @@ namespace Student_workspace.Blaide.scripts
         public BChatNetworkHandler bChatNetworkHandler;
         [HideInInspector]public Color localPlayerColour;
         [HideInInspector]public string localPlayerName;
+        public NetworkGamePlayer localPlayer;
+
+
+        public void onInputFieldSelected(string s)
+        {
+            foreach (NetworkGamePlayer networkGamePlayer in gameNetworkManager.GamePlayers)
+            {
+                networkGamePlayer.DisableControls();
+            }
+        }
+
+        public void onInputFieldDeslected(string s)
+        {
+            foreach (NetworkGamePlayer networkGamePlayer in gameNetworkManager.GamePlayers)
+            {
+                networkGamePlayer.EnableControls();
+            }
+        }
+
 
         public void SetPlayerName( string p)
         {
@@ -40,6 +60,9 @@ namespace Student_workspace.Blaide.scripts
             inputField.onSubmit.AddListener(OnMessageSubmit);
             UpdateText();
             BChatNetworkHandler.OnMessage += AddMessage;
+            
+            inputField.onSelect.AddListener(onInputFieldSelected);
+            inputField.onDeselect.AddListener(onInputFieldDeslected);
             
 
         }
@@ -99,8 +122,29 @@ namespace Student_workspace.Blaide.scripts
             inputField.ActivateInputField();
         }
 
+        public string FilterForNaughtyWords( string input)
+        {
+            string temp = input;
+            foreach (string naughtyWord in GetComponent<CSVReader>().naughtyWords)
+            {
+                string replacement = "";
+                for (int i = 0; i < naughtyWord.Length; i++)
+                {
+                    replacement += "*";
+                }
+                
+               temp = Regex.Replace(temp, naughtyWord, replacement, RegexOptions.IgnoreCase);
+               // temp = temp.Replace(naughtyWord, replacement);
+            }
+
+            return temp;
+        }
+
         public void AddMessage(string message, string source)
         {
+            string filteredMessage = FilterForNaughtyWords(message);
+            
+            
             if (chatContent != "")
             {
                 chatContent += "\n";
@@ -108,7 +152,7 @@ namespace Student_workspace.Blaide.scripts
             
             //bChatNetworkHandler.CmdSendMessage(message,source);
 
-            chatContent +=  source + ":" + message;
+            chatContent +=  source + ":" + filteredMessage;
             UpdateText();
         }
 
