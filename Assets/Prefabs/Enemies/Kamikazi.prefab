@@ -202,7 +202,7 @@ MonoBehaviour:
   rb: {fileID: 1847796159566810914}
   distance: 3
   turnSpeed: 2
-  direction: 1
+  direction: 5
   feelerRadius: 1
 --- !u!114 &1847796159566810840
 MonoBehaviour:

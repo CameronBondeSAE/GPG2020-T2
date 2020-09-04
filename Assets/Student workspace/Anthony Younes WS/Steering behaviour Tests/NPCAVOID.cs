@@ -21,7 +21,7 @@ namespace AnthonyY
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
 			if (isServer)
 			{
