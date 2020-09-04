@@ -19,7 +19,7 @@ namespace alexM
 		public bool movement;
 
 		[Tooltip("The delay before the object starts its movement cycle")]
-		public float delay;
+		public float startDelay;
 		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>"), HideInInspector]
 		public bool useGravity = false;
 		[Tooltip("This option will determine whether or not the object will move directly AT the target, or only its X and Z positions (Staying on the Y pos it is currently at.)")]
@@ -170,9 +170,9 @@ namespace alexM
 
 		public void ToggleMovement()
 		{
-			if (delay > 0)
+			if (startDelay > 0)
 			{
-				StartCoroutine(startCD(delay));
+				StartCoroutine(startCD(startDelay));
 			}
 			else
 			{
@@ -270,13 +270,12 @@ namespace alexM
 
 			if (!useYaxis)
 			{
-				//RB.velocity = new Vector3(_dir.x, 0, _dir.z) * (speedMulti * Time.deltaTime);
 				
 				RB.MovePosition(transform.position + _dir * (Time.fixedDeltaTime * speedMulti));
 			}
 			else
 			{
-				//RB.velocity = _dir * (speedMulti * Time.deltaTime);
+				
 				RB.MovePosition(transform.position + _dir * (Time.fixedDeltaTime * speedMulti));
 			}
 		}
