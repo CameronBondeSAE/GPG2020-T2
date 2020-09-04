@@ -17,7 +17,11 @@ namespace alexM
 		[HideInInspector]public bool activate = true;
 		[Tooltip("You can disable movement if you want to do your own or if you want to toggle it on via event/trigger later")]
 		public bool movement;
-
+		[Tooltip("If this is set to TRUE it will end the movement loop after reaching the limit set here.")]
+		public bool limitLoops;
+		[SerializeField, Tooltip("This is only needed if isLooping is TRUE")] 
+		private int maxLoops;
+		public bool goBackToStart;
 		[Tooltip("The delay before the object starts its movement cycle")]
 		public float startDelay;
 		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>"), HideInInspector]
@@ -64,11 +68,14 @@ namespace alexM
 		private TargetStatus _targetStatus = TargetStatus.NoTarget;
 		private int _targetId = 0;
 		[SerializeField]private int loopCount;
+
+		
 		private int _listCount;
 		private Vector3 _dir;
 		private Rigidbody RB;
 		private float dist;
 		private bool targetReached;
+		
 		private Collider _collider;
 
 	#endregion
@@ -91,6 +98,7 @@ namespace alexM
 					if (gameObject.GetComponent<Rigidbody>())
 					{
 						RB = gameObject.GetComponent<Rigidbody>();
+						
 						if (!RB.isKinematic)
 							RB.isKinematic = true;
 						
@@ -155,6 +163,13 @@ namespace alexM
 				if (dist <= targetReachedThreshold)
 				{
 					targetReached = true;
+					if (limitLoops)
+					{
+						if (loopCount >= maxLoops)
+						{
+							movement = false;
+						}
+					}
 					return true;
 					//target Reached
 				}
@@ -179,6 +194,7 @@ namespace alexM
 				if (!movement)
 				{
 					movement = true;
+					loopCount = 0;
 				}
 			}
 		}
@@ -189,6 +205,7 @@ namespace alexM
 			if (!movement)
 			{
 				movement = true;
+				loopCount = 0;
 			}
 		}
 
@@ -217,11 +234,29 @@ namespace alexM
 		void SelectTarget()
 		{
 			_listCount = wayPoints.Count;
+
+	//TODO:This will run endlessly and needs to be improved on later!
+	#region LoopStuff
+
+		if (limitLoops)
+		{
+			if (loopCount >= maxLoops)
+			{
+				if (goBackToStart)
+				{
+					_targetId = 0;
+					TargetSetup();
+				}
+				return;
+			}
+		}
+
 			if (_targetId == (_listCount - 1))
 			{
 				loopCount++;
 			}
-			
+
+		#endregion
 			switch (_currMoveType)
 			{
 				case MoveType.Ordered:
@@ -254,6 +289,7 @@ namespace alexM
 					TargetSetup();
 					break;
 			}
+		
 		}
 
 		void MoveTo(Transform target)
