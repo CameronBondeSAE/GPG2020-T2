@@ -25,7 +25,7 @@ namespace AnthonyY
             lineofSight.singleTarget = nearby.GetClosest()?.transform;
             if (lineofSight.singleTarget)
             {
-                nearby.GetClosest().RB.AddForce(lineofSight.singleTarget.position * (-suctionPower * (1 / Vector3.Distance(transform.position, lineofSight.singleTarget.position))), ForceMode.Impulse);
+                nearby.GetClosest().RB.AddForce(lineofSight.singleTarget.position * (suctionPower * (1 / Vector3.Distance(transform.position, lineofSight.singleTarget.position))), ForceMode.Acceleration);
             }
             
         }

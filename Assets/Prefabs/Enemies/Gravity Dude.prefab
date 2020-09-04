@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearby: {fileID: 4238137353553267460}
-  suctionPower: -500
+  suctionPower: 75
   lineofSight: {fileID: 1196340112}
 --- !u!114 &4444155774481055291
 MonoBehaviour:
