@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AJ;
 using Mirror;
 using Student_workspace.Dylan.Scripts.NetworkLobby;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using NetworkBehaviour = Mirror.NetworkBehaviour;
@@ -21,6 +22,7 @@ namespace alexM
 		public  float             GroundCheckRadius = 0.2f;
 		public  Gun               gun;
 
+		public TextMeshPro tmpPlayerLabel;
 		[SerializeField]
 		private LayerMask groundableLayers;
 
@@ -144,8 +146,10 @@ namespace alexM
 		{
 			possessor = n.gameObject.GetComponent<NetworkGamePlayer>();
 
+			tmpPlayerLabel.text = possessor.displayName;
 			// Setting itself as the possessable in the game player may not be a good idea.
 			n.gameObject.GetComponent<NetworkGamePlayer>().possessable = ((IPossessable) this);
+			
 		}
 
 		#endregion

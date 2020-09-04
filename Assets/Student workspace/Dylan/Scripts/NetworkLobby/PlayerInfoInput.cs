@@ -39,9 +39,10 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             Color defaultColor = Random.ColorHSV(0.2f, 0.8f, 0.3f, 1);
             if (PlayerPrefs.HasKey(PlayerPrefsNameKey))
             {
-   
-                defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
-
+                if (!string.IsNullOrEmpty(PlayerPrefs.GetString(PlayerPrefsNameKey)))
+                {
+                    defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
+                }
             }
 
            // if (PlayerPrefs.HasKey(PlayerPrefsColorKey))

@@ -22,11 +22,10 @@ namespace AnthonyY
 
         private void SuckEmIn()
         {
-            lineofSight.singleTarget = nearby.GetClosest().transform;
-            var lineofSighttransform = lineofSight.singleTarget.transform;
-            if (lineofSight.CheckLOS())
+            lineofSight.singleTarget = nearby.GetClosest()?.transform;
+            if (lineofSight.singleTarget)
             {
-                nearby.GetClosest().RB.AddForce(lineofSighttransform.position * (-suctionPower * (1 / Vector3.Distance(transform.position, lineofSighttransform.position))), ForceMode.Impulse);
+                nearby.GetClosest().RB.AddForce(lineofSight.singleTarget.position * (-suctionPower * (1 / Vector3.Distance(transform.position, lineofSight.singleTarget.position))), ForceMode.Impulse);
             }
             
         }
