@@ -18,7 +18,7 @@ namespace alexM
 		[Tooltip("You can disable movement if you want to do your own or if you want to toggle it on via event/trigger later")]
 		public bool movement;
 		[Tooltip("If this is set to TRUE it will end the movement loop after reaching the limit set here.")]
-		public bool limitLoops;
+		public bool limitLoops = false;
 		[SerializeField, Tooltip("This is only needed if isLooping is TRUE")] 
 		private int maxLoops;
 		public bool goBackToStart;
