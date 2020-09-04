@@ -410,6 +410,11 @@ namespace Student_workspace.Dylan.Scripts.NetworkLobby
             topDownPlayers.Add(playerInstance.GetComponent<PlayerControllerTopDown>());
             
             nextIndex++;
+            
+            if (nextIndex >= spawnPoints.Count)
+            {
+                nextIndex = 0;
+            }
         }
 
         public static void AddSpawnPoint(Transform transform)
