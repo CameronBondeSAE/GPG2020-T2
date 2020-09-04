@@ -21,16 +21,16 @@ namespace alexM
 		public bool limitLoops = false;
 		[SerializeField, Tooltip("This is only needed if isLooping is TRUE")] 
 		private int maxLoops;
-		public bool goBackToStart;
+		public bool goBackToStart = true;
 		[Tooltip("The delay before the object starts its movement cycle")]
-		public float startDelay;
+		public float startDelay = 0;
 		[Tooltip("This option will determine if the Rigidbody is allowed control if its own gravity or not. <LEAVE THIS FALSE AS LONG AS useYaxis IS FALSE.>"), HideInInspector]
 		public bool useGravity = false;
 		[Tooltip("This option will determine whether or not the object will move directly AT the target, or only its X and Z positions (Staying on the Y pos it is currently at.)")]
 		public bool useYaxis = false;
 		public float speedMulti = 2;
 		[Tooltip("This is the distance to the target left before this component switches to the next target based on Current Move Type below")]
-		public float targetReachedThreshold = 0.05f;
+		public float targetReachedThreshold = 0.01f;
 		
 		[Header("Targeting/MoveType")]
 		[Tooltip("Add as many Waypoint prefabs to your scene as you need and drag them all into this list for this component to work!")]
