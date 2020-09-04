@@ -56,15 +56,15 @@ namespace alexM
 		{
 			base.OnStartAuthority();
 
-			CmdGrantAuthority(gun);
+			CmdGrantAuthority(gun.netIdentity);
 		}
 
 		[Command]
-		void CmdGrantAuthority(Gun target)
+		void CmdGrantAuthority(NetworkIdentity target)
 		{
 			// target must have a NetworkIdentity component to be passed through a Command
 			// and must already exist on both server and client
-			target.netIdentity.AssignClientAuthority(connectionToClient);
+			target.AssignClientAuthority(connectionToClient);
 		}
 		
 		IEnumerator ResyncCorountine()
